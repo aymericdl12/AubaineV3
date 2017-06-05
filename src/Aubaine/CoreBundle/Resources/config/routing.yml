@@ -1,0 +1,9 @@
+aubaine_core_homepage:
+    path:     /
+    defaults: { _controller: AubaineCoreBundle:Home:index }
+aubaine_core_concept:
+    path:     /concept
+    defaults: { _controller: AubaineCoreBundle:Home:concept }
+aubaine_core_partner:
+    path:     /devenir-partenaire
+    defaults: { _controller: AubaineCoreBundle:Home:partner }

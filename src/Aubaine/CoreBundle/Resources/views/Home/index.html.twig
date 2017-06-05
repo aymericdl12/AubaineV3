@@ -1,0 +1,64 @@
+{% extends "AubaineCoreBundle::layout.html.twig" %}
+
+{% block title %}
+  Page d'accueil- {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+<!-- <div id="home_wrapper"> -->
+    <div id='map_wrapper'>
+        <div id='map'></div>
+    </div>
+    <div id="listAubaines-home">
+        <img src="{{ asset('images/logo-aubaine-new.png') }} " alt="" class="logo">
+        <div>
+            Nous relayons en instantannées des bons plans de la parts des commerçants de votre ville. Il peut s'air de promotions, de destockage, de nouveautés, d'évènements, etc. Restez à l'affut, tout peut arriver...
+        </div>
+        <button type="button" class="show-map-button btn btn-primary btn-lg">
+            Voir la carte
+            <i class="glyphicon glyphicon-chevron-right"></i>
+        </button>
+        <h2>Vendredi 2 Juin</h2>
+        <ul id="aubaine-list">
+            {% for aubaine in listAubaines %}
+                <li id="deal-{{ aubaine.id }}">
+                    <img src="{{ asset('images/' ~ aubaine.category ~ '.png') }} " alt="" class="category"> 
+                    <div class="author">{{ aubaine.author.username }}</div> 
+                    <div class="message"><b>{{ aubaine.title }} </b><br> {{ aubaine.message }}</div>
+                </li>
+            {% endfor %}
+        </ul>
+        <div class="last-message">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore doloremque cupiditate veritatis blanditiis debitis aut, iusto soluta rerum maiores nisi animi, at, excepturi libero similique modi unde assumenda nulla facere!
+        </div>
+    </div>
+<!-- </div> -->
+<script>
+
+    var imageDir = "{{ asset('images/') }}";
+    var avatarDir = imageDir+'avatars/';
+    var loadMarkerUrl = "{{ path('aubaine_platform_load_marker')}}";
+    var listPartners = {{listPartnersJson | raw }}
+    var listAubaines = {{listAubainesJson | raw }}
+
+</script> 
+<style>
+    
+    .navbar{
+        position: fixed;
+        top:0;
+        width: 100%;
+    }
+</style>
+{% endblock %}
+{% block footer %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts filter='jsqueeze'
+        'bundles/aubainecore/js/main.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

@@ -1,0 +1,31 @@
+{# src/OC/PlatformBundle/Resources/view/Advert/view.html.twig #}
+
+{% extends "AubaineUserBundle::layout.html.twig" %}
+
+{% block title %}
+  Vue du membre - {{ parent() }}
+{% endblock %}
+
+{% block body_column_center %}
+  <p>
+    <a href="{{ path('aubaine_user_home') }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-chevron-left"></i>
+      Retour à la liste des utilisateur
+    </a>
+    <a href="{{ path('aubaine_user_edit', {'id': user.id}) }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-edit"></i>
+      Modifier l'utilisateur
+    </a>
+    <a href="{{ path('aubaine_user_delete', {'id': user.id}) }}" class="btn btn-danger">
+      <i class="glyphicon glyphicon-trash"></i>
+      Supprimer l'utilisateur
+    </a>
+  </p>
+
+  <p><img src="{{ vich_uploader_asset(user, 'imageFile') }}" width="60"> </p>
+  <p>{{ user.username }} </p>
+  <p>{{ user.description }} </p>
+  <p>{{ user.city }} ( {{ user.lati }}, {{ user.longi }} )
+
+
+{% endblock %}

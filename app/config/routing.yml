@@ -1,0 +1,38 @@
+# aubaine_admin:
+#     resource: "@AubaineAdminBundle/Resources/config/routing.yml"
+#     prefix:   /
+
+aubaine_core:
+    resource: "@AubaineCoreBundle/Resources/config/routing.yml"
+    prefix:   /
+
+aubaine_platform:
+    resource: "@AubainePlatformBundle/Resources/config/routing.yml"
+    prefix:   /aubaines
+
+aubaine_user:
+    resource: "@AubaineUserBundle/Resources/config/routing.yml"
+    prefix:   /membre
+
+aubaine_admin:
+    resource: "@AubaineAdminBundle/Resources/config/routing.yml"
+    prefix:   /admin2
+
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+
+fos_user_profile:
+    resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
+    prefix: /profile
+
+fos_user_register:
+    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+    prefix: /register
+
+fos_user_resetting:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+    prefix: /resetting
+
+fos_user_change_password:
+    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
+    prefix: /profile

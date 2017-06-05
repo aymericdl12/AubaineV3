@@ -1,0 +1,4 @@
+services:
+#    aubaine_platform.example:
+#        class: Aubaine\PlatformBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

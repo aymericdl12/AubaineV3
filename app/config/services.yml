@@ -1,0 +1,14 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/service_container.html
+parameters:
+    #parameter_name: value
+
+services:
+    app.form.registration:
+        class: Aubaine\UserBundle\Form\Type\RegistrationType
+        tags:
+            - { name: form.type, alias: app_user_registration }
+    app.form.profile:
+        class: Aubaine\UserBundle\Form\Type\ProfileType
+        tags:
+            - { name: form.type, alias: app_user_profile }

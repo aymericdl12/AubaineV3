@@ -1,0 +1,11 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="fos_user_user_show">
+	<p><img src="{{ vich_uploader_asset(user, 'imageFile') }}" width="60"> </p>
+	<p>{{ user.username }} </p>
+    <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+	<p>Catégorie : {{ user.category }} </p>
+	<p>description : {{ user.description }} </p>
+	<p>ville : {{ user.city }} ( {{ user.lati }}, {{ user.longi }} )</p>
+	<p>Téléphone : {{ user.phone }}</p>
+</div>

@@ -1,0 +1,27 @@
+aubaine_user_home:
+    path:      /{page}
+    defaults:
+        _controller: AubaineUserBundle:User:index
+        page:        1
+    requirements:
+        page: \d+
+
+aubaine_user_view:
+    path:      /user/{id}
+    defaults:
+        _controller: AubaineUserBundle:User:view
+
+aubaine_user_add:
+    path:      /add
+    defaults:
+        _controller: AubaineUserBundle:User:add
+
+aubaine_user_edit:
+    path:      /edit/{id}
+    defaults:
+        _controller: AubaineUserBundle:User:edit
+
+aubaine_user_delete:
+    path:      /delete/{id}
+    defaults:
+        _controller: AubaineUserBundle:User:delete

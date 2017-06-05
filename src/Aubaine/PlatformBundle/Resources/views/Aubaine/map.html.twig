@@ -1,0 +1,48 @@
+{% extends "AubainePlatformBundle::layout.html.twig" %}
+
+
+{% block title %}
+  Page d'accueil- {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+	<div id='home_block-map'>
+      
+      <div id='category-choser-search'>
+        <select id="map_category-selector" autocomplete="off" class="selectpicker" standard title="Choose one of the following...">
+          <option value="all" selected>Toutes les catégories</option>
+          <option value="boire_un_coup" data-content='<img src="https://aubaineapp.fr/wp-content/uploads/2016/12/bars-logo.png" alt="" class="selector-logo"><div class="selector-label">Boire un coup</div>'>Boire un coup'</option>
+          <option value="manger_un_bout" data-content='<img src="https://aubaineapp.fr/wp-content/uploads/2017/01/fork.png" alt="" class="selector-logo"><div class="selector-label">Manger un bout</div>'>Manger un bout</option>
+          <option value="faire_des_affaires" data-content='<img src="https://aubaineapp.fr/wp-content/uploads/2017/01/boutiques-logo2.png" alt="" class="selector-logo"><div class="selector-label">Faire des emplettes</div>'>Faire des emplettes</option>
+          <option value="se_faire_dorloter" data-content='<img src="https://aubaineapp.fr/wp-content/uploads/2017/01/lotus.png" alt="" class="selector-logo"><div class="selector-label">Se faire dorloter</div>'>Se faire dorloter</option>
+          <!-- <option value="event" data-content='<img src="https://aubaineapp.fr/wp-content/uploads/2017/04/evenement-white.png" alt="" class="selector-logo"><div class="selector-label">Sortir</div>'>Sortir</option> -->
+        </select>
+      </div>
+      <div id='map'></div>
+      <div class='loading-map'>
+        <div class="loading-title">Chargement des résultats</div>
+        <div id='uil-ripple-css-deal2' class='uil-ripple-css' style='transform:scale(0.57);'>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+    </div>
+
+
+  <script>
+
+    var avatarDir = "{{ asset('images/avatars/') }}";
+    var loadMarkerUrl = "{{ path('aubaine_platform_load_marker')}}";
+
+  </script>  
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts filter='jsqueeze'
+       'bundles/aubaineplatform/js/map.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

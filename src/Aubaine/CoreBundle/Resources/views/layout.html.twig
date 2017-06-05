@@ -1,0 +1,109 @@
+{# app/Resources/views/layout.html.twig #}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block title %}Aubaine- Les Bons Plans Autour De Vous Aujourd'hui{% endblock %}</title>
+
+    {% block stylesheets %}
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ==" crossorigin=""/>
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css">
+        {% stylesheets filter='cssrewrite, scssphp'
+            'bundles/aubainecore/css/*' %}
+            <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+        {% endstylesheets %}
+    {% endblock %}
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>                        
+          </button>
+          <a class="navbar-brand" href="{{ path('aubaine_core_homepage') }}"><img alt="Brand" src="{{ asset('images/logo-aubaine-new.png') }}" style="height:20px;"></a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav navbar-left">
+                <li class="{% if app.request.attributes.get('_route') == 'aubaine_core_homepage' %}active{% endif %}"  id='menu-tab-accueil'><a id='menu-button-accueil' href="{{ path('aubaine_core_homepage') }}">Accueil</a></li>
+                <li class="{% if app.request.attributes.get('_route') == 'aubaine_core_concept' %}active{% endif %}"><a href="{{ path('aubaine_core_concept') }}">Concept</a></li>
+                <li class="{% if app.request.attributes.get('_route') == 'aubaine_core_partner' %}active{% endif %}"><a href="{{ path('aubaine_core_partner') }}">Devenir Partenaire</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <li class="{% if app.request.attributes.get('_route') == 'aubaine_platform_my_aubaines' %}active{% endif %}" ><a href="{{ path('aubaine_platform_my_aubaines', {'week': '0' }) }}"><span class="glyphicon glyphicon-comment"></span>  Mes Aubaines</a></li>
+                    <li class="dropdown">
+                      <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-lock"></span> Admin
+                      <span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li class="{% if app.request.attributes.get('_route') == 'aubaine_platform_home' %}active{% endif %}"><a href="{{ path('aubaine_platform_home') }}"><span class="glyphicon glyphicon-comment"></span> Aubaines</a></li>
+                        <li class="{% if app.request.attributes.get('_route') == 'aubaine_user_home' %}active{% endif %}"><a href="{{ path('aubaine_user_home') }}"><span class="glyphicon glyphicon-user"></span> Utilisateurs</a></li>
+                      </ul>
+                    </li>
+                    <li class="dropdown">
+                      <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> Profil
+                      <span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li class="{% if app.request.attributes.get('_route') == 'fos_user_profile_show' %}active{% endif %}" ><a href="{{ path('fos_user_profile_show') }}"><span class="glyphicon glyphicon-user"></span> Voir mon Profil</a></li>
+                        <li class="{% if app.request.attributes.get('_route') == 'fos_user_profile_edit' %}active{% endif %}" ><a href="{{ path('fos_user_profile_edit') }}"><span class="glyphicon glyphicon-edit"></span>  Modifier mon profil</a></li>
+                        <li class="{% if app.request.attributes.get('_route') == 'fos_user_change_password' %}active{% endif %}" ><a href="{{ path('fos_user_change_password') }}"><span class="glyphicon glyphicon-edit"></span>  Modifier mon mot de passe</a></li>
+                        <li><a href="{{ path('fos_user_security_logout') }}"><span class="glyphicon glyphicon-log-out"></span> Déconnexion</a></li>
+                      </ul>
+                    </li>                    
+                {% else %}
+                    <li class="{% if app.request.attributes.get('_route') == 'fos_user_security_login' %}active{% endif %}"><a href="{{ path('fos_user_security_login') }}"><span class="glyphicon glyphicon-log-in"></span> Connexion</a></li>
+                {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    {% block body %}   
+     <div class="content container-fluid">
+        <div class="row content top-row">
+            <div class="col-sm-2 sidenav">
+                <!-- <p><a href="#">Link</a></p>
+                <p><a href="#">Link</a></p>
+                <p><a href="#">Link</a></p> -->
+            </div>
+            <div class="col-sm-8 text-left body_column_center"> 
+                {% block body_column_center %} 
+                {% endblock %} 
+            </div>
+            <div class="col-sm-2 sidenav">
+                <!-- <div class="well">
+                    <p>ADS</p>
+                </div>
+                <div class="well">
+                    <p>ADS</p>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+
+    {% block footer %}   
+     <div class="footer">
+        Aubaine - 2017
+    </div>
+    {% endblock %}
+
+  {% block javascripts %}
+    	<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js" integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg==" crossorigin=""></script>
+    	<script src='https://api.mapbox.com/mapbox-gl-js/v0.35.1/mapbox-gl.js'></script>
+    	<link href='https://api.mapbox.com/mapbox-gl-js/v0.35.1/mapbox-gl.css' rel='stylesheet' />  
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js" charset="UTF-8"></script>
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  {% endblock %}
+
+
+  </body>
+</html>

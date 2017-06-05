@@ -1,0 +1,26 @@
+{# src/OC/PlatformBundle/Resources/views/Advert/add.html.twig #}
+
+{% extends "AubainePlatformBundle::layout.html.twig" %}
+
+{% block title %}
+  Accueil - {{ parent() }}
+{% endblock %}
+
+{% block aubaineplatform_body %}
+  
+  <a href="{{ path('aubaine_platform_home') }}" class="btn btn-default">
+    <i class="glyphicon glyphicon-chevron-left"></i>
+    Retour à la liste
+  </a>
+
+  <h2>Publier une Aubaine</h2>
+
+  {{ include("AubainePlatformBundle:Aubaine:form.html.twig") }}
+
+  <p>
+    remplisssez ce formulaire et votre aubaine apparaitra sur la carte.<br>
+
+	
+  </p>
+
+{% endblock %}

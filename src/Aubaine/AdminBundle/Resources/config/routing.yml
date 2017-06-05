@@ -1,0 +1,61 @@
+aubaine_admin_home:
+    path:      /
+    defaults:
+        _controller: AubaineAdminBundle:Admin:index
+
+# aubaine_admin_user_home:
+#     path:      user/
+#     defaults:
+#         _controller: AubaineUserBundle:User:index
+#         page:        1
+#     requirements:
+#         page: \d+
+
+# aubaine_admin_user_view:
+#     path:      user/user/{id}
+#     defaults:
+#         _controller: AubaineUserBundle:User:view
+
+# aubaine_admin_user_add:
+#     path:      user/add
+#     defaults:
+#         _controller: AubaineUserBundle:User:add
+
+# aubaine_admin_user_edit:
+#     path:      user/edit/{id}
+#     defaults:
+#         _controller: AubaineUserBundle:User:edit
+
+# aubaine_admin_user_delete:
+#     path:      user/delete/{id}
+#     defaults:
+#         _controller: AubaineUserBundle:User:delete
+
+
+# aubaine_admin_aubaine_home:
+#     path:      aubaine/
+#     defaults:
+#         _controller: AubainePlatformBundle:Aubaine:index
+#         page:        1
+#     requirements:
+#         page: \d+
+
+# aubaine_admin_aubaine_view:
+#     path:      aubaine/aubaine/{id}
+#     defaults:
+#         _controller: AubainePlatformBundle:Aubaine:view
+
+# aubaine_admin_aubaine_add:
+#     path:      aubaine/add
+#     defaults:
+#         _controller: AubainePlatformBundle:Aubaine:add
+
+# aubaine_admin_aubaine_edit:
+#     path:      aubaine/edit/{id}
+#     defaults:
+#         _controller: AubainePlatformBundle:Aubaine:edit
+
+# aubaine_admin_aubaine_delete:
+#     path:      aubaine/delete/{id}
+#     defaults:
+#         _controller: AubainePlatformBundle:Aubaine:delete

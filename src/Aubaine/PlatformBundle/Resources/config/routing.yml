@@ -1,0 +1,77 @@
+aubaine_platform_home:
+    path:      /{page}
+    defaults:
+        _controller: AubainePlatformBundle:Aubaine:index
+        page:        1
+    requirements:
+        page: \d*
+
+aubaine_platform_view:
+    path:      /aubaine/{id}
+    defaults:
+        _controller: AubainePlatformBundle:Aubaine:view
+
+aubaine_platform_add:
+    path:      /add
+    defaults:
+        _controller: AubainePlatformBundle:Aubaine:add
+
+aubaine_platform_edit:
+    path:      /edit/{id}
+    defaults:
+        _controller: AubainePlatformBundle:Aubaine:edit
+
+aubaine_platform_delete:
+    path:      /delete/{id}
+    defaults:
+        _controller: AubainePlatformBundle:Aubaine:delete
+
+aubaine_platform_delete_aubaine:
+    path:      /deleteAubaine/{id}
+    defaults:
+        _controller: AubainePlatformBundle:Aubaine:deleteAubaine
+
+aubaine_platform_populate:
+    path:      /populate
+    defaults:
+        _controller: AubainePlatformBundle:Aubaine:populate
+
+aubaine_platform_map:
+    path:      /map
+    defaults:
+        _controller: AubainePlatformBundle:Aubaine:map
+
+aubaine_platform_load_marker:
+    path:      /load_marker
+    defaults:
+        _controller: AubainePlatformBundle:Aubaine:load_marker
+    requirements:
+        _method: POST
+
+aubaine_platform_my_aubaines:
+    path:      /mes_aubaines/{week}
+    defaults:
+        _controller: AubainePlatformBundle:Aubaine:my_aubaines
+
+ # Ajax
+aubaine_platform_ajax_add_aubaine:
+    path:  /ajax_add_aubaine
+    defaults: { _controller: AubainePlatformBundle:Aubaine:ajax_add_aubaine }
+    requirements:
+      _method: POST
+
+aubaine_platform_ajax_add_aubaine_multiple:
+    path:  /ajax_add_aubaine_multiple
+    defaults: { _controller: AubainePlatformBundle:Aubaine:ajax_add_aubaine_multiple }
+    requirements:
+      _method: POST
+
+aubaine_platform_ajax_delete_aubaine:
+    path:  /ajax_delete_aubaine
+    defaults: { _controller: AubainePlatformBundle:Aubaine:ajax_delete_aubaine }
+    requirements:
+      _method: POST
+
+aubaine_platform_ajax_delete_all_aubaine:
+    path:  /deleteall
+    defaults: { _controller: AubainePlatformBundle:Aubaine:deleteAll }

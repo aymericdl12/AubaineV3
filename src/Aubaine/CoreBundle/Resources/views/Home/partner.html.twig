@@ -1,0 +1,229 @@
+{% extends "AubaineCoreBundle::layout.html.twig" %}
+
+{% block title %}
+  Page d'accueil- {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <div id="body-partner" class="body-large">
+        <div id='partner-header'>
+            <h1>Devenir Partenaire</h1>
+
+            <p>
+                Chaque jour partagez un message en fonction de votre activités, de vos stock, de votre humeur. Nouveau produits, évènements, promotions, destockage de fin de journée, publier ce que vous voulez pour attirer l'attention. 
+             </p>
+        </div>
+        <div id='partner-avantages'>
+            <!-- <h3>Nos Points Forts</h3> -->
+            <div class="row">
+                <div class="partner-avantage col-md-3">
+                    <h4><img src="{{ asset('images/check.png') }} " alt="">Simple</h4>
+                    <p>
+                        Utiliser notre interface est aussi simple que d'écrire sur une ardoise
+                    </p>
+                </div>
+                <div class="partner-avantage col-md-3">
+                    <h4><img src="{{ asset('images/check.png') }} " alt="">Rapide</h4>
+                    <p>
+                        Nous transmettons vos message instantanément, vous pouvez enfin improviser
+                    </p>
+                </div>
+                <div class="partner-avantage col-md-3">
+                    <h4><img src="{{ asset('images/check.png') }} " alt="">Sans limite</h4>
+                    <p>
+                        Nous multiplions les accords pour diffuser vos messages sur d'autres sites et application mobiles
+                    </p>
+                </div>
+                <div class="partner-avantage col-md-3">
+                    <h4><img src="{{ asset('images/check.png') }} " alt="">Efficace</h4>
+                    <p>
+                        Vos message atteignent des personne proches de vous ou interrressé par votre activité.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div id='partner-functionment'>
+            <!-- <h3>Un fonctionnement adapté au commerce</h3> -->
+            <div class="row">
+                <div class="partner-avantage col-md-6">
+                    <div class="partner-avantage-header"><div class="number">1</div> Vous rédigez des messages quand bon vous semble</div>
+                    <div class="myAubaines-list">
+                        <div class="list-header">
+                            <h1>Messages de la semaine</h1>
+                        </div>
+                        <div class=" day day-withoutAubaine">
+                        <div class="date">
+                            <div class="dayofmonth">29</div>
+                            <div class="dayofweek">Mon</div>
+                            <div class="shortdate text-muted">May, 2017</div>
+                        </div>
+                        <div class="aubaine">
+                            <div class="aubaine-title">Promo sur les coupes homme</div>
+                            <div class="aubaine-message">La coupe homme à 15euros au lieu de 20 !</div>
+                        </div>
+                        </div>
+                        <div class="day day-withAubaine">
+                            <div class="date">
+                                <div class="dayofmonth">30</div>
+                                <div class="dayofweek">Tue</div>
+                                <div class="shortdate text-muted">May, 2017</div>
+                            </div>
+                            <div class="aubaine">
+                                <div class="aubaine-title">Expo photo</div>
+                                <div class="aubaine-message">Venez découvrir l'expo de l'artiste "Toulouse grapher" dans notre café</div>
+                            </div>
+                        </div>
+                        <div id="current_aubaine" class="day day-withAubaine">
+                            <div class="date">
+                                <div class="dayofmonth">31</div>
+                                <div class="dayofweek">Wed</div>
+                                <div class="shortdate text-muted">May, 2017</div>
+                            </div>
+                            <div class="aubaine">
+                                <div class="aubaine-title">Mercredi c'est la folie</div>
+                                <div class="aubaine-message">Ce soir on vous convie a une soirée inoubliable en compagnie de Bob Sinclar</div>
+                            </div>
+                        </div>
+                        <div class="day day-withAubaine">
+                            <div class="date">
+                                <div class="dayofmonth">1</div>
+                                <div class="dayofweek">Thu</div>
+                                <div class="shortdate text-muted">June, 2017</div>
+                            </div>
+                            <div class="aubaine">
+                                <div class="aubaine-title">Destockage de fin de journée</div>
+                                <div class="aubaine-message">Tous nos sandwitch invendus à 2euros</div>
+                            </div>
+                        </div>
+                        <div class="day day-withAubaine">
+                            <div class="date">
+                                <div class="dayofmonth">2</div>
+                                <div class="dayofweek">Fri</div>
+                                <div class="shortdate text-muted">June, 2017</div>
+                            </div>
+                            <div class="aubaine">
+                                <div class="aubaine-title">Happy Hour</div>
+                                <div class="aubaine-message">De 17h à 20h les pints au prix des demis !</div>
+                            </div>
+                        </div>
+                        <div class="day day-withAubaine">
+                            <div class="date">
+                                <div class="dayofmonth">3</div>
+                                <div class="dayofweek">Sat</div>
+                                <div class="shortdate text-muted">June, 2017</div>
+                            </div>
+                            <div class="aubaine">
+                            <div class="aubaine-title">Nouveautées</div>
+                            <div class="aubaine-message">La collection automne est enfin arrivée ! venez la découvrir</div>
+                            </div>
+                        </div>
+                        <div class="day day-withAubaine">
+                            <div class="date">
+                                <div class="dayofmonth">4</div>
+                                <div class="dayofweek">Sun</div>
+                                <div class="shortdate text-muted">June, 2017</div>
+                            </div>
+                            <div class="aubaine">
+                                <div class="aubaine-title">Brunch à prix cassés</div>
+                                <div class="aubaine-message">Venez vous détendre avec nos formules brunch à 5euros au lieu de 10 ;)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="partner-avantage col-md-6">
+                    <div class="partner-avantage-header"><div class="number">2</div> Nous diffusons vos message sur des sites et applis</div>
+                    <div id="partner-map"></div>
+
+                    <div class="partner-avantage-appli">
+                        <img src="https://aubaineapp.fr/wp-content/uploads/2017/03/pepites-tech.jpeg" alt="les soeurs vitamines">
+                        <img src="https://aubaineapp.fr/wp-content/uploads/2017/03/pepites-tech.jpeg" alt="les soeurs vitamines">
+                        <img src="https://aubaineapp.fr/wp-content/uploads/2017/03/pepites-tech.jpeg" alt="les soeurs vitamines">
+                        <img src="https://aubaineapp.fr/wp-content/uploads/2017/03/pepites-tech.jpeg" alt="les soeurs vitamines">
+                        <img src="https://aubaineapp.fr/wp-content/uploads/2017/03/pepites-tech.jpeg" alt="les soeurs vitamines">
+                        <img src="https://aubaineapp.fr/wp-content/uploads/2017/03/pepites-tech.jpeg" alt="les soeurs vitamines">
+                        <img src="https://aubaineapp.fr/wp-content/uploads/2017/03/pepites-tech.jpeg" alt="les soeurs vitamines">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id='partner-pricing'>
+            <h3>Choisissez le partenarait qui vous convient...</h3>
+            <div class="row">
+                <div class="partner-avantage col-md-4">
+                    <h4>Découverte</h4>
+                    <ul class="pricing-pack">
+                        <li class="pricing-element">
+                            Lorem ipsum dolor sit amet.
+                        </li>
+                        <li class="pricing-element">
+                            Lorem ipsum dolor sit amet.
+                        </li>
+                        <li class="pricing-element">
+                            Lorem ipsum dolor sit amet.
+                        </li>
+                        <li class="pricing-element">
+                            Lorem ipsum dolor sit amet.
+                        </li>
+                    </ul>
+                    <button type="button" class="btn btn-primary">Gratuit</button>
+                </div>
+                <div class="partner-avantage col-md-4">
+                    <h4>Avancé</h4>
+                    <ul class="pricing-pack">
+                        <li class="pricing-element">
+                            Lorem ipsum dolor sit amet.
+                        </li>
+                        <li class="pricing-element">
+                            Lorem ipsum dolor sit amet.
+                        </li>
+                        <li class="pricing-element">
+                            Lorem ipsum dolor sit amet.
+                        </li>
+                        <li class="pricing-element">
+                            Lorem ipsum dolor sit amet.
+                        </li>
+                    </ul>
+                    <button type="button" class="btn btn-primary">10$/mois</button>
+                </div>
+                <div class="partner-avantage col-md-4">
+                    <h4>Premium</h4>
+                    <ul class="pricing-pack">
+                        <li class="pricing-element">
+                            Lorem ipsum dolor sit amet.
+                        </li>
+                        <li class="pricing-element">
+                            Lorem ipsum dolor sit amet.
+                        </li>
+                        <li class="pricing-element">
+                            Lorem ipsum dolor sit amet.
+                        </li>
+                        <li class="pricing-element">
+                            Lorem ipsum dolor sit amet.
+                        </li>
+                    </ul>
+                    <button type="button" class="btn btn-primary">20$/mois</button>
+                </div>
+            </div>
+        </div>
+        <div id="partner-contact">
+            <h3>Contact</h3>
+            <p>
+                Contactez-nous pour obtenir un partenariat pour plus d'information sur notre service. Nous nous efforcerons de trouver la meilleure collaboration possible !
+            </p>
+            <p>
+                <a href="mailto:contact@aubaineapp.fr" class="email">contact@aubaineapp.fr</a> <br>
+                <span class="phone">07 83 86 60 99</span>
+            </p>
+        </div>
+    </div>
+
+{% endblock %}
+
+  {% block javascripts %}
+        {{ parent() }}
+        {% javascripts filter='jsqueeze'
+            'bundles/aubaineCore/js/partner.js' %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+  {% endblock %}

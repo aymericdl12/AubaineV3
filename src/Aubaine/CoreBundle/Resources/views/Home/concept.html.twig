@@ -1,0 +1,148 @@
+{% extends "AubaineCoreBundle::layout.html.twig" %}
+
+{% block title %}
+  Page d'accueil- {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+    <div id="body-concept">
+        <div id='concept-header'>
+            <h1>
+                Aubaine
+            </h1>
+            <h2>
+                Les bons plans autour de vous aujourd'hui
+            </h2>
+        </div>
+        <div id="concept-user">
+            <h3>
+                Nos commerces partenaires proposent des opportunités à tout moment, restez à l'affut !
+            </h3>
+            <div class="assets">
+                <h4 class="save">Promotions</h4>
+                <p>
+                    Prix cassés, destockages, soldes,  bénéficiez des prix réduits qui s'offrent à vous.
+                </p>
+            </div>
+            <div class="assets">
+                <h4 class="free">Évènements</h4>
+                <p>
+                    Dîtes bonjour à l'improvisation. Trouvez des évènements à la dernière minute.
+                </p>
+            </div>
+            <!-- <div class="assets">
+                <h4 class="time">Surprenez-vous</h4>
+                <p>
+                    Des opportunités apparaissent et disparaissent à tout moment, restez à l'affut.
+                </p>
+            </div> -->
+            <div class="assets">
+                <h4 class="discover">Nouveauté</h4>
+                <p>
+                    Nouveau produit, nouveau concept, laissez vous surprendre. 
+                </p>
+            </div>
+        </div>
+        <div id="concept-partner">
+            <div class="figures"><span><b>102</b> Partenaires</span></div>
+            <h3>
+                Boutiques, Bars, Restaurants, Salle de concert, Coiffeur, et bien d'autres encore.... 
+            </h3>
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+              <!-- Wrapper for slides -->
+              <div class="carousel-inner">
+                <div class="item active">
+                    <div class="carousel-element">
+                        {% image '@AubaineCoreBundle/Resources/public/images/partners/boulangerie-saint-george.jpg' %}
+                            <img src="{{ asset_url }}" alt="Example" />
+                        {% endimage %}
+                        <div class="carousel-title">Boulangerie St George</div>
+                    </div>
+                    <div class="carousel-element">
+                        {% image '@AubaineCoreBundle/Resources/public/images/partners/Cafe-contretemps.jpg' %}
+                            <img src="{{ asset_url }}" alt="Example" />
+                        {% endimage %}
+                        <div class="carousel-title">Café Contretemps</div>
+                    </div>
+                    <div class="carousel-element">
+                        {% image '@AubaineCoreBundle/Resources/public/images/partners/la-fine-equipe.png' %}
+                            <img src="{{ asset_url }}" alt="Example" />
+                        {% endimage %}
+                        <div class="carousel-title">la fine équipe</div>
+                    </div>
+                    <div class="carousel-element">
+                        {% image '@AubaineCoreBundle/Resources/public/images/partners/bonheur-dans-le-pot.jpg' %}
+                            <img src="{{ asset_url }}" alt="Example" />
+                        {% endimage %}
+                        <div class="carousel-title">Le bonheur est dans le pot</div>
+                    </div>
+                </div>
+              </div>
+
+              <!-- Left and right controls -->
+              <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" style="color:black"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" style="color:black"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+        </div>
+        <div id="concept-teaser">
+            <h3>Vous êtes un commerce ?</h3>
+            <p>
+                Aubaine partage votre ardoise sur le web et sur appli mobile !
+                <!-- Aubaine vous offre un outil ultra simple pour communiquer des messages instantanée à votre ville. -->
+            </p>
+            <p>
+                Chaque jour partagez un message en fonction de votre activités, de vos stock, de votre humeur...
+            </p>
+            <a class="btn btn-primary" href="{{ path('aubaine_core_partner') }}">En savoir plus</a>
+        </div>
+        <div id="concept-contact">
+            <h3>Contact</h3>
+            <p>
+                Vous voulez devenir partenaire ou vous êtes intéressé par notre activité ? contactez-nous !
+            </p>
+            <p>
+                <a href="mailto:contact@aubaineapp.fr" class="email">contact@aubaineapp.fr</a> <br>
+                <span class="phone">07 83 86 60 99</span>
+            </p>
+        </div>
+        <div id="concept-media">
+            <div id='media-list'>
+                    <a href="http://www.ladepeche.fr/article/2017/02/28/2526086-le-site-toulousain-aubaine-surfe-sur-les-bons-plans-ephemeres.html" target='_blank'>
+                        <img style='height:5rem;' src="https://aubaineapp.fr/wp-content/uploads/2017/03/la_depeche.png" alt="la depeche">
+                    </a>
+                    <a href="http://le-toulousain-malin.com/aubaine-les-bons-plans-a-toulouse/" target='_blank'>
+                        <img style='height:5rem;' src="https://aubaineapp.fr/wp-content/uploads/2017/05/Logo-le-toulousain-malin.png" alt="le toulousain malin">
+                    </a>
+                    <a href="http://www.les-soeurs-vitamine.com/la-nouvelle-start-up-toulousaine-aubaine/" target='_blank'>
+                        <img style='height:4rem;' src="https://aubaineapp.fr/wp-content/uploads/2017/02/soeurs-vitamines-2.png" alt="les soeurs vitamines">
+                    </a>
+                <!-- </li> -->
+                <!-- <li class='media-single'>
+                </li> -->
+                <!-- <li class='media-single'> -->
+                    <!-- <a href="http://incubateurgesct.blogspot.fr/p/projets-incubes.html" target='_blank'>
+                        <img src="https://aubaineapp.fr/wp-content/uploads/2017/01/TBSgroupe.jpg" alt="tbs">
+                    </a> -->
+                    <a href="http://lespepitestech.com/startup-de-la-french-tech/aubaine" target='_blank'>
+                        <img src="https://aubaineapp.fr/wp-content/uploads/2017/03/pepites-tech.jpeg" alt="pepite tech">
+                    </a>
+                    <a href="http://actu.cotetoulouse.fr/toulouse-aubaine-start-up-bons-plans_56286/" target='_blank'>
+                        <img src="https://aubaineapp.fr/wp-content/uploads/2017/01/cote_toulouse.png" alt="cote toulouse">
+                    </a>
+                    <a href="https://www.maddyness.com/entrepreneurs/2017/02/24/fastpitch-5-startups-de-semaine-d-clics-habx-aubaine-happy-buy-happysitters/" target='_blank'>
+                        <img style='height:4rem;' src="https://aubaineapp.fr/wp-content/uploads/2017/03/maddyness-1.png" alt="maddyness">
+                    </a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+

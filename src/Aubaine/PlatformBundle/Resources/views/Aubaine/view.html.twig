@@ -1,0 +1,31 @@
+{# src/OC/PlatformBundle/Resources/view/Advert/view.html.twig #}
+
+{% extends "AubainePlatformBundle::layout.html.twig" %}
+
+{% block title %}
+  Lecture d'une annonce - {{ parent() }}
+{% endblock %}
+
+{% block aubaineplatform_body %}
+  <p>
+    <a href="{{ path('aubaine_platform_home') }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-chevron-left"></i>
+      Retour à la liste
+    </a>
+    <a href="{{ path('aubaine_platform_edit', {'id': aubaine.id}) }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-edit"></i>
+      Modifier l'annonce
+    </a>
+    <a href="{{ path('aubaine_platform_delete', {'id': aubaine.id}) }}" class="btn btn-danger">
+      <i class="glyphicon glyphicon-trash"></i>
+      Supprimer l'annonce
+    </a>
+  </p>
+
+  <h2>{{ aubaine.title }}</h2>
+  <p>{{ aubaine.message }}</p>
+  <p>Catégorie : {{ aubaine.category.title }}</p>
+  <i>Par {{ aubaine.author.username }} </i>
+
+
+{% endblock %}
