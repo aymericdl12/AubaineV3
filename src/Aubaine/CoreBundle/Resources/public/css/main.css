@@ -15,18 +15,55 @@ body{
 }
 .footer{
   width: 100%;
-  padding-top: 0.5rem; 
+  padding:3rem 0 3rem;
+  margin:2rem 0 0;
   color: #fff;
   background: #333;
+  background-image: url('../images/ardoise.jpg');
   text-align: center;
   bottom:0;
-  height:3.5rem;
   vertical-align: bottom;
   z-index: 0;
 }
-.separator{
-  margin: 2rem 0 1rem;
-  border-top: 2px solid red;
+.social-logo img{
+  margin: 0 2rem;
+}
+.social-logo img{
+  width:40px;
+  height:40px;
+}
+#footer-newsletters{
+  padding:3.5rem 0;
+}
+#footer-newsletters .email{
+  display:inline-block;
+  vertical-align: top;
+  max-width: 40rem;
+  border-radius: 0;   
+}
+#footer-newsletters .btn{
+  display:inline-block;
+  vertical-align: top;
+  border-radius: 0;
+}
+#result-add-mail-success{
+    background-color: #0e600e;
+    display: none;
+    margin: 1rem auto;
+    max-width: 20rem;
+    padding: 0.5rem 1rem;
+}
+#result-add-mail-error{
+    background-color: #a00;
+    display: none;
+    margin: 1rem auto;
+    max-width: 20rem;
+    padding: 0.5rem 1rem;
+}
+#footer-infos a{
+  margin:1rem;
+  color:#fff;
+  font-size: 1.6rem;
 }
 .top-row{
   padding-top: 2rem;
@@ -136,16 +173,21 @@ body{
 #listAubaines-home h2{
   font-style: italic;
   margin-top: 5rem;
+  padding-bottom: 2rem;
+  border-bottom: 2px solid;
 }
 #aubaine-list{
   list-style: none;
   margin: 0 auto;
-  padding: 0 1rem 4rem;
+  padding: 0 1rem;
 }
 #aubaine-list li{
   padding:2rem;
   position:relative;
   border-top:thin solid #888;
+}
+#aubaine-list li:first-child{
+  border-top:none;
 }
 #aubaine-list li .author{
   font-style:italic;
@@ -168,11 +210,16 @@ body{
   padding:0.5rem;
   /*border:thin solid;*/
 }
-.last-message{
-  margin:2rem 0 4rem;
+#listAubaines-home .separator{
+  font-size: 2.5rem;
+  margin:2rem 0;
+  letter-spacing: 0.5rem;
+  display:none;
 }
-
-
+#footer-home{
+  padding:2rem 0 4rem;
+  margin:2rem auto;
+}
 
 /*Map*/
 .leaflet-popup-content{
@@ -260,7 +307,6 @@ body{
   color:#ff6762;
   display:inline-block;
 }
-/* css to customize Leaflet default styles  */
 .leaflet-popup-content-wrapper{
   background: transparent;
   padding:0;
@@ -292,60 +338,20 @@ body{
 .leaflet-popup-tip{
   border-radius: 10px;
 }
-.marker-sample{
-  display: inline-block;
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  background: #008800;
-  /*position:relative;*/
-  /*top:2rem;*/
-  margin-right: 1rem;
-  vertical-align: middle;
-  z-index: 0;
-  position:relative;
-  top:-3px;
-}
-.marker-sample-red-move{
-  background: #00cc22;
-  animation: pulse_gold 2s ease-out infinite; 
-}
-.marker-logo{
-  display: inline-block;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  margin: 2rem 1rem 0;
-  background: #00aa11;
-}
 .marker-map {
   display: block;
-  /*width: 18px;*/
-  /*height: 18px;*/
   padding:5px;
   border-radius: 50%;
   background: #ff3333;
   cursor: pointer;
-  /*border:2px solid #ff3333;*/
 }
 .marker-map-event,
 .marker-map-shop{
   padding:7px;
 }
-.marker-map:hover {
-  /*animation: none;*/
-}
-.marker-logo,
 .marker-map-1 {
   box-shadow: 0 0 0 rgba(255, 51, 51, 0.8);
   animation: pulse_red 2s ease-out infinite;
-}
-.marker-map-2 {
-  box-shadow: 0 0 0 rgba(255, 51, 51, 0.8);
-  animation: pulse_goldpulse_gold 2s ease-out infinite;
-}
-.marker-map-3 {
-  background-color: #ff3333;
 }
 @-webkit-keyframes pulse_red {
   0% {
@@ -372,57 +378,6 @@ body{
       box-shadow: 0 0 0 0 rgba(204,169,44, 0);
   }
 }
-@-webkit-keyframes pulse_green {
-  0% {
-    -webkit-box-shadow: 0 0 0 0 rgba(27,154,54, 0.8);
-  }
-  99.9% {
-      -webkit-box-shadow: 0 0 0 15px rgba(27,154,54, 0);
-  }
-  100% {
-      -webkit-box-shadow: 0 0 0 0 rgba(27,154,54, 0);
-  }
-}
-@keyframes pulse_green {
-  0% {
-    -moz-box-shadow: 0 0 0 0 rgba(27,154,54, 0.8);
-    box-shadow: 0 0 0 0 rgba(27,154,54, 0.8);
-  }
-  99.9% {
-      -moz-box-shadow: 0 0 0 15px rgba(27,154,54, 0);
-      box-shadow: 0 0 0 15px rgba(27,154,54, 0);
-  }
-  100% {
-      -moz-box-shadow: 0 0 0 0 rgba(27,154,54, 0);
-      box-shadow: 0 0 0 0 rgba(27,154,54, 0);
-  }
-}
-@-webkit-keyframes pulse_gold {
-  0% {
-    -webkit-box-shadow: 0 0 0 0 rgba(255,200,0, 0.8);
-  }
-  99.9% {
-      -webkit-box-shadow: 0 0 0 15px rgba(255,200,0, 0);
-  }
-  100% {
-      -webkit-box-shadow: 0 0 0 0 rgba(255,200,0, 0);
-  }
-}
-@keyframes pulse_gold {
-  0% {
-    -moz-box-shadow: 0 0 0 0 rgba(255,180,0, 0.9);
-    box-shadow: 0 0 0 0 rgba(0,140,0, 0.9);
-  }
-  99.9% {
-      -moz-box-shadow: 0 0 0 15px rgba(255,180,0, 0);
-      box-shadow: 0 0 0 15px rgba(0,140,0, 0);
-  }
-  100% {
-      -moz-box-shadow: 0 0 0 0 rgba(255,180,0, 0);
-      box-shadow: 0 0 0 0 rgba(0,140,0, 0);
-  }
-}
-
 
 
 

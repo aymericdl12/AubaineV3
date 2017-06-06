@@ -6,8 +6,8 @@ jq(document).ready( function() {
 
 
 	// Print the map
-		var map = L.map('map').setView([43.6044292, 1.4438121000000592], 16);
-		map.zoomControl.setPosition('bottomright');
+	var map = L.map('map').setView([43.6044292, 1.4438121000000592], 16);
+	map.zoomControl.setPosition('bottomright');
 	// load a tile layer
 	L.tileLayer('https://api.mapbox.com/styles/v1/aymericdl2/cj1ypxtb0000g2sqry16pzm0o/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYXltZXJpY2RsMiIsImEiOiJjajF5b2dhMzIwMDBmMzNuenBsMXRpeWVoIn0.EGdbIzhLpXPATY5FzxdsHg', 
 		{}).addTo(map);
@@ -89,51 +89,56 @@ jq(document).ready( function() {
 
     function addMarkerByAdress(id,deal_type, infos_deal,latti,longi){
 
-			var infobox_content;
-			var marker_icon;
-			if(deal_type==1){
+		var infobox_content;
+		var marker_icon;
+		if(deal_type==1){
 			infobox_content =   '<div class="dealMap" >' +
-		                                '<div class="dealMap-header">'+
-	                                        '<div class="dealMap-title">'+infos_deal.title_display+'</div>' +
-	                                        '<div class="dealMap-subtitle">'+infos_deal.subtitle+'</div>' +
-		                                '</div>' +
-		                                '<div class="dealMap-content">' +
-		                                    '<div class="dealMap-author">'+ 
-		                                        '<div class="dealMap-author-details">'+
-		                                    		infos_deal.img +
-		                                            '<div class="dealMap-name">'+infos_deal.author+'</div>' +
-		                                            '<div class="dealMap-address">'+infos_deal.address+'</div>' +
-		                                            '<div class="dealMap-hours_open">'+infos_deal.hours_open+'</div>' +
-		                                        '</div>'+
-		                                        '<div class="dealMap-description">'+infos_deal.teaser+'</div>'+
-		                                    '</div>'+
-		                                '</div>' +
-		                            '</div>';		   				
-			}
-			else{
-				infobox_content =   '<div class="dealMap" >' +
-		                                '<div class="dealMap-content">' +
-		                                    '<div class="dealMap-author">'+
-		                                        '<div class="dealMap-author-details">'+
-		                                        	infos_deal.img +
-		                                            '<div class="dealMap-name">'+infos_deal.author+'</div>' +
-		                                            '<div class="dealMap-address">'+infos_deal.address+'</div>' +
-		                                            '<div class="dealMap-hours_open">'+infos_deal.hours_open+'</div>' +
-		                                        '</div>'+
-		                                        '<div class="dealMap-description">'+infos_deal.teaser+'</div>'+
-		                                    '</div>'+
-		                                '</div>' +
-		                            '</div>';
-			}
-	    icon='https://aubaineapp.fr/wp-content/uploads/2017/04/map_marker.gif'; 
-		var marker_icon = L.icon({
-		    iconUrl: imageDir+infos_deal.category+".png",
-		    className: 'marker-map marker-map-'+deal_type+' marker-map-'+infos_deal.category,
-		    iconSize:     [35, 35], // size of the icon
-		    iconAnchor:   [15, 15], // point of the icon which will correspond to marker's location
-		    shadowAnchor: [15, 15],  // the same for the shadow
-		    popupAnchor:  [0, -10] // point from which the popup should open relative to the iconAnchor
-		});
+	                                '<div class="dealMap-header">'+
+                                        '<div class="dealMap-title">'+infos_deal.title_display+'</div>' +
+                                        '<div class="dealMap-subtitle">'+infos_deal.subtitle+'</div>' +
+	                                '</div>' +
+	                                '<div class="dealMap-content">' +
+	                                    '<div class="dealMap-author">'+ 
+	                                        '<div class="dealMap-author-details">'+
+	                                    		infos_deal.img +
+	                                            '<div class="dealMap-name">'+infos_deal.author+'</div>' +
+	                                            '<div class="dealMap-address">'+infos_deal.address+'</div>' +
+	                                            '<div class="dealMap-hours_open">'+infos_deal.hours_open+'</div>' +
+	                                        '</div>'+
+	                                        '<div class="dealMap-description">'+infos_deal.teaser+'</div>'+
+	                                    '</div>'+
+	                                '</div>' +
+	                            '</div>';	
+			var marker_icon = L.icon({
+			    iconUrl: imageDir+infos_deal.category+".png",
+			    className: 'marker-map marker-map-'+deal_type+' marker-map-'+infos_deal.category,
+			    iconSize:     [35, 35], // size of the icon
+			    iconAnchor:   [17.5, 17.5], // point of the icon which will correspond to marker's location
+			    popupAnchor:  [0, -10] // point from which the popup should open relative to the iconAnchor
+			});	   				
+		}
+		else{
+			infobox_content =   '<div class="dealMap" >' +
+	                                '<div class="dealMap-content">' +
+	                                    '<div class="dealMap-author">'+
+	                                        '<div class="dealMap-author-details">'+
+	                                        	infos_deal.img +
+	                                            '<div class="dealMap-name">'+infos_deal.author+'</div>' +
+	                                            '<div class="dealMap-address">'+infos_deal.address+'</div>' +
+	                                            '<div class="dealMap-hours_open">'+infos_deal.hours_open+'</div>' +
+	                                        '</div>'+
+	                                        '<div class="dealMap-description">'+infos_deal.teaser+'</div>'+
+	                                    '</div>'+
+	                                '</div>' +
+	                            '</div>';
+			var marker_icon = L.icon({
+			    iconUrl: imageDir+infos_deal.category+".png",
+			    className: 'marker-map marker-map-'+deal_type+' marker-map-'+infos_deal.category,
+			    iconSize:     [30, 30], // size of the icon
+			    iconAnchor:   [15, 15], // point of the icon which will correspond to marker's location
+			    popupAnchor:  [0, -10] // point from which the popup should open relative to the iconAnchor
+			});
+		}
 		var ll = L.latLng(latti, longi)
 		var marker = L.marker(ll,{icon:marker_icon});
 		marker.addTo(map);

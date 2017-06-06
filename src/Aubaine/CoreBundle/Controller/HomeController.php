@@ -3,6 +3,10 @@
 namespace Aubaine\CoreBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpFoundation\Response;
 
 class HomeController extends Controller
 {
@@ -45,5 +49,29 @@ class HomeController extends Controller
 		return $this->render('AubaineCoreBundle:Home:partner.html.twig', array(
 
 	    ));
+	}
+	// La page de concept
+	public function cguAction()
+	{
+		return $this->render('AubaineCoreBundle:Home:cgu.html.twig', array(
+
+	    ));
+	}
+	public function ajax_newsletterAction(Request $request)
+	{
+
+		$email=$request->request->get('email');
+		$date=date('d/m/y à h\h');
+
+		$list_email_file = fopen("liste_email.txt", "a+");
+		$txt =$email.','.$date."\n";
+		fwrite($list_email_file, $txt);
+		fclose($list_email_file);
+
+		$response = new Response();
+		$response->setContent(json_encode( array( 'message' => "Email bien enregistrée" ) ));
+		$response->headers->set('Content-Type', 'application/json');
+		return $response;
+
 	}
 }

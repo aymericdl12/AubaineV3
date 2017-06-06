@@ -7,3 +7,9 @@ aubaine_core_concept:
 aubaine_core_partner:
     path:     /devenir-partenaire
     defaults: { _controller: AubaineCoreBundle:Home:partner }
+aubaine_core_cgu:
+    path:     /cgu
+    defaults: { _controller: AubaineCoreBundle:Home:cgu }
+aubaine_core_ajax_newsletter:
+    path:     /ajax-newsletter
+    defaults: { _controller: AubaineCoreBundle:Home:ajax_newsletter }

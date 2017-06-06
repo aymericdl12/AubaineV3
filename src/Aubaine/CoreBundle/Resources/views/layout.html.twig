@@ -91,7 +91,25 @@
 
     {% block footer %}   
      <div class="footer">
-        Aubaine - 2017
+        <div id="footer-followus">
+                <a href="https://www.facebook.com/aubainetoulousaine/" id="facebook_link_footer" target="_blank"  class="social-logo"><img alt='Facebook2' src="{{ asset('images/face.png') }} "></a><!-- 
+             --><a href="https://twitter.com/AubaineToulouse" id="tweeter_link_footer" target="_blank"  class="social-logo"><img alt='Twitter2' src="{{ asset('images/twit.png') }} "></a><!-- 
+             --><a href="http://instagram.com/aubaine_toulouse" id="insta_link_footer" target="_blank"  class="social-logo"><img alt='Instagram2' src="{{ asset('images/insta.png') }} "></a>
+        </div>
+        <div id='footer-newsletters'>
+            <form method="post" class="form-inline home-form-newsletter" action ="{{ path('aubaine_core_ajax_newsletter') }}">
+                <input type="email" value="" class="email form-control" placeholder='Je veux des news !' name="email"  required="required" data-fv-emailaddress-message="L'adresse mail n'est pas valide" autocomplete="off" /><!-- 
+             --><input type='submit' value="Envoyer" id='add-email-submit' name='submit' class='btn btn-primary' data-loading-text="Enregistrement..." />
+                <input type='hidden' name='action' value='myajax-add-email-intro' />
+            </form>
+            <div id="result-add-mail-error"></div>
+            <div id="result-add-mail-success"></div>
+        </div>
+        <div id="footer-infos">
+            <a href="{{ path('aubaine_core_concept') }}">Concept</a>
+            <a href="{{ path('aubaine_core_cgu') }}" target="_blank">CGU</a>
+            <a href="https://blog.aubaineapp.fr/wp" target="_blank">Blog</a>
+        </div>
     </div>
     {% endblock %}
 
@@ -102,6 +120,35 @@
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js" charset="UTF-8"></script>
 		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script>
+    var jq = jQuery;
+    jq(document).ready( function() {
+
+      jq(".home-form-newsletter").submit(function(event) {
+            event.preventDefault();
+            var form = jq(this);
+            jq.ajax({
+                beforeSend:  function() { 
+                    jq("#add-email-submit").button('loading');
+                    jq("#result-add-mail-error").hide();
+                    jq("#result-add-mail-success").hide();
+                },
+                url: jq(this).attr('action'), // le nom du fichier indiqué dans le formulaire
+                type: "POST", // la méthode indiquée dans le formulaire (get ou post)
+                cache: false,
+                data: form.serialize(),
+                success: function(data) { 
+                    jq("#result-add-mail-success").html(data.message).show();
+                    jq("#add-email-submit").button('reset');
+                },
+                error: function(data) { 
+                    jq("#result-add-mail-error").html("Une erreur s'est produite").show();
+                    jq("#add-email-submit").button('reset');
+                }       
+            });
+        });
+    });
+  </script>
   {% endblock %}
 
 
