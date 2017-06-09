@@ -1,0 +1,18 @@
+{% extends "AubainePlatformBundle::layout.html.twig" %}
+
+{% block aubaineplatform_body %}
+    <h1>Page introuvable</h1>
+
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        {# ... #}
+    {% endif %}
+
+    <p>
+        Le lien que vous avez suivi peut être incorrect ou la page peut avoir été supprimée.
+        <br>
+        <a href="{{ path('aubaine_core_homepage') }}" class="show-map-button btn btn-primary btn">
+            retour à la page d'accueil
+            <i class="glyphicon glyphicon-chevron-right"></i>
+        </a>.
+    </p>
+{% endblock %}

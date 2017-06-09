@@ -1,4 +1,5 @@
 /app/config/parameters.yml
+/app/config/parameters.yml.dist
 /build/
 /phpunit.xml
 /var/*
@@ -14,4 +15,10 @@
 !var/SymfonyRequirements.php
 /vendor/
 /web/bundles/
+/web/assets/css/*
+!web/assets/css/images
+/web/js/*
 /app/bootstrap*
+
+
+
