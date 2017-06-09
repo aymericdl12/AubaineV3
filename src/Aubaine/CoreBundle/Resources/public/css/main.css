@@ -23,7 +23,7 @@ textarea {
   padding:3rem 0 3rem;
   margin:2rem 0 0;
   color: #fff;
-  background: #777;
+  background: #400;
   text-align: center;
   bottom:0;
   vertical-align: bottom;
@@ -227,7 +227,7 @@ textarea {
 #footer-home{
   padding:4rem 1rem 4rem;
   margin:2rem -1rem 0;
-  background:#777;
+  background:#700;
 }
 
 /*Map*/
