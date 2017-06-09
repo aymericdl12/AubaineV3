@@ -12,9 +12,14 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Response;
 use Aubaine\UserBundle\Form\Type\UserType;
 use Aubaine\UserBundle\Form\Type\UserEditType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class UserController extends Controller
 {
+
+  /**
+   * @Security("has_role('ROLE_ADMIN')")
+   */
   public function indexAction($page)
   {
     $userManager = $this->get('fos_user.user_manager');
@@ -27,6 +32,9 @@ class UserController extends Controller
     ));
   }
 
+  /**
+   * @Security("has_role('ROLE_ADMIN')")
+   */
   public function viewAction($id)
   {
     $userManager = $this->get('fos_user.user_manager');
@@ -37,6 +45,9 @@ class UserController extends Controller
     ));
   }
 
+  /**
+   * @Security("has_role('ROLE_ADMIN')")
+   */
   public function addAction(Request $request)
   {
 
@@ -70,14 +81,15 @@ class UserController extends Controller
       }
     }
 
-    // On passe la méthode createView() du formulaire à la vue
-    // afin qu'elle puisse afficher le formulaire toute seule
     return $this->render('AubaineUserBundle:User:add.html.twig', array(
       'form' => $form->createView(),
     ));
 
   }
 
+  /**
+  * @Security("has_role('ROLE_ADMIN')")
+  */
   public function editAction($id, Request $request)
   {
     $userManager = $this->get('fos_user.user_manager');
@@ -99,7 +111,10 @@ class UserController extends Controller
       'form'   => $form->createView(),
     ));
   }
-
+  
+  /**
+  * @Security("has_role('ROLE_ADMIN')")
+  */
   public function deleteAction($id, Request $request)
   {
     

@@ -25,7 +25,8 @@
   <p><img src="{{ vich_uploader_asset(user, 'imageFile') }}" width="60"> </p>
   <p>{{ user.username }} </p>
   <p>{{ user.description }} </p>
-  <p>{{ user.city }} ( {{ user.lati }}, {{ user.longi }} )
+  <p>{{ user.city }} ( {{ user.lati }}, {{ user.longi }} )</p>
+  <p>Role : {{ user.roles |join('|') }}</p>
 
 
 {% endblock %}

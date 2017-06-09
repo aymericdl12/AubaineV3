@@ -16,9 +16,9 @@
   <div class="col-md-8">
     <div class="myAubaines-list">
         <div class="list-header">
-            <h1>Votre Ardoise</h1>
+            <h1>Plannifier vos message</h1>
             <p>
-              Chaque jour partagez un message en fonction de votre activités, de vos stock, de votre humeur. Nouveau produits, évènements, promotions, destockage de fin de journée, publier ce que vous voulez pour attirer l'attention.
+              Chaque jour partagez un message en fonction de votre activités, de vos stock, de votre humeur. 
             </p>
         </div>
         {% for key,aubaine in days %}
@@ -26,8 +26,8 @@
               <div class="day day-withAubaine" {% if aubaine.date | date("U") == current_day %} id="current_aubaine" {% endif %}>
                   <div  class="date" >
                     <div class="dayofmonth">{{ key | date("j") }}</div>
-                    <div class="dayofweek">{{ key | date("D") }}</div>
-                    <div class="shortdate text-muted">{{ key | date("F, Y") }}</div>
+                    <div class="dayofweek">{{ key | date("D") | trans }}</div>
+                        <div class="shortdate text-muted">{{ key | date("F") | trans }}, {{ key | date("Y") }}</div>
                   </div>
                   <div class="aubaine"> 
                         <div  class="aubaine-title">{{aubaine.title}}</div>
@@ -51,14 +51,14 @@
               <div class=" day day-withoutAubaine" {% if key | date("U") == current_day %} id="current_aubaine" {% endif %}>
                     <div  class="date" >
                         <div class="dayofmonth">{{ key | date("j") }}</div>
-                        <div class="dayofweek">{{ key | date("D") }}</div>
-                        <div class="shortdate text-muted">{{ key | date("F, Y") }}</div>
+                        <div class="dayofweek">{{ key | date("D") | trans }}</div>
+                        <div class="shortdate text-muted">{{ key | date("F") | trans }}, {{ key | date("Y") }}</div>
                     </div>
                     <div class="aubaine">
                         {% if key | date("U") >= current_day %} 
                         <form method="post" class="form myAubaines-form" action ="{{ path('aubaine_platform_ajax_add_aubaine') }}">
                             <input class="form-control"  placeholder="indiquez un titre" type="text" name="title" required="required" />
-                            <input class="form-control" placeholder="indiquez un message" type="text"  name="message" required="required" />
+                            <textarea class="form-control" rows="2"  maxlength="250" placeholder="indiquez un message" type="text"  name="message" required="required"></textarea>
                             <input class="form-control" type="hidden"  value="{{key}}" name="date" required="required" />
                             <button class="btn btn-primary my-aubaine-form-submit"  data-loading-text="Enregistrement..." type="submit">Partager</button>
                         </form>
@@ -160,7 +160,7 @@
   {% block javascripts %}
         {{ parent() }}
         {% javascripts filter='jsqueeze'
-            'bundles/aubainePlatform/js/myAubaine.js' %}
+            'bundles/aubaineplatform/js/myAubaine.js' %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
   {% endblock %}

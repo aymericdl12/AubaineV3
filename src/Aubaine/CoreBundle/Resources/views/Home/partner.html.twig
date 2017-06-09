@@ -148,68 +148,13 @@
         </div>
 
         <div id='partner-pricing'>
-            <h3>Choisissez le partenarait qui vous convient...</h3>
-            <div class="row">
-                <div class="partner-avantage col-md-4">
-                    <h4>Découverte</h4>
-                    <ul class="pricing-pack">
-                        <li class="pricing-element">
-                            Lorem ipsum dolor sit amet.
-                        </li>
-                        <li class="pricing-element">
-                            Lorem ipsum dolor sit amet.
-                        </li>
-                        <li class="pricing-element">
-                            Lorem ipsum dolor sit amet.
-                        </li>
-                        <li class="pricing-element">
-                            Lorem ipsum dolor sit amet.
-                        </li>
-                    </ul>
-                    <button type="button" class="btn btn-primary">Gratuit</button>
-                </div>
-                <div class="partner-avantage col-md-4">
-                    <h4>Avancé</h4>
-                    <ul class="pricing-pack">
-                        <li class="pricing-element">
-                            Lorem ipsum dolor sit amet.
-                        </li>
-                        <li class="pricing-element">
-                            Lorem ipsum dolor sit amet.
-                        </li>
-                        <li class="pricing-element">
-                            Lorem ipsum dolor sit amet.
-                        </li>
-                        <li class="pricing-element">
-                            Lorem ipsum dolor sit amet.
-                        </li>
-                    </ul>
-                    <button type="button" class="btn btn-primary">10$/mois</button>
-                </div>
-                <div class="partner-avantage col-md-4">
-                    <h4>Premium</h4>
-                    <ul class="pricing-pack">
-                        <li class="pricing-element">
-                            Lorem ipsum dolor sit amet.
-                        </li>
-                        <li class="pricing-element">
-                            Lorem ipsum dolor sit amet.
-                        </li>
-                        <li class="pricing-element">
-                            Lorem ipsum dolor sit amet.
-                        </li>
-                        <li class="pricing-element">
-                            Lorem ipsum dolor sit amet.
-                        </li>
-                    </ul>
-                    <button type="button" class="btn btn-primary">20$/mois</button>
-                </div>
-            </div>
+            <h3>La politique de prix</h3>
+            <p>Publier des messages est gratuit</p>
         </div>
         <div id="partner-contact">
             <h3>Contact</h3>
             <p>
-                Contactez-nous pour obtenir un partenariat pour plus d'information sur notre service. Nous nous efforcerons de trouver la meilleure collaboration possible !
+                Pour obtenir un partenariat ou pour plus d'information sur notre service.
             </p>
             <p>
                 <a href="mailto:contact@aubaineapp.fr" class="email">contact@aubaineapp.fr</a> <br>
@@ -223,7 +168,7 @@
   {% block javascripts %}
         {{ parent() }}
         {% javascripts filter='jsqueeze'
-            'bundles/aubaineCore/js/partner.js' %}
+            'bundles/aubainecore/js/partner.js' %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
   {% endblock %}

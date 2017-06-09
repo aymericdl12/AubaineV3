@@ -7,19 +7,23 @@ body{
   /*height:100%;*/
 
 }
-
+textarea {
+    resize: none;
+}
 @media screen and (max-width: 500px) {
   html{
     font-size: 50.5%;
   } 
+}
+.body_column_center{
+  min-height: 50rem;
 }
 .footer{
   width: 100%;
   padding:3rem 0 3rem;
   margin:2rem 0 0;
   color: #fff;
-  background: #333;
-  background-image: url('../images/ardoise.jpg');
+  background: #777;
   text-align: center;
   bottom:0;
   vertical-align: bottom;
@@ -119,7 +123,7 @@ body{
   width: 100%;
 }
 #listAubaines-home{
-  padding:1rem;
+  padding:2rem 1rem 0;
   color:#444;
   text-align: center;
   box-sizing: border-box; 
@@ -130,9 +134,8 @@ body{
   right:0;
   width:50rem;
   bottom:0;
-  background-color: #fff;
-  background-image: url('../images/ardoise.jpg');
-  color:#fff;
+  background-color: #fafafa;
+  color:#333;
   border-left: 4px solid #fff;
   z-index:3;
 }
@@ -157,58 +160,63 @@ body{
   }
 }
 /*list Aubaine*/
-#listAubaines-home .logo{
-    height:6rem;
-    margin:2rem 0 2rem;
-}
 .show-map-button{
     background-image: linear-gradient(to bottom, #EC4940 0px, #dd4030 100%);
-    margin:4rem 0 0;
+    margin:2rem 0 0;
     border:none;
 }
 .show-map-button:hover{
     background-image: linear-gradient(to bottom, #dd4030 0px, #cc3525 100%);
-    margin:2rem 0;
+    margin:2rem 0 0;
 }
 #listAubaines-home h2{
-  font-style: italic;
-  margin-top: 5rem;
-  padding-bottom: 2rem;
-  border-bottom: 2px solid;
+  /*font-style: italic;*/
+  font-size: 2.6rem;
+  color:#999;
+  top:1rem;
+  margin:1rem 0 2rem;
+  right:1rem;
 }
 #aubaine-list{
   list-style: none;
-  margin: 0 auto;
+  margin: 2rem auto 0;
   padding: 0 1rem;
+  text-align: left;
 }
 #aubaine-list li{
-  padding:2rem;
+  padding: 7rem 0 2rem 0rem;
   position:relative;
-  border-top:thin solid #888;
+  border-top:thin solid #ccc;
 }
 #aubaine-list li:first-child{
-  border-top:none;
+  /*border-top:none;*/
 }
 #aubaine-list li .author{
-  font-style:italic;
   position:absolute;
-  right:0;
-  top:1rem;
-}
-#aubaine-list li .message{ 
-  padding:1rem 1rem;  display:inline-block;
-  width:100%;
-  line-height: 2.7rem
+  left:0;
+  font-size: 1.3rem;
+  top:2rem;
+  color:#777;
+  font-weight: bold;
 }
 #aubaine-list li .category{ 
-  width:4.5rem;
-  position:absolute;
-  top:1rem;
-  left:0;
+  width:3.5rem;
   background-color: #ff3333;
   border-radius: 50%;
   padding:0.5rem;
-  /*border:thin solid;*/
+  margin-right: 0.5rem;
+}
+#aubaine-list li .message{
+  display:inline-block;
+  width:100%;
+  line-height: 2.4rem;
+  font-size: 1.6rem;
+}
+#aubaine-list li .category-shop{ 
+  padding:0.7rem;
+}
+#aubaine-list li .category-event{ 
+  padding:0.7rem;
 }
 #listAubaines-home .separator{
   font-size: 2.5rem;
@@ -217,8 +225,9 @@ body{
   display:none;
 }
 #footer-home{
-  padding:2rem 0 4rem;
-  margin:2rem auto;
+  padding:4rem 1rem 4rem;
+  margin:2rem -1rem 0;
+  background:#777;
 }
 
 /*Map*/
@@ -519,43 +528,6 @@ body{
 #concept-media{
     padding:3rem;
 }
-h4.save::before{
-    background: rgba(0, 0, 0, 0) url("https://aubaineapp.fr/wp-content/uploads/2017/05/economie.png") no-repeat scroll 0 0;
-    content: "";
-    display: block;
-    height: 3.6rem;
-    margin: 2.5rem auto 0.5rem;
-    width: 3.6rem;
-    background-size: cover;
-}
-h4.free::before {
-    background: rgba(0, 0, 0, 0) url("https://aubaineapp.fr/wp-content/uploads/2017/05/affut-1.png") no-repeat scroll 0 0;
-    content: "";
-    display: block;
-    height: 3.6rem;
-    margin: 2.5rem auto 0.5rem;
-    width: 3.6rem;
-    background-size: cover;
-}
-h4.time::before {
-    background: rgba(0, 0, 0, 0) url("https://aubaineapp.fr/wp-content/uploads/2017/05/owl.png") no-repeat scroll 0 0;
-    /*background: rgba(0, 0, 0, 0) url("https://aubaineapp.fr/wp-content/uploads/2017/05/decouverte.png") no-repeat scroll 0 0;*/
-    content: "";
-    display: block;
-    height: 3.6rem;
-    margin: 2.5rem auto 0.5rem;
-    width: 3.6rem;
-    background-size: cover;
-}
-h4.discover::before {
-    background: rgba(0, 0, 0, 0) url("https://aubaineapp.fr/wp-content/uploads/2017/05/decouvrir.png") no-repeat scroll 0 0;
-    content: "";
-    display: block;
-    height: 3.6rem;
-    margin: 2.5rem auto 0.5rem;
-    width: 3.6rem;
-    background-size: cover;
-}
 /*concept-Media*/
 #media-list{
   padding:4rem 2rem;
@@ -581,9 +553,6 @@ h4.discover::before {
   color:#ec4940;
   /*text-transform: uppercase;*/
 }
-#partner-header p{
-  margin:2rem auto;
-}
 #body-partner h2{
   font-size: 2.5rem;
   margin:0 0 2rem ;
@@ -599,6 +568,7 @@ h4.discover::before {
 }
 #body-partner p{
   max-width: 500px;
+  margin:2rem auto;
 }
 #partner-avantages{
   margin:8rem 0;
@@ -650,16 +620,6 @@ h4.discover::before {
 }
 #partner-pricing h3{
   color:#fff;
-}
-#partner-pricing h4{
-  color:#fff;
-}
-#partner-pricing .row{
-  max-width: 800px;
-  margin:0 auto;
-}
-#partner-contact p{
-  margin:2rem auto;
 }
 #partner-contact{
     padding:7rem 0;
@@ -729,26 +689,21 @@ h4.discover::before {
 
 .myAubaines-list{
   border-collapse: inherit;
-  background-color: #444;
-  color:#eee;
+  /*background-color: #444;*/
+  color:#444;
   padding:1rem;
-  box-shadow: 1rem 1rem 1rem #666;
   border-radius: 0.5rem;
-  /*border:4px solid #4b180d; */
 }
 .myAubaines-list .list-header{
     text-align: center;
     padding:0rem 2rem 2rem;
 }
 .myAubaines-list .day{
-    border-top:2px solid;
-    padding:2rem 3rem 2rem 6.5rem;
+    border-top:thin solid #ddd;
+    padding:2rem 3rem 2rem 7.5rem;
     position:relative;
     min-height: 10rem;
 }
-/*.myAubaines-list .day.day-withAubaine{
-    padding:2rem 1rem 2rem 6.5rem;
-}*/
 .myAubaines-list .day.day-withoutAubaine{
     padding:2rem 1rem 2rem 7rem;
 }
@@ -756,6 +711,7 @@ h4.discover::before {
     position:absolute;
     top:1rem;
     left:0rem;
+    color:#ec4940;
 }
 .myAubaines-list .date .dayofmonth {
     font-size: 30px;
@@ -771,7 +727,7 @@ h4.discover::before {
     top:1rem;
 }
 .myAubaines-list .aubaine{
-    text-align: center;
+    text-align: left;
 }
 .myAubaines-list .aubaine-title{
   font-weight: bold;

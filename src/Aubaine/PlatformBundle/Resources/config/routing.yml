@@ -1,5 +1,5 @@
 aubaine_platform_home:
-    path:      /{page}
+    path:      /admin/{page}
     defaults:
         _controller: AubainePlatformBundle:Aubaine:index
         page:        1
@@ -7,46 +7,34 @@ aubaine_platform_home:
         page: \d*
 
 aubaine_platform_view:
-    path:      /aubaine/{id}
+    path:      /admin/aubaine/{id}
     defaults:
         _controller: AubainePlatformBundle:Aubaine:view
 
 aubaine_platform_add:
-    path:      /add
+    path:      /admin/add
     defaults:
         _controller: AubainePlatformBundle:Aubaine:add
 
 aubaine_platform_edit:
-    path:      /edit/{id}
+    path:      /admin/edit/{id}
     defaults:
         _controller: AubainePlatformBundle:Aubaine:edit
 
 aubaine_platform_delete:
-    path:      /delete/{id}
+    path:      /admin/delete/{id}
     defaults:
         _controller: AubainePlatformBundle:Aubaine:delete
 
 aubaine_platform_delete_aubaine:
-    path:      /deleteAubaine/{id}
+    path:      /admin/deleteAubaine/{id}
     defaults:
         _controller: AubainePlatformBundle:Aubaine:deleteAubaine
 
 aubaine_platform_populate:
-    path:      /populate
+    path:      /admin/populate
     defaults:
         _controller: AubainePlatformBundle:Aubaine:populate
-
-aubaine_platform_map:
-    path:      /map
-    defaults:
-        _controller: AubainePlatformBundle:Aubaine:map
-
-aubaine_platform_load_marker:
-    path:      /load_marker
-    defaults:
-        _controller: AubainePlatformBundle:Aubaine:load_marker
-    requirements:
-        _method: POST
 
 aubaine_platform_my_aubaines:
     path:      /mes_aubaines/{week}
@@ -73,5 +61,12 @@ aubaine_platform_ajax_delete_aubaine:
       _method: POST
 
 aubaine_platform_ajax_delete_all_aubaine:
-    path:  /deleteall
+    path:  /admin/deleteall
     defaults: { _controller: AubainePlatformBundle:Aubaine:deleteAll }
+
+aubaine_platform_load_marker:
+    path:      /load_marker
+    defaults:
+        _controller: AubainePlatformBundle:Aubaine:load_marker
+    requirements:
+        _method: POST

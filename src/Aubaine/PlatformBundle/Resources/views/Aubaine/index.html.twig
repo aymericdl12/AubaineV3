@@ -34,7 +34,7 @@
         {% for aubaine in listAubaines %}
             <tr>
                 <td>
-                    le {{ aubaine.date | date("d/m/y") }}
+                    {{ aubaine.date | date("d/m/y") }}
                 </td>
                 <td>
                     <a href="{{ path('aubaine_platform_edit', {'id': aubaine.id}) }}" >      
@@ -42,7 +42,9 @@
                     </a>
                 </td>
                 <td>
-                    {{ aubaine.author.username }} 
+                  <a href="{{ path('aubaine_user_view', {'id': aubaine.author.id}) }}" >      
+                      {{ aubaine.author.username }} 
+                  </a>
                 </td>
                 <td>
                     {{ aubaine.category }} 

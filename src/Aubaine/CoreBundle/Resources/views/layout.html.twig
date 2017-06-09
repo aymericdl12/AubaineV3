@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ==" crossorigin=""/>
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css">
-        {% stylesheets filter='cssrewrite, scssphp'
+        {% stylesheets filter='cssrewrite, scssphp' 
             'bundles/aubainecore/css/*' %}
             <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
         {% endstylesheets %}
@@ -38,15 +38,23 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                    <li class="{% if app.request.attributes.get('_route') == 'aubaine_platform_my_aubaines' %}active{% endif %}" ><a href="{{ path('aubaine_platform_my_aubaines', {'week': '0' }) }}"><span class="glyphicon glyphicon-comment"></span>  Mes Aubaines</a></li>
+
+                    <!-- MyAubaines -->
+                    <li class="{% if app.request.attributes.get('_route') == 'aubaine_platform_my_aubaines' %}active{% endif %}" ><a href="{{ path('aubaine_platform_my_aubaines', {'week': '0' }) }}"><span class="glyphicon glyphicon-calendar"></span>  Agenda</a></li>
+
+                    <!-- Admin if admin -->
+                    {% if is_granted('ROLE_USER') %}
                     <li class="dropdown">
                       <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-lock"></span> Admin
                       <span class="caret"></span></a>
                       <ul class="dropdown-menu">
-                        <li class="{% if app.request.attributes.get('_route') == 'aubaine_platform_home' %}active{% endif %}"><a href="{{ path('aubaine_platform_home') }}"><span class="glyphicon glyphicon-comment"></span> Aubaines</a></li>
+                        <li class="{% if app.request.attributes.get('_route') == 'aubaine_platform_home' %}active{% endif %}"><a href="{{ path('aubaine_platform_home') }}"><span class="glyphicon glyphicon-star"></span> Aubaines</a></li>
                         <li class="{% if app.request.attributes.get('_route') == 'aubaine_user_home' %}active{% endif %}"><a href="{{ path('aubaine_user_home') }}"><span class="glyphicon glyphicon-user"></span> Utilisateurs</a></li>
                       </ul>
                     </li>
+                    {% endif %}
+
+                    <!-- Profile -->
                     <li class="dropdown">
                       <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> Profil
                       <span class="caret"></span></a>
@@ -54,11 +62,15 @@
                         <li class="{% if app.request.attributes.get('_route') == 'fos_user_profile_show' %}active{% endif %}" ><a href="{{ path('fos_user_profile_show') }}"><span class="glyphicon glyphicon-user"></span> Voir mon Profil</a></li>
                         <li class="{% if app.request.attributes.get('_route') == 'fos_user_profile_edit' %}active{% endif %}" ><a href="{{ path('fos_user_profile_edit') }}"><span class="glyphicon glyphicon-edit"></span>  Modifier mon profil</a></li>
                         <li class="{% if app.request.attributes.get('_route') == 'fos_user_change_password' %}active{% endif %}" ><a href="{{ path('fos_user_change_password') }}"><span class="glyphicon glyphicon-edit"></span>  Modifier mon mot de passe</a></li>
+                        <li class="{% if app.request.attributes.get('_route') == 'fos_user_change_password' %}active{% endif %}" ><a href="{{ path('fos_user_change_password') }}"><span class="glyphicon glyphicon-edit"></span>  Modifier mon image</a></li>
                         <li><a href="{{ path('fos_user_security_logout') }}"><span class="glyphicon glyphicon-log-out"></span> Déconnexion</a></li>
                       </ul>
-                    </li>                    
+                    </li> 
+
                 {% else %}
+
                     <li class="{% if app.request.attributes.get('_route') == 'fos_user_security_login' %}active{% endif %}"><a href="{{ path('fos_user_security_login') }}"><span class="glyphicon glyphicon-log-in"></span> Connexion</a></li>
+
                 {% endif %}
           </ul>
         </div>

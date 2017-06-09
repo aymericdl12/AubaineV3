@@ -11,21 +11,22 @@
         <div id='map'></div>
     </div>
     <div id="listAubaines-home">
-        <img src="{{ asset('images/logo-aubaine-new.png') }} " alt="" class="logo">
+        <h2>{{ 'now' | date('l') | trans }} {{ 'now' | date('j') }} {{ 'now' | date('F') | trans }}</h2>
         <div>
-            Nous relayons en instantannées des bons plans de la part des commerçants de votre ville. Il peut s'agir de promotions, de nouveautés, d'évènements, etc. Restez à l'affut, tout peut arriver...
+            En direct des commerçants de votre ville, profitez des bons plans !
+            <!-- Les bons plans de votre ville en direct, restez à l'affut ! -->
         </div>
-        <button type="button" class="show-map-button btn btn-primary btn-lg">
+        <button type="button" class="show-map-button btn btn-primary btn">
             Voir la carte
             <i class="glyphicon glyphicon-chevron-right"></i>
         </button>
-        <h2>Vendredi 2 Juin</h2>
         <div class="separator">-----o------</div>
         <ul id="aubaine-list">
             {% for aubaine in listAubaines %}
-                <li id="deal-{{ aubaine.id }}">
-                    <img src="{{ asset('images/' ~ aubaine.category ~ '.png') }} " alt="" class="category"> 
-                    <div class="author">{{ aubaine.author.username }}</div> 
+                <li id="deal-{{ aubaine.id }}"> 
+                    <div class="author">
+                        <img src="{{ asset('images/' ~ aubaine.category ~ '.png') }} " alt="" class="category category-{{ aubaine.category }}">{{ aubaine.author.username }}
+                    </div> 
                     <div class="message"><b>{{ aubaine.title }} </b><br> {{ aubaine.message }}</div>
                 </li>
             {% endfor %}

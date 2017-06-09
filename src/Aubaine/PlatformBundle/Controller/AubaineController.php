@@ -13,10 +13,14 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Response;
 use Aubaine\PlatformBundle\Form\Type\AubaineType;
 use Aubaine\PlatformBundle\Form\Type\AubaineEditType;
-use Aubaine\PlatformBundle\Form\Type\AubaineUserType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class AubaineController extends Controller
 {
+
+  /**
+  * @Security("has_role('ROLE_ADMIN')")
+  */
   public function indexAction($page)
   {
     if($page==""){
@@ -43,6 +47,9 @@ class AubaineController extends Controller
     ));
   }
 
+  /**
+  * @Security("has_role('ROLE_ADMIN')")
+  */
   public function viewAction($id)
   {
     $dm = $this->get('doctrine_mongodb')->getManager();
@@ -55,6 +62,9 @@ class AubaineController extends Controller
     ));
   }
 
+  /**
+   * @Security("has_role('ROLE_ADMIN')")
+   */
   public function addAction(Request $request)
   {
 
@@ -103,6 +113,9 @@ class AubaineController extends Controller
 
   }
 
+  /**
+  * @Security("has_role('ROLE_ADMIN')")
+  */
   public function editAction($id, Request $request)
   {
     $dm = $this->get('doctrine_mongodb')->getManager();
@@ -124,6 +137,9 @@ class AubaineController extends Controller
     ));
   }
 
+  /**
+  * @Security("has_role('ROLE_ADMIN')")
+  */
   public function deleteAction($id, Request $request)
   {
     $dm = $this->get('doctrine_mongodb')->getManager();
@@ -139,6 +155,9 @@ class AubaineController extends Controller
 
   }
 
+  /**
+  * @Security("has_role('ROLE_ADMIN')")
+  */
   public function deleteAubaineAction($id, Request $request)
   {
     $dm = $this->get('doctrine_mongodb')->getManager();
@@ -153,6 +172,9 @@ class AubaineController extends Controller
     return $this->redirectToRoute('aubaine_platform_my_aubaines', array('month' => $month));
   }
 
+  /**
+   * @Security("has_role('ROLE_ADMIN')")
+   */
   public function deleteAllAction(Request $request)
   {
     $dm = $this->get('doctrine_mongodb')->getManager();
@@ -168,6 +190,9 @@ class AubaineController extends Controller
 
   }
 
+  /**
+  * @Security("has_role('ROLE_ADMIN')")
+  */
   public function populateAction()
   {
     $aubaine = new Category();
@@ -315,6 +340,9 @@ class AubaineController extends Controller
 
   }
 
+  /**
+   * @Security("has_role('ROLE_USER')")
+   */
   public function my_aubainesAction($week, Request $request)
   {
     if(!$week){
