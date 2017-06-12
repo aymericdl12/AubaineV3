@@ -206,7 +206,7 @@ class UserController extends Controller
   */
   public function importAction(Request $request)
   {
-    
+    set_time_limit(0); 
     $file_handle = fopen('users.csv', 'r');
     $cpt=0;
     while (!feof($file_handle) ) {
