@@ -43,7 +43,7 @@
                     <li class="{% if app.request.attributes.get('_route') == 'aubaine_platform_my_aubaines' %}active{% endif %}" ><a href="{{ path('aubaine_platform_my_aubaines', {'week': '0' }) }}"><span class="glyphicon glyphicon-calendar"></span>  Agenda</a></li>
 
                     <!-- Admin if admin -->
-                    {% if is_granted('ROLE_USER') %}
+                    {% if is_granted('ROLE_ADMIN') %}
                     <li class="dropdown">
                       <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-lock"></span> Admin
                       <span class="caret"></span></a>
@@ -62,7 +62,6 @@
                         <li class="{% if app.request.attributes.get('_route') == 'fos_user_profile_show' %}active{% endif %}" ><a href="{{ path('fos_user_profile_show') }}"><span class="glyphicon glyphicon-user"></span> Voir mon Profil</a></li>
                         <li class="{% if app.request.attributes.get('_route') == 'fos_user_profile_edit' %}active{% endif %}" ><a href="{{ path('fos_user_profile_edit') }}"><span class="glyphicon glyphicon-edit"></span>  Modifier mon profil</a></li>
                         <li class="{% if app.request.attributes.get('_route') == 'fos_user_change_password' %}active{% endif %}" ><a href="{{ path('fos_user_change_password') }}"><span class="glyphicon glyphicon-edit"></span>  Modifier mon mot de passe</a></li>
-                        <li class="{% if app.request.attributes.get('_route') == 'fos_user_change_password' %}active{% endif %}" ><a href="{{ path('fos_user_change_password') }}"><span class="glyphicon glyphicon-edit"></span>  Modifier mon image</a></li>
                         <li><a href="{{ path('fos_user_security_logout') }}"><span class="glyphicon glyphicon-log-out"></span> Déconnexion</a></li>
                       </ul>
                     </li> 

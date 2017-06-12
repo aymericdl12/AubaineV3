@@ -26,6 +26,13 @@ class UserType extends AbstractType
         ->add('email',     TextType::class)
         ->add('description',     TextareaType::class)
         ->add('addressDisplayed',     TextType::class)
+        ->add('hoursMonday',     TextType::class, array('required' => false))
+        ->add('hoursTuesday',     TextType::class, array('required' => false))
+        ->add('hoursWednesday',     TextType::class, array('required' => false))
+        ->add('hoursThursday',     TextType::class, array('required' => false))
+        ->add('hoursFriday',     TextType::class, array('required' => false))
+        ->add('hoursSaturday',     TextType::class, array('required' => false))
+        ->add('hoursSunday',     TextType::class, array('required' => false) )
         ->add('lati',     TextType::class)  
         ->add('longi',     TextType::class)
         ->add('category', ChoiceType::class, array(

@@ -26,7 +26,7 @@
           <th></th>
           <th>Nom</th>
           <th>Email</th>
-          <th>Adresse</th>
+          <th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -46,7 +46,25 @@
                     {{ user.email }}
                 </td>
                 <td>
-                    {{ user.addressDisplayed }}
+                    {{ user.category }}
+                </td>
+                <td>
+                    <a href="{{ path('aubaine_user_edit', {'id': user.id}) }}" class="btn btn-default">
+                      <i class="glyphicon glyphicon-edit"></i>
+                      Modifier les information
+                    </a> <br>
+                    <a href="{{ path('aubaine_user_edit_password', {'id': user.id}) }}" class="btn btn-default">
+                      <i class="glyphicon glyphicon-edit"></i>
+                      modifier le mot de passe
+                    </a> <br>
+                    <a href="{{ path('aubaine_user_edit_avatar', {'id': user.id}) }}" class="btn btn-default">
+                      <i class="glyphicon glyphicon-edit"></i>
+                      modifier l'image (bug)
+                    </a> <br>
+                    <a href="{{ path('aubaine_user_delete', {'id': user.id}) }}" class="btn btn-danger">
+                      <i class="glyphicon glyphicon-trash"></i>
+                      Supprimer
+                    </a>
                 </td>
             </tr>
         {% endfor %}

@@ -40,7 +40,6 @@ class HomeController extends Controller
 	// La page de concept
 	public function conceptAction()
 	{
-		throw new Symfony\Component\HttpKernel\Exception\HttpException(500, "Some description");
 		return $this->render('AubaineCoreBundle:Home:concept.html.twig', array(
 
 	    ));

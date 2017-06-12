@@ -73,11 +73,11 @@ class AubaineController extends Controller
     ->getManager()
     ->getRepository('AubaineUserBundle:User');
 
-    $default_author = $repository->findOneBy(array('username' => 'Utilisateur par defaut'));
+    // $default_author = $repository->findOneBy(array('username' => 'Utilisateur par defaut'));
 
     $aubaine->setTitle("Happy hour");
     $aubaine->setMessage("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam, dolor.");
-    $aubaine->setAuthor($default_author);
+    // $aubaine->setAuthor($default_author);
 
     // On crée le FormBuilder grâce au service form factory
     $form = $this->createForm(AubaineType::class, $aubaine);

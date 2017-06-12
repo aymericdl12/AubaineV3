@@ -25,8 +25,19 @@
   <p><img src="{{ vich_uploader_asset(user, 'imageFile') }}" width="60"> </p>
   <p>{{ user.username }} </p>
   <p>{{ user.description }} </p>
+  <p>{{ user.category }} </p>
+  <p>{{ user.addressDisplayed }} </p>
   <p>{{ user.city }} ( {{ user.lati }}, {{ user.longi }} )</p>
   <p>Role : {{ user.roles |join('|') }}</p>
+  <p>Horaire d'ouverture : <br>
+    {{ user.hoursMonday }} <br>
+    {{ user.hoursTuesday }} <br>
+    {{ user.hoursWednesday }} <br>
+    {{ user.hoursThursday }} <br>
+    {{ user.hoursFriday }} <br>
+    {{ user.hoursSaturday }} <br>
+    {{ user.hoursSunday }} <br>
+  </p>
 
 
 {% endblock %}

@@ -76,11 +76,45 @@ class User extends BaseUser
      */
     protected $phone;
 
+    /**
+     * @MongoDB\Field(type="string")
+     */
+    private $hoursMonday;
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
+    private $hoursTuesday;
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
+    private $hoursWednesday;
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
+    private $hoursThursday;
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
+    private $hoursFriday;
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
+    private $hoursSaturday;
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
+    private $hoursSunday;
+
     public function __construct()
     {
         parent::__construct();
         $this->description = "pas de description";
-        // your own logic
     }
 
     /**
@@ -114,10 +148,6 @@ class User extends BaseUser
     public function setImageFile(File $image = null)
     {
         $this->imageFile = $image;
-
-        if ($image) {
-            $this->updatedAt = new \DateTimeImmutable();
-        }
         
         return $this;
     }
@@ -322,5 +352,160 @@ class User extends BaseUser
     public function getZipcode()
     {
         return $this->zipcode;
+    }
+    
+
+    /**
+     * Set hoursMonday
+     *
+     * @param string $hoursMonday
+     * @return $this
+     */
+    public function setHoursMonday($hoursMonday)
+    {
+        $this->hoursMonday = $hoursMonday;
+        return $this;
+    }
+
+    /**
+     * Get hoursMonday
+     *
+     * @return string $hoursMonday
+     */
+    public function getHoursMonday()
+    {
+        return $this->hoursMonday;
+    }
+
+    /**
+     * Set hoursTuesday
+     *
+     * @param string $hoursTuesday
+     * @return $this
+     */
+    public function setHoursTuesday($hoursTuesday)
+    {
+        $this->hoursTuesday = $hoursTuesday;
+        return $this;
+    }
+
+    /**
+     * Get hoursTuesday
+     *
+     * @return string $hoursTuesday
+     */
+    public function getHoursTuesday()
+    {
+        return $this->hoursTuesday;
+    }
+
+    /**
+     * Set hoursWednesday
+     *
+     * @param string $hoursWednesday
+     * @return $this
+     */
+    public function setHoursWednesday($hoursWednesday)
+    {
+        $this->hoursWednesday = $hoursWednesday;
+        return $this;
+    }
+
+    /**
+     * Get hoursWednesday
+     *
+     * @return string $hoursWednesday
+     */
+    public function getHoursWednesday()
+    {
+        return $this->hoursWednesday;
+    }
+
+    /**
+     * Set hoursThursday
+     *
+     * @param string $hoursThursday
+     * @return $this
+     */
+    public function setHoursThursday($hoursThursday)
+    {
+        $this->hoursThursday = $hoursThursday;
+        return $this;
+    }
+
+    /**
+     * Get hoursThursday
+     *
+     * @return string $hoursThursday
+     */
+    public function getHoursThursday()
+    {
+        return $this->hoursThursday;
+    }
+
+    /**
+     * Set hoursFriday
+     *
+     * @param string $hoursFriday
+     * @return $this
+     */
+    public function setHoursFriday($hoursFriday)
+    {
+        $this->hoursFriday = $hoursFriday;
+        return $this;
+    }
+
+    /**
+     * Get hoursFriday
+     *
+     * @return string $hoursFriday
+     */
+    public function getHoursFriday()
+    {
+        return $this->hoursFriday;
+    }
+
+    /**
+     * Set hoursSaturday
+     *
+     * @param string $hoursSaturday
+     * @return $this
+     */
+    public function setHoursSaturday($hoursSaturday)
+    {
+        $this->hoursSaturday = $hoursSaturday;
+        return $this;
+    }
+
+    /**
+     * Get hoursSaturday
+     *
+     * @return string $hoursSaturday
+     */
+    public function getHoursSaturday()
+    {
+        return $this->hoursSaturday;
+    }
+
+    /**
+     * Set hoursSunday
+     *
+     * @param string $hoursSunday
+     * @return $this
+     */
+    public function setHoursSunday($hoursSunday)
+    {
+        $this->hoursSunday = $hoursSunday;
+        return $this;
+    }
+
+    /**
+     * Get hoursSunday
+     *
+     * @return string $hoursSunday
+     */
+    public function getHoursSunday()
+    {
+        return $this->hoursSunday;
     }
 }

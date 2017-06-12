@@ -21,7 +21,34 @@ aubaine_user_edit:
     defaults:
         _controller: AubaineUserBundle:User:edit
 
+
+aubaine_user_edit_password:
+    path:      /edit_password/{id}
+    defaults:
+        _controller: AubaineUserBundle:User:editPassword
+
+
+aubaine_user_edit_avatar:
+    path:      /edit_avatar/{id}
+    defaults:
+        _controller: AubaineUserBundle:User:editAvatar
+
 aubaine_user_delete:
     path:      /delete/{id}
     defaults:
         _controller: AubaineUserBundle:User:delete
+
+aubaine_user_delete_all:
+    path:      /deleteall
+    defaults:
+        _controller: AubaineUserBundle:User:deleteAll
+
+aubaine_user_import:
+    path:      /import
+    defaults:
+        _controller: AubaineUserBundle:User:import
+
+fos_user_change_avatar:
+    path:      /changeavatar/
+    defaults:
+        _controller: AubaineUserBundle:User:changeAvatar

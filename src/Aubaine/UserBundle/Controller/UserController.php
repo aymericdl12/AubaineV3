@@ -12,6 +12,8 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Response;
 use Aubaine\UserBundle\Form\Type\UserType;
 use Aubaine\UserBundle\Form\Type\UserEditType;
+use Aubaine\UserBundle\Form\Type\UserEditAvatarType;
+use Aubaine\UserBundle\Form\Type\UserEditPasswordType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class UserController extends Controller
@@ -111,6 +113,54 @@ class UserController extends Controller
       'form'   => $form->createView(),
     ));
   }
+
+  /**
+  * @Security("has_role('ROLE_ADMIN')")
+  */
+  public function editPasswordAction($id, Request $request)
+  {
+    $userManager = $this->get('fos_user.user_manager');
+    $user = $userManager->findUserBy(array('id' => $id));
+    if (null === $user) {
+      throw new NotFoundHttpException("L'utilisateur d'id ".$id." n'existe pas.");
+    }
+    $form = $this->get('form.factory')->create(UserEditPasswordType::class, $user);
+    if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+      $password = $user->getPassword();
+      $user->setPlainPassword($password);
+      $userManager->updateUser($user);
+      $request->getSession()->getFlashBag()->add('notice', 'utilisateur mis à jour');
+      return $this->redirectToRoute('aubaine_user_view', array('id' => $user->getId()));
+    }
+
+    return $this->render('AubaineUserBundle:User:editPassword.html.twig', array(
+      'user' => $user,
+      'form'   => $form->createView(),
+    ));
+  }
+
+  /**
+  * @Security("has_role('ROLE_ADMIN')")
+  */
+  public function editAvatarAction($id, Request $request)
+  {
+    $userManager = $this->get('fos_user.user_manager');
+    $user = $userManager->findUserBy(array('id' => $id));
+    if (null === $user) {
+      throw new NotFoundHttpException("L'utilisateur d'id ".$id." n'existe pas.");
+    }
+    $form = $this->get('form.factory')->create(UserEditAvatarType::class, $user);
+    if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+      $userManager->updateUser($user);
+      $request->getSession()->getFlashBag()->add('notice', 'utilisateur mis à jour');
+      return $this->redirectToRoute('aubaine_user_view', array('id' => $user->getId()));
+    }
+
+    return $this->render('AubaineUserBundle:User:edit.html.twig', array(
+      'user' => $user,
+      'form'   => $form->createView(),
+    ));
+  }
   
   /**
   * @Security("has_role('ROLE_ADMIN')")
@@ -129,4 +179,141 @@ class UserController extends Controller
     return $this->redirectToRoute('aubaine_user_home');
 
   }
-}
+  /**
+  * @Security("has_role('ROLE_ADMIN')")
+  */
+  public function deleteAllAction(Request $request)
+  {
+    
+    $userManager = $this->get('fos_user.user_manager');
+    $users=$userManager->findUsers();
+    // $repository = $this->get('doctrine_mongodb')
+    // ->getManager()
+    // ->getRepository('AuabineUserBundle:User');
+    // $users = $repository->findAll();
+    foreach ($users as $user) {
+      if (!($user->hasRole('SUPER_ADMIN')|$user->hasRole('ROLE_SUPER_ADMIN'))){
+        $userManager->deleteUser($user);
+      }
+    }
+    $request->getSession()->getFlashBag()->add('info', "Les utilisateurs été supprimés.");
+    return $this->redirectToRoute('aubaine_user_home');
+
+  }
+  
+  /**
+  * @Security("has_role('ROLE_ADMIN')")
+  */
+  public function importAction(Request $request)
+  {
+    
+    $file_handle = fopen('users.csv', 'r');
+    $cpt=0;
+    while (!feof($file_handle) ) {
+        $line = fgetcsv($file_handle, 80024,";");
+        $line_of_text[] = $line;
+        if($cpt>0){
+          $user= new User();
+          $user->setUsername($line[2]);
+          $user->setEmail($line[1]);
+          $user->setAddressDisplayed($line[5]);
+          $user->setLati($line[6]);
+          $user->setLongi($line[7]);
+          $user->setPhone($line[8]);
+          $user->setDescription($line[3]);
+          $user->setHoursMonday($line[10]);
+          $user->setHoursTuesday($line[11]);
+          $user->setHoursWednesday($line[12]);
+          $user->setHoursThursday($line[13]);
+          $user->setHoursFriday($line[14]);
+          $user->setHoursSaturday($line[15]);
+          $user->setHoursSunday($line[16]);
+          $user->setZipcode(31000);
+          $user->setCity("Toulouse");
+          $user->setCategory($line[4]);
+          $user->setPlainPassword("aubaine");
+          if($line[4]){
+              if(strpos($line[4],"bars_cafes") !== false){
+                $user->setCategory("eat");
+              }
+              if(strpos($line[4],"boutiques") !== false){
+                $user->setCategory("shop");
+              }
+              if(strpos($line[4],"Petites faims") !== false){
+                $user->setCategory("eat");
+              }
+              if(strpos($line[4],"Petites faims") !== false){
+                $user->setCategory("eat");
+              }
+              if(strpos($line[4],"restauration") !== false){
+                $user->setCategory("eat");
+              }
+              if(strpos($line[4],"petite_faim") !== false){
+                $user->setCategory("eat");
+              }
+              if(strpos($line[4],"epiceries") !== false){
+                $user->setCategory("shop");
+              }
+              if(strpos($line[4],"Se faire Dorlotter") !== false){
+                $user->setCategory("wellness");
+              }
+              if(strpos($line[4],"Bien-Être") !== false){
+                $user->setCategory("wellness");
+              }
+              if(strpos($line[4],"bien_etre") !== false){
+                $user->setCategory("wellness");
+              }
+          }
+          $em = $this->get('doctrine_mongodb')->getManager();
+          $em->persist($user);
+          $em->flush();
+        }
+        $cpt++;
+        // $line_of_text[] = explode(fgetcsv($file_handle, 80024)[0],";");
+    }
+    fclose($file_handle);
+    return $this->render('AubaineUserBundle:User:import.html.twig', array(
+      'listUsers' => $line_of_text
+    ));
+
+  }
+  
+  /**
+  * @Security("has_role('ROLE_USER')")
+  */
+  public function changeAvatarAction(Request $request)
+  {
+        $em = $this->get('doctrine_mongodb')->getManager();
+        $user= $this->get('security.token_storage')->getToken()->getUser();
+        $em->persist($user);
+
+        // On crée le FormBuilder grâce au service form factory
+        $form = $this->createForm(UserEditAvatarType::class, $user);
+
+        // Si la requête est en POST
+        if ($request->isMethod('POST')) {
+          
+          // On fait le lien Requête <-> Formulaire
+          // À partir de maintenant, la variable $advert contient les valeurs entrées dans le formulaire par le visiteur
+          $form->handleRequest($request);
+
+          // On vérifie que les valeurs entrées sont correctes
+          // (Nous verrons la validation des objets en détail dans le prochain chapitre)
+          if ($form->isValid()) {
+            // $user->setLati(234567);
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add('notice', 'Image principale mide a jour');
+
+            // On redirige vers la page de visualisation de l'annonce nouvellement créée
+            return $this->redirectToRoute('fos_user_profile_show');
+          }
+        }
+
+        return $this->render('AubaineUserBundle:User:editAvatar.html.twig', array(
+          'user' => $user,
+          'form'   => $form->createView(),
+        ));
+
+    } 
+  } 

@@ -8,4 +8,11 @@
 	<p>description : {{ user.description }} </p>
 	<p>ville : {{ user.city }} ( {{ user.lati }}, {{ user.longi }} )</p>
 	<p>Téléphone : {{ user.phone }}</p>
+	<ul >
+		<li class="{% if app.request.attributes.get('_route') == 'fos_user_profile_show' %}active{% endif %}" ><a href="{{ path('fos_user_profile_show') }}"><span class="glyphicon glyphicon-user"></span> Voir mon Profil</a></li>
+		<li class="{% if app.request.attributes.get('_route') == 'fos_user_profile_edit' %}active{% endif %}" ><a href="{{ path('fos_user_profile_edit') }}"><span class="glyphicon glyphicon-edit"></span>  Modifier mon profil</a></li>
+		<li class="{% if app.request.attributes.get('_route') == 'fos_user_change_password' %}active{% endif %}" ><a href="{{ path('fos_user_change_password') }}"><span class="glyphicon glyphicon-edit"></span>  Modifier mon mot de passe</a></li>
+		<li class="{% if app.request.attributes.get('_route') == 'fos_user_change_avatar' %}active{% endif %}" ><a href="{{ path('fos_user_change_avatar') }}"><span class="glyphicon glyphicon-edit"></span>  Modifier mon image</a></li>
+		<li><a href="{{ path('fos_user_security_logout') }}"><span class="glyphicon glyphicon-log-out"></span> Déconnexion</a></li>
+	</ul>
 </div>

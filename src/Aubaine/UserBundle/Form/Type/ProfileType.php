@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -22,10 +23,13 @@ class ProfileType extends AbstractType
         $builder
         ->add('description')
         ->add('addressDisplayed')
-        ->add('category', DocumentType::class, array(
-            'class'        => 'AubainePlatformBundle:Category',
-            'choice_label' => 'title'
-          ))
+        ->add('category', ChoiceType::class, array(
+            'choices'  => array(
+                'Bar, Café, Restaurant' => "eat",
+                'Boutique, épicerie' => "shop",
+                'Bien être' => "wellness",
+                'Évènement' => "event"
+            )))
         ->add('lati')
         ->add('longi')
         ->add('phone')
