@@ -257,6 +257,9 @@ class UserController extends Controller
               if(strpos($line[4],"Se faire Dorlotter") !== false){
                 $user->setCategory("wellness");
               }
+              if(strpos($line[4],"Se faire dorlotter") !== false){
+                $user->setCategory("wellness");
+              }
               if(strpos($line[4],"Bien-Être") !== false){
                 $user->setCategory("wellness");
               }
