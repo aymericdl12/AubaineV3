@@ -146,7 +146,7 @@ jq(document).ready( function() {
 		}
 		marker.bindPopup(infobox_content,infobox_option);
 		arrMarkers[id] = marker;
-		jq('#deal-'+id+' .message').click(function(){
+		jq('#deal-'+id).click(function(){
 			marker.fireEvent('click'); 
 		});
     }

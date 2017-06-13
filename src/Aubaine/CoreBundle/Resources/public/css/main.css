@@ -202,7 +202,7 @@ textarea {
 #aubaine-list li .author .avatar{
   height:6rem;
   width:6rem;
-  margin-right: 1rem;
+  margin-right: 0.5rem;
   border-radius: 5px;
 }
 #aubaine-list li .author .author_infos{
@@ -233,11 +233,25 @@ textarea {
   line-height: 2.7rem;
   font-size: 2rem;
 }
+.marker-map-eat,
+#aubaine-list li .category-eat{ 
+  padding:0.5rem;
+  background-color: #DE2916;
+}
+.marker-map-shop,
 #aubaine-list li .category-shop{ 
   padding:0.7rem;
+  background-color: #00561B;
 }
+.marker-map-wellness,
+#aubaine-list li .category-wellness{ 
+  padding:0.5rem;
+  background-color: #003366;
+}
+.marker-map-event,
 #aubaine-list li .category-event{ 
   padding:0.7rem;
+  background-color: #ff3333;
 }
 #listAubaines-home .separator{
   font-size: 2.5rem;
@@ -287,7 +301,7 @@ textarea {
     padding:10px 5px 5px;
 }      
 .dealMap-subtitle {
-    padding:0px 5px 10px;
+    padding:10px 5px;
 }
 .dealMap-content {
     line-height: 17px;
@@ -313,7 +327,7 @@ textarea {
     height:65px;
     top:0px;
     left:0px;
-    border-radius:35px; 
+    border-radius:5px; 
 }
 .dealMap-name{
     font-weight:bold;
@@ -370,18 +384,28 @@ textarea {
 }
 .marker-map {
   display: block;
-  padding:5px;
   border-radius: 50%;
-  background: #ff3333;
   cursor: pointer;
+}/*
+.marker-map-eat{
+  padding:5px;
+  background: #900;
 }
-.marker-map-event,
 .marker-map-shop{
   padding:7px;
+  background: #090;
 }
+.marker-map-wellness{
+  padding:5px;
+  background: #009;
+}
+.marker-map-event{
+  padding:7px;
+  background: #ff3333;
+}*/
 .marker-map-1 {
-  box-shadow: 0 0 0 rgba(255, 51, 51, 0.8);
-  animation: pulse_red 2s ease-out infinite;
+  /*box-shadow: 0 0 0 rgba(255, 51, 51, 0.8);*/
+  /*animation: pulse_red 2s ease-out infinite;*/
 }
 @-webkit-keyframes pulse_red {
   0% {
