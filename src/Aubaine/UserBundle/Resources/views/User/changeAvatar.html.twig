@@ -1,0 +1,21 @@
+{# src/OC/PlatformBundle/Resources/views/Advert/edit.html.twig #}
+
+{% extends "AubaineUserBundle::layout.html.twig" %}
+
+{% block title %}
+  Modifier un utilisateur - {{ parent() }}
+{% endblock %}
+
+{% block body_column_center %}
+
+  <a href="{{ path('aubaine_user_view', {'id': user.id}) }}" class="btn btn-default">
+    <i class="glyphicon glyphicon-chevron-left"></i>
+    Retour à l'utilisateur
+  </a>
+
+  <h2>Modifier l'utilisateur</h2>
+
+  {{ include("AubaineUserBundle:User:form.html.twig") }}
+
+
+{% endblock %}

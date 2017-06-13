@@ -1,0 +1,21 @@
+{# src/OC/PlatformBundle/Resources/views/Advert/edit.html.twig #}
+
+{% extends "AubaineUserBundle::layout.html.twig" %}
+
+{% block title %}
+  Modifier son Avatar - {{ parent() }}
+{% endblock %}
+
+{% block body_column_center %}
+
+  <a href="{{ path('fos_user_profile_show') }}" class="btn btn-default">
+    <i class="glyphicon glyphicon-chevron-left"></i>
+    Annuler et retourner à la liste
+  </a>
+
+  <h2>Modifier son avatar</h2>
+
+  {{ include("AubaineUserBundle:User:form.html.twig") }}
+
+
+{% endblock %}

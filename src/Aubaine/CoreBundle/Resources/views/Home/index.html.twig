@@ -28,7 +28,7 @@
                         <img src="{{ asset('images/bc3caf1.jpg') }} " alt="" class="avatar">
                         <div class="author_infos">
                             <div class="author_username">{{ aubaine.author.username }}</div> <br>
-                            <div class="author_address">Place de la Daurade</div>
+                            <div class="author_address">{{ aubaine.author.addressDisplayed }}</div>
                         </div>
                     </div> 
                     <img src="{{ asset('images/' ~ aubaine.category ~ '.png') }} " alt="" class="category category-{{ aubaine.category }}">

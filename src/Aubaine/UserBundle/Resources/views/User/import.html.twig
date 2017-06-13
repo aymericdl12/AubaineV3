@@ -1,0 +1,72 @@
+{# src/OC/PlatformBundle/Resources/view/Advert/view.html.twig #}
+
+{% extends "AubaineUserBundle::layout.html.twig" %}
+
+{% block title %}
+  Vue du membre - {{ parent() }}
+{% endblock %}
+
+{% block body_column_center %}
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Email</th>
+          <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in listUsers %}
+            {% if user%}
+                <tr>
+                    <td>
+                        {{user[1]}} - 3
+                    </td>
+                    <td>
+                        {{user[2]}} - 80
+                    </td>
+                    <td>
+                        {{user[3]}} - 89
+                    </td>
+                    <td>
+                        {{user[4]}} - 98
+                    </td>
+                    <td>
+                        {{user[5]}} - 99
+                    </td>
+                    <td>
+                        {{user[6]}} - 100
+                    </td>
+                    <td>
+                        {{user[7]}} - 10
+                    </td>
+                    <td>
+                        {{user[8]}} - 111
+                    </td>
+                    <td>
+                        {{user[9]}}
+                    </td>
+                    <td>
+                        {{user[10]}}
+                    </td>
+                    <td>
+                        {{user[11]}}
+                    </td>
+                    <td>
+                        {{user[12]}}
+                    </td>
+                    <td>
+                        {{user[13]}}
+                    </td>
+                    <td>
+                        {{user[14]}}
+                    </td>
+                </tr>
+
+            {% endif %}
+        {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}

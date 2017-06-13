@@ -184,7 +184,7 @@ textarea {
   text-align: left;
 }
 #aubaine-list li{
-  padding: 8rem 0 2rem 0rem;
+  padding: 9rem 0 3rem 0rem;
   position:relative;
   /*border-top:thin solid #ccc;*/
 }
@@ -195,7 +195,7 @@ textarea {
   position:absolute;
   left:0;
   color:#535353;
-  top:1.5rem;
+  top:2rem;
   font-weight: bold;
   vertical-align: top;
 }
@@ -219,7 +219,7 @@ textarea {
 }
 #aubaine-list li .category{ 
   position:absolute;
-  top:1.5rem;
+  top:2rem;
   right:0;
   width:3.5rem;
   background-color: #ff3333;
