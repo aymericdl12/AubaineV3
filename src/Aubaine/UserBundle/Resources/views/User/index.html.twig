@@ -35,7 +35,6 @@
                 <td>
                     <a href="{{ path('aubaine_user_view', {'id': user.id}) }}" >      
                         <img src="{{ asset('images/avatars/' ~ user.imageName) }}" width="60">
-                        <h4 class="list-group-item-heading">{{ user.imageName }}</h4>
                     </a>
                 </td>
                 <td>
@@ -60,7 +59,7 @@
                     </a> <br>
                     <a href="{{ path('aubaine_user_edit_avatar', {'id': user.id}) }}" class="btn btn-default">
                       <i class="glyphicon glyphicon-edit"></i>
-                      modifier l'image (bug)
+                      modifier l'image
                     </a> <br>
                     <a href="{{ path('aubaine_user_delete', {'id': user.id}) }}" class="btn btn-danger">
                       <i class="glyphicon glyphicon-trash"></i>
