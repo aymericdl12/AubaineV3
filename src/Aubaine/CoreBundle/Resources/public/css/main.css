@@ -186,7 +186,7 @@ textarea {
 #aubaine-list li{
   padding: 9rem 0 3rem 0rem;
   position:relative;
-  /*border-top:thin solid #ccc;*/
+  border-top:thin solid #ccc;
 }
 #aubaine-list li:first-child{
   /*border-top:none;*/
