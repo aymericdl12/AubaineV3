@@ -101,8 +101,6 @@ class UserController extends Controller
     }
     $form = $this->get('form.factory')->create(UserEditType::class, $user);
     if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-      $password = $user->getPassword();
-      $user->setPlainPassword($password);
       $userManager->updateUser($user);
       $request->getSession()->getFlashBag()->add('notice', 'utilisateur mis à jour');
       return $this->redirectToRoute('aubaine_user_view', array('id' => $user->getId()));
@@ -151,9 +149,10 @@ class UserController extends Controller
     }
     $form = $this->get('form.factory')->create(UserEditAvatarType::class, $user);
     if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+      $user->setImageName("blank");
       $userManager->updateUser($user);
       $request->getSession()->getFlashBag()->add('notice', 'utilisateur mis à jour');
-      return $this->redirectToRoute('aubaine_user_view', array('id' => $user->getId()));
+      return $this->redirectToRoute('aubaine_user_home');
     }
 
     return $this->render('AubaineUserBundle:User:edit.html.twig', array(

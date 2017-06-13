@@ -34,7 +34,8 @@
             <tr>
                 <td>
                     <a href="{{ path('aubaine_user_view', {'id': user.id}) }}" >      
-                        <img src="{{ vich_uploader_asset(user, 'imageFile') }}" width="60">
+                        <img src="{{ vich_uploader_asset(user, 'imageFile') }}" width="60"> 
+                        <h4 class="list-group-item-heading">{{ user.imageName }}</h4>
                     </a>
                 </td>
                 <td>
