@@ -62,7 +62,6 @@ jq(document).ready( function() {
 
 		for (var i = 0; i <=listAubaines.length-1; i++) {
 			var id = listAubaines[i].id;
-			var title = listAubaines[i].title;
 			var message = listAubaines[i].message;
 			var category = listAubaines[i].category;
 			var authorName = listAubaines[i].author.username;
@@ -77,7 +76,6 @@ jq(document).ready( function() {
 				"address": authorAddressDisplayed.split(",")[0],
 				"category": category,
 				"img": "<img src='"+avatarDir+authorImageName+"'>",
-				"title_display": title,
 				"subtitle": message,
 				"teaser": authorDescription,
 				"hours_open": "",
@@ -94,7 +92,6 @@ jq(document).ready( function() {
 		if(deal_type==1){
 			infobox_content =   '<div class="dealMap" >' +
 	                                '<div class="dealMap-header">'+
-                                        '<div class="dealMap-title">'+infos_deal.title_display+'</div>' +
                                         '<div class="dealMap-subtitle">'+infos_deal.subtitle+'</div>' +
 	                                '</div>' +
 	                                '<div class="dealMap-content">' +
@@ -149,7 +146,7 @@ jq(document).ready( function() {
 		}
 		marker.bindPopup(infobox_content,infobox_option);
 		arrMarkers[id] = marker;
-		jq('#deal-'+id+' .message').hover(function(){
+		jq('#deal-'+id+' .message').click(function(){
 			marker.fireEvent('click'); 
 		});
     }

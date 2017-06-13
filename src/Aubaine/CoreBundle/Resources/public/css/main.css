@@ -184,9 +184,9 @@ textarea {
   text-align: left;
 }
 #aubaine-list li{
-  padding: 7rem 0 2rem 0rem;
+  padding: 8rem 0 2rem 0rem;
   position:relative;
-  border-top:thin solid #ccc;
+  /*border-top:thin solid #ccc;*/
 }
 #aubaine-list li:first-child{
   /*border-top:none;*/
@@ -194,12 +194,33 @@ textarea {
 #aubaine-list li .author{
   position:absolute;
   left:0;
-  font-size: 1.3rem;
-  top:2rem;
-  color:#777;
+  color:#535353;
+  top:1.5rem;
   font-weight: bold;
+  vertical-align: top;
+}
+#aubaine-list li .author .avatar{
+  height:6rem;
+  width:6rem;
+  margin-right: 1rem;
+  border-radius: 5px;
+}
+#aubaine-list li .author .author_infos{
+  display:inline-block;
+  vertical-align: top;
+}
+#aubaine-list li .author .author_username{
+  display:inline-block;
+}
+#aubaine-list li .author .author_address{
+  color:#888;
+  font-size:1.2rem;
+  display:inline-block;
 }
 #aubaine-list li .category{ 
+  position:absolute;
+  top:1.5rem;
+  right:0;
   width:3.5rem;
   background-color: #ff3333;
   border-radius: 50%;
@@ -209,8 +230,8 @@ textarea {
 #aubaine-list li .message{
   display:inline-block;
   width:100%;
-  line-height: 2.4rem;
-  font-size: 1.6rem;
+  line-height: 2.7rem;
+  font-size: 2rem;
 }
 #aubaine-list li .category-shop{ 
   padding:0.7rem;

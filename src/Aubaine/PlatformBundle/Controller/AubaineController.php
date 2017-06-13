@@ -75,7 +75,6 @@ class AubaineController extends Controller
 
     // $default_author = $repository->findOneBy(array('username' => 'Utilisateur par defaut'));
 
-    $aubaine->setTitle("Happy hour");
     $aubaine->setMessage("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam, dolor.");
     // $aubaine->setAuthor($default_author);
 
@@ -200,16 +199,12 @@ class AubaineController extends Controller
     $aubaine3 = new Category();
     $aubaine4 = new Category();
 
-    $aubaine->setTitle('Boire et Manger');
     $aubaine->setSlug('boire_manger');
 
-    $aubaine2->setTitle('Faire des courses');
     $aubaine2->setSlug('courses');
 
-    $aubaine3->setTitle('Bien Être');
     $aubaine3->setSlug('bien_etre');
 
-    $aubaine4->setTitle('Se divertir');
     $aubaine4->setSlug('divertir');
 
     $dm = $this->get('doctrine_mongodb')->getManager();
@@ -265,9 +260,6 @@ class AubaineController extends Controller
 
     $author = $repository->findOneBy(array('id' => $userId));
 
-    $title= $request->request->get('title');
-    $aubaine->setTitle($title);
-
     $message=$request->request->get('message');
     $aubaine->setMessage($message);
 
@@ -283,7 +275,7 @@ class AubaineController extends Controller
     $delete_link = $this->generateUrl( 'aubaine_platform_delete_aubaine',  array('id' => $aubaine->getId() ) );
 
     $response = new Response();
-    $response->setContent(json_encode( array( 'title' => $title, 'message' => $message , 'delete_link' => $delete_link ) ));
+    $response->setContent(json_encode( array( 'message' => $message , 'delete_link' => $delete_link ) ));
     $response->headers->set('Content-Type', 'application/json');
     return $response;
 
@@ -299,7 +291,6 @@ class AubaineController extends Controller
     $userId=$user->getId();
     $author = $repository->findOneBy(array('id' => $userId));
     $message=$request->request->get('message');
-    $title= $request->request->get('title');
     $first_date = strtotime( $request->request->get('first_date') );
     $last_date = strtotime( $request->request->get('last_date') );
     $days_validity = $request->request->get('days_validity');
@@ -315,13 +306,11 @@ class AubaineController extends Controller
             $date_datetime->setTimestamp($date);
             $current_aubaine = $dm->getRepository('AubainePlatformBundle:Aubaine')->findOneBy(array('idAuthor' =>$userId, 'date'=>$date_datetime));
             if($current_aubaine){
-                $current_aubaine->setTitle($title);
                 $current_aubaine->setMessage($message);
                 $removed++;
             }
             else{
                 $aubaine= new Aubaine();
-                $aubaine->setTitle($title);
                 $aubaine->setMessage($message);
                 $aubaine->setDate($date_datetime);
                 $aubaine->setAuthor($author);

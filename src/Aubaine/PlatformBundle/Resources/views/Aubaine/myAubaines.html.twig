@@ -22,7 +22,7 @@
             </p>
         </div>
         {% for key,aubaine in days %}
-            {% if aubaine.title %}  
+            {% if aubaine.message %}  
               <div class="day day-withAubaine" {% if aubaine.date | date("U") == current_day %} id="current_aubaine" {% endif %}>
                   <div  class="date" >
                     <div class="dayofmonth">{{ key | date("j") }}</div>
@@ -30,7 +30,6 @@
                         <div class="shortdate text-muted">{{ key | date("F") | trans }}, {{ key | date("Y") }}</div>
                   </div>
                   <div class="aubaine"> 
-                        <div  class="aubaine-title">{{aubaine.title}}</div>
                         <div  class="aubaine-message">{{aubaine.message}}</div>
                         {% if key | date("U") >= current_day %}
                             <a class="aubaine-action" href="{{ path('aubaine_platform_delete_aubaine', {'id': aubaine.id}) }}" >
@@ -57,7 +56,6 @@
                     <div class="aubaine">
                         {% if key | date("U") >= current_day %} 
                         <form method="post" class="form myAubaines-form" action ="{{ path('aubaine_platform_ajax_add_aubaine') }}">
-                            <input class="form-control"  placeholder="indiquez un titre" type="text" name="title" required="required" />
                             <textarea class="form-control" rows="2"  maxlength="250" placeholder="indiquez un message" type="text"  name="message" required="required"></textarea>
                             <input class="form-control" type="hidden"  value="{{key}}" name="date" required="required" />
                             <button class="btn btn-primary my-aubaine-form-submit"  data-loading-text="Enregistrement..." type="submit">Partager</button>
@@ -94,7 +92,6 @@
         <h2>Aubaine récurente</h2>
         <p>Utilisez ce formulaires pour partager un message récurent.</p> <br>
         <form method="post" class="form myAubaines-form-multiple" action ="{{ path('aubaine_platform_ajax_add_aubaine_multiple') }}">
-            <input class="form-control"  placeholder="titre" type="text" name="title" required="required" />
             <input class="form-control" placeholder="message" type="text"  name="message" required="required" />
             <div  class="form-group"  id="dates">                  
                 <div class="input-daterange input-group" id="datepicker">

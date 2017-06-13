@@ -22,7 +22,6 @@ class AubaineType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('title',     TextType::class)
         ->add('message',   TextareaType::class)
         ->add('category', ChoiceType::class, array(
             'choices'  => array(

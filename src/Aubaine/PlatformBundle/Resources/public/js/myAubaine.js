@@ -24,13 +24,12 @@ jq(document).ready( function() {
                 // update map marker
                 if(form.parent().parent("tr").attr("id") == "current_aubaine"){
                     aubaine = {
-                        "title": data.title,
                         "message": data.message
                     };
                     addMarkerByAdress(1, author, aubaine)
                 }
                 form.parent().parent("tr").addClass("success").removeClass("danger");
-                form.replaceWith( "<strong>"+data.title+"<strong/><p>"+data.message+"<p/>"+'<a class="aubaine-action" href="'+data.delete_link+'" ><button class="btn btn-xs btn-danger myAubaine-delete-button"><span class="glyphicon glyphicon-trash"></span></button></a>' );
+                form.replaceWith( data.message+"<p/>"+'<a class="aubaine-action" href="'+data.delete_link+'" ><button class="btn btn-xs btn-danger myAubaine-delete-button"><span class="glyphicon glyphicon-trash"></span></button></a>' );
             }       
         });
     });
@@ -79,7 +78,6 @@ jq(document).ready( function() {
     var authorLati = user.lati;
     var authorLongi = user.longi;
     var authorAddressDisplayed = user.address_displayed;
-    var aubaineTitle = currentAubaine.title;
     var aubaineMessage = currentAubaine.message;
 
     var author = {
@@ -93,11 +91,10 @@ jq(document).ready( function() {
         "longi": authorLongi,
     };
     var aubaine = {
-        "title": aubaineTitle,
         "message": aubaineMessage
     };
 
-    if(!aubaineTitle){
+    if(!aubaineMessage){
         addMarkerByAdress(3, author, aubaine);
     }
     else{
@@ -113,7 +110,6 @@ jq(document).ready( function() {
             if(deal_type==1){
             infobox_content =   '<div class="dealMap" >' +
                                         '<div class="dealMap-header">'+
-                                            '<div class="dealMap-title">'+aubaine.title+'</div>' +
                                             '<div class="dealMap-subtitle">'+aubaine.message+'</div>' +
                                         '</div>' +
                                         '<div class="dealMap-content">' +

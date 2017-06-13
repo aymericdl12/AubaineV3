@@ -25,9 +25,14 @@
             {% for aubaine in listAubaines %}
                 <li id="deal-{{ aubaine.id }}"> 
                     <div class="author">
-                        <img src="{{ asset('images/' ~ aubaine.category ~ '.png') }} " alt="" class="category category-{{ aubaine.category }}">{{ aubaine.author.username }}
+                        <img src="{{ asset('images/bc3caf1.jpg') }} " alt="" class="avatar">
+                        <div class="author_infos">
+                            <div class="author_username">{{ aubaine.author.username }}</div> <br>
+                            <div class="author_address">Place de la Daurade</div>
+                        </div>
                     </div> 
-                    <div class="message"><b>{{ aubaine.title }} </b><br> {{ aubaine.message }}</div>
+                    <img src="{{ asset('images/' ~ aubaine.category ~ '.png') }} " alt="" class="category category-{{ aubaine.category }}">
+                    <div class="message"><b>{{ aubaine.message }}</b></div>
                 </li>
             {% endfor %}
         </ul>
