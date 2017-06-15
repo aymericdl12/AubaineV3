@@ -14,10 +14,6 @@ aubaine_user:
     resource: "@AubaineUserBundle/Resources/config/routing.yml"
     prefix:   /membre
 
-aubaine_admin:
-    resource: "@AubaineAdminBundle/Resources/config/routing.yml"
-    prefix:   /admin2
-
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 

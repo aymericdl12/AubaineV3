@@ -23,7 +23,7 @@ textarea {
   padding:3rem 0 3rem;
   margin:2rem 0 0;
   color: #fff;
-  background: #040;
+  background: #555;
   text-align: center;
   bottom:0;
   vertical-align: bottom;
@@ -123,7 +123,7 @@ textarea {
   width: 100%;
 }
 #listAubaines-home{
-  padding:2rem 1rem 0;
+  padding:6rem 1rem 0;
   color:#444;
   text-align: center;
   box-sizing: border-box; 
@@ -169,24 +169,43 @@ textarea {
     background-image: linear-gradient(to bottom, #dd4030 0px, #cc3525 100%);
     margin:2rem 0 0;
 }
+#listAubaines-home .date{
+  position:absolute;
+  font-size: 2rem;
+  color:#888;
+  top:2rem;
+  left:3rem;
+  margin:0;
+}
+#listAubaines-home .city{
+  position:absolute;
+  font-size: 2rem;
+  color:#888;
+  top:2rem;
+  right:3rem;
+  margin:0;
+}
 #listAubaines-home h2{
-  /*font-style: italic;*/
   font-size: 2.6rem;
-  color:#999;
-  top:1rem;
-  margin:1rem 0 2rem;
-  right:1rem;
+  color:#888;
+  margin-bottom: 3rem;
 }
 #aubaine-list{
   list-style: none;
-  margin: 2rem auto 0;
+  margin: 0 auto;
   padding: 0 1rem;
+  text-align: left;
+}
+.home-welcome{
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
   text-align: left;
 }
 #aubaine-list li{
   padding: 9rem 0 3rem 0rem;
   position:relative;
   border-top:thin solid #ccc;
+  cursor:pointer;
 }
 #aubaine-list li:first-child{
   /*border-top:none;*/
@@ -194,7 +213,7 @@ textarea {
 #aubaine-list li .author{
   position:absolute;
   left:0;
-  color:#535353;
+  color:#484848;
   top:2rem;
   font-weight: bold;
   vertical-align: top;
@@ -230,8 +249,8 @@ textarea {
 #aubaine-list li .message{
   display:inline-block;
   width:100%;
-  line-height: 2.7rem;
   font-size: 2rem;
+  font-weight: bold;
 }
 .marker-map-eat,
 #aubaine-list li .category-eat{ 
@@ -262,7 +281,7 @@ textarea {
 #footer-home{
   padding:4rem 1rem 4rem;
   margin:2rem -1rem 0;
-  background:#007;
+  background:#555;
 }
 
 /*Map*/
@@ -295,11 +314,6 @@ textarea {
   position:absolute;
   left:2rem;
 }
-.dealMap-title {
-    font-size: 15px;
-    font-weight: 700;
-    padding:10px 5px 5px;
-}      
 .dealMap-subtitle {
     padding:10px 5px;
 }
@@ -386,50 +400,97 @@ textarea {
   display: block;
   border-radius: 50%;
   cursor: pointer;
-}/*
-.marker-map-eat{
-  padding:5px;
-  background: #900;
 }
-.marker-map-shop{
-  padding:7px;
-  background: #090;
+.marker-map-1.marker-map-eat {
+  box-shadow: 0 0 0 rgba(255, 0, 0, 0.8);
+  animation: pulse_red 2s ease-out infinite;
 }
-.marker-map-wellness{
-  padding:5px;
-  background: #009;
+.marker-map-1.marker-map-shop {
+  box-shadow: 0 0 0 rgba(0, 86, 27, 0.8);
+  animation: pulse_green 2s ease-out infinite;
 }
-.marker-map-event{
-  padding:7px;
-  background: #ff3333;
-}*/
-.marker-map-1 {
-  /*box-shadow: 0 0 0 rgba(255, 51, 51, 0.8);*/
-  /*animation: pulse_red 2s ease-out infinite;*/
+.marker-map-1.marker-map-wellness {
+  box-shadow: 0 0 0 rgba(222, 41, 22, 0.8);
+  animation: pulse_blue 2s ease-out infinite;
 }
+.marker-map-1.marker-map-event {
+  box-shadow: 0 0 0 rgba(0, 51, 102, 0.8);
+  animation: pulse_red 2s ease-out infinite;
+}
+
 @-webkit-keyframes pulse_red {
   0% {
-    -webkit-box-shadow: 0 0 0 0 rgba(255, 51, 51, 0.8);
+    -webkit-box-shadow: 0 0 0 0 rgba(222, 41, 22, 0.8);
   }
   99.9% {
-      -webkit-box-shadow: 0 0 0 15px rgba(204,169,44, 0);
+      -webkit-box-shadow: 0 0 0 15px rgba(222, 41, 22, 0);
   }
   100% {
-      -webkit-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+      -webkit-box-shadow: 0 0 0 0 rgba(222, 41, 22, 0);
   }
 }
 @keyframes pulse_red {
   0% {
-    -moz-box-shadow: 0 0 0 0 rgba(255, 51, 51, 0.8);
-    box-shadow: 0 0 0 0 rgba(255, 51, 51, 0.8);
+    -moz-box-shadow: 0 0 0 0 rgba(222, 41, 22, 0.8);
+    box-shadow: 0 0 0 0 rgba(222, 41, 22, 0.8);
   }
   99.9% {
-      -moz-box-shadow: 0 0 0 15px rgba(204,169,44, 0);
-      box-shadow: 0 0 0 15px rgba(204,169,44, 0);
+      -moz-box-shadow: 0 0 0 15px rgba(222, 41, 22, 0);
+      box-shadow: 0 0 0 15px rgba(222, 41, 22, 0);
   }
   100% {
-      -moz-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
-      box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+      -moz-box-shadow: 0 0 0 0 rgba(222, 41, 22, 0);
+      box-shadow: 0 0 0 0 rgba(222, 41, 22, 0);
+  }
+}
+@-webkit-keyframes pulse_green {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 rgba(0, 86, 27, 0.8);
+  }
+  99.9% {
+      -webkit-box-shadow: 0 0 0 15px rgba(0, 86, 27, 0);
+  }
+  100% {
+      -webkit-box-shadow: 0 0 0 0 rgba(0, 86, 27, 0);
+  }
+}
+@keyframes pulse_green {
+  0% {
+    -moz-box-shadow: 0 0 0 0 rgba(0, 86, 27, 0.8);
+    box-shadow: 0 0 0 0 rgba(0, 86, 27, 0.8);
+  }
+  99.9% {
+      -moz-box-shadow: 0 0 0 15px rgba(0, 86, 27, 0);
+      box-shadow: 0 0 0 15px rgba(0, 86, 27, 0);
+  }
+  100% {
+      -moz-box-shadow: 0 0 0 0 rgba(0, 86, 27, 0);
+      box-shadow: 0 0 0 0 rgba(0, 86, 27, 0);
+  }
+}
+@-webkit-keyframes pulse_blue {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 rgba(0, 51, 102, 0.8);
+  }
+  99.9% {
+      -webkit-box-shadow: 0 0 0 15px rgba(0, 51, 102, 0);
+  }
+  100% {
+      -webkit-box-shadow: 0 0 0 0 rgba(0, 51, 102, 0);
+  }
+}
+@keyframes pulse_blue {
+  0% {
+    -moz-box-shadow: 0 0 0 0 rgba(0, 51, 102, 0.8);
+    box-shadow: 0 0 0 0 rgba(0, 51, 102, 0.8);
+  }
+  99.9% {
+      -moz-box-shadow: 0 0 0 15px rgba(0, 51, 102, 0);
+      box-shadow: 0 0 0 15px rgba(0, 51, 102, 0);
+  }
+  100% {
+      -moz-box-shadow: 0 0 0 0 rgba(0, 51, 102, 0);
+      box-shadow: 0 0 0 0 rgba(0, 51, 102, 0);
   }
 }
 
@@ -745,7 +806,7 @@ textarea {
 }
 .myAubaines-list .day{
     border-top:thin solid #ddd;
-    padding:2rem 3rem 2rem 7.5rem;
+    padding:1rem 3rem 1rem 7.5rem;
     position:relative;
     min-height: 10rem;
 }
@@ -770,40 +831,29 @@ textarea {
     position:absolute;
     right:0;
     top:1rem;
+    display:inline-block;
 }
 .myAubaines-list .aubaine{
     text-align: left;
 }
-.myAubaines-list .aubaine-title{
-  font-weight: bold;
-  font-size: 1.6rem;
-  text-transform: capitalize;
-  margin-bottom: 0.8rem;
-}
 .myAubaines-list .aubaine-message{
-  font-style: italic
-
+  display:inline-block;
+  width:100%;
+  font-size: 2rem;
+  font-weight: bold;
 }
 .myAubaines-list .aubaine-indication{
   font-style: italic
 
+}
+.form-submit-wrapper{
+  text-align: right;
 }
 .myAubaines-form .my-aubaine-form-submit {
   margin-top: 1.5rem;
   }
 .myAubaines-form .form-control {
   position: relative;
-}
-.myAubaines-form-multiple input[name="title"],
-.myAubaines-form input[name="title"] {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  margin-bottom: -1px;
-}
-.myAubaines-form-multiple input[name="message"],
-.myAubaines-form input[name="message"] {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
 }
 .myAubaines-form-multiple .control-label{
     margin:10px 0 5px;

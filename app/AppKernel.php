@@ -20,7 +20,6 @@ class AppKernel extends Kernel
             new Aubaine\UserBundle\AubaineUserBundle(),
             new Doctrine\Bundle\MongoDBBundle\DoctrineMongoDBBundle(),
             new FOS\UserBundle\FOSUserBundle(),
-            new Aubaine\AdminBundle\AubaineAdminBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new Vich\UploaderBundle\VichUploaderBundle()

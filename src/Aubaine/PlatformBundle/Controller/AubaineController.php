@@ -127,7 +127,7 @@ class AubaineController extends Controller
       // Inutile de persister ici, Doctrine connait déjà notre annonce
       $dm->flush();
       $request->getSession()->getFlashBag()->add('notice', 'Aubaine bien modifiée.');
-      return $this->redirectToRoute('aubaine_platform_view', array('id' => $aubaine->getId()));
+      return $this->redirectToRoute('aubaine_platform_home');
     }
 
     return $this->render('AubainePlatformBundle:Aubaine:edit.html.twig', array(
@@ -220,6 +220,9 @@ class AubaineController extends Controller
     return new Response('Categories créées');
   }
 
+  /**
+  * @Security("has_role('ROLE_USER')")
+  */
   public function menuAction($limit)
   {
     $dm = $this->get('doctrine_mongodb')->getManager();
@@ -248,6 +251,9 @@ class AubaineController extends Controller
     return $response;
   }
 
+  /**
+  * @Security("has_role('ROLE_USER')")
+  */
   public function ajax_add_aubaineAction(Request $request)
   {
     $aubaine= new Aubaine();
@@ -255,10 +261,8 @@ class AubaineController extends Controller
     ->getManager()
     ->getRepository('AubaineUserBundle:User');
 
-    $user= $this->get('security.token_storage')->getToken()->getUser();
-    $userId=$user->getId();
-
-    $author = $repository->findOneBy(array('id' => $userId));
+    $author= $this->get('security.token_storage')->getToken()->getUser();
+    $userId=$author->getId();
 
     $message=$request->request->get('message');
     $aubaine->setMessage($message);
@@ -272,24 +276,25 @@ class AubaineController extends Controller
     $em->persist($aubaine);
     $em->flush();
 
-    $delete_link = $this->generateUrl( 'aubaine_platform_delete_aubaine',  array('id' => $aubaine->getId() ) );
+    $delete_link = $this->generateUrl( 'aubaine_platform_ajax_delete_aubaine' );
 
     $response = new Response();
-    $response->setContent(json_encode( array( 'message' => $message , 'delete_link' => $delete_link ) ));
+    $response->setContent(json_encode( array( 'message' => $message , 'delete_link' => $delete_link, 'id_aubaine'=>$aubaine->getId() ) ));
     $response->headers->set('Content-Type', 'application/json');
     return $response;
-
   }
 
+  /**
+  * @Security("has_role('ROLE_USER')")
+  */
   public function ajax_add_aubaine_multipleAction(Request $request)
   {
 
     $repository = $this->get('doctrine_mongodb')
     ->getManager()
     ->getRepository('AubaineUserBundle:User');
-    $user= $this->get('security.token_storage')->getToken()->getUser();
-    $userId=$user->getId();
-    $author = $repository->findOneBy(array('id' => $userId));
+    $author= $this->get('security.token_storage')->getToken()->getUser();
+    $userId=$author->getId();
     $message=$request->request->get('message');
     $first_date = strtotime( $request->request->get('first_date') );
     $last_date = strtotime( $request->request->get('last_date') );
@@ -326,13 +331,39 @@ class AubaineController extends Controller
     $response->setContent(json_encode( array( 'message' => $removed ) ));
     $response->headers->set('Content-Type', 'application/json');
     return $response;
+  }
 
+  /**
+  * @Security("has_role('ROLE_USER')")
+  */
+  public function ajax_delete_aubaineAction(Request $request)
+  {
+    $id_aubaine = $request->request->get('id_aubaine');
+    $id_user= $this->get('security.token_storage')->getToken()->getUser()->getId();
+
+    $dm = $this->get('doctrine_mongodb')->getManager();
+    $aubaine = $dm->getRepository('AubainePlatformBundle:Aubaine')->find($id_aubaine);
+
+    if (null === $aubaine) {
+      throw new NotFoundHttpException("L'aubaine d'id ".$id_aubaine." n'existe pas.");
+    }
+    if($aubaine->getIdAuthor()!=$id_user){
+      throw new NotFoundHttpException("Vous n'avez pas la permission de supprimer ce message");
+    }
+    $dm->remove($aubaine);
+    $dm->flush();
+    $request->getSession()->getFlashBag()->add('info', "Le message a bien été supprimée.");
+
+    $response = new Response();
+    $response->setContent(json_encode( array( 'message' => "succes" ) ));
+    $response->headers->set('Content-Type', 'application/json');
+    return $response;
   }
 
   /**
    * @Security("has_role('ROLE_USER')")
    */
-  public function my_aubainesAction($week, Request $request)
+  public function my_aubainesAction($week=0, Request $request)
   {
     if(!$week){
         $week=date('o'."\W".'W');

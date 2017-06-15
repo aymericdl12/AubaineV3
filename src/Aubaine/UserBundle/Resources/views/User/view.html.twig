@@ -23,21 +23,18 @@
   </p>
 
   <p><img src="{{ vich_uploader_asset(user, 'imageFile') }}" width="60"> </p>
-  <p>{{ user.imagename }} </p>
   <p>{{ user.username }} </p>
   <p>{{ user.description }} </p>
-  <p>{{ user.category }} </p>
-  <p>{{ user.addressDisplayed }} </p>
-  <p>{{ user.city }} ( {{ user.lati }}, {{ user.longi }} )</p>
-  <p>Role : {{ user.roles |join('|') }}</p>
-  <p>Horaire d'ouverture : <br>
-    {{ user.hoursMonday }} <br>
-    {{ user.hoursTuesday }} <br>
-    {{ user.hoursWednesday }} <br>
-    {{ user.hoursThursday }} <br>
-    {{ user.hoursFriday }} <br>
-    {{ user.hoursSaturday }} <br>
-    {{ user.hoursSunday }} <br>
+  <p>Catégorie : {{ user.category }} </p>
+  <p>Adresse : {{ user.addressDisplayed }}, {{ user.zipcode }} {{ user.city }} ( {{ user.lati }}, {{ user.longi }} )</p>
+  <p>
+      Lundi : {{ user.hoursMonday }} <br>
+      Mardi : {{ user.hoursTuesday }} <br>
+      Mercredi : {{ user.hoursWednesday }} <br>
+      Jeudi : {{ user.hoursThursday }} <br>
+      Vendredi : {{ user.hoursFriday }} <br>
+      Samedi : {{ user.hoursSaturday }} <br>
+      Dimanche : {{ user.hoursSunday }} <br>
   </p>
 
 

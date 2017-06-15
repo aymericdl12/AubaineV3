@@ -8,12 +8,12 @@ jq(document).ready( function() {
         startDate: "now"
     });
 
-    jq(".my-aubaines-form").submit(function(event) {
+    jq(".myAubaines-form").submit(function(event) {
         event.preventDefault();
         var form = jq(this);
         jq.ajax({
             beforeSend:  function() { 
-                form.children(".my-aubaine-form-submit").button('loading');
+                form.children(".form-submit-wrapper").children(".my-aubaine-form-submit").button('loading');
             },
             url: jq(this).attr('action'), // le nom du fichier indiqué dans le formulaire
             type: "POST", // la méthode indiquée dans le formulaire (get ou post)
@@ -29,7 +29,15 @@ jq(document).ready( function() {
                     addMarkerByAdress(1, author, aubaine)
                 }
                 form.parent().parent("tr").addClass("success").removeClass("danger");
-                form.replaceWith( data.message+"<p/>"+'<a class="aubaine-action" href="'+data.delete_link+'" ><button class="btn btn-xs btn-danger myAubaine-delete-button"><span class="glyphicon glyphicon-trash"></span></button></a>' );
+                form.replaceWith( '<div  class="aubaine-message">'+
+                                        data.message+
+                                        '<form method="post" class="myAubaines-form-delete aubaine-action" action ="'+ data.delete_link+'") }}">'+
+                                            '<input class="form-control" type="hidden"  value="'+data.id_aubaine+'" name="id_aubaine" required="required"  autocomplete="off" />'+
+                                            '<button class="btn btn-xs btn-danger my-aubaine-form-delete-submit" type="submit" data-loading-text="...">'+
+                                                '<span class="glyphicon glyphicon-trash"></span>'+
+                                            '</button>'+
+                                        '</form>'+
+                                '</div>' );
             }       
         });
     });
@@ -45,9 +53,27 @@ jq(document).ready( function() {
             type: "POST", // la méthode indiquée dans le formulaire (get ou post)
             cache: false,
             data: form.serialize(),
-            success: function(data) { // je récupère la réponse du fichier PHP
-                alert(data.message);
+            success: function(data) { 
                 window.location.reload();
+            }       
+            // return false; 
+        });
+    });
+
+    jq(".myAubaines-list").on('submit', '.myAubaines-form-delete', function(event) {
+        event.preventDefault();
+        var form = jq(this);
+        jq.ajax({
+            beforeSend:  function() { 
+                form.children(".my-aubaine-form-delete-submit").button('loading');
+            },
+            url: jq(this).attr('action'), // le nom du fichier indiqué dans le formulaire
+            type: "POST", // la méthode indiquée dans le formulaire (get ou post)
+            cache: false,
+            data: form.serialize(),
+            success: function(data) { // je récupère la réponse du fichier PHP
+                window.location.reload();
+                window.scrollTo(0,0);
             }       
             // return false; 
         });

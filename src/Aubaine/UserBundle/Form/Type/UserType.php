@@ -26,6 +26,8 @@ class UserType extends AbstractType
         ->add('email',     TextType::class)
         ->add('description',     TextareaType::class)
         ->add('addressDisplayed',     TextType::class)
+        ->add('zipcode',     TextType::class)
+        ->add('city',     TextType::class)
         ->add('hoursMonday',     TextType::class, array('required' => false))
         ->add('hoursTuesday',     TextType::class, array('required' => false))
         ->add('hoursWednesday',     TextType::class, array('required' => false))
@@ -43,9 +45,8 @@ class UserType extends AbstractType
                 'Évènement' => "event"
             )))
         ->add('imageFile',     FileType::class)
-        ->add('city',     TextType::class)
         ->add('password',     TextType::class)
-        ->add('enabled',     RadioType::class)
+        ->add('enabled',     CheckboxType::class)
         ->add('save',      SubmitType::class)
         ;
     }

@@ -3,7 +3,7 @@
 {% extends "AubainePlatformBundle::layout.html.twig" %}
 
 {% block title %}
-    Mes Aubaines - {{ parent() }}
+    Agenda - {{ parent() }}
 {% endblock %}
 
 {% block aubaineplatform_body %}
@@ -20,6 +20,9 @@
             <p>
               Chaque jour partagez un message en fonction de votre activités, de vos stock, de votre humeur. 
             </p>
+             {% for message in app.session.flashbag.get('info') %}
+                <div class="alert alert-info">{{ message }}</div>
+              {% endfor %}
         </div>
         {% for key,aubaine in days %}
             {% if aubaine.message %}  
@@ -30,20 +33,22 @@
                         <div class="shortdate text-muted">{{ key | date("F") | trans }}, {{ key | date("Y") }}</div>
                   </div>
                   <div class="aubaine"> 
-                        <div  class="aubaine-message">{{aubaine.message}}</div>
-                        {% if key | date("U") >= current_day %}
-                            <a class="aubaine-action" href="{{ path('aubaine_platform_delete_aubaine', {'id': aubaine.id}) }}" >
-                                <button class="btn btn-xs btn-danger myAubaine-delete-button ">
-                                    <span class="glyphicon glyphicon-trash"></span>
-                                </button>
-                            </a>
-                        {% else %}
-                            <a class="aubaine-action" href="#" >
-                                <button class="btn btn-xs btn-success myAubaine-delete-button ">
-                                    <span class="glyphicon glyphicon-eye-open"></span> 50 vues
-                                </button>
-                            </a>
-                        {% endif %}
+                        <div  class="aubaine-message">{{aubaine.message}}
+                            {% if key | date("U") >= current_day %}
+                                <form method="post" class="myAubaines-form-delete aubaine-action" action ="{{ path('aubaine_platform_ajax_delete_aubaine') }}">
+                                    <input class="form-control" type="hidden"  value="{{aubaine.id}}" name="id_aubaine" required="required"  autocomplete="off" />
+                                    <button class="btn btn-xs btn-danger my-aubaine-form-delete-submit" type="submit" data-loading-text="...">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </button>
+                                </form>
+                            {% else %}
+                                <a class="aubaine-action" href="#" >
+                                    <button class="btn btn-xs btn-success">
+                                        <span class="glyphicon glyphicon-eye-open"></span> 50 vues
+                                    </button>
+                                </a>
+                            {% endif %}
+                        </div>
                   </div>
               </div>
             {% else %}
@@ -57,8 +62,10 @@
                         {% if key | date("U") >= current_day %} 
                         <form method="post" class="form myAubaines-form" action ="{{ path('aubaine_platform_ajax_add_aubaine') }}">
                             <textarea class="form-control" rows="2"  maxlength="250" placeholder="indiquez un message" type="text"  name="message" required="required"></textarea>
-                            <input class="form-control" type="hidden"  value="{{key}}" name="date" required="required" />
-                            <button class="btn btn-primary my-aubaine-form-submit"  data-loading-text="Enregistrement..." type="submit">Partager</button>
+                            <input class="form-control" type="hidden"  value="{{key}}" name="date" required="required"  autocomplete="off" />
+                            <div class="form-submit-wrapper">
+                                <button class="btn btn-primary my-aubaine-form-submit"  data-loading-text="Enregistrement..." type="submit">Partager</button>
+                            </div>
                         </form>
                         {% else %}
                             <div  class="aubaine-indication">Pas de message</div>
@@ -89,10 +96,10 @@
       <div id="myAubaines-map"></div>
     </div>
     <div class="myAubaines-form-multiple-wrapper">
-        <h2>Aubaine récurente</h2>
+        <h2>Message récurente</h2>
         <p>Utilisez ce formulaires pour partager un message récurent.</p> <br>
         <form method="post" class="form myAubaines-form-multiple" action ="{{ path('aubaine_platform_ajax_add_aubaine_multiple') }}">
-            <input class="form-control" placeholder="message" type="text"  name="message" required="required" />
+            <textarea class="form-control" rows="3"  maxlength="250" placeholder="indiquez un message" type="text"  name="message" required="required"></textarea>
             <div  class="form-group"  id="dates">                  
                 <div class="input-daterange input-group" id="datepicker">
                     <span class="input-group-addon">du</span>
@@ -124,23 +131,7 @@
                     <input type="checkbox" name="days_validity[]" value="Sunday" autocomplete="off">Dimanche
                 </label>
             </div>
-            <!-- <div id="add-deal-days_validity" class="form-group">
-                <label for = "last_date" class = "control-label">Les</label>
-                  <label><input type="checkbox" name="days_validity[]" value="Monday">Lundi</label>
-                  <label><input type="checkbox" name="days_validity[]" value="Tuesday">Mardi</label>
-                  <label><input type="checkbox" name="days_validity[]" value="Wednesday">Mercredi</label>
-                  <label><input type="checkbox" name="days_validity[]" value="Thursday">Jeudi</label>
-                <div class="checkbox">
-                  <label><input type="checkbox" name="days_validity[]" value="Friday">Vendredi</label>
-                </div>
-                <div class="checkbox">
-                  <label><input type="checkbox" name="days_validity[]" value="Saturday">Samedi</label>
-                </div>
-                <div class="checkbox">
-                  <label><input type="checkbox" name="days_validity[]" value="Sunday">Dimanche</label>
-                </div>
-            </div> -->
-            <button class="btn btn-primary btn-block my-aubaine-form-submit"  data-loading-text="Enregistrement..." type="submit">Publier</button>
+            <button class="btn btn-primary btn-block my-aubaine-form-submit"  data-loading-text="Enregistrement..." type="submit">Partager</button>
         </form>
     </div>
   </div>

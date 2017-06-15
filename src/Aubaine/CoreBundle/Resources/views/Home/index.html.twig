@@ -11,17 +11,60 @@
         <div id='map'></div>
     </div>
     <div id="listAubaines-home">
-        <h2>{{ 'now' | date('l') | trans }} {{ 'now' | date('j') }} {{ 'now' | date('F') | trans }}</h2>
-        <div>
-            En direct des commerçants de votre ville, profitez des bons plans !
-            <!-- Les bons plans de votre ville en direct, restez à l'affut ! -->
-        </div>
+        <div class="date">{{ 'now' | date('l') | trans }} {{ 'now' | date('j') }} {{ 'now' | date('F') | trans }}</div>
+        <div class="city">Toulouse</div>
+        <h2>
+            En direct de votre ville
+        </h2>
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            <div class="home-welcome">
+                Bonjour {{ app.user.username }}, <br>
+                Vous n'avez pas de message publié aujourd'hui <br> 
+                Pour publier un message, utiliser le formulaire ci-dessous.<br>
+                Pour programmer des messages, rendez-vous dans l'onglet agenda.
+            </div>
+        {% endif %}
         <button type="button" class="show-map-button btn btn-primary btn">
             Voir la carte
             <i class="glyphicon glyphicon-chevron-right"></i>
         </button>
-        <div class="separator">-----o------</div>
         <ul id="aubaine-list">
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <!-- <h3>Bienvenue {{app.user.username}}</h3> -->
+                <li> 
+                    <div class="author">
+                        <img src="{{ asset('images/avatars/' ~ app.user.imageName) }}" alt="" class="avatar">
+                        <div class="author_infos">
+                            <div class="author_username">{{ app.user.username }}</div> <br>
+                            <div class="author_address">{{ app.user.addressDisplayed }}</div>
+                        </div>
+                    </div> 
+                    <img src="{{ asset('images/' ~ app.user.category ~ '.png') }} " alt="" class="category category-{{ app.user.category }}">
+                    <form method="post" class="form myAubaines-form" action ="{{ path('aubaine_platform_ajax_add_aubaine') }}">
+                        <textarea class="form-control" rows="2"  maxlength="250" placeholder="indiquez un message" type="text"  name="message" required="required"></textarea>
+                        <input class="form-control" type="hidden"  name="date" required="required"  autocomplete="off" />
+                        <div class="form-submit-wrapper">
+                            <button class="btn btn-primary my-aubaine-form-submit"  data-loading-text="Enregistrement..." type="submit">Partager</button>
+                        </div>
+                    </form>
+                </li>
+            {% else %}
+                <li> 
+                    <div class="author">
+                        <img src="/AubaineV3/web/images/avatars/593ff56b00b0e.png" alt="" class="avatar">
+                        <div class="author_infos">
+                            <div class="author_username">Utilisateur anonyme</div> <br>
+                        </div>
+                    </div> 
+                    <form method="post" class="form myAubaines-form" action ="{{ path('aubaine_platform_ajax_add_aubaine') }}">
+                        <textarea class="form-control" rows="2"  maxlength="250" placeholder="Partager un message à la communauté" type="text"  name="message" required="required"></textarea>
+                        <input class="form-control" type="hidden"  name="date" required="required"  autocomplete="off" />
+                        <div class="form-submit-wrapper">
+                            <button class="btn btn-primary my-aubaine-form-submit"  data-loading-text="Enregistrement..." type="submit">Partager</button>
+                        </div>
+                    </form>
+                </li>
+            {% endif %}
             {% for aubaine in listAubaines %}
                 <li id="deal-{{ aubaine.id }}"> 
                     <div class="author">
@@ -32,7 +75,7 @@
                         </div>
                     </div> 
                     <img src="{{ asset('images/' ~ aubaine.category ~ '.png') }} " alt="" class="category category-{{ aubaine.category }}">
-                    <div class="message"><b>{{ aubaine.message }}</b></div>
+                    <div class="message">{{ aubaine.message }}</div>
                 </li>
             {% endfor %}
         </ul>

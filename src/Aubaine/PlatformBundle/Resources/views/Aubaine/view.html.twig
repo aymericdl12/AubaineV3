@@ -14,17 +14,17 @@
     </a>
     <a href="{{ path('aubaine_platform_edit', {'id': aubaine.id}) }}" class="btn btn-default">
       <i class="glyphicon glyphicon-edit"></i>
-      Modifier l'annonce
+      Modifier le message
     </a>
     <a href="{{ path('aubaine_platform_delete', {'id': aubaine.id}) }}" class="btn btn-danger">
       <i class="glyphicon glyphicon-trash"></i>
-      Supprimer l'annonce
+      Supprimer le message
     </a>
   </p>
 
   <h2>{{ aubaine.title }}</h2>
   <p>{{ aubaine.message }}</p>
-  <p>Catégorie : {{ aubaine.category.title }}</p>
+  <p>Catégorie : {{ aubaine.category }}</p>
   <i>Par {{ aubaine.author.username }} </i>
 
 

@@ -37,7 +37,7 @@ aubaine_platform_populate:
         _controller: AubainePlatformBundle:Aubaine:populate
 
 aubaine_platform_my_aubaines:
-    path:      /mes_aubaines/{week}
+    path:      /agenda/{week}
     defaults:
         _controller: AubainePlatformBundle:Aubaine:my_aubaines
 

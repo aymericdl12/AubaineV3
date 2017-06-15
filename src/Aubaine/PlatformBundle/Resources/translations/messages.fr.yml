@@ -1,10 +1,17 @@
 Monday: Lundi
+monday: lundi
 Tuesday: Mardi
+tuesday: mardi
 Wednesday: Mercredi
+wednesday: mercredi
 Thursday: Jeudi
+thursday: jeudi
 Friday: Vendredi
+friday: vendredi
 Saturday: Samedi
+saturday: samedi
 Sunday: Dimanche
+sunday: dimanche
 
 Mon: Lun
 Tue: Mar
@@ -26,3 +33,25 @@ September: Septembre
 October: Octobre
 November: Novembre
 December: Décembre
+
+Author: Auteur
+author: auteur
+Category: Catégorie
+category: catégorie
+Save: Enregistrer
+save: enregistrer
+
+Username: Nom d'utilisateur
+Address displayed: Addresse
+Zipcode: Code postal
+City: ville
+Hours monday: Horaires lundi
+Hours tuesday: Horaires mardi
+Hours wednesday: Horaires mercredi
+Hours thursday: Horaires jeudi
+Hours friday: Horaires vendredi
+Hours saturday: Horaires samedi
+Hours sunday: Horaires dimanche
+Enabled: Actif
+enabled: actif
+
