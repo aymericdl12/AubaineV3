@@ -23,13 +23,6 @@ class AubaineType extends AbstractType
     {
         $builder
         ->add('message',   TextareaType::class)
-        ->add('category', ChoiceType::class, array(
-            'choices'  => array(
-                'Bar, Café, Restaurant' => "eat",
-                'Boutique, épicerie' => "shop",
-                'Bien être' => "wellness",
-                'Évènement' => "event"
-            )))
         ->add('date',   DateType::class)
         ->add('author', DocumentType::class, array(
             'class'        => 'AubaineUserBundle:User',

@@ -14,7 +14,7 @@
         <div class="date">{{ 'now' | date('l') | trans }} {{ 'now' | date('j') }} {{ 'now' | date('F') | trans }}</div>
         <div class="city">Toulouse</div>
         <h2>
-            En direct de votre ville
+            En direct des commerçants
         </h2>
         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
             <div class="home-welcome">
@@ -42,22 +42,6 @@
                     <img src="{{ asset('images/' ~ app.user.category ~ '.png') }} " alt="" class="category category-{{ app.user.category }}">
                     <form method="post" class="form myAubaines-form" action ="{{ path('aubaine_platform_ajax_add_aubaine') }}">
                         <textarea class="form-control" rows="2"  maxlength="250" placeholder="indiquez un message" type="text"  name="message" required="required"></textarea>
-                        <input class="form-control" type="hidden"  name="date" required="required"  autocomplete="off" />
-                        <div class="form-submit-wrapper">
-                            <button class="btn btn-primary my-aubaine-form-submit"  data-loading-text="Enregistrement..." type="submit">Partager</button>
-                        </div>
-                    </form>
-                </li>
-            {% else %}
-                <li> 
-                    <div class="author">
-                        <img src="/AubaineV3/web/images/avatars/593ff56b00b0e.png" alt="" class="avatar">
-                        <div class="author_infos">
-                            <div class="author_username">Utilisateur anonyme</div> <br>
-                        </div>
-                    </div> 
-                    <form method="post" class="form myAubaines-form" action ="{{ path('aubaine_platform_ajax_add_aubaine') }}">
-                        <textarea class="form-control" rows="2"  maxlength="250" placeholder="Partager un message à la communauté" type="text"  name="message" required="required"></textarea>
                         <input class="form-control" type="hidden"  name="date" required="required"  autocomplete="off" />
                         <div class="form-submit-wrapper">
                             <button class="btn btn-primary my-aubaine-form-submit"  data-loading-text="Enregistrement..." type="submit">Partager</button>

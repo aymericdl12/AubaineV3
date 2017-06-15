@@ -16,6 +16,11 @@ aubaine_platform_add:
     defaults:
         _controller: AubainePlatformBundle:Aubaine:add
 
+aubaine_platform_add_multiple:
+    path:      /admin/add_multiple
+    defaults:
+        _controller: AubainePlatformBundle:Aubaine:addMultiple
+
 aubaine_platform_edit:
     path:      /admin/edit/{id}
     defaults:

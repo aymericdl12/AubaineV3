@@ -30,7 +30,7 @@ class AubaineController extends Controller
         throw new NotFoundHttpException('Page "'.$page.'" inexistante.');
     }
 
-    $nbPerPage = 10;
+    $nbPerPage = 100;
 
     $listAubaines = $this->get('doctrine_mongodb')
       ->getManager()
@@ -93,21 +93,79 @@ class AubaineController extends Controller
       if ($form->isValid()) {
 
         $aubaine->setIdAuthor($aubaine->getAuthor()->getId());
+        $aubaine->setCategory($aubaine->getAuthor()->getCategory());
         $em = $this->get('doctrine_mongodb')->getManager();
         $em->persist($aubaine);
         $em->flush();
 
         $request->getSession()->getFlashBag()->add('notice', 'Aubaine bien enregistrée.');
 
-        // On redirige vers la page de visualisation de l'annonce nouvellement créée
+         // On redirige vers la page de visualisation de l'annonce nouvellement créée
         return $this->redirectToRoute('aubaine_platform_home', array());
       }
     }
-
     // On passe la méthode createView() du formulaire à la vue
     // afin qu'elle puisse afficher le formulaire toute seule
     return $this->render('AubainePlatformBundle:Aubaine:add.html.twig', array(
       'form' => $form->createView(),
+    ));
+  }
+
+  /**
+   * @Security("has_role('ROLE_ADMIN')")
+   */
+  public function addMultipleAction(Request $request)
+  {
+
+    // Si la requête est en POST
+    if ($request->isMethod('POST')) {
+        $repository = $this->get('doctrine_mongodb')
+        ->getManager()
+        ->getRepository('AubaineUserBundle:User');
+        $userId= $request->request->get('author_id');
+        $author=$repository->findOneBy(array('id' =>$userId));
+        $message=$request->request->get('message');
+        $first_date = strtotime( $request->request->get('start') );
+        $last_date = strtotime( $request->request->get('end') );
+        $days_validity = $request->request->get('days_validity');
+        $em = $this->get('doctrine_mongodb')->getManager();
+        $cpt=0;
+        $removed=0;
+        $date = $first_date;
+        $dm = $this->get('doctrine_mongodb')->getManager();
+        while ( $date <= $last_date) {
+
+            if(in_array( date("l",$date), $days_validity) ){
+                $date_datetime = new \DateTime();
+                $date_datetime->setTimestamp($date);
+                $current_aubaine = $dm->getRepository('AubainePlatformBundle:Aubaine')->findOneBy(array('idAuthor' =>$userId, 'date'=>$date_datetime));
+                if($current_aubaine){
+                    $current_aubaine->setMessage($message);
+                    $removed++;
+                }
+                else{
+                    $aubaine= new Aubaine();
+                    $aubaine->setMessage($message);
+                    $aubaine->setDate($date_datetime);
+                    $aubaine->setAuthor($author);
+                    $aubaine->setCategory($author->getCategory());
+                    $aubaine->setIdAuthor($userId);
+                    $em->persist($aubaine);
+                }
+                $cpt++;
+            }
+            $date+=24*3600;
+        }
+        $em->flush();
+        $response = new Response();
+        $response->setContent(json_encode( array( 'first_date' => $first_date,'last_date' => $last_date, 'userId' => $userId ) ));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
+    }
+    $dm = $this->get('doctrine_mongodb')->getManager();
+    $listusers = $dm->getRepository('AubaineUserBundle:User')->findAll();
+    return $this->render('AubainePlatformBundle:Aubaine:addMultiple.html.twig', array(
+      'listusers' => $listusers
     ));
 
   }
@@ -320,6 +378,7 @@ class AubaineController extends Controller
                 $aubaine->setDate($date_datetime);
                 $aubaine->setAuthor($author);
                 $aubaine->setIdAuthor($userId);
+                $aubaine->setCategory($author->getCategory());
                 $em->persist($aubaine);
             }
             $cpt++;

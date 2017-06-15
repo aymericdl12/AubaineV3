@@ -150,9 +150,14 @@ class UserController extends Controller
     $form = $this->get('form.factory')->create(UserEditAvatarType::class, $user);
     if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
       $user->setImageName("blank");
-      $userManager->updateUser($user);
-      $request->getSession()->getFlashBag()->add('notice', 'utilisateur mis à jour');
-      return $this->redirectToRoute('aubaine_user_home');
+      // $userManager->updateUser($user);
+      $file = $request->request->get("user_edit_avatar");
+      $response = new Response();
+      $response->setContent(json_encode( array( 'message' => json_encode( $file ) ) ));
+      $response->headers->set('Content-Type', 'application/json');
+      return $response;
+      // $request->getSession()->getFlashBag()->add('notice', 'utilisateur mis à jour');
+      // return $this->redirectToRoute('aubaine_user_home');
     }
 
     return $this->render('AubaineUserBundle:User:edit.html.twig', array(
