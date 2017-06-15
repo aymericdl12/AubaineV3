@@ -157,10 +157,7 @@ class AubaineController extends Controller
             $date+=24*3600;
         }
         $em->flush();
-        $response = new Response();
-        $response->setContent(json_encode( array( 'first_date' => $first_date,'last_date' => $last_date, 'userId' => $userId ) ));
-        $response->headers->set('Content-Type', 'application/json');
-        return $response;
+        return $this->redirectToRoute('aubaine_platform_home', array());
     }
     $dm = $this->get('doctrine_mongodb')->getManager();
     $listusers = $dm->getRepository('AubaineUserBundle:User')->findAll();
