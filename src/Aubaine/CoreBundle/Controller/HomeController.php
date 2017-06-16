@@ -16,7 +16,11 @@ class HomeController extends Controller
 	{
 
 		$dm = $this->get('doctrine_mongodb')->getManager();
-	    $listAubaines = $dm->getRepository('AubainePlatformBundle:Aubaine')->findAll();
+
+	    $current_day= strtotime(date("Y-m-d 00:00:00"));
+	    $current_day_datetime = new \DateTime();
+	    $current_day_datetime->setTimestamp($current_day);
+	    $listAubaines = $dm->getRepository('AubainePlatformBundle:Aubaine')->findByDate($current_day_datetime);
 	    $listPartners = $dm->getRepository('AubaineUserBundle:User')->findAll();
 
 	    $serializer = $this->container->get('jms_serializer');
