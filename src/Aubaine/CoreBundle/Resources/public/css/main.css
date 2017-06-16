@@ -185,7 +185,7 @@ textarea {
   right:3rem;
   margin:0;
 }
-#listAubaines-home h2{
+#listAubaines-home h1{
   font-size: 2.6rem;
   color:#888;
   margin-bottom: 3rem;
@@ -839,7 +839,7 @@ textarea {
 .myAubaines-list .aubaine-message{
   display:inline-block;
   width:100%;
-  font-size: 2rem;
+  font-size: 1.7rem;
   font-weight: bold;
 }
 .myAubaines-list .aubaine-indication{

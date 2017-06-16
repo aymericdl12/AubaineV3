@@ -12,7 +12,8 @@ class UserEditPasswordType extends AbstractType
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
     $builder
-    ->add('password',     TextType::class)
+    ->add('email',     TextType::class)
+    ->add('password',     TextType::class,array('data' => '' ))
     ->add('save',      SubmitType::class);
     ;
     

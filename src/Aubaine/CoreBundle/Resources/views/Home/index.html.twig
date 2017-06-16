@@ -13,9 +13,9 @@
     <div id="listAubaines-home">
         <div class="date">{{ 'now' | date('l') | trans }} {{ 'now' | date('j') }} {{ 'now' | date('F') | trans }}</div>
         <div class="city">Toulouse</div>
-        <h2>
+        <h1>
             En direct des commerçants
-        </h2>
+        </h1>
         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
             <div class="home-welcome">
                 Bonjour {{ app.user.username }}, <br>
