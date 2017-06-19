@@ -453,6 +453,32 @@ body{
       box-shadow: 0 0 0 0 rgba(222, 41, 22, 0);
   }
 }
+
+@-webkit-keyframes pulse_red_long {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 rgba(222, 41, 22, 0.8);
+  }
+  99.9% {
+      -webkit-box-shadow: 0 0 0 25px rgba(222, 41, 22, 0);
+  }
+  100% {
+      -webkit-box-shadow: 0 0 0 0 rgba(222, 41, 22, 0);
+  }
+}
+@keyframes pulse_red_long {
+  0% {
+    -moz-box-shadow: 0 0 0 0 rgba(222, 41, 22, 0.8);
+    box-shadow: 0 0 0 0 rgba(222, 41, 22, 0.8);
+  }
+  99.9% {
+      -moz-box-shadow: 0 0 0 25px rgba(222, 41, 22, 0);
+      box-shadow: 0 0 0 25px rgba(222, 41, 22, 0);
+  }
+  100% {
+      -moz-box-shadow: 0 0 0 0 rgba(222, 41, 22, 0);
+      box-shadow: 0 0 0 0 rgba(222, 41, 22, 0);
+  }
+}
 @-webkit-keyframes pulse_green {
   0% {
     -webkit-box-shadow: 0 0 0 0 rgba(0, 86, 27, 0.8);
@@ -559,7 +585,7 @@ body{
   line-height: 4rem;
 }
 #body-concept h3{
-  margin:0 0 3rem;
+  margin:0 1rem 3rem;
   line-height: 3rem;
   font-size: 3rem;
   text-transform: uppercase;
@@ -589,7 +615,7 @@ body{
 #concept-user{
     display: inline-block;
     width: 100%;
-    padding:8rem 2rem;
+    padding:8rem 2rem 0;
     line-height: 2.5rem;
 }
 #concept-user .assets{
@@ -599,8 +625,7 @@ body{
   padding:0 1rem 2rem;
 }
 #concept-partner{
-    border-top: 3px solid #ff3333;
-    margin:8rem 0;
+    margin:0 0 8rem;
     position:relative;
 }
 #concept-partner h3{
@@ -609,17 +634,16 @@ body{
     text-transform: inherit;
 }
 #concept-partner .figures{
-    width:10rem;
-    margin:0 auto;
+    width:13rem;
+    margin:8rem auto 12rem;
     position:relative;
-    height:10rem;
+    height:13rem;
     color:#fff;
     background-color: #ff3333;
-    border-radius: 5rem;
-    top:-5rem;
-    line-height: 9rem;
-    font-size: 1.2rem;
-    font-weight: bold;
+    border-radius: 50%;
+    line-height: 12rem;
+    font-size: 1.5rem;
+    animation: pulse_red_long 2s ease-out infinite;
 }
 #concept-partner .figures span{
     line-height: normal;
@@ -630,31 +654,22 @@ body{
     font-size: 3rem;
 }
 #concept-partner .carousel{
-    display: inline-block;
-    background-color: #fff;
-    padding:0 8rem;
+    width:100%;
+    max-height: 40rem;
+    overflow:hidden;
 }
-#concept-partner  .carousel-control{
-    background: none;
+.carousel-caption{
+    background: rgba(0,0,0,0.6);
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    top:0;
+    bottom:inherit;
 }
-#concept-partner .carousel .carousel-element{
-    display: inline-block;
-    width: 15rem;
-    margin:1rem 1rem;
-    font-size: 1.2rem;
-}
-#concept-partner .carousel img{
-    width: 100%;
-    border-radius: 50%;
-    margin-bottom: 1rem;
+#concept-partner .carousel-caption h4{
+    color:#fff;
 }
 #concept-teaser{
-    background-color: #ec4940;
     padding:4rem 2rem;
-    color:#fff;
-}
-#concept-teaser h3{
-    color:#fff;
 }
 #concept-teaser a{
     margin-top: 2rem;
@@ -706,7 +721,7 @@ body{
   /*color:#666;*/
 }
 #body-partner h3{
-  margin:0 0 3rem;
+  margin:0 1rem 3rem;
   line-height: 3rem;
   font-size: 3rem;
   text-transform: uppercase;

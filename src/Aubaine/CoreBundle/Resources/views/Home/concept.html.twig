@@ -32,94 +32,69 @@
                 </p>
             </div>
             <div class="assets">
-                <h4 class="discover">Nouveauté</h4>
+                <h4 class="discover">Nouveautés</h4>
                 <p>
                     Nouveau produit, nouveau concept, laissez vous surprendre par leur créativité. 
                 </p>
             </div>
         </div>
         <div id="concept-partner">
-            <div class="figures"><span><b>102</b> Partenaires</span></div>
-            <h3>
+            <div class="figures"><span><b>102</b><br> Partenaires</span></div>
+            <!-- <h3>
                 Boutiques, Bars, Restaurants, Coiffeur, et bien d'autres encore.... 
-            </h3>
-            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            </h3> -->
+              <div id="myCarousel" class="carousel slide" data-ride="carousel">
 
-              <!-- Wrapper for slides -->
-              <div class="carousel-inner">
-                <div class="item active">
-                    <div class="carousel-element">
-                        {% image '@AubaineCoreBundle/Resources/public/images/partners/boulangerie-saint-george.jpg' %}
-                            <img src="{{ asset_url }}" alt="Example" />
-                        {% endimage %}
-                        <div class="carousel-title">Boulangerie St George</div>
-                    </div>
-                    <div class="carousel-element">
-                        {% image '@AubaineCoreBundle/Resources/public/images/partners/Cafe-contretemps.jpg' %}
-                            <img src="{{ asset_url }}" alt="Example" />
-                        {% endimage %}
-                        <div class="carousel-title">Café Contretemps</div>
-                    </div>
-                    <div class="carousel-element">
-                        {% image '@AubaineCoreBundle/Resources/public/images/partners/la-fine-equipe.png' %}
-                            <img src="{{ asset_url }}" alt="Example" />
-                        {% endimage %}
-                        <div class="carousel-title">la fine équipe</div>
-                    </div>
-                    <div class="carousel-element">
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+
+                    <div class="item active">
                         {% image '@AubaineCoreBundle/Resources/public/images/partners/bonheur-dans-le-pot.jpg' %}
-                            <img src="{{ asset_url }}" alt="Example" />
+                            <img src="{{ asset_url }}" alt="Example" style="width:100%;" />
                         {% endimage %}
-                        <div class="carousel-title">Le bonheur est dans le pot</div>
+                        <div class="carousel-caption">
+                            <h4>Le Bonheur est dans le Pot</h4>
+                        </div>
                     </div>
-                </div>
-                <div class="item">
-                    <div class="carousel-element">
-                        {% image '@AubaineCoreBundle/Resources/public/images/partners/boulangerie-saint-george.jpg' %}
-                            <img src="{{ asset_url }}" alt="Example" />
-                        {% endimage %}
-                        <div class="carousel-title">Boulangerie St George</div>
-                    </div>
-                    <div class="carousel-element">
+
+                    <div class="item">
                         {% image '@AubaineCoreBundle/Resources/public/images/partners/Cafe-contretemps.jpg' %}
-                            <img src="{{ asset_url }}" alt="Example" />
+                            <img src="{{ asset_url }}" alt="Example"  style="width:100%;" />
                         {% endimage %}
-                        <div class="carousel-title">Café Contretemps</div>
+                        <div class="carousel-caption">
+                            <h4>Café Contre-Temps</h4>
+                        </div>
                     </div>
-                    <div class="carousel-element">
+
+                    <div class="item">
                         {% image '@AubaineCoreBundle/Resources/public/images/partners/la-fine-equipe.png' %}
-                            <img src="{{ asset_url }}" alt="Example" />
+                            <img src="{{ asset_url }}" alt="Example"  style="width:100%;" />
                         {% endimage %}
-                        <div class="carousel-title">la fine équipe</div>
+                        <div class="carousel-caption">
+                            <h4>La fine Équipe</h4>
+                        </div>
                     </div>
-                    <div class="carousel-element">
-                        {% image '@AubaineCoreBundle/Resources/public/images/partners/bonheur-dans-le-pot.jpg' %}
-                            <img src="{{ asset_url }}" alt="Example" />
-                        {% endimage %}
-                        <div class="carousel-title">Le bonheur est dans le pot</div>
-                    </div>
+
                 </div>
+
+                <!-- Left and right controls -->
+                <!-- <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                  <span class="glyphicon glyphicon-chevron-left"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                  <span class="glyphicon glyphicon-chevron-right"></span>
+                  <span class="sr-only">Next</span>
+                </a> -->
               </div>
-
-              <!-- Left and right controls -->
-              <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left" style="color:black"></span>
-                <span class="sr-only">Previous</span>
-              </a>
-              <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right" style="color:black"></span>
-                <span class="sr-only">Next</span>
-              </a>
-            </div>
         </div>
         <div id="concept-teaser">
             <h3>Vous êtes un commerce ?</h3>
             <p>
-                Aubaine partage votre ardoise sur le web et sur appli mobile !
-                <!-- Aubaine vous offre un outil ultra simple pour communiquer des messages instantanée à votre ville. -->
+                Aubaine diffuse votre ardoise sur le web !
             </p>
             <p>
-                Chaque jour partagez un message en fonction de votre activités, de vos stock, de votre humeur...
+                Chaque jour partagez un message en fonction de votre activités.
             </p>
             <a class="btn btn-primary" href="{{ path('aubaine_core_partner') }}">En savoir plus</a>
         </div>
