@@ -2,12 +2,12 @@ var jq = jQuery;
 jq(document).ready( function() {
 
 
-    var map;
-    var arrMarkers = [];
-    var map = L.map('partner-map',{zoomControl:false}).setView([43.6044292, 1.4438121000000592], 16);
-    L.tileLayer('https://api.mapbox.com/styles/v1/aymericdl2/cj1ypxtb0000g2sqry16pzm0o/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYXltZXJpY2RsMiIsImEiOiJjajF5b2dhMzIwMDBmMzNuenBsMXRpeWVoIn0.EGdbIzhLpXPATY5FzxdsHg', 
-    {}).addTo(map);
-    map.scrollWheelZoom.disable();  
+    // var map;
+    // var arrMarkers = [];
+    // var map = L.map('partner-map',{zoomControl:false}).setView([43.6044292, 1.4438121000000592], 16);
+    // L.tileLayer('https://api.mapbox.com/styles/v1/aymericdl2/cj1ypxtb0000g2sqry16pzm0o/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYXltZXJpY2RsMiIsImEiOiJjajF5b2dhMzIwMDBmMzNuenBsMXRpeWVoIn0.EGdbIzhLpXPATY5FzxdsHg', 
+    // {}).addTo(map);
+    // map.scrollWheelZoom.disable();  
 
     var id = -1;
     var authorName = "Votre boutique";
@@ -34,7 +34,7 @@ jq(document).ready( function() {
         "message": aubaineMessage
     };
     
-    addMarkerByAdress(1, author, aubaine);
+    // addMarkerByAdress(1, author, aubaine);
 
     
 
@@ -45,7 +45,6 @@ jq(document).ready( function() {
             if(deal_type==1){
             infobox_content =   '<div class="dealMap" >' +
                                         '<div class="dealMap-header">'+
-                                            '<div class="dealMap-title">'+aubaine.title+'</div>' +
                                             '<div class="dealMap-subtitle">'+aubaine.message+'</div>' +
                                         '</div>' +
                                         '<div class="dealMap-content">' +

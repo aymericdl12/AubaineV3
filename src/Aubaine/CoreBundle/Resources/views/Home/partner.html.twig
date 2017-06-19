@@ -1,7 +1,7 @@
 {% extends "AubaineCoreBundle::layout.html.twig" %}
 
 {% block title %}
-  Page d'accueil- {{ parent() }}
+  Devenir Partenaire - {{ parent() }}
 {% endblock %}
 
 {% block body %}
@@ -9,56 +9,71 @@
         <div id='partner-header'>
             <h1>Devenir Partenaire</h1>
 
-            <p>
-                Chaque jour partagez un message en fonction de votre activités, de vos stock, de votre humeur. Nouveau produits, évènements, promotions, destockage de fin de journée, publier ce que vous voulez pour attirer l'attention. 
-             </p>
+            <h2>
+                Chaque jour, partagez un message en fonction de votre activités
+             </h2>
         </div>
         <div id='partner-avantages'>
-            <!-- <h3>Nos Points Forts</h3> -->
-            <div class="row">
-                <div class="partner-avantage col-md-3">
-                    <h4><img src="{{ asset('images/check.png') }} " alt="">Simple</h4>
-                    <p>
-                        Utiliser notre interface est aussi simple que d'écrire sur une ardoise
-                    </p>
-                </div>
-                <div class="partner-avantage col-md-3">
-                    <h4><img src="{{ asset('images/check.png') }} " alt="">Rapide</h4>
-                    <p>
-                        Nous transmettons vos message instantanément, vous pouvez enfin improviser
-                    </p>
-                </div>
-                <div class="partner-avantage col-md-3">
-                    <h4><img src="{{ asset('images/check.png') }} " alt="">Sans limite</h4>
-                    <p>
-                        Nous multiplions les accords pour diffuser vos messages sur d'autres sites et application mobiles
-                    </p>
-                </div>
-                <div class="partner-avantage col-md-3">
-                    <h4><img src="{{ asset('images/check.png') }} " alt="">Efficace</h4>
-                    <p>
-                        Vos messages atteignent des personne proches de vous ou interrressé par votre activité.
-                    </p>
-                </div>
+            <div class="assets">
+                <h4>Simple</h4>
+                <p>
+                    Utiliser notre interface est aussi simple que d'écrire sur une ardoise
+                </p>
+            </div>
+            <div class="assets">
+                <h4>Instantanée</h4>
+                <p>
+                    Nous transmettons vos message instantanément, profitez enfin d'une communication temps réel.
+                </p>
+            </div>
+            <div class="assets">
+                <h4>Sans limite</h4>
+                <p>
+                    Nous développons des accords pour diffuser vos messages sur d'autres sites et application mobiles
+                </p>
+            </div>
+            <div class="assets">
+                <h4>Gratuit</h4>
+                <p>
+                    La diffusion de message est totalement gratuit. Des options payantes vous sont proposées.
+                </p>
             </div>
         </div>
         <div id='partner-functionment'>
-            <!-- <h3>Un fonctionnement adapté au commerce</h3> -->
+            <h3>Improvisez ou plannifiez vos message</h3>
             <div class="row">
-                <div class="partner-avantage col-md-6">
-                    <div class="partner-avantage-header"><div class="number">1</div> Vous rédigez des messages quand bon vous semble</div>
+                <div class="col-md-6">
+                    <div class="list-examples"> 
+                        <div class="example">
+                            Nouveau produits
+                        </div> 
+                        <div class="example">
+                            Évènements
+                        </div> 
+                        <div class="example">
+                            Promotion
+                        </div> 
+                        <div class="example">
+                            Destockage
+                        </div> 
+                        <div class="example">
+                            Offres Éphémères
+                        </div> 
+                        <div class="example">
+                            Soirée
+                        </div> 
+                    </div>
+                </div>
+                <div class="col-md-6">
                     <div class="myAubaines-list">
-                        <!-- <div class="list-header">
-                            <h1>Planning</h1>
-                        </div> -->
-                        <div class=" day day-withoutAubaine">
+                        <div class=" day day-withAubaine" style="border-top:none">
                         <div class="date">
                             <div class="dayofmonth">5</div>
                             <div class="dayofweek">Lun</div>
                             <div class="shortdate text-muted">Juin, 2017</div>
                         </div>
                         <div class="aubaine">
-                            <div class="aubaine-message">La coupe homme à 15euros au lieu de 20 !</div>
+                            <div class="aubaine-message">Comme tous les lundi, la coupe homme à 15euros au lieu de 20 !</div>
                         </div>
                         </div>
                         <div class="day day-withAubaine">
@@ -81,69 +96,16 @@
                                 <div class="aubaine-message">Ce soir on vous convie a une soirée inoubliable en compagnie de Bob Sinclar</div>
                             </div>
                         </div>
-                        <div class="day day-withAubaine">
-                            <div class="date">
-                                <div class="dayofmonth">8</div>
-                                <div class="dayofweek">Jeu</div>
-                                <div class="shortdate text-muted">Juin, 2017</div>
-                            </div>
-                            <div class="aubaine">
-                                <div class="aubaine-message">Tous nos sandwitch invendus à 2euros</div>
-                            </div>
-                        </div>
-                        <div class="day day-withAubaine">
-                            <div class="date">
-                                <div class="dayofmonth">9</div>
-                                <div class="dayofweek">Ven</div>
-                                <div class="shortdate text-muted">Juin, 2017</div>
-                            </div>
-                            <div class="aubaine">
-                                <div class="aubaine-message">De 17h à 20h les pints au prix des demis !</div>
-                            </div>
-                        </div>
-                        <div class="day day-withAubaine">
-                            <div class="date">
-                                <div class="dayofmonth">10</div>
-                                <div class="dayofweek">Sam</div>
-                                <div class="shortdate text-muted">Juin, 2017</div>
-                            </div>
-                            <div class="aubaine">
-                            <div class="aubaine-message">La collection automne est enfin arrivée ! venez la découvrir</div>
-                            </div>
-                        </div>
-                        <div class="day day-withAubaine">
-                            <div class="date">
-                                <div class="dayofmonth">11</div>
-                                <div class="dayofweek">Dim</div>
-                                <div class="shortdate text-muted">Juin, 2017</div>
-                            </div>
-                            <div class="aubaine">
-                                <div class="aubaine-message">Venez vous détendre avec nos formules brunch à 5euros au lieu de 10 ;)</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="partner-avantage col-md-6">
-                    <div class="partner-avantage-header"><div class="number">2</div> Nous diffusons vos message sur des sites et applis</div>
-                    <div id="partner-map"></div>
-
-                    <div class="partner-avantage-appli">
-                        <img src="https://aubaineapp.fr/wp-content/uploads/2017/03/pepites-tech.jpeg" alt="les soeurs vitamines">
-                        <img src="https://aubaineapp.fr/wp-content/uploads/2017/03/pepites-tech.jpeg" alt="les soeurs vitamines">
-                        <img src="https://aubaineapp.fr/wp-content/uploads/2017/03/pepites-tech.jpeg" alt="les soeurs vitamines">
-                        <img src="https://aubaineapp.fr/wp-content/uploads/2017/03/pepites-tech.jpeg" alt="les soeurs vitamines">
-                        <img src="https://aubaineapp.fr/wp-content/uploads/2017/03/pepites-tech.jpeg" alt="les soeurs vitamines">
-                        <img src="https://aubaineapp.fr/wp-content/uploads/2017/03/pepites-tech.jpeg" alt="les soeurs vitamines">
-                        <img src="https://aubaineapp.fr/wp-content/uploads/2017/03/pepites-tech.jpeg" alt="les soeurs vitamines">
                     </div>
                 </div>
             </div>
         </div>
 
-        <div id='partner-pricing'>
-            <h3>La politique de prix</h3>
-            <p>Publier des messages est gratuit</p>
-        </div>
+       <!--  <div id='partner-pricing'>
+            <h3>Un service à la carte</h3>
+            <p>La diffusion de message via notre site est gratuite. <br>
+             Certaines options payantes vous sont proposées pour optimiser votre visibilité.</p>
+        </div> -->
         <div id="partner-contact">
             <h3>Contact</h3>
             <p>

@@ -1,7 +1,7 @@
 {% extends "AubaineCoreBundle::layout.html.twig" %}
 
 {% block title %}
-  Page d'accueil- {{ parent() }}
+  {{ parent() }}
 {% endblock %}
 
 {% block body %}
@@ -82,15 +82,14 @@
                  --><a href="https://twitter.com/AubaineToulouse" id="tweeter_link_footer" target="_blank"  class="social-logo"><img alt='Twitter2' src="{{ asset('images/twit.png') }} "></a><!-- 
                  --><a href="http://instagram.com/aubaine_toulouse" id="insta_link_footer" target="_blank"  class="social-logo"><img alt='Instagram2' src="{{ asset('images/insta.png') }} "></a>
             </div>
-            <div id='footer-newsletters'>
+            <!-- <div id='footer-newsletters'>
                 <form method="post" class="form-inline home-form-newsletter" action ="{{ path('aubaine_core_ajax_newsletter') }}">
-                    <input type="email" value="" class="email form-control" placeholder='Je veux des news !' name="email"  data-fv-emailaddress-message="L'adresse mail n'est pas valide" autocomplete="off" /><!-- 
-                 --><input type='submit' value="Envoyer" id='add-email-submit' name='submit' class='btn btn-primary' data-loading-text="Enregistrement..." />
+                    <input type="email" value="" class="email form-control" placeholder='Je veux des news !' name="email"  data-fv-emailaddress-message="L'adresse mail n'est pas valide" autocomplete="off" /><input type='submit' value="Envoyer" id='add-email-submit' name='submit' class='btn btn-primary' data-loading-text="Enregistrement..." />
                     <input type='hidden' name='action' value='myajax-add-email-intro' />
                 </form>
                 <div id="result-add-mail-error"></div>
                 <div id="result-add-mail-success"></div>
-            </div>
+            </div> -->
             <div id="footer-infos">
                 <a href="{{ path('aubaine_core_concept') }}">Concept</a>
                 <a href="{{ path('aubaine_core_cgu') }}" target="_blank">CGU</a>

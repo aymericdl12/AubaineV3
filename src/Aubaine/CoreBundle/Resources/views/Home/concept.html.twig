@@ -1,7 +1,7 @@
 {% extends "AubaineCoreBundle::layout.html.twig" %}
 
 {% block title %}
-  Page d'accueil- {{ parent() }}
+  Concept - {{ parent() }}
 {% endblock %}
 
 {% block body %}
@@ -12,48 +12,68 @@
                 Aubaine
             </h1>
             <h2>
-                Les bons plans autour de vous aujourd'hui
+                Les bons plans autour de vous aujourd'hui, restez à l'affut !
             </h2>
         </div>
         <div id="concept-user">
             <h3>
-                Nos commerces partenaires proposent des opportunités à tout moment, restez à l'affut !
+                <!-- Nos commerces partenaires proposent des opportunités à tout moment, restez à l'affut ! -->
             </h3>
             <div class="assets">
-                <h4 class="save">Promotions</h4>
+                <h4>Promotions</h4>
                 <p>
                     Prix cassés, destockages, soldes,  bénéficiez des prix réduits qui s'offrent à vous.
                 </p>
             </div>
             <div class="assets">
-                <h4 class="free">Évènements</h4>
+                <h4>Évènements</h4>
                 <p>
                     Dîtes bonjour à l'improvisation. Trouvez des évènements à la dernière minute.
                 </p>
             </div>
-            <!-- <div class="assets">
-                <h4 class="time">Surprenez-vous</h4>
-                <p>
-                    Des opportunités apparaissent et disparaissent à tout moment, restez à l'affut.
-                </p>
-            </div> -->
             <div class="assets">
                 <h4 class="discover">Nouveauté</h4>
                 <p>
-                    Nouveau produit, nouveau concept, laissez vous surprendre. 
+                    Nouveau produit, nouveau concept, laissez vous surprendre par leur créativité. 
                 </p>
             </div>
         </div>
         <div id="concept-partner">
             <div class="figures"><span><b>102</b> Partenaires</span></div>
             <h3>
-                Boutiques, Bars, Restaurants, Salle de concert, Coiffeur, et bien d'autres encore.... 
+                Boutiques, Bars, Restaurants, Coiffeur, et bien d'autres encore.... 
             </h3>
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
 
               <!-- Wrapper for slides -->
               <div class="carousel-inner">
                 <div class="item active">
+                    <div class="carousel-element">
+                        {% image '@AubaineCoreBundle/Resources/public/images/partners/boulangerie-saint-george.jpg' %}
+                            <img src="{{ asset_url }}" alt="Example" />
+                        {% endimage %}
+                        <div class="carousel-title">Boulangerie St George</div>
+                    </div>
+                    <div class="carousel-element">
+                        {% image '@AubaineCoreBundle/Resources/public/images/partners/Cafe-contretemps.jpg' %}
+                            <img src="{{ asset_url }}" alt="Example" />
+                        {% endimage %}
+                        <div class="carousel-title">Café Contretemps</div>
+                    </div>
+                    <div class="carousel-element">
+                        {% image '@AubaineCoreBundle/Resources/public/images/partners/la-fine-equipe.png' %}
+                            <img src="{{ asset_url }}" alt="Example" />
+                        {% endimage %}
+                        <div class="carousel-title">la fine équipe</div>
+                    </div>
+                    <div class="carousel-element">
+                        {% image '@AubaineCoreBundle/Resources/public/images/partners/bonheur-dans-le-pot.jpg' %}
+                            <img src="{{ asset_url }}" alt="Example" />
+                        {% endimage %}
+                        <div class="carousel-title">Le bonheur est dans le pot</div>
+                    </div>
+                </div>
+                <div class="item">
                     <div class="carousel-element">
                         {% image '@AubaineCoreBundle/Resources/public/images/partners/boulangerie-saint-george.jpg' %}
                             <img src="{{ asset_url }}" alt="Example" />

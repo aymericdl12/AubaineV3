@@ -7,6 +7,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>{% block title %}Aubaine- Les Bons Plans Autour De Vous Aujourd'hui{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    
+    <link media="all" href='https://fonts.googleapis.com/css?family=Raleway:300italic,400italic,700italic,400,700,300,500' rel='stylesheet' type='text/css'>
+    <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
+    
+    <!-- Meta tags -->
+    <meta charset="<?php bloginfo( 'charset' ); ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="<?php bloginfo( 'html_type' ); ?>; charset=<?php bloginfo( 'charset' ); ?>" />
+    <meta property='og:image' content='https://aubaineapp.fr/wp-content/uploads/2017/05/logo-carre.png'/>
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:title" content="Aubaine" />
+    <meta property="fb:app_id" content="639260759607903" />
+    <meta property="og:description" content="les bons plans autour de vous aujourd'hui !">
+    <meta name="apple-mobile-web-app-title" content="Aubaine">
+    <link rel="alternate" href="https://aubaineapp.fr<?php echo parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH); ?>" hreflang="fr" />
+
+    <link rel="apple-touch-icon" sizes="57x57" href="https://aubaineapp.fr/wp-content/uploads/2017/03/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="https://aubaineapp.fr/wp-content/uploads/2017/03/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="https://aubaineapp.fr/wp-content/uploads/2017/03/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="https://aubaineapp.fr/wp-content/uploads/2017/03/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="https://aubaineapp.fr/wp-content/uploads/2017/03/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="https://aubaineapp.fr/wp-content/uploads/2017/03/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="https://aubaineapp.fr/wp-content/uploads/2017/03/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://aubaineapp.fr/wp-content/uploads/2017/03/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://aubaineapp.fr/wp-content/uploads/2017/03/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="https://aubaineapp.fr/wp-content/uploads/2017/03/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://aubaineapp.fr/wp-content/uploads/2017/03/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="https://aubaineapp.fr/wp-content/uploads/2017/03/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://aubaineapp.fr/wp-content/uploads/2017/03/favicon-16x16.png">
+    
 
     {% block stylesheets %}
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -107,15 +140,14 @@
              --><a href="https://twitter.com/AubaineToulouse" id="tweeter_link_footer" target="_blank"  class="social-logo"><img alt='Twitter2' src="{{ asset('images/twit.png') }} "></a><!-- 
              --><a href="http://instagram.com/aubaine_toulouse" id="insta_link_footer" target="_blank"  class="social-logo"><img alt='Instagram2' src="{{ asset('images/insta.png') }} "></a>
         </div>
-        <div id='footer-newsletters'>
+        <!-- <div id='footer-newsletters'>
             <form method="post" class="form-inline home-form-newsletter" action ="{{ path('aubaine_core_ajax_newsletter') }}">
-                <input type="email" value="" class="email form-control" placeholder='Je veux des news !' name="email"  required="required" data-fv-emailaddress-message="L'adresse mail n'est pas valide" autocomplete="off" /><!-- 
-             --><input type='submit' value="Envoyer" id='add-email-submit' name='submit' class='btn btn-primary' data-loading-text="Enregistrement..." />
+                <input type="email" value="" class="email form-control" placeholder='Je veux des news !' name="email"  required="required" data-fv-emailaddress-message="L'adresse mail n'est pas valide" autocomplete="off" /><input type='submit' value="Envoyer" id='add-email-submit' name='submit' class='btn btn-primary' data-loading-text="Enregistrement..." />
                 <input type='hidden' name='action' value='myajax-add-email-intro' />
             </form>
             <div id="result-add-mail-error"></div>
             <div id="result-add-mail-success"></div>
-        </div>
+        </div> -->
         <div id="footer-infos">
             <a href="{{ path('aubaine_core_concept') }}">Concept</a>
             <a href="{{ path('aubaine_core_cgu') }}" target="_blank">CGU</a>
