@@ -562,7 +562,10 @@ body{
   margin:0 0 3rem;
   line-height: 3rem;
   font-size: 3rem;
+  text-transform: uppercase;
   letter-spacing: 0.4rem;
+  color:#333;
+
 }
 #body-concept h4{
   color: #ec4940;
@@ -603,6 +606,7 @@ body{
 #concept-partner h3{
     letter-spacing: inherit;
     font-size: 2.2rem;
+    text-transform: inherit;
 }
 #concept-partner .figures{
     width:10rem;
@@ -649,24 +653,16 @@ body{
     padding:4rem 2rem;
     color:#fff;
 }
+#concept-teaser h3{
+    color:#fff;
+}
 #concept-teaser a{
     margin-top: 2rem;
 }
-#concept-teaser h3{
-    font-size: 3rem;
-}
-#concept-contact h3{
-    font-size: 3rem;
-}
 #concept-contact{
-    background: #f4f4f4 none repeat scroll 0 0;
-    border-radius: 1rem;
     font-size: 1.6rem;
     margin: 5rem auto 1rem;
     padding: 4rem;
-    width:90%;
-    max-width: 50rem;
-    border:2px solid;
 }
 #concept-contact .phone,
 #concept-contact .email{
@@ -710,9 +706,12 @@ body{
   /*color:#666;*/
 }
 #body-partner h3{
-  margin:0 0 2rem;
+  margin:0 0 3rem;
+  line-height: 3rem;
   font-size: 3rem;
+  text-transform: uppercase;
   letter-spacing: 0.4rem;
+  color:#333;
 }
 #body-partner h4{
   color: #ec4940;
@@ -770,14 +769,9 @@ body{
     font-size: 3rem;
 }
 #partner-contact{
-    background: #f4f4f4 none repeat scroll 0 0;
-    border-radius: 1rem;
     font-size: 1.6rem;
     margin: 2rem auto 5rem;
     padding: 4rem;
-    width:90%;
-    max-width: 50rem;
-    border:2px solid;
 }
 #partner-contact .phone,
 #partner-contact .email{
