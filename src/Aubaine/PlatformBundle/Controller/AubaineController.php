@@ -93,7 +93,6 @@ class AubaineController extends Controller
       if ($form->isValid()) {
 
         $aubaine->setIdAuthor($aubaine->getAuthor()->getId());
-        $aubaine->setCategory($aubaine->getAuthor()->getCategory());
         $em = $this->get('doctrine_mongodb')->getManager();
         $em->persist($aubaine);
         $em->flush();
@@ -125,6 +124,7 @@ class AubaineController extends Controller
         $userId= $request->request->get('author_id');
         $author=$repository->findOneBy(array('id' =>$userId));
         $message=$request->request->get('message');
+        $category=$request->request->get('category');
         $first_date = strtotime( $request->request->get('start') );
         $last_date = strtotime( $request->request->get('end') );
         $days_validity = $request->request->get('days_validity');
@@ -141,6 +141,7 @@ class AubaineController extends Controller
                 $current_aubaine = $dm->getRepository('AubainePlatformBundle:Aubaine')->findOneBy(array('idAuthor' =>$userId, 'date'=>$date_datetime));
                 if($current_aubaine){
                     $current_aubaine->setMessage($message);
+                    $aubaine->setCategory($category);
                     $removed++;
                 }
                 else{
@@ -148,7 +149,7 @@ class AubaineController extends Controller
                     $aubaine->setMessage($message);
                     $aubaine->setDate($date_datetime);
                     $aubaine->setAuthor($author);
-                    $aubaine->setCategory($author->getCategory());
+                    $aubaine->setCategory($category);
                     $aubaine->setIdAuthor($userId);
                     $em->persist($aubaine);
                 }
@@ -204,26 +205,34 @@ class AubaineController extends Controller
     }
     $dm->remove($aubaine);
     $dm->flush();
-    $request->getSession()->getFlashBag()->add('info', "L'aubaine a bien été supprimée.");
+    $request->getSession()->getFlashBag()->add('info', "Le message a bien été supprimé.");
     return $this->redirectToRoute('aubaine_platform_home');
 
   }
 
   /**
-  * @Security("has_role('ROLE_ADMIN')")
+  * @Security("has_role('ROLE_USER')")
   */
   public function deleteAubaineAction($id, Request $request)
   {
+    $id_user= $this->get('security.token_storage')->getToken()->getUser()->getId();
+
     $dm = $this->get('doctrine_mongodb')->getManager();
     $aubaine = $dm->getRepository('AubainePlatformBundle:Aubaine')->find($id);
+
     if (null === $aubaine) {
-        throw new NotFoundHttpException("L'aubaine d'id ".$id." n'existe pas.");
+      throw new NotFoundHttpException("Le message d'id ".$id_aubaine." n'existe pas.");
     }
-    $month = date('F',$aubaine->getDate()->getTimestamp());
+    if($aubaine->getIdAuthor()!=$id_user){
+      throw new NotFoundHttpException("Vous n'avez pas la permission de supprimer ce message");
+    }
     $dm->remove($aubaine);
     $dm->flush();
-    $request->getSession()->getFlashBag()->add('info', "L'aubaine a bien été supprimée.");
-    return $this->redirectToRoute('aubaine_platform_my_aubaines', array('month' => $month));
+    $request->getSession()->getFlashBag()->add('info', "Le message a bien été supprimé.");
+
+    // $redirect_to = $request->request->get('redirect_to');
+    // return $this->redirectToRoute($redirect_to);
+    return $this->redirect($request->headers->get('referer'));
   }
 
   /**
@@ -326,15 +335,20 @@ class AubaineController extends Controller
     $aubaine->setAuthor($author);
     $aubaine->setIdAuthor($userId);
     $aubaine->setCategory($author->getCategory());
+
+    if($request->request->get('event')){
+      $message = $message.$request->request->get('event');
+      $aubaine->setCategory('event');
+    }
     
     $em = $this->get('doctrine_mongodb')->getManager();
     $em->persist($aubaine);
     $em->flush();
 
-    $delete_link = $this->generateUrl( 'aubaine_platform_ajax_delete_aubaine' );
+    $delete_link = $this->generateUrl( 'aubaine_platform_delete_aubaine', array('id' => $aubaine->getId()) );
 
     $response = new Response();
-    $response->setContent(json_encode( array( 'message' => $message , 'delete_link' => $delete_link, 'id_aubaine'=>$aubaine->getId() ) ));
+    $response->setContent(json_encode( array( 'message' => $message , 'delete_link' => $delete_link ) ));
     $response->headers->set('Content-Type', 'application/json');
     return $response;
   }
@@ -353,6 +367,12 @@ class AubaineController extends Controller
     $message=$request->request->get('message');
     $first_date = strtotime( $request->request->get('first_date') );
     $last_date = strtotime( $request->request->get('last_date') );
+    if($request->request->get('event')){
+      $category='event';
+    }
+    else{
+      $category=$author->getCategory();
+    }
     $days_validity = $request->request->get('days_validity');
     $em = $this->get('doctrine_mongodb')->getManager();
     $cpt=0;
@@ -367,6 +387,7 @@ class AubaineController extends Controller
             $current_aubaine = $dm->getRepository('AubainePlatformBundle:Aubaine')->findOneBy(array('idAuthor' =>$userId, 'date'=>$date_datetime));
             if($current_aubaine){
                 $current_aubaine->setMessage($message);
+                $aubaine->setCategory($category);
                 $removed++;
             }
             else{
@@ -375,7 +396,7 @@ class AubaineController extends Controller
                 $aubaine->setDate($date_datetime);
                 $aubaine->setAuthor($author);
                 $aubaine->setIdAuthor($userId);
-                $aubaine->setCategory($author->getCategory());
+                $aubaine->setCategory($category);
                 $em->persist($aubaine);
             }
             $cpt++;
@@ -385,33 +406,6 @@ class AubaineController extends Controller
     $em->flush();
     $response = new Response();
     $response->setContent(json_encode( array( 'message' => $removed ) ));
-    $response->headers->set('Content-Type', 'application/json');
-    return $response;
-  }
-
-  /**
-  * @Security("has_role('ROLE_USER')")
-  */
-  public function ajax_delete_aubaineAction(Request $request)
-  {
-    $id_aubaine = $request->request->get('id_aubaine');
-    $id_user= $this->get('security.token_storage')->getToken()->getUser()->getId();
-
-    $dm = $this->get('doctrine_mongodb')->getManager();
-    $aubaine = $dm->getRepository('AubainePlatformBundle:Aubaine')->find($id_aubaine);
-
-    if (null === $aubaine) {
-      throw new NotFoundHttpException("L'aubaine d'id ".$id_aubaine." n'existe pas.");
-    }
-    if($aubaine->getIdAuthor()!=$id_user){
-      throw new NotFoundHttpException("Vous n'avez pas la permission de supprimer ce message");
-    }
-    $dm->remove($aubaine);
-    $dm->flush();
-    $request->getSession()->getFlashBag()->add('info', "Le message a bien été supprimée.");
-
-    $response = new Response();
-    $response->setContent(json_encode( array( 'message' => "succes" ) ));
     $response->headers->set('Content-Type', 'application/json');
     return $response;
   }
@@ -443,7 +437,7 @@ class AubaineController extends Controller
     $week_last_day_datetime = new \DateTime();
     $week_first_day_datetime->setTimestamp($week_first_day);
     $week_last_day_datetime->setTimestamp($week_last_day);
-    $listAubaines = $dm->getRepository('AubainePlatformBundle:Aubaine')->getAubainesByAuthor($week_first_day_datetime,$userId, $week_last_day_datetime);
+    $listAubaines = $dm->getRepository('AubainePlatformBundle:Aubaine')->getAubainesByAuthor($userId, $week_first_day_datetime, $week_last_day_datetime);
     foreach ($listAubaines as $key => $aubaine) {
       $day_timestamp = $aubaine->getDate()->getTimestamp();
       if(array_key_exists($day_timestamp, $days)){

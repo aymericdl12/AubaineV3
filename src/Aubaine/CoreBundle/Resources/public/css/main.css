@@ -67,7 +67,7 @@ textarea {
 #footer-infos a{
   margin:1rem;
   color:#fff;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
 }
 .top-row{
   padding-top: 2rem;
@@ -162,12 +162,12 @@ textarea {
 /*list Aubaine*/
 .show-map-button{
     background-image: linear-gradient(to bottom, #EC4940 0px, #dd4030 100%);
-    margin:2rem 0 0;
+    margin:2rem;
     border:none;
 }
 .show-map-button:hover{
     background-image: linear-gradient(to bottom, #dd4030 0px, #cc3525 100%);
-    margin:2rem 0 0;
+    margin:2rem;
 }
 #listAubaines-home .date{
   position:absolute;
@@ -270,7 +270,7 @@ textarea {
 .marker-map-event,
 #aubaine-list li .category-event{ 
   padding:0.7rem;
-  background-color: #ff3333;
+  background-color: #f5bc05;
 }
 #listAubaines-home .separator{
   font-size: 2.5rem;
@@ -346,9 +346,12 @@ textarea {
 .dealMap-name{
     font-weight:bold;
     font-size: 1.5rem;
+    color:#484848;
 }
-.dealMap-img{
+.dealMap-address{
+    color:#888;
 }
+
 .dealMap-description{
     margin-top:5px;
 }
@@ -414,8 +417,8 @@ textarea {
   animation: pulse_blue 2s ease-out infinite;
 }
 .marker-map-1.marker-map-event {
-  box-shadow: 0 0 0 rgba(0, 51, 102, 0.8);
-  animation: pulse_red 2s ease-out infinite;
+  box-shadow: 0 0 0 rgba(242, 142, 0, 0.8);
+  animation: pulse_yellow 2s ease-out infinite;
 }
 
 @-webkit-keyframes pulse_red {
@@ -491,6 +494,32 @@ textarea {
   100% {
       -moz-box-shadow: 0 0 0 0 rgba(0, 51, 102, 0);
       box-shadow: 0 0 0 0 rgba(0, 51, 102, 0);
+  }
+}
+/*#f2b600*/
+@-webkit-keyframes pulse_yellow {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 rgba(242, 142, 0, 0.8);
+  }
+  99.9% {
+      -webkit-box-shadow: 0 0 0 15px rgba(242, 142, 0, 0);
+  }
+  100% {
+      -webkit-box-shadow: 0 0 0 0 rgba(242, 142, 0, 0);
+  }
+}
+@keyframes pulse_yellow {
+  0% {
+    -moz-box-shadow: 0 0 0 0 rgba(242, 142, 0, 0.8);
+    box-shadow: 0 0 0 0 rgba(242, 142, 0, 0.8);
+  }
+  99.9% {
+      -moz-box-shadow: 0 0 0 15px rgba(242, 142, 0, 0);
+      box-shadow: 0 0 0 15px rgba(242, 142, 0, 0);
+  }
+  100% {
+      -moz-box-shadow: 0 0 0 0 rgba(242, 142, 0, 0);
+      box-shadow: 0 0 0 0 rgba(242, 142, 0, 0);
   }
 }
 
@@ -813,6 +842,20 @@ textarea {
 .myAubaines-list .day.day-withoutAubaine{
     padding:2rem 1rem 2rem 7rem;
 }
+.myAubaines-list .event-label{
+    font-size: 1.2rem;
+    position:absolute;
+    right:0;
+    top:1rem;
+}
+.myAubaines-list .event-label-logo{
+    height:2.5rem;
+    width:2.5rem;
+    background-color: #f5bc05;
+    border-radius: 50%;
+    padding:0.4rem;
+
+}
 .myAubaines-list .date{
     position:absolute;
     top:1rem;
@@ -852,22 +895,12 @@ textarea {
 .myAubaines-form .my-aubaine-form-submit {
   margin-top: 1.5rem;
   }
-.myAubaines-form .form-control {
+.myAubaines-form .form-control{
   position: relative;
 }
 .myAubaines-form-multiple .control-label{
     margin:10px 0 5px;
 }
-.myAubaines-map-wrapper{
-  padding-top: 3rem;
-  margin-bottom: 2rem;
-}
-#myAubaines-map{
-  height:40rem;
-  width:100%;
-}
-
-.myAubaines-map-wrapper,
 .myAubaines-form-multiple-wrapper{
   background-color: #eee;
   padding:1rem 1rem 2rem;
@@ -875,6 +908,9 @@ textarea {
 #myAubaines-form-multiple-days{
     text-align: center;
     margin-bottom: 2rem;
+}
+.myAubaines-form-multiple-event{
+  margin-bottom: 2rem;
 }
 #myAubaines-form-multiple-days .btn{
     margin:1rem 1rem;

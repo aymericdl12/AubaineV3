@@ -32,7 +32,7 @@ aubaine_platform_delete:
         _controller: AubainePlatformBundle:Aubaine:delete
 
 aubaine_platform_delete_aubaine:
-    path:      /admin/deleteAubaine/{id}
+    path:      deleteAubaine/{id}
     defaults:
         _controller: AubainePlatformBundle:Aubaine:deleteAubaine
 
@@ -58,16 +58,6 @@ aubaine_platform_ajax_add_aubaine_multiple:
     defaults: { _controller: AubainePlatformBundle:Aubaine:ajax_add_aubaine_multiple }
     requirements:
       _method: POST
-
-aubaine_platform_ajax_delete_aubaine:
-    path:  /ajax_delete_aubaine
-    defaults: { _controller: AubainePlatformBundle:Aubaine:ajax_delete_aubaine }
-    requirements:
-      _method: POST
-
-aubaine_platform_ajax_delete_all_aubaine:
-    path:  /admin/deleteall
-    defaults: { _controller: AubainePlatformBundle:Aubaine:deleteAll }
 
 aubaine_platform_load_marker:
     path:      /load_marker

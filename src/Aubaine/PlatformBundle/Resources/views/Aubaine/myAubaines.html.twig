@@ -35,18 +35,20 @@
                   <div class="aubaine"> 
                         <div  class="aubaine-message">{{aubaine.message}}
                             {% if key | date("U") >= current_day %}
-                                <form method="post" class="myAubaines-form-delete aubaine-action" action ="{{ path('aubaine_platform_ajax_delete_aubaine') }}">
-                                    <input class="form-control" type="hidden"  value="{{aubaine.id}}" name="id_aubaine" required="required"  autocomplete="off" />
-                                    <button class="btn btn-xs btn-danger my-aubaine-form-delete-submit" type="submit" data-loading-text="...">
-                                        <span class="glyphicon glyphicon-trash"></span>
-                                    </button>
-                                </form>
+                                <a class="btn btn-xs btn-danger"  href ="{{ path('aubaine_platform_delete_aubaine', {'id': aubaine.id}) }}">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </a>
                             {% else %}
                                 <a class="aubaine-action" href="#" >
                                     <button class="btn btn-xs btn-success">
                                         <span class="glyphicon glyphicon-eye-open"></span> 50 vues
                                     </button>
                                 </a>
+                            {% endif %}
+                            {% if aubaine.category == "event" %}
+                                <div class="event-label">
+                                    <img src="{{ asset('images/event.png') }} " alt="" class="event-label-logo"> Évènement 
+                                </div>
                             {% endif %}
                         </div>
                   </div>
@@ -62,6 +64,9 @@
                         {% if key | date("U") >= current_day %} 
                         <form method="post" class="form myAubaines-form" action ="{{ path('aubaine_platform_ajax_add_aubaine') }}">
                             <textarea class="form-control" rows="2"  maxlength="250" placeholder="indiquez un message" type="text"  name="message" required="required"></textarea>
+                            {% if app.user.category == "eat" %}
+                                <label  class="checkbox-inline"><input type="checkbox" value="event" name="event"> Il s'agit d'un évènement</label>
+                            {% endif %}
                             <input class="form-control" type="hidden"  value="{{key}}" name="date" required="required"  autocomplete="off" />
                             <div class="form-submit-wrapper">
                                 <button class="btn btn-primary my-aubaine-form-submit"  data-loading-text="Enregistrement..." type="submit">Partager</button>
@@ -91,10 +96,6 @@
     </ul>  
   </div>
   <div class="col-md-4">
-    <div class="myAubaines-map-wrapper">
-      <h2>Votre marqueur actuel</h2>
-      <div id="myAubaines-map"></div>
-    </div>
     <div class="myAubaines-form-multiple-wrapper">
         <h2>Message récurente</h2>
         <p>Utilisez ce formulaires pour partager un message récurent.</p> <br>
@@ -131,6 +132,9 @@
                     <input type="checkbox" name="days_validity[]" value="Sunday" autocomplete="off">Dimanche
                 </label>
             </div>
+            {% if app.user.category == "eat" %}
+                <label  class="checkbox-inline myAubaines-form-multiple-event" ><input type="checkbox" value="event" name="event"> Il s'agit d'un évènement</label>
+            {% endif %}
             <button class="btn btn-primary btn-block my-aubaine-form-submit"  data-loading-text="Enregistrement..." type="submit">Partager</button>
         </form>
     </div>

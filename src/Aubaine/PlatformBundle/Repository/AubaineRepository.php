@@ -29,7 +29,7 @@ class AubaineRepository extends DocumentRepository
           ->execute();
 		;
 	}
-    public function getAubainesByAuthor($month_first_day,$userId, $month_last_day)
+    public function getAubainesByAuthor($userId, $month_first_day, $month_last_day)
 	{
 		return $this->createQueryBuilder()
 			->field('date')->lte($month_last_day)
@@ -37,6 +37,15 @@ class AubaineRepository extends DocumentRepository
 			->field('idAuthor')->equals($userId)
 			->getQuery()
 			->execute();
+		;
+	}
+    public function getCurrentAubaineByAuthor($userId, $date)
+	{
+		return $this->createQueryBuilder()
+			->field('date')->equals($date)
+			->field('idAuthor')->equals($userId)
+			->getQuery()
+			->getSingleResult()
 		;
 	}
 }

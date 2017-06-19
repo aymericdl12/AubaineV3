@@ -27,11 +27,20 @@ class HomeController extends Controller
 	    $listAubainesJson = $serializer->serialize($listAubaines, "json");
 	    $listPartnersJson = $serializer->serialize($listPartners, "json");
 
-		return $this->render('AubaineCoreBundle:Home:index.html.twig', array(
+	    $array_response=array(
 	      'listPartnersJson' => $listPartnersJson,
 	      'listAubainesJson' => $listAubainesJson,
-	      'listAubaines' => $listAubaines
-	    ));
+	      'listAubaines' => $listAubaines,
+	      'current_day' => $current_day
+	    );
+
+	    if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+	    	$userId= $this->get('security.token_storage')->getToken()->getUser()->getId();
+	        $current_aubaine = $dm->getRepository('AubainePlatformBundle:Aubaine')->getCurrentAubaineByAuthor($userId, $current_day_datetime);
+	        $array_response['current_aubaine'] = $current_aubaine;
+	    }
+
+		return $this->render('AubaineCoreBundle:Home:index.html.twig', $array_response);
 	    
 	}
 	// La page de contact

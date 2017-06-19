@@ -178,6 +178,36 @@ jq(document).ready( function() {
         
     });
 
+    jq(".myAubaines-form").submit(function(event) {
+        event.preventDefault();
+        var form = jq(this);
+        jq.ajax({
+            beforeSend:  function() { 
+                form.children(".form-submit-wrapper").children(".my-aubaine-form-submit").button('loading');
+            },
+            url: jq(this).attr('action'), // le nom du fichier indiqué dans le formulaire
+            type: "POST", // la méthode indiquée dans le formulaire (get ou post)
+            cache: false,
+            data: form.serialize(),
+            success: function(data) {
+
+                // update map marker
+                // if(form.parent().parent("tr").attr("id") == "current_aubaine"){
+                //     aubaine = {
+                //         "message": data.message
+                //     };
+                //     addMarkerByAdress(1, author, aubaine)
+                // }
+                form.replaceWith(   '<div  class="aubaine-message">'+
+                                        data.message+
+                                        ' <a class="btn btn-xs btn-danger"  href ="'+ data.delete_link+'") }}">'+
+                                           '<span class="glyphicon glyphicon-trash"></span>'+
+                                        '</a>'+
+                                	'</div>' );
+            }       
+        });
+    });
+
    
 
 }); //document ready

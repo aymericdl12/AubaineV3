@@ -23,14 +23,16 @@
                 Pour publier un message, utiliser le formulaire ci-dessous.<br>
                 Pour programmer des messages, rendez-vous dans l'onglet agenda.
             </div>
+            {% for message in app.session.flashbag.get('info') %}
+                <div class="alert alert-info">{{ message }}</div>
+            {% endfor %}
         {% endif %}
-        <button type="button" class="show-map-button btn btn-primary btn">
+        <button type="button" class="show-map-button btn btn-lg btn-primary">
             Voir la carte
             <i class="glyphicon glyphicon-chevron-right"></i>
         </button>
         <ul id="aubaine-list">
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                    <!-- <h3>Bienvenue {{app.user.username}}</h3> -->
                 <li> 
                     <div class="author">
                         <img src="{{ asset('images/avatars/' ~ app.user.imageName) }}" alt="" class="avatar">
@@ -39,14 +41,24 @@
                             <div class="author_address">{{ app.user.addressDisplayed }}</div>
                         </div>
                     </div> 
-                    <img src="{{ asset('images/' ~ app.user.category ~ '.png') }} " alt="" class="category category-{{ app.user.category }}">
-                    <form method="post" class="form myAubaines-form" action ="{{ path('aubaine_platform_ajax_add_aubaine') }}">
-                        <textarea class="form-control" rows="2"  maxlength="250" placeholder="indiquez un message" type="text"  name="message" required="required"></textarea>
-                        <input class="form-control" type="hidden"  name="date" required="required"  autocomplete="off" />
-                        <div class="form-submit-wrapper">
-                            <button class="btn btn-primary my-aubaine-form-submit"  data-loading-text="Enregistrement..." type="submit">Partager</button>
+                    {%if current_aubaine %}
+                        <img src="{{ asset('images/' ~ current_aubaine.category ~ '.png') }} " alt="" class="category category-{{ current_aubaine.category }}">
+                        <div class="message">
+                            {{ current_aubaine.message }}
+                            <a class="btn btn-xs btn-danger"  href ="{{ path('aubaine_platform_delete_aubaine', {'id': current_aubaine.id}) }}">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </a>
                         </div>
-                    </form>
+                    {% else %}
+                        <img src="{{ asset('images/' ~ app.user.category ~ '.png') }} " alt="" class="category category-{{ app.user.category }}">
+                        <form method="post" class="form myAubaines-form" action ="{{ path('aubaine_platform_ajax_add_aubaine') }}">
+                            <textarea class="form-control" rows="2"  maxlength="250" placeholder="indiquez un message" type="text"  name="message" required="required"></textarea>
+                            <input class="form-control" type="hidden"  name="date" value="{{current_day}}" required="required"  autocomplete="off" />
+                            <div class="form-submit-wrapper">
+                                <button class="btn btn-primary my-aubaine-form-submit"  data-loading-text="Enregistrement..." type="submit">Partager</button>
+                            </div>
+                        </form>
+                    {% endif %}
                 </li>
             {% endif %}
             {% for aubaine in listAubaines %}
