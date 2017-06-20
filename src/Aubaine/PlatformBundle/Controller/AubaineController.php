@@ -32,10 +32,14 @@ class AubaineController extends Controller
 
     $nbPerPage = 100;
 
+    $current_day= strtotime(date("Y-m-d 00:00:00"));
+    $current_day_datetime = new \DateTime();
+    $current_day_datetime->setTimestamp($current_day);
+
     $listAubaines = $this->get('doctrine_mongodb')
       ->getManager()
       ->getRepository('AubainePlatformBundle:Aubaine')
-      ->getAubaines($page, $nbPerPage)
+      ->getAubaines($current_day_datetime, $page, $nbPerPage)
       ;
 
     $nbPages = ceil(count($listAubaines) / $nbPerPage);

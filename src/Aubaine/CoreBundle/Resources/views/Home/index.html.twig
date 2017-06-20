@@ -67,7 +67,14 @@
                         <img src="{{ asset('images/avatars/' ~ aubaine.author.imageName) }}" alt="" class="avatar">
                         <div class="author_infos">
                             <div class="author_username">{{ aubaine.author.username }}</div> <br>
-                            <div class="author_address">{{ aubaine.author.addressDisplayed }}</div>
+                            <div class="author_address">{{ aubaine.author.addressDisplayed }}</div><br>
+                            <div class="author_hours">
+                                {% if attribute(aubaine.author, hoursDay)  %} 
+                                    {{attribute(aubaine.author, hoursDay)}} 
+                                {% else %} 
+                                    fermé
+                                {% endif %} 
+                            </div>
                         </div>
                     </div> 
                     <img src="{{ asset('images/' ~ aubaine.category ~ '.png') }} " alt="" class="category category-{{ aubaine.category }}">

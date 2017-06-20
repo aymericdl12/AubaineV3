@@ -21,17 +21,17 @@ class HomeController extends Controller
 	    $current_day_datetime = new \DateTime();
 	    $current_day_datetime->setTimestamp($current_day);
 
-	    $listAubaines = $this->get('doctrine_mongodb')
-	      ->getManager()
-	      ->getRepository('AubainePlatformBundle:Aubaine')
-	      ->getAubaineByDateAndCity($current_day_datetime, 'toulouse')->toArray();
+	    $listAubaines = $dm->getRepository('AubainePlatformBundle:Aubaine')->findBy(array('date'=>$current_day_datetime,'city' => 'toulouse'));
 	    $listPartners = $dm->getRepository('AubaineUserBundle:User')->findAll();
+
+	    $hoursDay="hours".date("l");
 
 	    $serializer = $this->container->get('jms_serializer');
 	    $listAubainesJson = $serializer->serialize($listAubaines, "json");
 	    $listPartnersJson = $serializer->serialize($listPartners, "json");
 
 	    $array_response=array(
+	      'hoursDay' => $hoursDay,
 	      'listPartnersJson' => $listPartnersJson,
 	      'listAubainesJson' => $listAubainesJson,
 	      'listAubaines' => $listAubaines,
@@ -58,7 +58,7 @@ class HomeController extends Controller
 	public function conceptAction()
 	{
 
-		$number_partner = $this->get('doctrine_mongodb')->getManager()->getRepository('AubainePlatformBundle:Aubaine')->findAll();
+		$number_partner = $this->get('doctrine_mongodb')->getManager()->getRepository('AubaineUserBundle:User')->findAll();
 		return $this->render('AubaineCoreBundle:Home:concept.html.twig', array(
 			'number_partner'=> sizeof($number_partner)
 	    ));

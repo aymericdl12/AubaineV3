@@ -20,10 +20,11 @@ class AubaineRepository extends DocumentRepository
             ->execute()
         ;
     }
-    public function getAubaines($page, $nbPerPage)
+    public function getAubaines($current_day_datetime, $page, $nbPerPage)
 	{
 		return $this->createQueryBuilder()
-		  ->sort('date', 'DESC')
+		  ->sort('date', 'ASC')
+		  ->field('date')->gte($current_day_datetime)
 		  ->limit($nbPerPage)
 		  ->skip(($page-1) * $nbPerPage)
 		  ->getQuery()
@@ -52,9 +53,10 @@ class AubaineRepository extends DocumentRepository
     public function getAubaineByDateAndCity($date, $city)
 	{
 		return $this->createQueryBuilder()
-		  ->sort('date', 'DESC')
-		  ->getQuery()
-          ->execute()
+			->field('date')->equals($date)
+			->field('city')->equals($city)
+			->getQuery()
+			->execute()
 		;
 	}
 }

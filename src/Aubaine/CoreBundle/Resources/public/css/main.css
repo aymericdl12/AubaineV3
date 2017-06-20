@@ -243,6 +243,11 @@ body{
   font-size:1.2rem;
   display:inline-block;
 }
+#aubaine-list li .author .author_hours{
+  color:#888;
+  font-size:1.2rem;
+  display:inline-block;
+}
 #aubaine-list li .category{ 
   position:absolute;
   top:2rem;
