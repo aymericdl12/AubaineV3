@@ -26,7 +26,7 @@ body{
   padding:3rem 0 3rem;
   margin:2rem 0 0;
   color: #fff;
-  background: #555;
+  background: #222;
   text-align: center;
   bottom:0;
   vertical-align: bottom;
@@ -288,7 +288,7 @@ body{
 #footer-home{
   padding:4rem 1rem 4rem;
   margin:2rem -1rem 0;
-  background:#555;
+  background:#222;
 }
 
 /*Map*/
@@ -573,19 +573,21 @@ body{
   color:#666;
 }
 #body-concept h1{
-  font-size: 5rem;
+  font-size: 4.5rem;
   margin:0 0 2rem ;
   color:#ec4940;
-  /*text-transform: uppercase;*/
+  text-transform: uppercase;
+  letter-spacing: 1rem;
+  font-weight: normal;
 }
 #body-concept h2{
   font-size: 2.5rem;
   margin: 4rem 0rem ;
-  /*color:#666;*/
+  color:#444;
   line-height: 4rem;
 }
 #body-concept h3{
-  margin:0 1rem 3rem;
+  margin:0 1rem 0;
   line-height: 3rem;
   font-size: 3rem;
   text-transform: uppercase;
@@ -675,7 +677,6 @@ body{
     margin-top: 2rem;
 }
 #concept-contact{
-    font-size: 1.6rem;
     margin: 5rem auto 1rem;
     padding: 4rem;
 }
@@ -709,19 +710,21 @@ body{
   color:#666;
 }
 #body-partner h1{
-  font-size: 5rem;
+  font-size: 4.5rem;
   margin:0 0 2rem ;
   color:#ec4940;
-  /*text-transform: uppercase;*/
+  text-transform: uppercase;
+  letter-spacing: 1rem;
+  font-weight: normal;
 }
 #body-partner h2{
   font-size: 2.5rem;
   margin: 4rem 0rem ;
   line-height: 4rem;
-  /*color:#666;*/
+  color:#444;
 }
 #body-partner h3{
-  margin:0 1rem 3rem;
+  margin:0 1rem 1rem;
   line-height: 3rem;
   font-size: 3rem;
   text-transform: uppercase;
@@ -734,7 +737,7 @@ body{
   letter-spacing: 0.2rem;
 }
 #body-partner p{
-  margin:2rem auto;
+  margin:1rem auto;
 }
 
 #partner-header{
@@ -757,6 +760,9 @@ body{
 }
 #partner-functionment{
   margin:10rem 0 6rem;
+}
+#partner-functionment h3{
+  margin-bottom: 3rem;
 }
 #partner-functionment .list-examples{
   margin-bottom: 2rem;
