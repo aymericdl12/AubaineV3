@@ -20,7 +20,11 @@ class HomeController extends Controller
 	    $current_day= strtotime(date("Y-m-d 00:00:00"));
 	    $current_day_datetime = new \DateTime();
 	    $current_day_datetime->setTimestamp($current_day);
-	    $listAubaines = $dm->getRepository('AubainePlatformBundle:Aubaine')->findByDate($current_day_datetime);
+
+	    $listAubaines = $this->get('doctrine_mongodb')
+	      ->getManager()
+	      ->getRepository('AubainePlatformBundle:Aubaine')
+	      ->getAubaineByDateAndCity($current_day_datetime, 'toulouse')->toArray();
 	    $listPartners = $dm->getRepository('AubaineUserBundle:User')->findAll();
 
 	    $serializer = $this->container->get('jms_serializer');
@@ -53,8 +57,10 @@ class HomeController extends Controller
 	// La page de concept
 	public function conceptAction()
 	{
-		return $this->render('AubaineCoreBundle:Home:concept.html.twig', array(
 
+		$number_partner = $this->get('doctrine_mongodb')->getManager()->getRepository('AubainePlatformBundle:Aubaine')->findAll();
+		return $this->render('AubaineCoreBundle:Home:concept.html.twig', array(
+			'number_partner'=> sizeof($number_partner)
 	    ));
 	}
 	// La page de concept

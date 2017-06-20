@@ -180,13 +180,13 @@ body{
   position:absolute;
   font-size: 2rem;
   color:#888;
-  top:2rem;
+  top:1.8rem;
   left:3rem;
   margin:0;
 }
 #listAubaines-home .city{
   position:absolute;
-  font-size: 2rem;
+  font-size: 1.8rem;
   color:#888;
   top:2rem;
   right:3rem;
@@ -257,7 +257,7 @@ body{
   display:inline-block;
   width:100%;
   font-size: 1.6rem;
-  font-weight: bold;
+  font-weight: 500;
 }
 .marker-map-eat,
 #aubaine-list li .category-eat{ 

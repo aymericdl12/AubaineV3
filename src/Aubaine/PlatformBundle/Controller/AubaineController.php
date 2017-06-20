@@ -93,6 +93,7 @@ class AubaineController extends Controller
       if ($form->isValid()) {
 
         $aubaine->setIdAuthor($aubaine->getAuthor()->getId());
+        $aubaine->setCity($aubaine->getAuthor()->getCity());
         $em = $this->get('doctrine_mongodb')->getManager();
         $em->persist($aubaine);
         $em->flush();
@@ -123,6 +124,7 @@ class AubaineController extends Controller
         ->getRepository('AubaineUserBundle:User');
         $userId= $request->request->get('author_id');
         $author=$repository->findOneBy(array('id' =>$userId));
+        $userCity = $author->getCity();
         $message=$request->request->get('message');
         $category=$request->request->get('category');
         $first_date = strtotime( $request->request->get('start') );
@@ -141,7 +143,7 @@ class AubaineController extends Controller
                 $current_aubaine = $dm->getRepository('AubainePlatformBundle:Aubaine')->findOneBy(array('idAuthor' =>$userId, 'date'=>$date_datetime));
                 if($current_aubaine){
                     $current_aubaine->setMessage($message);
-                    $aubaine->setCategory($category);
+                    $current_aubaine->setCategory($category);
                     $removed++;
                 }
                 else{
@@ -151,6 +153,7 @@ class AubaineController extends Controller
                     $aubaine->setAuthor($author);
                     $aubaine->setCategory($category);
                     $aubaine->setIdAuthor($userId);
+                    $aubaine->setCity($userCity);
                     $em->persist($aubaine);
                 }
                 $cpt++;
@@ -241,10 +244,17 @@ class AubaineController extends Controller
   public function deleteAllAction(Request $request)
   {
     $dm = $this->get('doctrine_mongodb')->getManager();
-    $aubaine = $dm->getRepository('AubainePlatformBundle:Aubaine')->findAll();
+    $aubaines = $dm->getRepository('AubainePlatformBundle:Aubaine')->findAll();
 
-    foreach ($aubaine as $value) {
-     $dm->remove($value);
+    $userManager = $this->get('fos_user.user_manager');
+    $users=$userManager->findUsers();
+
+    foreach ($aubaines as $aubaine) {
+     $value->setCity("toulouse");
+    }
+
+    foreach ($users as $user) {
+     $user->setCity("toulouse");
     }
 
     $dm->flush();
@@ -327,6 +337,7 @@ class AubaineController extends Controller
 
     $author= $this->get('security.token_storage')->getToken()->getUser();
     $userId=$author->getId();
+    $userCity=$author->getCity();
 
     $message=$request->request->get('message');
     $aubaine->setMessage($message);
@@ -334,6 +345,7 @@ class AubaineController extends Controller
     $aubaine->setDate($request->request->get('date'));
     $aubaine->setAuthor($author);
     $aubaine->setIdAuthor($userId);
+    $aubaine->setCity($userCity);
     $aubaine->setCategory($author->getCategory());
 
     if($request->request->get('event')){
@@ -364,6 +376,7 @@ class AubaineController extends Controller
     ->getRepository('AubaineUserBundle:User');
     $author= $this->get('security.token_storage')->getToken()->getUser();
     $userId=$author->getId();
+    $userCity=$author->getCity();
     $message=$request->request->get('message');
     $first_date = strtotime( $request->request->get('first_date') );
     $last_date = strtotime( $request->request->get('last_date') );
@@ -396,6 +409,7 @@ class AubaineController extends Controller
                 $aubaine->setDate($date_datetime);
                 $aubaine->setAuthor($author);
                 $aubaine->setIdAuthor($userId);
+                $aubaine->setCity($userCity);
                 $aubaine->setCategory($category);
                 $em->persist($aubaine);
             }

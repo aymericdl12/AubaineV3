@@ -17,7 +17,8 @@ class AubaineRepository extends DocumentRepository
         return $this->createQueryBuilder()
             ->sort('dateCreated', 'DESC')
             ->getQuery()
-            ->execute();
+            ->execute()
+        ;
     }
     public function getAubaines($page, $nbPerPage)
 	{
@@ -26,7 +27,7 @@ class AubaineRepository extends DocumentRepository
 		  ->limit($nbPerPage)
 		  ->skip(($page-1) * $nbPerPage)
 		  ->getQuery()
-          ->execute();
+          ->execute()
 		;
 	}
     public function getAubainesByAuthor($userId, $month_first_day, $month_last_day)
@@ -36,7 +37,7 @@ class AubaineRepository extends DocumentRepository
 			->field('date')->gte($month_first_day)
 			->field('idAuthor')->equals($userId)
 			->getQuery()
-			->execute();
+			->execute()
 		;
 	}
     public function getCurrentAubaineByAuthor($userId, $date)
@@ -46,6 +47,14 @@ class AubaineRepository extends DocumentRepository
 			->field('idAuthor')->equals($userId)
 			->getQuery()
 			->getSingleResult()
+		;
+	}
+    public function getAubaineByDateAndCity($date, $city)
+	{
+		return $this->createQueryBuilder()
+		  ->sort('date', 'DESC')
+		  ->getQuery()
+          ->execute()
 		;
 	}
 }

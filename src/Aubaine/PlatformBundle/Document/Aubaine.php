@@ -23,6 +23,11 @@ class Aubaine
     /**
      * @MongoDB\Field(type="string")
      */
+    protected $city;
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
     protected $category;
 
     /**
@@ -150,6 +155,28 @@ class Aubaine
     public function getAuthor()
     {
         return $this->author;
+    }
+
+    /**
+     * Set idAuthor
+     *
+     * @param string $City
+     * @return $this
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+        return $this;
+    }
+
+    /**
+     * Get City
+     *
+     * @return string $city
+     */
+    public function getCity()
+    {
+        return $this->city;
     }
 
     /**

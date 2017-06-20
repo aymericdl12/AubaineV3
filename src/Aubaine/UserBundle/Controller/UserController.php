@@ -125,7 +125,7 @@ class UserController extends Controller
     $form = $this->get('form.factory')->create(UserEditPasswordType::class, $user);
     if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
       $password = $user->getPassword();
-      $user->setPlainPassword($password);
+      $user->setPassword($password);
       $userManager->updateUser($user);
       $request->getSession()->getFlashBag()->add('notice', 'utilisateur mis à jour');
       return $this->redirectToRoute('aubaine_user_view', array('id' => $user->getId()));
@@ -184,19 +184,23 @@ class UserController extends Controller
   public function deleteAllAction(Request $request)
   {
     
+    $dm = $this->get('doctrine_mongodb')->getManager();
+    $aubaines = $dm->getRepository('AubainePlatformBundle:Aubaine')->findAll();
+
     $userManager = $this->get('fos_user.user_manager');
     $users=$userManager->findUsers();
-    // $repository = $this->get('doctrine_mongodb')
-    // ->getManager()
-    // ->getRepository('AuabineUserBundle:User');
-    // $users = $repository->findAll();
-    foreach ($users as $user) {
-      if (!($user->hasRole('SUPER_ADMIN')|$user->hasRole('ROLE_SUPER_ADMIN'))){
-        $userManager->deleteUser($user);
-      }
+
+    foreach ($aubaines as $aubaine) {
+     $aubaine->setCity("toulouse");
     }
-    $request->getSession()->getFlashBag()->add('info', "Les utilisateurs été supprimés.");
-    return $this->redirectToRoute('aubaine_user_home');
+
+    foreach ($users as $user) {
+     $user->setCity("toulouse");
+    }
+
+    $dm->flush();
+    $request->getSession()->getFlashBag()->add('info', "Toutes les aubaines ont été supprimée.");
+    return $this->redirectToRoute('aubaine_platform_home');
 
   }
   

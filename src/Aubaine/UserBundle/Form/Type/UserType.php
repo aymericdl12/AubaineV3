@@ -27,7 +27,15 @@ class UserType extends AbstractType
         ->add('description',     TextareaType::class)
         ->add('addressDisplayed',     TextType::class)
         ->add('zipcode',     TextType::class)
-        ->add('city',     TextType::class)
+        ->add('city', ChoiceType::class, array(
+            'choices'  => array(
+                'Toulouse' => "toulouse",
+                'Bordeaux' => "bordeaux",
+                'Lyon' => "lyon",
+                'Paris' => "paris",
+                'Marseille' => "marseille",
+                'New York' => "newyork"
+            )))
         ->add('hoursMonday',     TextType::class, array('required' => false))
         ->add('hoursTuesday',     TextType::class, array('required' => false))
         ->add('hoursWednesday',     TextType::class, array('required' => false))
