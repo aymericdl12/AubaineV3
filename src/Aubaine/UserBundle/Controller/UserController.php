@@ -125,7 +125,7 @@ class UserController extends Controller
     $form = $this->get('form.factory')->create(UserEditPasswordType::class, $user);
     if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
       $password = $user->getPassword();
-      $user->setPassword($password);
+      $user->setPlainPassword($password);
       $userManager->updateUser($user);
       $request->getSession()->getFlashBag()->add('notice', 'utilisateur mis à jour');
       return $this->redirectToRoute('aubaine_user_view', array('id' => $user->getId()));

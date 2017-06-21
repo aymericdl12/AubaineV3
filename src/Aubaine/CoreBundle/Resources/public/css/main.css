@@ -96,6 +96,7 @@ body{
 }
 .navbar > .container-fluid .navbar-brand {
   background-color: #ec4940;
+  padding: 12px;
 }
 .navbar-toggle .icon-bar {
     background: #666 none repeat scroll 0 0;
@@ -306,7 +307,7 @@ body{
     border-radius: 3px;
     font-size: 12px;
     text-align: left;
-    opacity:0.95;
+    opacity:0.97;
     padding:0.7rem;
 }
 .dealMap-header{
@@ -588,7 +589,7 @@ body{
 #body-concept h2{
   font-size: 2.5rem;
   margin: 4rem 0rem ;
-  color:#444;
+  color:#555;
   line-height: 4rem;
 }
 #body-concept h3{
@@ -616,7 +617,7 @@ body{
   background-attachment: fixed;
   width:100%;
   background-size:cover;
-  padding:9rem 3rem 9rem;
+  padding:9rem 2rem 9rem;
 }
 /*concept-user*/
 #concept-user{

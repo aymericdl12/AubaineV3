@@ -18,27 +18,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Content-Type" content="<?php bloginfo( 'html_type' ); ?>; charset=<?php bloginfo( 'charset' ); ?>" />
-    <meta property='og:image' content='https://aubaineapp.fr/wp-content/uploads/2017/05/logo-carre.png'/>
+    <meta property='og:image' content='/images/apple-icon-180x180.png'/>
     <meta property="og:image:type" content="image/png">
     <meta property="og:title" content="Aubaine" />
     <meta property="fb:app_id" content="639260759607903" />
     <meta property="og:description" content="les bons plans autour de vous aujourd'hui !">
     <meta name="apple-mobile-web-app-title" content="Aubaine">
-    <link rel="alternate" href="https://aubaineapp.fr<?php echo parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH); ?>" hreflang="fr" />
 
-    <link rel="apple-touch-icon" sizes="57x57" href="https://aubaineapp.fr/wp-content/uploads/2017/03/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="https://aubaineapp.fr/wp-content/uploads/2017/03/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="https://aubaineapp.fr/wp-content/uploads/2017/03/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="https://aubaineapp.fr/wp-content/uploads/2017/03/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="https://aubaineapp.fr/wp-content/uploads/2017/03/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="https://aubaineapp.fr/wp-content/uploads/2017/03/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="https://aubaineapp.fr/wp-content/uploads/2017/03/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="https://aubaineapp.fr/wp-content/uploads/2017/03/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="https://aubaineapp.fr/wp-content/uploads/2017/03/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="https://aubaineapp.fr/wp-content/uploads/2017/03/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://aubaineapp.fr/wp-content/uploads/2017/03/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="https://aubaineapp.fr/wp-content/uploads/2017/03/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://aubaineapp.fr/wp-content/uploads/2017/03/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('images/apple-icon-57x57.png') }}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('images/apple-icon-60x60.png') }}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('images/apple-icon-72x72.png') }}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('images/apple-icon-76x76.png') }}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('images/apple-icon-114x114.png') }}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('images/apple-icon-120x120.png') }}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('images/apple-icon-144x144.png') }}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('images/apple-icon-152x152.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/apple-icon-180x180.png') }}">
+    <link rel="icon" type="image/png" sizes="192x192"  href="{{ asset('images/android-icon-192x192.png') }}') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('images/favicon-96x96.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ asset('images/manifest.json') }}">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="{{ asset('images/ms-icon-144x144.png') }}">
+    <meta name="theme-color" content="#ffffff">
     
 
     {% block stylesheets %}
@@ -61,7 +64,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>                        
           </button>
-          <a class="navbar-brand" href="{{ path('aubaine_core_homepage') }}"><img alt="Brand" src="{{ asset('images/logo-aubaine-new.png') }}" style="height:22px;"></a>
+          <a class="navbar-brand" href="{{ path('aubaine_core_homepage') }}"><img alt="Brand" src="{{ asset('images/logo-aubaine-new-large.png') }}" style="height:26px;"></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav navbar-left">

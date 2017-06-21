@@ -9,7 +9,7 @@
     <div id="body-concept">
         <div id='concept-header'>
             <h1>
-                Aubaine
+                <img alt="Brand" src="{{ asset('images/logo-aubaine-new-large.png') }}" style="height:8rem;">
             </h1>
             <h2>
                 Les bons plans autour de vous aujourd'hui, restez à l'affut !
@@ -140,4 +140,11 @@
     </div>
 
 {% endblock %}
+  {% block javascripts %}
+        {{ parent() }}
+        {% javascripts filter='jsqueeze'
+            'bundles/aubainecore/js/concept.js' %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+  {% endblock %}
 

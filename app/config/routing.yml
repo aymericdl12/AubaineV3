@@ -1,7 +1,3 @@
-# aubaine_admin:
-#     resource: "@AubaineAdminBundle/Resources/config/routing.yml"
-#     prefix:   /
-
 aubaine_core:
     resource: "@AubaineCoreBundle/Resources/config/routing.yml"
     prefix:   /

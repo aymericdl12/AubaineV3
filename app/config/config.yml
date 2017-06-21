@@ -99,13 +99,18 @@ fos_user:
         form:
             type: Aubaine\UserBundle\Form\Type\ProfileType
 assetic:
-  debug:          '%kernel.debug%'
-  use_controller: '%kernel.debug%'
-  filters:
-    cssrewrite: ~
-    jsqueeze:   ~
-    scssphp:
-      formatter: 'Leafo\ScssPhp\Formatter\Compressed'
+    debug:          '%kernel.debug%'
+    use_controller: '%kernel.debug%'
+    filters:
+      cssrewrite: ~
+      jsqueeze:   ~
+      scssphp:
+        formatter: 'Leafo\ScssPhp\Formatter\Compressed'
+    bundles:
+        - AubaineCoreBundle
+        - AubaineUserBundle
+        - AubainePlatformBundle
+
 vich_uploader:
     db_driver: mongodb
     mappings:
