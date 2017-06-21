@@ -183,16 +183,15 @@ class UserController extends Controller
   */
   public function deleteAllAction(Request $request)
   {
-
+    $dm = $this->get('doctrine_mongodb')->getManager();
     $userManager = $this->get('fos_user.user_manager');
     $users=$userManager->findUsers();
 
 
     foreach ($users as $user) {
         $user->setPlainPassword("aubaine31");
-        $user->setCity("toulouse");
-        $userManager->updateUser($user);
     }
+    $dm->flush();
     $request->getSession()->getFlashBag()->add('info', "Toutes les mot de passe ont été modifié.");
     return $this->redirectToRoute('aubaine_platform_home');
 
