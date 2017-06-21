@@ -18,9 +18,8 @@
         </h1>
         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
             <div class="home-welcome">
-                Bonjour {{ app.user.username }}, <br>
-                Vous n'avez pas de message publié aujourd'hui <br> 
-                Pour publier un message, utiliser le formulaire ci-dessous.<br>
+                Bonjour {{ app.user.username }}, <br> 
+                Pour publier ou supprimer message, utiliser le formulaire ci-dessous.<br>
                 Pour programmer des messages, rendez-vous dans l'onglet agenda.
             </div>
             {% for message in app.session.flashbag.get('info') %}

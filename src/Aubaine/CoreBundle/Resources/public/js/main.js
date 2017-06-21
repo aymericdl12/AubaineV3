@@ -198,7 +198,7 @@ jq(document).ready( function() {
                 //     };
                 //     addMarkerByAdress(1, author, aubaine)
                 // }
-                form.replaceWith(   '<div  class="aubaine-message">'+
+                form.replaceWith(   '<div  class="message">'+
                                         data.message+
                                         ' <a class="btn btn-xs btn-danger"  href ="'+ data.delete_link+'") }}">'+
                                            '<span class="glyphicon glyphicon-trash"></span>'+
