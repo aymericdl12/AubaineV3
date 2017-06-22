@@ -23,16 +23,8 @@ class ProfileType extends AbstractType
         $builder
         ->add('description')
         ->add('addressDisplayed')
-        ->add('category', ChoiceType::class, array(
-            'choices'  => array(
-                'Bar, Café, Restaurant' => "eat",
-                'Boutique, épicerie' => "shop",
-                'Bien être' => "wellness",
-                'Évènement' => "event"
-            )))
-        ->add('lati')
-        ->add('longi')
-        ->add('phone')
+        ->add('zipcode')
+        ->add('city')
         ->remove('current_password')
         ;
     }

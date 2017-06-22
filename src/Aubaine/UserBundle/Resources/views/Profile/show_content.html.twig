@@ -1,18 +1,26 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 <div class="fos_user_user_show">
-	<p><img src="{{ vich_uploader_asset(user, 'imageFile') }}" width="60"> </p>
-	<p>{{ user.username }} </p>
-    <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
-	<p>Catégorie : {{ user.category }} </p>
-	<p>description : {{ user.description }} </p>
-	<p>ville : {{ user.city }} ( {{ user.lati }}, {{ user.longi }} )</p>
-	<p>Téléphone : {{ user.phone }}</p>
-	<ul >
-		<li class="{% if app.request.attributes.get('_route') == 'fos_user_profile_show' %}active{% endif %}" ><a href="{{ path('fos_user_profile_show') }}"><span class="glyphicon glyphicon-user"></span> Voir mon Profil</a></li>
-		<li class="{% if app.request.attributes.get('_route') == 'fos_user_profile_edit' %}active{% endif %}" ><a href="{{ path('fos_user_profile_edit') }}"><span class="glyphicon glyphicon-edit"></span>  Modifier mon profil</a></li>
-		<li class="{% if app.request.attributes.get('_route') == 'fos_user_change_password' %}active{% endif %}" ><a href="{{ path('fos_user_change_password') }}"><span class="glyphicon glyphicon-edit"></span>  Modifier mon mot de passe</a></li>
-		<li class="{% if app.request.attributes.get('_route') == 'fos_user_change_avatar' %}active{% endif %}" ><a href="{{ path('fos_user_change_avatar') }}"><span class="glyphicon glyphicon-edit"></span>  Modifier mon image</a></li>
-		<li><a href="{{ path('fos_user_security_logout') }}"><span class="glyphicon glyphicon-log-out"></span> Déconnexion</a></li>
-	</ul>
+	<div class="edit-profile">
+		<a href="{{ path('fos_user_profile_edit') }}" class="btn btn-default">
+	      <i class="glyphicon glyphicon-edit"></i>
+	      Modifier mes informations
+	    </a>
+		<a href="{{ path('fos_user_change_password') }}" class="btn btn-default">
+	      <i class="glyphicon glyphicon-edit"></i>
+	      Modifier mon mot de passe
+	    </a>
+    </div>
+	<p><img src="{{ asset('images/avatars/' ~ user.imageName) }}"> </p>
+	<p><b>{{ user.username }}</b> </p>
+    <p><b>{{ 'profile.show.email'|trans }}: </b>  {{ user.email }}</p>
+	<p><b>Brève description : </b> {{ user.description }} </p>
+	<p><b>Adresse : </b>  {{ user.addressDisplayed }}, {{ user.zipcode }} {{ user.city }}</p>
+	<p><b>Horaires Lundi :</b>  {{ user.hoursMonday }}</p>
+	<p><b>Horaires Mardi :</b>  {{ user.hoursTuesday }}</p>
+	<p><b>Horaires Mercredi :</b>  {{ user.hoursWednesday }}</p>
+	<p><b>Horaires Jeudi :</b>  {{ user.hoursThursday }}</p>
+	<p><b>Horaires Vendredi :</b>  {{ user.hoursFriday }}</p>
+	<p><b>Horaires Samedi :</b>  {{ user.hoursSaturday }}</p>
+	<p><b>Horaires Dimanche :</b>  {{ user.hoursSunday }}</p>
 </div>

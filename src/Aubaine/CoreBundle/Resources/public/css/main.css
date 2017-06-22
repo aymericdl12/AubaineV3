@@ -966,3 +966,8 @@ body{
     background:#777;
     color:#fff;
 }
+
+
+.edit-profile a{
+  margin:2rem;
+}
