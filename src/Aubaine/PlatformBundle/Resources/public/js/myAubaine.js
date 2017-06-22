@@ -23,7 +23,7 @@ jq(document).ready( function() {
 
                 form.replaceWith(   '<div  class="aubaine-message">'+
                                         data.message+
-                                        '<a class="btn btn-xs btn-danger"  href ="'+ data.delete_link+'") }}">'+
+                                        ' <a class="btn btn-xs btn-danger"  href ="'+ data.delete_link+'") }}">'+
                                            '<span class="glyphicon glyphicon-trash"></span>'+
                                         '</a>'+
                                     '</div>' );

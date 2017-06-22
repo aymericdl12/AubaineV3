@@ -353,7 +353,7 @@ class AubaineController extends Controller
     $aubaine->setCategory($author->getCategory());
 
     if($request->request->get('event')){
-      $message = $message.$request->request->get('event');
+      // $message = $message;
       $aubaine->setCategory('event');
     }
     
@@ -404,7 +404,7 @@ class AubaineController extends Controller
             $current_aubaine = $dm->getRepository('AubainePlatformBundle:Aubaine')->findOneBy(array('idAuthor' =>$userId, 'date'=>$date_datetime));
             if($current_aubaine){
                 $current_aubaine->setMessage($message);
-                $aubaine->setCategory($category);
+                $current_aubaine->setCategory($category);
                 $removed++;
             }
             else{
