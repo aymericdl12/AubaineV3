@@ -33,13 +33,27 @@ class ProfileType extends AbstractType
                 'Marseille' => "marseille",
                 'New York' => "newyork"
             )))
-        ->add('hoursMonday',     TextType::class, array('required' => false))
-        ->add('hoursTuesday',     TextType::class, array('required' => false))
-        ->add('hoursWednesday',     TextType::class, array('required' => false))
-        ->add('hoursThursday',     TextType::class, array('required' => false))
-        ->add('hoursFriday',     TextType::class, array('required' => false))
-        ->add('hoursSaturday',     TextType::class, array('required' => false))
-        ->add('hoursSunday',     TextType::class, array('required' => false) )
+        ->add('hoursMonday',     TextType::class, array('required' => false,'attr' => array(
+                'placeholder' => 'Exemple: 8:00-12:00, 14:00-19:00'
+            )))
+        ->add('hoursTuesday',     TextType::class, array('required' => false,'attr' => array(
+                'placeholder' => 'Exemple: 8:00-12:00, 14:00-19:00'
+            )))
+        ->add('hoursWednesday',     TextType::class, array('required' => false,'attr' => array(
+                'placeholder' => 'Exemple: 8:00-12:00, 14:00-19:00'
+            )))
+        ->add('hoursThursday',     TextType::class, array('required' => false,'attr' => array(
+                'placeholder' => 'Exemple: 8:00-12:00, 14:00-19:00'
+            )))
+        ->add('hoursFriday',     TextType::class, array('required' => false,'attr' => array(
+                'placeholder' => 'Exemple: 8:00-12:00, 14:00-19:00'
+            )))
+        ->add('hoursSaturday',     TextType::class, array('required' => false,'attr' => array(
+                'placeholder' => 'Exemple: 8:00-12:00, 14:00-19:00'
+            )))
+        ->add('hoursSunday',     TextType::class, array('required' => false,'attr' => array(
+                'placeholder' => 'Exemple: 8:00-12:00, 14:00-19:00'
+            )))
         ->remove('current_password')
         ;
     }

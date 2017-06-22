@@ -297,6 +297,11 @@ body{
   margin:2rem -1rem 0;
   background:#222;
 }
+.home-final-message{
+  font-style: italic;
+  color:#444;
+  text-align: center
+}
 
 /*Map*/
 .leaflet-popup-content{
