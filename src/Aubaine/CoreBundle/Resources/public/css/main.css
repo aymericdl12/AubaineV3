@@ -968,6 +968,11 @@ body{
 }
 
 
+.show-profile-avatar{
+  /*margin:2rem;*/
+  border-radius: 0.5rem
+}
 .edit-profile a{
-  margin:2rem;
+  margin-right:3rem;
+  margin-top:3rem;
 }

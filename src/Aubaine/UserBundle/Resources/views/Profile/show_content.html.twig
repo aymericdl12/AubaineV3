@@ -11,8 +11,8 @@
 	      Modifier mon mot de passe
 	    </a>
     </div>
-	<p><img src="{{ asset('images/avatars/' ~ user.imageName) }}"> </p>
-	<p><b>{{ user.username }}</b> </p>
+	<h2><b>{{ user.username }}</b> </h2>
+	<p><img class="show-profile-avatar" src="{{ asset('images/avatars/' ~ user.imageName) }}"> </p>
     <p><b>{{ 'profile.show.email'|trans }}: </b>  {{ user.email }}</p>
 	<p><b>Brève description : </b> {{ user.description }} </p>
 	<p><b>Adresse : </b>  {{ user.addressDisplayed }}, {{ user.zipcode }} {{ user.city }}</p>
