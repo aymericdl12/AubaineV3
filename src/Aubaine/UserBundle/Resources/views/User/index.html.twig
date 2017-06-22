@@ -50,6 +50,9 @@
                     {{ user.category }}
                 </td>
                 <td>
+                    {{ user.addressDisplayed }}
+                </td>
+                <td>
                     <a href="{{ path('aubaine_user_edit', {'id': user.id}) }}" class="btn btn-default">
                       <i class="glyphicon glyphicon-edit"></i>
                       Modifier les information
