@@ -24,7 +24,22 @@ class ProfileType extends AbstractType
         ->add('description')
         ->add('addressDisplayed')
         ->add('zipcode')
-        ->add('city')
+        ->add('city', ChoiceType::class, array(
+            'choices'  => array(
+                'Toulouse' => "toulouse",
+                'Bordeaux' => "bordeaux",
+                'Lyon' => "lyon",
+                'Paris' => "paris",
+                'Marseille' => "marseille",
+                'New York' => "newyork"
+            )))
+        ->add('hoursMonday',     TextType::class, array('required' => false))
+        ->add('hoursTuesday',     TextType::class, array('required' => false))
+        ->add('hoursWednesday',     TextType::class, array('required' => false))
+        ->add('hoursThursday',     TextType::class, array('required' => false))
+        ->add('hoursFriday',     TextType::class, array('required' => false))
+        ->add('hoursSaturday',     TextType::class, array('required' => false))
+        ->add('hoursSunday',     TextType::class, array('required' => false) )
         ->remove('current_password')
         ;
     }
