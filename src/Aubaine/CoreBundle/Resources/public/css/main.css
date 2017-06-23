@@ -975,11 +975,39 @@ body{
 }
 
 
+.profile-header{
+  position:relative;
+  padding-left: 9rem;
+  min-height: 8rem;
+  margin:2rem 0;
+}
+.profile-header img{
+  display:inline-block;
+  position:absolute;
+  top:0;
+  left:0;
+  width:8rem;
+}
+.profile-username{
+  font-weight: bold;
+  font-size: 1.8rem;
+}
+.profile-address{
+  color:#666;
+}
+.profile-description{
+  margin:2rem 0;
+  /*max-width: 40rem;*/
+}
+.profile-hours{
+  margin:2rem 0;
+}
+.profile-hours table{
+  display:inline-block;
+}
 .show-profile-avatar{
-  /*margin:2rem;*/
   border-radius: 0.5rem
 }
 .edit-profile a{
-  margin-right:3rem;
-  margin-top:3rem;
+  margin:1rem;
 }

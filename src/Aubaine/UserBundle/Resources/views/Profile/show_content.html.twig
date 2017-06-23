@@ -1,26 +1,72 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 <div class="fos_user_user_show">
-	<div class="edit-profile">
-		<a href="{{ path('fos_user_profile_edit') }}" class="btn btn-default">
-	      <i class="glyphicon glyphicon-edit"></i>
-	      Modifier mes informations
-	    </a>
-		<a href="{{ path('fos_user_change_password') }}" class="btn btn-default">
-	      <i class="glyphicon glyphicon-edit"></i>
-	      Modifier mon mot de passe
-	    </a>
+	<div class="row">
+			<!-- left column -->
+            <div class="col-sm-7"> 
+			    <div class="profile">
+			    	<div class="profile-header">
+			    		<img class="show-profile-avatar" src="{{ asset('images/avatars/' ~ user.imageName) }}">
+			    		<div class="profile-header-infos">
+			    			<div class="profile-username">{{ user.username }}</div>
+			    			<div class="profile-address">{{ user.addressDisplayed }}</div>
+			    			<div class="profile-address">{{ user.zipcode }} {{ user.city }}</div>
+			    			<div class="profile-address">{{ user.phone }}</div>
+			    		</div>
+			    	</div>
+			    	<div class="profile-description">
+			    		{{ user.description }}
+			    	</div>
+			    	<div class="profile-hours">
+						<b>Horaires d'ouverture</b>
+						<table class="table">
+						    <tbody>
+						      <tr>
+						        <td>Lundi</td>
+						        <td>{{ user.hoursMonday }}</td>
+						      </tr>
+						      <tr>
+						        <td>Mardi</td>
+						        <td>{{ user.hoursTuesday }}</td>
+						      </tr>
+						      <tr>
+						        <td>Mercredi</td>
+						        <td>{{ user.hoursWednesday }}</td>
+						      </tr>
+						      <tr>
+						        <td>Jeudi</td>
+						        <td>{{ user.hoursThursday }}</td>
+						      </tr>
+						      <tr>
+						        <td>Vendredi</td>
+						        <td>{{ user.hoursFriday }}</td>
+						      </tr>
+						      <tr>
+						        <td>Samedi</td>
+						        <td>{{ user.hoursSaturday }}</td>
+						      </tr>
+						      <tr>
+						        <td>Dimanche</td>
+						        <td>{{ user.hoursSunday }}</td>
+						      </tr>
+						    </tbody>
+					  	</table>
+			    	</div>
+			    </div>
+				<div class="edit-profile">
+					<a href="{{ path('fos_user_profile_edit') }}" class="btn btn-default">
+				      <i class="glyphicon glyphicon-edit"></i>
+				      Modifier mes informations
+				    </a>
+					<a href="{{ path('fos_user_change_password') }}" class="btn btn-default">
+				      <i class="glyphicon glyphicon-edit"></i>
+				      Modifier mon mot de passe
+				    </a>
+			    </div>             
+            </div>
+            <!-- right column -->
+            <div class="col-sm-5">
+            </div>
+        </div>
     </div>
-	<h2><b>{{ user.username }}</b> </h2>
-	<p><img class="show-profile-avatar" src="{{ asset('images/avatars/' ~ user.imageName) }}"> </p>
-    <p><b>{{ 'profile.show.email'|trans }}: </b>  {{ user.email }}</p>
-	<p><b>Brève description : </b> {{ user.description }} </p>
-	<p><b>Adresse : </b>  {{ user.addressDisplayed }}, {{ user.zipcode }} {{ user.city }}</p>
-	<p><b>Horaires Lundi :</b>  {{ user.hoursMonday }}</p>
-	<p><b>Horaires Mardi :</b>  {{ user.hoursTuesday }}</p>
-	<p><b>Horaires Mercredi :</b>  {{ user.hoursWednesday }}</p>
-	<p><b>Horaires Jeudi :</b>  {{ user.hoursThursday }}</p>
-	<p><b>Horaires Vendredi :</b>  {{ user.hoursFriday }}</p>
-	<p><b>Horaires Samedi :</b>  {{ user.hoursSaturday }}</p>
-	<p><b>Horaires Dimanche :</b>  {{ user.hoursSunday }}</p>
 </div>
