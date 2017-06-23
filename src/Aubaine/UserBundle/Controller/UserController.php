@@ -190,7 +190,7 @@ class UserController extends Controller
 
     foreach ($users as $user) {
         $user->setPlainPassword("aubaine31");
-        $userManager->updateUser($user);
+        $userManager->updateUser($user,false);
     }
     $request->getSession()->getFlashBag()->add('info', "Tous les mot de passe ont été modifié.");
     return $this->redirectToRoute('aubaine_platform_home');
