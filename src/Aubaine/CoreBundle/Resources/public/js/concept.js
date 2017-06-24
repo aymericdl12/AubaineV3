@@ -3,7 +3,7 @@ jq(document).ready( function() {
 
     jq('.carousel').carousel({
         pause: "false",
-        interval: 1000 * 3.5
+        interval: 1000 * 3
     });
 
 });

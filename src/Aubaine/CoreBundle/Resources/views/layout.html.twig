@@ -42,6 +42,7 @@
     
 
     {% block stylesheets %}
+
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ==" crossorigin=""/>
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css">
@@ -161,37 +162,41 @@
     	<script src='https://api.mapbox.com/mapbox-gl-js/v0.35.1/mapbox-gl.js'></script>
     	<link href='https://api.mapbox.com/mapbox-gl-js/v0.35.1/mapbox-gl.css' rel='stylesheet' />  
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js" charset="UTF-8"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js" charset="UTF-8"></script>
 		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script>
-    var jq = jQuery;
-    jq(document).ready( function() {
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();
+              a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];
+              a.async=1;
+              a.src=g;
+              m.parentNode.insertBefore(a,m)
+            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-      jq(".home-form-newsletter").submit(function(event) {
-            event.preventDefault();
-            var form = jq(this);
-            jq.ajax({
-                beforeSend:  function() { 
-                    jq("#add-email-submit").button('loading');
-                    jq("#result-add-mail-error").hide();
-                    jq("#result-add-mail-success").hide();
-                },
-                url: jq(this).attr('action'), // le nom du fichier indiqué dans le formulaire
-                type: "POST", // la méthode indiquée dans le formulaire (get ou post)
-                cache: false,
-                data: form.serialize(),
-                success: function(data) { 
-                    jq("#result-add-mail-success").html(data.message).show();
-                    jq("#add-email-submit").button('reset');
-                },
-                error: function(data) { 
-                    jq("#result-add-mail-error").html("Une erreur s'est produite").show();
-                    jq("#add-email-submit").button('reset');
-                }       
+            ga('create', 'UA-83975665-1', 'auto');
+            ga('send', 'pageview');
+            // remove out of localhost
+            document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
+        </script>
+        <script>
+          window.fbAsyncInit = function() {
+            FB.init({
+              appId      : '639260759607903',
+              xfbml      : true,
+              version    : 'v2.9'
             });
-        });
-    });
-  </script>
+            FB.AppEvents.logPageView();
+          };
+
+          (function(d, s, id){
+             var js, fjs = d.getElementsByTagName(s)[0];
+             if (d.getElementById(id)) {return;}
+             js = d.createElement(s); js.id = id;
+             js.src = "//connect.facebook.net/en_US/sdk.js";
+             fjs.parentNode.insertBefore(js, fjs);
+           }(document, 'script', 'facebook-jssdk'));
+        </script>
   {% endblock %}
 
 

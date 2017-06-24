@@ -14,7 +14,7 @@
         </h1>
         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
             <div class="home-welcome">
-                Bonjour {{ app.user.username }}, <br> 
+                <div class="home-hello"> Bonjour {{ app.user.username }}, </div> 
                 Pour publier un message, utilisez le formulaire ci-dessous.<br>
                 Pour programmer des messages, rendez-vous dans l'onglet Agenda.
             </div>
