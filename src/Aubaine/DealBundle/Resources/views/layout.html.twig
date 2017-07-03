@@ -1,0 +1,22 @@
+{# src/OC/PlatformBundle/Resources/views/layout.html.twig #}
+
+{% extends "AubaineCoreBundle::layout.html.twig" %}
+
+{% block title %} Deal - {{ parent() }} {% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
+    {% stylesheets filter='cssrewrite, scssphp'
+        'bundles/aubaineplatform/css/*' %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block body_column_center %}
+    {% block aubainedeal_body %}
+    {% endblock %}
+{% endblock %}
+
+
+

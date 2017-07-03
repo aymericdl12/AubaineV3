@@ -1,0 +1,31 @@
+{# src/OC/PlatformBundle/Resources/views/Advert/index.html.twig #}
+
+{% extends "AubaineEventBundle::layout.html.twig" %}
+
+{% block title %}
+  Évènements - {{ parent() }}
+{% endblock %}
+
+{% block aubaineevent_body %}
+<h1>Les Évènements à ne pas louper</h1>
+  <div class="eventList">
+    {% for event in listEvents %}
+      <a class="eventExtract" href="{{ path('aubaine_event_public_view', {'id': event.id}) }}">
+        <div class="header">
+          <h3 class="event"><img src="{{ asset('images/event.png') }} " alt="" class="category category-event"> {{ event.title }}</h3>
+          <img src="{{ asset('images/event/' ~ event.imageHeader) }}" alt="" class="imageHeader">
+        </div>
+        <div class="introduction">{{ event.introduction | raw }}</div>
+      </a>
+    {% endfor %}
+  </div>
+  <ul class="pagination">
+      {% for p in range(1, nbPages) %}
+        <li{% if p == page %} class="active"{% endif %}>
+          <a href="{{ path('aubaine_event_home', {'page': p}) }}">{{ p }}</a>
+        </li>
+      {% endfor %}
+  </ul>
+
+
+{% endblock %}

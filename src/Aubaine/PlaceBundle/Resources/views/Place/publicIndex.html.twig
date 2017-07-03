@@ -1,0 +1,31 @@
+{# src/OC/PlatformBundle/Resources/views/Advert/index.html.twig #}
+
+{% extends "AubainePlaceBundle::layout.html.twig" %}
+
+{% block title %}
+  Lieux Stylés - {{ parent() }}
+{% endblock %}
+
+{% block aubaineplace_body %}
+<h1>Découvrez les endroits magiques de Toulouse</h1>
+  <div class="placeList">
+    {% for place in listPlaces %}
+      <a class="placeExtract" href="{{ path('aubaine_place_public_view', {'id': place.id}) }}">
+        <div class="header">
+          <h3 class="{{ place.category }}"><img src="{{ asset('images/' ~ place.category ~ '.png') }} " alt="" class="category category-{{ place.category }}"> {{ place.title }}</h3>
+          <img src="{{ asset('images/place/' ~ place.imageHeader) }}" alt="" class="imageHeader">
+        </div>
+        <div class="introduction">{{ place.introduction | raw }}</div>
+      </a>
+    {% endfor %}
+  </div>
+  <ul class="pagination">
+      {% for p in range(1, nbPages) %}
+        <li{% if p == page %} class="active"{% endif %}>
+          <a href="{{ path('aubaine_place_home', {'page': p}) }}">{{ p }}</a>
+        </li>
+      {% endfor %}
+  </ul>
+
+
+{% endblock %}

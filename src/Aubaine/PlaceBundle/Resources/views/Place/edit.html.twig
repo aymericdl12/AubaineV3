@@ -1,0 +1,25 @@
+{# src/OC/PlatformBundle/Resources/views/Advert/edit.html.twig #}
+
+{% extends "AubainePlaceBundle::layout.html.twig" %}
+
+{% block title %}
+  Modifier un lieu - {{ parent() }}
+{% endblock %}
+
+{% block aubaineplace_body %}
+
+  <a href="{{ path('aubaine_place_home') }}" class="btn btn-default">
+    <i class="glyphicon glyphicon-chevron-left"></i>
+    Retour à la liste
+  </a>
+
+  <h2>Modifier l'article</h2>
+
+  {{ include("AubainePlaceBundle:Place:form.html.twig") }}
+
+  <a href="{{ path('aubaine_place_delete', {'id': place.id}) }}" class="btn btn-danger">
+    <i class="glyphicon glyphicon-trash"></i>
+    retirer l'article
+  </a>
+
+{% endblock %}

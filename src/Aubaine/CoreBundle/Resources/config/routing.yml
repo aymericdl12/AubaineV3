@@ -1,6 +1,9 @@
 aubaine_core_homepage:
     path:     /
     defaults: { _controller: AubaineCoreBundle:Home:index }
+aubaine_core_map:
+    path:     /carte
+    defaults: { _controller: AubaineCoreBundle:Home:map }
 aubaine_core_concept:
     path:     /concept
     defaults: { _controller: AubaineCoreBundle:Home:concept }

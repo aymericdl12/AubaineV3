@@ -1,0 +1,32 @@
+{# src/OC/PlatformBundle/Resources/view/Advert/view.html.twig #}
+
+{% extends "AubainePlaceBundle::layout.html.twig" %}
+
+
+{% block aubaineplace_body %}
+  <p>
+    <a href="{{ path('aubaine_place_public_list') }}" class="btn btn-primary">
+      <i class="glyphicon glyphicon-chevron-left"></i>
+    </a>
+  
+  <div class="place">
+    <div class="header">
+      <h1>{{ place.title }}</h1>
+      <img src="{{ asset('images/place/' ~ place.imageHeader) }}" alt="" class="avatar">
+    </div>
+    <div class="introduction">{{ place.introduction | raw }}</div>
+    <div class="row">
+        <div class="col-md-6">
+          <div class="content">{{ place.content | raw }}</div>
+          <div class="information">{{ place.information | raw }}</div>
+          <div class="information">{{ place.lati | raw }}</div>
+          <div class="information">{{ place.longi | raw }}</div>
+        </div>
+        <div class="col-md-6">
+          <img class="image" src="{{ asset('images/place/' ~ place.image1) }}" alt="">
+          <img class="image" src="{{ asset('images/place/' ~ place.image2) }}" alt="">
+        </div>      
+    </div>
+  </div>
+
+{% endblock %}

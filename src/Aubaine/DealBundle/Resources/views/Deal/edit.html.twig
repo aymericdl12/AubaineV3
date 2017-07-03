@@ -1,0 +1,25 @@
+{# src/OC/PlatformBundle/Resources/views/Advert/edit.html.twig #}
+
+{% extends "AubaineDealBundle::layout.html.twig" %}
+
+{% block title %}
+  Modifier une promotion - {{ parent() }}
+{% endblock %}
+
+{% block aubainedeal_body %}
+
+  <a href="{{ path('aubaine_deal_home') }}" class="btn btn-default">
+    <i class="glyphicon glyphicon-chevron-left"></i>
+    Retour à la liste
+  </a>
+
+  <h2>Modifier la promotion</h2>
+
+  {{ include("AubaineDealBundle:Deal:form.html.twig") }}
+
+  <a href="{{ path('aubaine_deal_delete', {'id': deal.id}) }}" class="btn btn-danger">
+    <i class="glyphicon glyphicon-trash"></i>
+    retirer l'article
+  </a>
+
+{% endblock %}

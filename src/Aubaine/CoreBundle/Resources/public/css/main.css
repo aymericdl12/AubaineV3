@@ -84,15 +84,16 @@ body{
   border-radius: 0;
   z-index: 10;
   border:none;
-  border-bottom: 2px solid #eee;
   background-color: #fff;
+  font-size: 1.6rem
 }
 .navbar .navbar-nav > li > a {
-    color: #444;
+    color: #666;
+    font-weight: bold;
+    letter-spacing: 0.1rem;
 }
 .navbar .navbar-nav > li.active > a {
     color: #ec4940;
-    /*font-weight: bold;*/
 }
 .navbar > .container-fluid .navbar-brand {
   background-color: #ec4940;
@@ -150,11 +151,7 @@ body{
 }
 @media screen and (max-width: 650px) {
   #listAubaines-home{
-    bottom:0rem;
-    left: 0;
-    right: 0;
-    width:100%;
-    border-left: none;
+    display:none;
   }
   #map_wrapper{
     bottom: 0;
@@ -163,21 +160,7 @@ body{
     width:100%;
   }
 }
-@media screen and (min-width: 650px) {
-  .show-map-button{
-      display:none;
-  }
-}
 /*list Aubaine*/
-.show-map-button{
-    background-image: linear-gradient(to bottom, #EC4940 0px, #dd4030 100%);
-    margin:1rem 0 4rem;
-    border:none;
-}
-.show-map-button:hover{
-    background-image: linear-gradient(to bottom, #dd4030 0px, #cc3525 100%);
-    margin:2rem;
-}
 #listAubaines-home .date{
   position:absolute;
   font-size: 2rem;
@@ -267,7 +250,7 @@ body{
 #aubaine-list li .message{
   display:inline-block;
   width:100%;
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   font-weight: 500;
 }
 .marker-map-eat,
@@ -966,16 +949,22 @@ body{
 }
 #myAubaines-form-multiple-days .btn{
     margin:1rem 1rem;
-    width:9rem;
+    width:100px;
     text-align: center;
-    background:transparent;
+    background:#777;
     border-color: inherit;
-    color:inherit;
+    color:#fff;
+}
+#myAubaines-form-multiple-days .glyphicon-ok{
+    display:none;
 }
 #myAubaines-form-multiple-days .btn:hover,
 #myAubaines-form-multiple-days .btn.active{
-    background:#777;
+    background:#428bca;
     color:#fff;
+}
+#myAubaines-form-multiple-days .btn.active .glyphicon-ok{
+    display:inline-block;
 }
 
 
@@ -1014,4 +1003,244 @@ body{
 }
 .edit-profile a{
   margin:1rem;
+}
+
+
+/*Place*/
+.place{
+  color:#444;
+  font-size: 1.3rem;
+  position:relative;
+}
+.place h1{
+  background: rgba(236, 73, 64,0.8);
+  color: #fff;
+  font-size: 30px;
+  letter-spacing: 0rem;
+  padding: 1rem;
+  margin:0;
+  margin-right:2rem;
+  position:absolute;
+  top:2rem;
+}
+.place .header{
+  width:100%;
+  height:30rem;
+  overflow:hidden;
+  position:relative;
+}
+.place .imageHeader{
+  width:100%;
+}
+.place .category{
+  width:30px;
+  height:30px;
+}
+.place .introduction{
+  font-weight: bold;
+  font-size: 1.5rem;
+  padding: 2rem 0;
+}
+.place .image{
+  width:100%;
+  margin-top:20px;
+}
+.place .content{
+}
+.place .information{
+  padding:1rem 0;
+  font-style: italic;
+  color:#666;
+}
+
+/*placeExtract*/
+.placeExtract{
+  max-width: 350px;
+  display:inline-block;
+  margin:10px;
+  vertical-align: top;
+  color:#444;
+  vertical-align: top;
+  text-decoration: none;
+  position:relative;
+}
+.placeExtract:hover:after{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  background:rgba(0,0,0,0.05);
+}
+.placeExtract:hover{
+  color:#444;
+  text-decoration: none;
+}
+.placeExtract h3{
+  background: rgba(236, 73, 64,0.8);
+  color: #fff;
+  font-size: 15px;
+  letter-spacing: 0rem;
+  padding: 1rem;
+  margin:0;
+  margin-right:2rem;
+  position:absolute;
+  top:2rem;
+}
+.placeExtract h3.wellness{
+  background: rgba(0, 51, 102,0.8);
+}
+.placeExtract h3.shop{
+  background: rgba(0, 86, 27,0.8);
+}
+.placeExtract h3.eat{
+  background: rgba(222, 41, 22,0.8);
+}
+.placeExtract .header{
+  width:100%;
+  height:20rem;
+  overflow:hidden;
+  position:relative;
+}
+.placeExtract .introduction{
+  height:80px;
+  background-color: #fafafa;
+}
+.placeExtract .imageHeader{
+  width:100%;
+}
+.placeExtract .category{
+  width:20px;
+  height:20px;
+}
+.placeExtract .category.category-shop{
+  width:17px;
+  height:17px;
+}
+.placeExtract .category{
+  width:20px;
+  height:20px;
+}
+
+
+
+/*Event*/
+.event{
+  color:#444;
+  font-size: 1.3rem;
+  position:relative;
+}
+.event h1{
+  background: rgba(236, 73, 64,0.8);
+  color: #fff;
+  font-size: 30px;
+  letter-spacing: 0rem;
+  padding: 1rem;
+  margin:0;
+  margin-right:2rem;
+  position:absolute;
+  top:2rem;
+}
+.event .header{
+  width:100%;
+  height:30rem;
+  overflow:hidden;
+  position:relative;
+}
+.event .imageHeader{
+  width:100%;
+}
+.event .category{
+  width:30px;
+  height:30px;
+}
+.event .introduction{
+  font-weight: bold;
+  font-size: 1.5rem;
+  padding: 2rem 0;
+}
+.event .image{
+  width:100%;
+  margin-top:20px;
+}
+.event .content{
+}
+.event .information{
+  padding:1rem 0;
+  font-style: italic;
+  color:#666;
+}
+
+/*eventExtract*/
+.eventExtract{
+  max-width: 350px;
+  display:inline-block;
+  margin:10px;
+  vertical-align: top;
+  color:#444;
+  vertical-align: top;
+  text-decoration: none;
+  position:relative;
+}
+.eventExtract:hover:after{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  background:rgba(0,0,0,0.05);
+}
+.eventExtract:hover{
+  color:#444;
+  text-decoration: none;
+}
+.eventExtract h3{
+  background: rgba(236, 73, 64,0.8);
+  color: #fff;
+  font-size: 16px;
+  letter-spacing: 0rem;
+  padding: 1rem;
+  margin:0;
+  margin-right:2rem;
+  position:absolute;
+  top:2rem;
+}
+.eventExtract h3.wellness{
+  background: rgba(0, 51, 102,0.8);
+}
+.eventExtract h3.shop{
+  background: rgba(0, 86, 27,0.8);
+}
+.eventExtract h3.eat{
+  background: rgba(222, 41, 22,0.8);
+}
+.eventExtract h3.event{
+  background: rgba(245, 188, 5,0.8);
+}
+.eventExtract .header{
+  width:100%;
+  height:20rem;
+  overflow:hidden;
+  position:relative;
+}
+.eventExtract .introduction{
+  height:80px;
+  background-color: #fafafa;
+}
+.eventExtract .imageHeader{
+  width:100%;
+}
+.eventExtract .category{
+  width:20px;
+  height:20px;
+}
+.eventExtract .category.category-shop{
+  width:17px;
+  height:17px;
+}
+.eventExtract .category{
+  width:20px;
+  height:20px;
 }

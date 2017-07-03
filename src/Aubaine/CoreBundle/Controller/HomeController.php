@@ -21,20 +21,20 @@ class HomeController extends Controller
 	    $current_day_datetime = new \DateTime();
 	    $current_day_datetime->setTimestamp($current_day);
 
-	    $listAubaines = $dm->getRepository('AubainePlatformBundle:Aubaine')->findBy(array('date'=>$current_day_datetime,'city' => 'toulouse'));
-	    $listPartners = $dm->getRepository('AubaineUserBundle:User')->findAll();
+	    $listPlaces = $dm->getRepository('AubainePlaceBundle:Place')->findBy(
+		    array('published' => True),
+		    array('city' => 'toulouse')
+		);
 
 	    $hoursDay="hours".date("l");
 
 	    $serializer = $this->container->get('jms_serializer');
-	    $listAubainesJson = $serializer->serialize($listAubaines, "json");
-	    $listPartnersJson = $serializer->serialize($listPartners, "json");
+	    $listPlacesJson = $serializer->serialize($listPlaces, "json");
 
 	    $array_response=array(
 	      'hoursDay' => $hoursDay,
-	      'listPartnersJson' => $listPartnersJson,
-	      'listAubainesJson' => $listAubainesJson,
-	      'listAubaines' => $listAubaines,
+	      'listPlacesJson' => $listPlacesJson,
+	      'listPlaces' => $listPlaces,
 	      'current_day' => $current_day
 	    );
 
@@ -45,6 +45,42 @@ class HomeController extends Controller
 	    }
 
 		return $this->render('AubaineCoreBundle:Home:index.html.twig', $array_response);
+	    
+	}
+    // La page carte
+	public function mapAction()
+	{
+
+		$dm = $this->get('doctrine_mongodb')->getManager();
+
+	    $current_day= strtotime(date("Y-m-d 00:00:00"));
+	    $current_day_datetime = new \DateTime();
+	    $current_day_datetime->setTimestamp($current_day);
+
+	    $listPlaces = $dm->getRepository('AubainePlaceBundle:Place')->findBy(
+		    array('published' => True),
+		    array('city' => 'toulouse')
+		);
+
+	    $hoursDay="hours".date("l");
+
+	    $serializer = $this->container->get('jms_serializer');
+	    $listPlacesJson = $serializer->serialize($listPlaces, "json");
+
+	    $array_response=array(
+	      'hoursDay' => $hoursDay,
+	      'listPlacesJson' => $listPlacesJson,
+	      'listPlaces' => $listPlaces,
+	      'current_day' => $current_day
+	    );
+
+	    if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+	    	$userId= $this->get('security.token_storage')->getToken()->getUser()->getId();
+	        $current_aubaine = $dm->getRepository('AubainePlatformBundle:Aubaine')->getCurrentAubaineByAuthor($userId, $current_day_datetime);
+	        $array_response['current_aubaine'] = $current_aubaine;
+	    }
+
+		return $this->render('AubaineCoreBundle:Home:map.html.twig', $array_response);
 	    
 	}
 	// La page de contact

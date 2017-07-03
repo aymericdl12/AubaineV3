@@ -1,0 +1,40 @@
+aubaine_place_home:
+    path:      /admin/{page}
+    defaults:
+        _controller: AubainePlaceBundle:Place:index
+        page:        1
+    requirements:
+        page: \d*
+
+aubaine_place_view:
+    path:      /admin/place/{id}
+    defaults:
+        _controller: AubainePlaceBundle:Place:view
+
+aubaine_place_add:
+    path:      /admin/add
+    defaults:
+        _controller: AubainePlaceBundle:Place:add
+
+aubaine_place_edit:
+    path:      /admin/edit/{id}
+    defaults:
+        _controller: AubainePlaceBundle:Place:edit
+
+aubaine_place_delete:
+    path:      /admin/delete/{id}
+    defaults:
+        _controller: AubainePlaceBundle:Place:delete
+
+aubaine_place_public_list:
+    path:      /{page}
+    defaults:
+        _controller: AubainePlaceBundle:Place:publicIndex
+        page:        1
+    requirements:
+        page: \d*
+
+aubaine_place_public_view:
+    path:      /place/{id}
+    defaults:
+        _controller: AubainePlaceBundle:Place:publicView

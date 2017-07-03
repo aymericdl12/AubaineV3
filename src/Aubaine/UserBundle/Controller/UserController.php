@@ -5,6 +5,7 @@
 namespace Aubaine\UserBundle\Controller;
 
 use Aubaine\PlatformBundle\Document\Aubaine;
+use Aubaine\PlaceBundle\Document\Place;
 use Aubaine\UserBundle\Document\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -187,12 +188,53 @@ class UserController extends Controller
     $userManager = $this->get('fos_user.user_manager');
     $users=$userManager->findUsers();
 
+    $places = $this->get('doctrine_mongodb')
+      ->getManager()
+      ->getRepository('AubainePlaceBundle:Place')
+      ->findAll();
 
-    foreach ($users as $user) {
-        $user->setPlainPassword("aubaine31");
-        $userManager->updateUser($user,false);
+    foreach ($places as $place) {
+        // $dm->remove($place);
     }
-    $request->getSession()->getFlashBag()->add('info', "Tous les mot de passe ont été modifié.");
+    $dm->flush();
+    // foreach ($users as $user) {
+    //     $place= new Place();
+    //     $dm = $this->get('doctrine_mongodb')->getManager();
+    //     $repository = $this->get('doctrine_mongodb')
+    //     ->getManager()
+    //     ->getRepository('AubainePlaceBundle:Place');
+
+    //     $place->setTitle($user->getUsername());
+    //     $place->setIntroduction($user->getDescription());
+    //     $place->setAddress($user->getAddressDisplayed());
+    //     $place->setCity($user->getCity());
+    //     $place->setCategory($user->getCategory());
+    //     $place->setZipcode($user->getZipcode());
+    //     $place->setLati($user->getLati());
+    //     $place->setLongi($user->getLongi());
+    //     $place->setHoursMonday($user->getHoursMonday());
+    //     $place->setHoursTuesday($user->getHoursTuesday());
+    //     $place->setHoursWednesday($user->getHoursWednesday());
+    //     $place->setHoursThursday($user->getHoursThursday());
+    //     $place->setHoursFriday($user->getHoursFriday());
+    //     $place->setHoursSaturday($user->getHoursSaturday());
+    //     $place->setHoursSunday($user->getHoursSunday());
+    //     $place->setContent("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia cupiditate possimus dolorum nisi nostrum, voluptate aperiam eligendi neque maiores. Veritatis velit nam unde vel iure deleniti. Ipsum laborum, eos corporis!");
+    //     $place->setConclusion("Veritatis velit nam unde vel iure deleniti. Ipsum laborum, eos corporis!");
+    //     $place->setInformation("Lorem ipsum dolor sit amet, consectetur adipisicing elit.");
+    //     $place->setThumbnail($user->getImageName());
+    //     $place->setImageHeader("59578b2ad8147.png");
+    //     $place->setImage1("59578290c4b9e.png");
+    //     $place->setImage2("59578290c40fd.png");
+
+    //     $dm->persist($place);
+    //     $dm->flush();
+
+
+    //     $user->setPlaceId($place->getId());
+    //     $userManager->updateUser($user,false);
+    // }
+    $request->getSession()->getFlashBag()->add('info', "Modifications effectuées");
     return $this->redirectToRoute('aubaine_platform_home');
 
   }

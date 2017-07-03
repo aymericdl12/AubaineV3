@@ -1,0 +1,42 @@
+{# src/OC/PlatformBundle/Resources/view/Advert/view.html.twig #}
+
+{% extends "AubainePlaceBundle::layout.html.twig" %}
+
+
+{% block aubaineplace_body %}
+  <p>
+    <a href="{{ path('aubaine_place_home') }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-chevron-left"></i>
+      Retour à la liste
+    </a>
+    <a href="{{ path('aubaine_place_edit', {'id': place.id}) }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-edit"></i>
+      Modifier le lieu
+    </a>
+    <a href="{{ path('aubaine_place_delete', {'id': place.id}) }}" class="btn btn-danger">
+      <i class="glyphicon glyphicon-trash"></i>
+      Supprimer le lieu
+    </a>
+  </p>
+  
+  <div class="place">
+    <div class="header">
+      <h1>{{ place.title }}</h1>
+      <img src="{{ asset('images/place/' ~ place.imageHeader) }}" alt="" class="avatar">
+    </div>
+    <div class="introduction">{{ place.introduction | raw }}</div>
+    <div class="introduction">{{ place.published }}</div>
+    <div class="row">
+        <div class="col-md-6">
+          <div class="content">{{ place.content | raw }}</div>
+          <div class="information">{{ place.information | raw }}</div>
+          <div class="information">{{ place.address }}, {{ place.zipcode }} {{ place.city }}</div>
+        </div>
+        <div class="col-md-6">
+          <img class="image" src="{{ asset('images/place/' ~ place.image1) }}" alt="">
+          <img class="image" src="{{ asset('images/place/' ~ place.image2) }}" alt="">
+        </div>      
+    </div>
+  </div>
+
+{% endblock %}

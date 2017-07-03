@@ -95,10 +95,11 @@
         </li>
     </ul>  
   </div>
-  <!-- <div class="col-md-4">
+  <div class="col-md-4">
     <div class="myAubaines-form-multiple-wrapper">
         <h2>Message récurente</h2>
-        <p>Utilisez ce formulaires pour partager un message récurent.</p> <br>
+        <p>Utilisez ce formulaire pour partager un message récurent. 
+            Par exemple, pour une promotion qui a lieu tous les jeudis du mois de l'année, selectionnez du 01/01/2016 au 31/12/2017, cliquez sur jeudi.</p> <br>
         <form method="post" class="form myAubaines-form-multiple" action ="{{ path('aubaine_platform_ajax_add_aubaine_multiple') }}">
             <textarea class="form-control" rows="3"  maxlength="250" placeholder="indiquez un message" type="text"  name="message" required="required"></textarea>
             <div  class="form-group"  id="dates">                  
@@ -111,34 +112,31 @@
             </div>
             <div id="myAubaines-form-multiple-days" data-toggle="buttons">
                 <label class="btn btn-primary">
-                    <input type="checkbox" name="days_validity[]" value="Monday" autocomplete="off"> Lundi
+                    <input type="checkbox" name="days_validity[]" value="Monday" autocomplete="off"> <span class="glyphicon glyphicon-ok"></span> Lundi
                 </label>
                 <label class="btn btn-primary">
-                    <input type="checkbox" name="days_validity[]" value="Tuesday" autocomplete="off">Mardi
+                    <input type="checkbox" name="days_validity[]" value="Tuesday" autocomplete="off"><span class="glyphicon glyphicon-ok"></span> Mardi
                 </label>
                 <label class="btn btn-primary">
-                    <input type="checkbox" name="days_validity[]" value="Wednesday" autocomplete="off">Mercredi
+                    <input type="checkbox" name="days_validity[]" value="Wednesday" autocomplete="off"><span class="glyphicon glyphicon-ok"></span> Mercredi
                 </label>
                 <label class="btn btn-primary">
-                    <input type="checkbox" name="days_validity[]" value="Thursday" autocomplete="off">Jeudi
+                    <input type="checkbox" name="days_validity[]" value="Thursday" autocomplete="off"><span class="glyphicon glyphicon-ok"></span> Jeudi
                 </label>
                 <label class="btn btn-primary">
-                    <input type="checkbox" name="days_validity[]" value="Friday" autocomplete="off">Vendredi
+                    <input type="checkbox" name="days_validity[]" value="Friday" autocomplete="off"><span class="glyphicon glyphicon-ok"></span> Vendredi
                 </label>
                 <label class="btn btn-primary">
-                    <input type="checkbox" name="days_validity[]" value="Saturday" autocomplete="off">Samedi
+                    <input type="checkbox" name="days_validity[]" value="Saturday" autocomplete="off"><span class="glyphicon glyphicon-ok"></span> Samedi
                 </label>
                 <label class="btn btn-primary">
-                    <input type="checkbox" name="days_validity[]" value="Sunday" autocomplete="off">Dimanche
+                    <input type="checkbox" name="days_validity[]" value="Sunday" autocomplete="off"><span class="glyphicon glyphicon-ok"></span> Dimanche
                 </label>
             </div>
-            {% if app.user.category == "eat" %}
-                <label  class="checkbox-inline myAubaines-form-multiple-event" ><input type="checkbox" value="event" name="event"> Il s'agit d'un évènement</label>
-            {% endif %}
             <button class="btn btn-primary btn-block my-aubaine-form-submit"  data-loading-text="Enregistrement..." type="submit">Partager</button>
         </form>
     </div>
-  </div> -->
+</div>
 </div>
 <script>
     var user = {{ user | raw }};

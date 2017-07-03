@@ -1,0 +1,32 @@
+{# src/OC/PlatformBundle/Resources/view/Advert/view.html.twig #}
+
+{% extends "AubaineEventBundle::layout.html.twig" %}
+
+
+{% block aubaineevent_body %}
+  <p>
+    <a href="{{ path('aubaine_event_public_list') }}" class="btn btn-primary">
+      <i class="glyphicon glyphicon-chevron-left"></i>
+    </a>
+  
+  <div class="event">
+    <div class="header">
+      <h1>{{ event.title }}</h1>
+      <img src="{{ asset('images/event/' ~ event.imageHeader) }}" alt="" class="avatar">
+    </div>
+    <div class="introduction">{{ event.introduction | raw }}</div>
+    <div class="row">
+        <div class="col-md-6">
+          <div class="content">{{ event.content | raw }}</div>
+          <div class="information">{{ event.information | raw }}</div>
+          <div class="information">{{ event.lati | raw }}</div>
+          <div class="information">{{ event.longi | raw }}</div>
+        </div>
+        <div class="col-md-6">
+          <img class="image" src="{{ asset('images/event/' ~ event.image1) }}" alt="">
+          <img class="image" src="{{ asset('images/event/' ~ event.image2) }}" alt="">
+        </div>      
+    </div>
+  </div>
+
+{% endblock %}

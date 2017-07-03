@@ -1,0 +1,32 @@
+{# src/OC/PlatformBundle/Resources/view/Advert/view.html.twig #}
+
+{% extends "AubaineDealBundle::layout.html.twig" %}
+
+
+{% block aubainedeal_body %}
+  <p>
+    <a href="{{ path('aubaine_deal_home') }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-chevron-left"></i>
+      Retour à la liste
+    </a>
+    <a href="{{ path('aubaine_deal_edit', {'id': deal.id}) }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-edit"></i>
+      Modifier la promotion
+    </a>
+    <a href="{{ path('aubaine_deal_delete', {'id': deal.id}) }}" class="btn btn-danger">
+      <i class="glyphicon glyphicon-trash"></i>
+      Supprimer la promotion
+    </a>
+  </p>
+
+  <h2>{{ deal.title }}</h2>
+  <p><img src="{{ asset('images/' ~ deal.category ~ '.png') }} " alt="" class="category category-{{ deal.category }}"></p>
+  <p>{{ deal.intro }} </p>
+  <p><img src="{{ asset('images/deal/' ~ deal.imageHeader) }}" alt="" class="avatar"></p>
+  <p>{{ deal.imageHeader }}</p>
+  <p>{{ deal.text1 }} </p>
+  <p>{{ deal.conclusion }} </p>
+
+
+
+{% endblock %}

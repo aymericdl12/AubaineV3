@@ -110,6 +110,9 @@ assetic:
         - AubaineCoreBundle
         - AubaineUserBundle
         - AubainePlatformBundle
+        - AubaineDealBundle
+        - AubaineEventBundle
+        - AubainePlaceBundle
 
 vich_uploader:
     db_driver: mongodb
@@ -118,7 +121,35 @@ vich_uploader:
             uri_prefix:         /AubaineV3/web/images/avatars
             upload_destination: '%kernel.root_dir%/../web/images/avatars'
             namer:              vich_uploader.namer_uniqid
-            # directory_namer:    ~
-            # delete_on_remove:   true
-            # inject_on_load:     true
-            # delete_on_update:   true
+        place_imageHeader:
+            uri_prefix:         /AubaineV3/web/images/place
+            upload_destination: '%kernel.root_dir%/../web/images/place'
+            namer:              vich_uploader.namer_uniqid
+        place_thumbnail:
+            uri_prefix:         /AubaineV3/web/images/place/thumbnail
+            upload_destination: '%kernel.root_dir%/../web/images/place/thumbnail'
+            namer:              vich_uploader.namer_uniqid
+        place_image1:
+            uri_prefix:         /AubaineV3/web/images/place
+            upload_destination: '%kernel.root_dir%/../web/images/place'
+            namer:              vich_uploader.namer_uniqid
+        place_image2:
+            uri_prefix:         /AubaineV3/web/images/place
+            upload_destination: '%kernel.root_dir%/../web/images/place'
+            namer:              vich_uploader.namer_uniqid
+        event_imageHeader:
+            uri_prefix:         /AubaineV3/web/images/event
+            upload_destination: '%kernel.root_dir%/../web/images/event'
+            namer:              vich_uploader.namer_uniqid
+        event_image1:
+            uri_prefix:         /AubaineV3/web/images/event
+            upload_destination: '%kernel.root_dir%/../web/images/event'
+            namer:              vich_uploader.namer_uniqid
+        event_image2:
+            uri_prefix:         /AubaineV3/web/images/event
+            upload_destination: '%kernel.root_dir%/../web/images/event'
+            namer:              vich_uploader.namer_uniqid
+        event_thumbnail:
+            uri_prefix:         /AubaineV3/web/images/event/thumbnail
+            upload_destination: '%kernel.root_dir%/../web/images/event/thumbnail'
+            namer:              vich_uploader.namer_uniqid

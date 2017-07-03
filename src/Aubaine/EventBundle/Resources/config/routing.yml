@@ -1,0 +1,40 @@
+aubaine_event_home:
+    path:      /admin/{page}
+    defaults:
+        _controller: AubaineEventBundle:Event:index
+        page:        1
+    requirements:
+        page: \d*
+
+aubaine_event_view:
+    path:      /admin/event/{id}
+    defaults:
+        _controller: AubaineEventBundle:Event:view
+
+aubaine_event_add:
+    path:      /admin/add
+    defaults:
+        _controller: AubaineEventBundle:Event:add
+
+aubaine_event_edit:
+    path:      /admin/edit/{id}
+    defaults:
+        _controller: AubaineEventBundle:Event:edit
+
+aubaine_event_delete:
+    path:      /admin/delete/{id}
+    defaults:
+        _controller: AubaineEventBundle:Event:delete
+
+aubaine_event_public_list:
+    path:      /{page}
+    defaults:
+        _controller: AubaineEventBundle:Event:publicIndex
+        page:        1
+    requirements:
+        page: \d*
+
+aubaine_event_public_view:
+    path:      /event/{id}
+    defaults:
+        _controller: AubaineEventBundle:Event:publicView

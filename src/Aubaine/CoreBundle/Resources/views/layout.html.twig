@@ -18,7 +18,7 @@
     <meta property="og:title" content="Aubaine" />
     <meta property="fb:admins" content="" />
     <meta property="fb:app_id" content="639260759607903" />
-    <meta property="og:description" content="les bons plans autour de vous aujourd'hui !">
+    <meta property="og:description" content="les bons plans autour de vous aujourd'hui">
     <meta property="og:url" content="https://www.aubaineapp.fr"/>
     <meta name="apple-mobile-web-app-title" content="Aubaine">
     
@@ -66,9 +66,9 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav navbar-left">
-                <li class="{% if app.request.attributes.get('_route') == 'aubaine_core_homepage' %}active{% endif %}"  id='menu-tab-accueil'><a id='menu-button-accueil' href="{{ path('aubaine_core_homepage') }}">Accueil</a></li>
-                <li class="{% if app.request.attributes.get('_route') == 'aubaine_core_concept' %}active{% endif %}"><a href="{{ path('aubaine_core_concept') }}">Concept</a></li>
-                <li class="{% if app.request.attributes.get('_route') == 'aubaine_core_partner' %}active{% endif %}"><a href="{{ path('aubaine_core_partner') }}">Devenir Partenaire</a></li>
+                <li class="{% if app.request.attributes.get('_route') == 'aubaine_event_public_list' %}active{% endif %}"  id='menu-tab-accueil'><a id='menu-button-accueil' href="{{ path('aubaine_event_public_list') }}"> Évènements</a></li>
+                <li class="{% if app.request.attributes.get('_route') == 'aubaine_place_public_list' %}active{% endif %}"  id='menu-tab-accueil'><a id='menu-button-accueil' href="{{ path('aubaine_place_public_list') }}"> Lieux Magiques</a></li>
+                <li class="{% if app.request.attributes.get('_route') == 'aubaine_core_map' %}active{% endif %}"  id='menu-tab-accueil'><a id='menu-button-accueil' href="{{ path('aubaine_core_map') }}"> Carte</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
@@ -82,7 +82,8 @@
                       <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-lock"></span> Admin
                       <span class="caret"></span></a>
                       <ul class="dropdown-menu">
-                        <li class="{% if app.request.attributes.get('_route') == 'aubaine_platform_home' %}active{% endif %}"><a href="{{ path('aubaine_platform_home') }}"><span class="glyphicon glyphicon-star"></span> Aubaines</a></li>
+                        <li class="{% if app.request.attributes.get('_route') == 'aubaine_place_home' %}active{% endif %}"><a href="{{ path('aubaine_place_home') }}"><span class="glyphicon glyphicon-record"></span>Lieux</a></li>
+                        <li class="{% if app.request.attributes.get('_route') == 'aubaine_event_home' %}active{% endif %}"><a href="{{ path('aubaine_event_home') }}"><span class="glyphicon glyphicon-star"></span>Évenements</a></li>
                         <li class="{% if app.request.attributes.get('_route') == 'aubaine_user_home' %}active{% endif %}"><a href="{{ path('aubaine_user_home') }}"><span class="glyphicon glyphicon-user"></span> Utilisateurs</a></li>
                       </ul>
                     </li>
@@ -102,7 +103,7 @@
 
                 {% else %}
 
-                    <li class="{% if app.request.attributes.get('_route') == 'fos_user_security_login' %}active{% endif %}"><a href="{{ path('fos_user_security_login') }}"><span class="glyphicon glyphicon-log-in"></span> Connexion</a></li>
+                    <li class="{% if app.request.attributes.get('_route') == 'fos_user_security_login' %}active{% endif %}"><a href="{{ path('fos_user_security_login') }}"><span class="glyphicon glyphicon-log-in"></span></a></li>
 
                 {% endif %}
           </ul>
@@ -113,16 +114,16 @@
     {% block body %}   
      <div class="content container-fluid">
         <div class="row content top-row">
-            <div class="col-sm-2 sidenav">
+            <div class="col-sm-3 sidenav">
                 <!-- <p><a href="#">Link</a></p>
                 <p><a href="#">Link</a></p>
                 <p><a href="#">Link</a></p> -->
             </div>
-            <div class="col-sm-8 text-left body_column_center"> 
+            <div class="col-sm-6 text-left body_column_center"> 
                 {% block body_column_center %} 
                 {% endblock %} 
             </div>
-            <div class="col-sm-2 sidenav">
+            <div class="col-sm-3 sidenav">
                 <!-- <div class="well">
                     <p>ADS</p>
                 </div>
@@ -150,9 +151,6 @@
             <div id="result-add-mail-success"></div>
         </div> -->
         <div id="footer-infos">
-            <a href="{{ path('aubaine_core_concept') }}">Concept</a>
-            <a href="{{ path('aubaine_core_cgu') }}" target="_blank">CGU</a>
-            <a href="https://blog.aubaineapp.fr/wp" target="_blank">Blog</a>
         </div>
     </div>
     {% endblock %}

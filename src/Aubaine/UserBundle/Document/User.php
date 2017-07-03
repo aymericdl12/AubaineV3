@@ -20,6 +20,11 @@ class User extends BaseUser
      * @MongoDB\Id(strategy="auto")
      */
     protected $id;
+    
+    /**
+     * @MongoDB\Field(type="string")
+     */
+    protected $placeId;
 
     /**
      * @MongoDB\Field(type="string")
@@ -118,6 +123,38 @@ class User extends BaseUser
     }
 
     /**
+     * Get id
+     *
+     * @return string $id
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $placeid
+     * @return $this
+     */
+    public function setPlaceId($placeId)
+    {
+        $this->placeId = $placeId;
+        return $this;
+    }
+
+    /**
+     * Get placeid
+     *
+     * @return string $placeid
+     */
+    public function getPlaceId()
+    {
+        return $this->placeId;
+    }
+
+    /**
      * Set description
      *
      * @param string $description
@@ -178,26 +215,6 @@ class User extends BaseUser
     public function getImageName()
     {
         return $this->imageName;
-    }
-    
-    /**
-     * @param integer $imageSize
-     *
-     * @return Product
-     */
-    public function setImageSize($imageSize)
-    {
-        $this->imagesize = $imageSize;
-        
-        return $this;
-    }
-
-    /**
-     * @return integer|null
-     */
-    public function getImageSize()
-    {
-        return $this->imageSize;
     }
 
     /**

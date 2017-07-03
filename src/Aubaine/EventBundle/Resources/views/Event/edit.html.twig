@@ -1,0 +1,25 @@
+{# src/OC/PlatformBundle/Resources/views/Advert/edit.html.twig #}
+
+{% extends "AubaineEventBundle::layout.html.twig" %}
+
+{% block title %}
+  Modifier un évènement - {{ parent() }}
+{% endblock %}
+
+{% block aubaineevent_body %}
+
+  <a href="{{ path('aubaine_event_home') }}" class="btn btn-default">
+    <i class="glyphicon glyphicon-chevron-left"></i>
+    Retour à la liste
+  </a>
+
+  <h2>Modifier l'évènement</h2>
+
+  {{ include("AubaineEventBundle:Event:form.html.twig") }}
+
+  <a href="{{ path('aubaine_event_delete', {'id': event.id}) }}" class="btn btn-danger">
+    <i class="glyphicon glyphicon-trash"></i>
+    retirer l'évenement
+  </a>
+
+{% endblock %}

@@ -1,127 +1,28 @@
 {% extends "AubaineCoreBundle::layout.html.twig" %}
 
-{% block body %}
+{% block body_column_center %}
 
-<!-- <div id="home_wrapper"> -->
-    <div id='map_wrapper'>
-        <div id='map'></div>
-    </div>
-    <div id="listAubaines-home">
-        <div class="date">{{ 'now' | date('l') | trans }} {{ 'now' | date('j') }} {{ 'now' | date('F') | trans }}</div>
-        <div class="city">Toulouse</div>
-        <h1>
-            En direct des commerçants
-        </h1>
-        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-            <div class="home-welcome">
-                <div class="home-hello"> Bonjour {{ app.user.username }}, </div> 
-                Pour publier un message, utilisez le formulaire ci-dessous.<br>
-                Pour programmer des messages, rendez-vous dans l'onglet Agenda.
-            </div>
-            {% for message in app.session.flashbag.get('info') %}
-                <div class="alert alert-info">{{ message }}</div>
-            {% endfor %}
-        {% endif %}
-        <button type="button" class="show-map-button btn btn-lg btn-primary  btn-outline-primary">
-            Voir la carte
-            <i class="glyphicon glyphicon-chevron-right"></i>
-        </button>
-        <ul id="aubaine-list">
-            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                <li> 
-                    <div class="author">
-                        <img src="{{ asset('images/avatars/' ~ app.user.imageName) }}" alt="" class="avatar">
-                        <div class="author_infos">
-                            <div class="author_username">{{ app.user.username }}</div> <br>
-                            <div class="author_address">{{ app.user.addressDisplayed }}</div>
-                        </div>
-                    </div> 
-                    {%if current_aubaine %}
-                        <img src="{{ asset('images/' ~ current_aubaine.category ~ '.png') }} " alt="" class="category category-{{ current_aubaine.category }}">
-                        <div class="message">
-                            {{ current_aubaine.message }}
-                            <a class="btn btn-xs btn-danger"  href ="{{ path('aubaine_platform_delete_aubaine', {'id': current_aubaine.id}) }}">
-                                <span class="glyphicon glyphicon-trash"></span>
-                            </a>
-                        </div>
-                    {% else %}
-                        <img src="{{ asset('images/' ~ app.user.category ~ '.png') }} " alt="" class="category category-{{ app.user.category }}">
-                        <form method="post" class="form myAubaines-form" action ="{{ path('aubaine_platform_ajax_add_aubaine') }}">
-                            <textarea class="form-control" rows="2"  maxlength="250" placeholder="indiquez un message" type="text"  name="message" required="required"></textarea>
-                            <input class="form-control" type="hidden"  name="date" value="{{current_day}}" required="required"  autocomplete="off" />
-                            <div class="form-submit-wrapper">
-                                <button class="btn btn-primary my-aubaine-form-submit"  data-loading-text="Enregistrement..." type="submit">Partager</button>
-                            </div>
-                        </form>
-                    {% endif %}
-                </li>
-            {% endif %}
-            {% for aubaine in listAubaines %}
-                <li id="deal-{{ aubaine.id }}"> 
-                    <div class="author">
-                        <img src="{{ asset('images/avatars/' ~ aubaine.author.imageName) }}" alt="" class="avatar">
-                        <div class="author_infos">
-                            <div class="author_username">{{ aubaine.author.username }}</div> <br>
-                            <div class="author_address">{{ aubaine.author.addressDisplayed }}</div><br>
-                            <div class="author_hours">
-                                {% if attribute(aubaine.author, hoursDay)  %} 
-                                    {{attribute(aubaine.author, hoursDay)}} 
-                                {% else %} 
-                                    fermé
-                                {% endif %} 
-                            </div>
-                        </div>
-                    </div> 
-                    <img src="{{ asset('images/' ~ aubaine.category ~ '.png') }} " alt="" class="category category-{{ aubaine.category }}">
-                    <div class="message">{{ aubaine.message }}</div>
-                </li>
-            {% endfor %}
-            <div class="home-final-message">
-                Les commerçants de votre ville vous transmettent des bons plans. <br> Promotion, offre éphémère, nouveauté, évènement... tout peut arriver et tout le monde peut en profiter, restez à l'affut !
-            </div>
-        </ul>
-        <div class="separator">-----o------</div>
-        <div id="footer-home">
-            <div id="footer-followus">
-                    <a href="https://www.facebook.com/aubainetoulousaine/" id="facebook_link_footer" target="_blank"  class="social-logo"><img alt='Facebook2' src="{{ asset('images/face.png') }} "></a><!-- 
-                 --><a href="https://twitter.com/AubaineToulouse" id="tweeter_link_footer" target="_blank"  class="social-logo"><img alt='Twitter2' src="{{ asset('images/twit.png') }} "></a><!-- 
-                 --><a href="http://instagram.com/aubaine_toulouse" id="insta_link_footer" target="_blank"  class="social-logo"><img alt='Instagram2' src="{{ asset('images/insta.png') }} "></a>
-            </div>
-            <!-- <div id='footer-newsletters'>
-                <form method="post" class="form-inline home-form-newsletter" action ="{{ path('aubaine_core_ajax_newsletter') }}">
-                    <input type="email" value="" class="email form-control" placeholder='Je veux des news !' name="email"  data-fv-emailaddress-message="L'adresse mail n'est pas valide" autocomplete="off" /><input type='submit' value="Envoyer" id='add-email-submit' name='submit' class='btn btn-primary' data-loading-text="Enregistrement..." />
-                    <input type='hidden' name='action' value='myajax-add-email-intro' />
-                </form>
-                <div id="result-add-mail-error"></div>
-                <div id="result-add-mail-success"></div>
-            </div> -->
-            <div id="footer-infos">
-                <a href="{{ path('aubaine_core_concept') }}">Concept</a>
-                <a href="{{ path('aubaine_core_cgu') }}" target="_blank">CGU</a>
-                <a href="https://blog.aubaineapp.fr/wp" target="_blank">Blog</a>
-            </div>
-        </div>
-    </div>
-<!-- </div> -->
-<script>
+    <h1>Tous les bons plans de votre ville</h1>
 
-    var imageDir = "{{ asset('images/') }}";
-    var avatarDir = imageDir+'avatars/';
-    var loadMarkerUrl = "{{ path('aubaine_platform_load_marker')}}";
-    var listPartners = {{listPartnersJson | raw }}
-    var listAubaines = {{listAubainesJson | raw }}
+    <p>le meilleur de Toulouse</p>
+    <p>Des bons plans sous toutes leur formes</p>
 
-</script> 
-<style>
-    
-    .navbar{
-        position: fixed;
-        top:0;
-        width: 100%;
-    }
-</style>
-{% endblock %}
-{% block footer %}
+    <h2>Derniers lieux magiques</h2>
+
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore iste sint reprehenderit mollitia, obcaecati ratione facilis atque eos cum repellat. Quas eligendi animi, recusandae neque aut molestias dolore facilis reiciendis.</p>
+
+    <h2>Tout sur une carte</h2>
+
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore iste sint reprehenderit mollitia, obcaecati ratione facilis atque eos cum repellat. Quas eligendi animi, recusandae neque aut molestias dolore facilis reiciendis.</p>
+
+    <h2>Actualités sur notre Startup</h2>
+
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore iste sint reprehenderit mollitia, obcaecati ratione facilis atque eos cum repellat. Quas eligendi animi, recusandae neque aut molestias dolore facilis reiciendis.</p>
+
+    <h2>Signalez-nous un bon plan</h2>
+
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore iste sint reprehenderit mollitia, obcaecati ratione facilis atque eos cum repellat. Quas eligendi animi, recusandae neque aut molestias dolore facilis reiciendis.</p>
+
 {% endblock %}
 
 {% block javascripts %}

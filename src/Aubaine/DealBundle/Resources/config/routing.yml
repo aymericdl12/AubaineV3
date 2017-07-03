@@ -1,0 +1,27 @@
+aubaine_deal_home:
+    path:      /admin/{page}
+    defaults:
+        _controller: AubaineDealBundle:Deal:index
+        page:        1
+    requirements:
+        page: \d*
+
+aubaine_deal_view:
+    path:      /admin/deal/{id}
+    defaults:
+        _controller: AubaineDealBundle:Deal:view
+
+aubaine_deal_add:
+    path:      /admin/add
+    defaults:
+        _controller: AubaineDealBundle:Deal:add
+
+aubaine_deal_edit:
+    path:      /admin/edit/{id}
+    defaults:
+        _controller: AubaineDealBundle:Deal:edit
+
+aubaine_deal_delete:
+    path:      /admin/delete/{id}
+    defaults:
+        _controller: AubaineDealBundle:Deal:delete

@@ -2,6 +2,18 @@ aubaine_core:
     resource: "@AubaineCoreBundle/Resources/config/routing.yml"
     prefix:   /
 
+aubaine_deal:
+    resource: "@AubaineDealBundle/Resources/config/routing.yml"
+    prefix:   /deal
+
+aubaine_event:
+    resource: "@AubaineEventBundle/Resources/config/routing.yml"
+    prefix:   /event
+
+aubaine_place:
+    resource: "@AubainePlaceBundle/Resources/config/routing.yml"
+    prefix:   /place
+
 aubaine_platform:
     resource: "@AubainePlatformBundle/Resources/config/routing.yml"
     prefix:   /aubaines
