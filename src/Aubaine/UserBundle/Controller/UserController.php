@@ -193,47 +193,47 @@ class UserController extends Controller
       ->getRepository('AubainePlaceBundle:Place')
       ->findAll();
 
-    foreach ($places as $place) {
-        // $dm->remove($place);
-    }
-    $dm->flush();
-    // foreach ($users as $user) {
-    //     $place= new Place();
-    //     $dm = $this->get('doctrine_mongodb')->getManager();
-    //     $repository = $this->get('doctrine_mongodb')
-    //     ->getManager()
-    //     ->getRepository('AubainePlaceBundle:Place');
-
-    //     $place->setTitle($user->getUsername());
-    //     $place->setIntroduction($user->getDescription());
-    //     $place->setAddress($user->getAddressDisplayed());
-    //     $place->setCity($user->getCity());
-    //     $place->setCategory($user->getCategory());
-    //     $place->setZipcode($user->getZipcode());
-    //     $place->setLati($user->getLati());
-    //     $place->setLongi($user->getLongi());
-    //     $place->setHoursMonday($user->getHoursMonday());
-    //     $place->setHoursTuesday($user->getHoursTuesday());
-    //     $place->setHoursWednesday($user->getHoursWednesday());
-    //     $place->setHoursThursday($user->getHoursThursday());
-    //     $place->setHoursFriday($user->getHoursFriday());
-    //     $place->setHoursSaturday($user->getHoursSaturday());
-    //     $place->setHoursSunday($user->getHoursSunday());
-    //     $place->setContent("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia cupiditate possimus dolorum nisi nostrum, voluptate aperiam eligendi neque maiores. Veritatis velit nam unde vel iure deleniti. Ipsum laborum, eos corporis!");
-    //     $place->setConclusion("Veritatis velit nam unde vel iure deleniti. Ipsum laborum, eos corporis!");
-    //     $place->setInformation("Lorem ipsum dolor sit amet, consectetur adipisicing elit.");
-    //     $place->setThumbnail($user->getImageName());
-    //     $place->setImageHeader("59578b2ad8147.png");
-    //     $place->setImage1("59578290c4b9e.png");
-    //     $place->setImage2("59578290c40fd.png");
-
-    //     $dm->persist($place);
-    //     $dm->flush();
-
-
-    //     $user->setPlaceId($place->getId());
-    //     $userManager->updateUser($user,false);
+    // foreach ($places as $place) {
     // }
+    // $dm->flush();
+    foreach ($users as $user) {
+        $place= new Place();
+        $dm = $this->get('doctrine_mongodb')->getManager();
+        $repository = $this->get('doctrine_mongodb')
+        ->getManager()
+        ->getRepository('AubainePlaceBundle:Place');
+
+        $place->setTitle($user->getUsername());
+        $place->setIntroduction($user->getDescription());
+        $place->setAddress($user->getAddressDisplayed());
+        $place->setCity($user->getCity());
+        $place->setCategory($user->getCategory());
+        $place->setZipcode($user->getZipcode());
+        $place->setLati($user->getLati());
+        $place->setLongi($user->getLongi());
+        $place->setHoursMonday($user->getHoursMonday());
+        $place->setHoursTuesday($user->getHoursTuesday());
+        $place->setHoursWednesday($user->getHoursWednesday());
+        $place->setHoursThursday($user->getHoursThursday());
+        $place->setHoursFriday($user->getHoursFriday());
+        $place->setHoursSaturday($user->getHoursSaturday());
+        $place->setHoursSunday($user->getHoursSunday());
+        $place->setContent("");
+        $place->setConclusion("");
+        $place->setInformation("");
+        $place->setThumbnail($user->getImageName());
+        $place->setImageHeader("59578b2ad8147.png");
+        $place->setImage1("59578290c4b9e.png");
+        $place->setImage2("59578290c40fd.png");
+        $place->setPublished(False);
+
+        $dm->persist($place);
+        $dm->flush();
+
+
+        $user->setPlaceId($place->getId());
+        $userManager->updateUser($user,false);
+    }
     $request->getSession()->getFlashBag()->add('info', "Modifications effectuées");
     return $this->redirectToRoute('aubaine_platform_home');
 
