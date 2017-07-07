@@ -252,7 +252,7 @@ class UserController extends Controller
 
     //     $user->setPlaceId($place->getId());
     //     $userManager->updateUser($user,false);
-    }
+    // }
     $dm->flush();
     $request->getSession()->getFlashBag()->add('info', "Modifications effectuées");
     return $this->redirectToRoute('aubaine_platform_home');
