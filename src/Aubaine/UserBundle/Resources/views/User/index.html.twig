@@ -27,6 +27,7 @@
           <th>Nom</th>
           <th>Email</th>
           <th>Categorie</th>
+          <th>Places</th>
           <th>Action</th>
         </tr>
     </thead>
@@ -50,7 +51,9 @@
                     {{ user.category }}
                 </td>
                 <td>
-                    {{ user.addressDisplayed }}
+                  {% for placeId in user.placesId %}
+                    {{ placeId }} -
+                  {% endfor %}
                 </td>
                 <td>
                     <a href="{{ path('aubaine_user_edit', {'id': user.id}) }}" class="btn btn-default">

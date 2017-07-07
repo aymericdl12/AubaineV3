@@ -22,4 +22,13 @@ class EventRepository extends DocumentRepository
           ->execute()
 		;
 	}
+    public function getLastEvents($max)
+	{
+		return $this->createQueryBuilder()
+		  ->sort('date', 'ASC')
+		  ->limit($max)
+		  ->getQuery()
+          ->execute()
+		;
+	}
 }

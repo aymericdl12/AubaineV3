@@ -24,7 +24,7 @@ class AubaineRepository extends DocumentRepository
 	{
 		return $this->createQueryBuilder()
 		  ->sort('date', 'ASC')
-		  ->field('date')->gte($current_day_datetime)
+		  // ->field('date')->gte($current_day_datetime)
 		  ->limit($nbPerPage)
 		  ->skip(($page-1) * $nbPerPage)
 		  ->getQuery()
@@ -55,6 +55,44 @@ class AubaineRepository extends DocumentRepository
 		return $this->createQueryBuilder()
 			->field('date')->equals($date)
 			->field('city')->equals($city)
+			->getQuery()
+			->execute()
+		;
+	}
+    public function getLastAubaines($max)
+	{
+		return $this->createQueryBuilder()
+		  ->sort('date', 'ASC')
+		  ->limit($max)
+		  ->getQuery()
+          ->execute()
+		;
+	}
+    public function getCurrentAubaines($placeId,$max)
+	{
+		return $this->createQueryBuilder()
+			->field('end')->gte($max)
+			->field('placeId')->equals($placeId)
+			->field('permanent')->equals(False)
+			->getQuery()
+			->execute()
+		;
+	}
+    public function getOldAubaines($placeId,$max)
+	{
+		return $this->createQueryBuilder()
+			->field('end')->lte($max)
+			->field('placeId')->equals($placeId)
+			->field('permanent')->equals(False)
+			->getQuery()
+			->execute()
+		;
+	}
+    public function getPermanentAubaines($placeId)
+	{
+		return $this->createQueryBuilder()
+			->field('permanent')->equals(True)
+			->field('placeId')->equals($placeId)
 			->getQuery()
 			->execute()
 		;

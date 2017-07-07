@@ -25,6 +25,11 @@ class User extends BaseUser
      * @MongoDB\Field(type="string")
      */
     protected $placeId;
+    
+    /**
+     * @MongoDB\Field(type="collection")
+     */
+    protected $placesId;
 
     /**
      * @MongoDB\Field(type="string")
@@ -152,6 +157,28 @@ class User extends BaseUser
     public function getPlaceId()
     {
         return $this->placeId;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $placesid
+     * @return $this
+     */
+    public function setPlacesId($placesid)
+    {
+        $this->placesId = $placesid;
+        return $this;
+    }
+
+    /**
+     * Get placesid
+     *
+     * @return string $placesid
+     */
+    public function getPlacesId()
+    {
+        return $this->placesId;
     }
 
     /**

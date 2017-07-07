@@ -66,6 +66,18 @@ class AubaineController extends Controller
     ));
   }
 
+  public function publicViewAction($id)
+  {
+    $dm = $this->get('doctrine_mongodb')->getManager();
+    $aubaine = $dm->getRepository('AubainePlatformBundle:Aubaine')->find($id);
+    // $aubaine->setAuthorName('Café Cerise');
+    // $dm->flush();
+
+    return $this->render('AubainePlatformBundle:Aubaine:publicView.html.twig', array(
+      'aubaine' => $aubaine
+    ));
+  }
+
   /**
    * @Security("has_role('ROLE_ADMIN')")
    */
@@ -96,8 +108,8 @@ class AubaineController extends Controller
       // (Nous verrons la validation des objets en détail dans le prochain chapitre)
       if ($form->isValid()) {
 
-        $aubaine->setIdAuthor($aubaine->getAuthor()->getId());
-        $aubaine->setCity($aubaine->getAuthor()->getCity());
+        $aubaine->setPlaceId($aubaine->getPlace()->getId());
+        $aubaine->setCity($aubaine->getPlace()->getCity());
         $em = $this->get('doctrine_mongodb')->getManager();
         $em->persist($aubaine);
         $em->flush();
@@ -115,65 +127,6 @@ class AubaineController extends Controller
     ));
   }
 
-  /**
-   * @Security("has_role('ROLE_ADMIN')")
-   */
-  public function addMultipleAction(Request $request)
-  {
-
-    // Si la requête est en POST
-    if ($request->isMethod('POST')) {
-        $repository = $this->get('doctrine_mongodb')
-        ->getManager()
-        ->getRepository('AubaineUserBundle:User');
-        $userId= $request->request->get('author_id');
-        $author=$repository->findOneBy(array('id' =>$userId));
-        $userCity = $author->getCity();
-        $message=$request->request->get('message');
-        $category=$request->request->get('category');
-        $first_date = strtotime( $request->request->get('start') );
-        $last_date = strtotime( $request->request->get('end') );
-        $days_validity = $request->request->get('days_validity');
-        $em = $this->get('doctrine_mongodb')->getManager();
-        $cpt=0;
-        $removed=0;
-        $date = $first_date;
-        $dm = $this->get('doctrine_mongodb')->getManager();
-        while ( $date <= $last_date) {
-
-            if(in_array( date("l",$date), $days_validity) ){
-                $date_datetime = new \DateTime();
-                $date_datetime->setTimestamp($date);
-                $current_aubaine = $dm->getRepository('AubainePlatformBundle:Aubaine')->findOneBy(array('idAuthor' =>$userId, 'date'=>$date_datetime));
-                if($current_aubaine){
-                    $current_aubaine->setMessage($message);
-                    $current_aubaine->setCategory($category);
-                    $removed++;
-                }
-                else{
-                    $aubaine= new Aubaine();
-                    $aubaine->setMessage($message);
-                    $aubaine->setDate($date_datetime);
-                    $aubaine->setAuthor($author);
-                    $aubaine->setCategory($category);
-                    $aubaine->setIdAuthor($userId);
-                    $aubaine->setCity($userCity);
-                    $em->persist($aubaine);
-                }
-                $cpt++;
-            }
-            $date+=24*3600;
-        }
-        $em->flush();
-        return $this->redirectToRoute('aubaine_platform_home', array());
-    }
-    $dm = $this->get('doctrine_mongodb')->getManager();
-    $listusers = $dm->getRepository('AubaineUserBundle:User')->findAll();
-    return $this->render('AubainePlatformBundle:Aubaine:addMultiple.html.twig', array(
-      'listusers' => $listusers
-    ));
-
-  }
 
   /**
   * @Security("has_role('ROLE_ADMIN')")
@@ -222,7 +175,7 @@ class AubaineController extends Controller
   */
   public function deleteAubaineAction($id, Request $request)
   {
-    $id_user= $this->get('security.token_storage')->getToken()->getUser()->getId();
+    $id_place= $this->get('security.token_storage')->getToken()->getUser()->getPlaceId();
 
     $dm = $this->get('doctrine_mongodb')->getManager();
     $aubaine = $dm->getRepository('AubainePlatformBundle:Aubaine')->find($id);
@@ -230,7 +183,7 @@ class AubaineController extends Controller
     if (null === $aubaine) {
       throw new NotFoundHttpException("Le message d'id ".$id_aubaine." n'existe pas.");
     }
-    if($aubaine->getIdAuthor()!=$id_user){
+    if($aubaine->getPlaceId()!=$id_place){
       throw new NotFoundHttpException("Vous n'avez pas la permission de supprimer ce message");
     }
     $dm->remove($aubaine);
@@ -239,7 +192,7 @@ class AubaineController extends Controller
 
     // $redirect_to = $request->request->get('redirect_to');
     // return $this->redirectToRoute($redirect_to);
-    return $this->redirect($request->headers->get('referer'));
+    return $this->redirectToRoute('aubaine_platform_my_aubaines');
   }
 
   /**
@@ -265,37 +218,6 @@ class AubaineController extends Controller
     $request->getSession()->getFlashBag()->add('info', "Toutes les aubaines ont été supprimée.");
     return $this->redirectToRoute('aubaine_platform_home');
 
-  }
-
-  /**
-  * @Security("has_role('ROLE_ADMIN')")
-  */
-  public function populateAction()
-  {
-    $aubaine = new Category();
-    $aubaine2 = new Category();
-    $aubaine3 = new Category();
-    $aubaine4 = new Category();
-
-    $aubaine->setSlug('boire_manger');
-
-    $aubaine2->setSlug('courses');
-
-    $aubaine3->setSlug('bien_etre');
-
-    $aubaine4->setSlug('divertir');
-
-    $dm = $this->get('doctrine_mongodb')->getManager();
-    
-
-    $dm->persist($aubaine);
-    $dm->persist($aubaine2);
-    $dm->persist($aubaine3);
-    $dm->persist($aubaine4);
-
-    $dm->flush();
-
-    return new Response('Categories créées');
   }
 
   /**
@@ -329,164 +251,48 @@ class AubaineController extends Controller
     return $response;
   }
 
-  /**
-  * @Security("has_role('ROLE_USER')")
-  */
-  public function ajax_add_aubaineAction(Request $request)
-  {
-    $aubaine= new Aubaine();
-    $repository = $this->get('doctrine_mongodb')
-    ->getManager()
-    ->getRepository('AubaineUserBundle:User');
-
-    $author= $this->get('security.token_storage')->getToken()->getUser();
-    $userId=$author->getId();
-    $userCity=$author->getCity();
-
-    $message=$request->request->get('message');
-    $aubaine->setMessage($message);
-
-    $aubaine->setDate($request->request->get('date'));
-    $aubaine->setAuthor($author);
-    $aubaine->setIdAuthor($userId);
-    $aubaine->setCity($userCity);
-    $aubaine->setCategory($author->getCategory());
-
-    if($request->request->get('event')){
-      // $message = $message;
-      $aubaine->setCategory('event');
-    }
-    
-    $em = $this->get('doctrine_mongodb')->getManager();
-    $em->persist($aubaine);
-    $em->flush();
-
-    $delete_link = $this->generateUrl( 'aubaine_platform_delete_aubaine', array('id' => $aubaine->getId()) );
-
-    $response = new Response();
-    $response->setContent(json_encode( array( 'message' => $message , 'delete_link' => $delete_link ) ));
-    $response->headers->set('Content-Type', 'application/json');
-    return $response;
-  }
-
-  /**
-  * @Security("has_role('ROLE_USER')")
-  */
-  public function ajax_add_aubaine_multipleAction(Request $request)
-  {
-
-    $repository = $this->get('doctrine_mongodb')
-    ->getManager()
-    ->getRepository('AubaineUserBundle:User');
-    $author= $this->get('security.token_storage')->getToken()->getUser();
-    $userId=$author->getId();
-    $userCity=$author->getCity();
-    $message=$request->request->get('message');
-    $first_date = strtotime( $request->request->get('first_date') );
-    $last_date = strtotime( $request->request->get('last_date') );
-    if($request->request->get('event')){
-      $category='event';
-    }
-    else{
-      $category=$author->getCategory();
-    }
-    $days_validity = $request->request->get('days_validity');
-    $em = $this->get('doctrine_mongodb')->getManager();
-    $cpt=0;
-    $removed=0;
-    $date = $first_date;
-    $dm = $this->get('doctrine_mongodb')->getManager();
-    while ( $date <= $last_date) {
-
-        if(in_array( date("l",$date), $days_validity) ){
-            $date_datetime = new \DateTime();
-            $date_datetime->setTimestamp($date);
-            $current_aubaine = $dm->getRepository('AubainePlatformBundle:Aubaine')->findOneBy(array('idAuthor' =>$userId, 'date'=>$date_datetime));
-            if($current_aubaine){
-                $current_aubaine->setMessage($message);
-                $current_aubaine->setCategory($category);
-                $removed++;
-            }
-            else{
-                $aubaine= new Aubaine();
-                $aubaine->setMessage($message);
-                $aubaine->setDate($date_datetime);
-                $aubaine->setAuthor($author);
-                $aubaine->setIdAuthor($userId);
-                $aubaine->setCity($userCity);
-                $aubaine->setCategory($category);
-                $em->persist($aubaine);
-            }
-            $cpt++;
-        }
-        $date+=24*3600;
-    }
-    $em->flush();
-    $response = new Response();
-    $response->setContent(json_encode( array( 'message' => $removed ) ));
-    $response->headers->set('Content-Type', 'application/json');
-    return $response;
-  }
 
   /**
    * @Security("has_role('ROLE_USER')")
    */
-  public function my_aubainesAction($week=0, Request $request)
+  public function my_aubainesAction(Request $request)
   {
-    if(!$week){
-        $week=date('o'."\W".'W');
-    }
-    $current_day= strtotime(date("Y-m-d 00:00:00"));
-    $week_first_day = strtotime($week);
-    $week_last_day = $week_first_day + 6*(+ 24*3600);
-    $user= $this->get('security.token_storage')->getToken()->getUser();
-    $userId=$user->getId();
-    $days=array();
-    $day_timestamp = $week_first_day;
-    while ($day_timestamp <= $week_last_day) {
-        $aubaine=new Aubaine();
-        $days[$day_timestamp]=$aubaine;
-        $day_timestamp = $day_timestamp + 24*3600;
-    } 
-
-    // list
     $dm = $this->get('doctrine_mongodb')->getManager();
-    $week_first_day_datetime = new \DateTime();
-    $week_last_day_datetime = new \DateTime();
-    $week_first_day_datetime->setTimestamp($week_first_day);
-    $week_last_day_datetime->setTimestamp($week_last_day);
-    $listAubaines = $dm->getRepository('AubainePlatformBundle:Aubaine')->getAubainesByAuthor($userId, $week_first_day_datetime, $week_last_day_datetime);
-    foreach ($listAubaines as $key => $aubaine) {
-      $day_timestamp = $aubaine->getDate()->getTimestamp();
-      if(array_key_exists($day_timestamp, $days)){
-        $days[$day_timestamp]= $aubaine;
-      }
+    $user = $this->get('security.token_storage')->getToken()->getUser();
+    $placesId = $user->getPlacesId();
+    $places=[];
+    $currentAubaines = [];
+    $oldAubaines = [];
+    foreach ($placesId as $placeId) {
+      $places[$placeId] = $dm->getRepository('AubainePlaceBundle:Place')->find($placeId);
+      $currentAubaines[$placeId] = $dm->getRepository('AubainePlatformBundle:Aubaine')->getCurrentAubaines($placeId, new \DateTime('now') );
+      $oldAubaines[$placeId] = $dm->getRepository('AubainePlatformBundle:Aubaine')->getOldAubaines($placeId, new \DateTime('now') );
+      $permanentAubaines[$placeId] = $dm->getRepository('AubainePlatformBundle:Aubaine')->getPermanentAubaines($placeId);
     }
 
-    // get current aubaine for the map if not in the right week
-    $current_day_datetime = new \DateTime();
-    $current_day_datetime->setTimestamp($current_day);
-    $current_aubaine = $dm->getRepository('AubainePlatformBundle:Aubaine')->findOneBy(array('idAuthor' => $userId, 'date'=>$current_day_datetime));
-    if(!$current_aubaine){
-        $current_aubaine = new Aubaine();
+    if ($request->isMethod('POST')) {
+      $aubaine= new Aubaine();
+      $aubaine->setTitle($request->request->get('title'));
+      $aubaine->setMessage($request->request->get('message'));
+      $aubaine->setStart($request->request->get('start'));
+      $aubaine->setEnd($request->request->get('end'));
+      $aubaine->setPlace( $places[ $request->request->get('place') ] );
+      $aubaine->setPlaceId( $places[ $request->request->get('place') ]->getId() );
+      $aubaine->setCity( $places[ $request->request->get('place') ]->getCity());
+      $aubaine->setCategory( $request->request->get('category') );
+      if($request->request->get('permanent')){
+        $aubaine->setPermanent( True );
+      }  
+      $dm->persist($aubaine);
+      $dm->flush();
+      $request->getSession()->getFlashBag()->add('info', "Le message a bien été publié.");
     }
-
-    $serializer = $this->container->get('jms_serializer');
-    $userJson = $serializer->serialize($user, "json");
-    $current_aubaineJson = $serializer->serialize($current_aubaine, "json");
-    $previousWeek = date('o'."\W".'W', strtotime('-1 week',$week_first_day));
-    $nextWeek = date('o'."\W".'W', strtotime('+1 week',$week_first_day));
-
 
     return $this->render('AubainePlatformBundle:Aubaine:myAubaines.html.twig', array(
-        'current_day' => $current_day,
-        'current_aubaine' => $current_aubaineJson,
-        'week' => $week,
-        'previousWeek' => $previousWeek,
-        'nextWeek' => $nextWeek,
-        'listAubaines' => $listAubaines,
-        'days' => $days,
-        'user' => $userJson
+        'places' => $places,
+        'currentAubaines' => $currentAubaines,
+        'oldAubaines' => $oldAubaines,
+        'permanentAubaines' => $permanentAubaines
       ));
   }
 

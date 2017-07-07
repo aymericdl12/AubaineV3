@@ -186,54 +186,75 @@ class UserController extends Controller
   {
     $dm = $this->get('doctrine_mongodb')->getManager();
     $userManager = $this->get('fos_user.user_manager');
-    $users=$userManager->findUsers();
 
-    $places = $this->get('doctrine_mongodb')
-      ->getManager()
-      ->getRepository('AubainePlaceBundle:Place')
-      ->findAll();
-
-    // foreach ($places as $place) {
+    // $aubaines = $dm->getRepository('AubainePlatformBundle:Aubaine')->findAll();
+    // foreach ($aubaines as $aubaine) {
+      // $dm->remove($aubaine);
+      // $author = $userManager->findUserBy(array( 'id' => $aubaine->getIdAuthor() ));
+      // $placeId = $author->getPlaceId();
+      // $place = $dm->getRepository('AubainePlaceBundle:Place')->find($placeId);
+      // $aubaine->setPlace($place);
+      // $aubaine->setPlaceId($place->getId());
+      // $aubaine->setDate( new \DateTime() );
+      // $aubaine->setDuration( 2928 );
     // }
-    // $dm->flush();
+
+
+    // $places = $dm->getRepository('AubainePlaceBundle:Place')->findAll();
+    // foreach ($places as $place) {
+    //   $aubaine = new Aubaine();
+    //   $aubaine->setPlace($place);
+    //   $aubaine->setPlaceId($place->getId());
+    //   $aubaine->setPermanent( True );
+    //   $aubaine->setStart( new \DateTime("now") );
+    //   $aubaine->setEnd( new \DateTime("+3 year") );
+    //   $aubaine->setCity( $place->getCity() );
+    //   $aubaine->setMessage( "Ceci est un lieu magique ! On y trouve le meilleur du meilleur" );
+    //   $aubaine->setCategory( $place->getCategory() );
+    //   $dm->persist($aubaine);
+    // }
+
+
+    $users=$userManager->findUsers();
     foreach ($users as $user) {
-        $place= new Place();
-        $dm = $this->get('doctrine_mongodb')->getManager();
-        $repository = $this->get('doctrine_mongodb')
-        ->getManager()
-        ->getRepository('AubainePlaceBundle:Place');
+    //     $place= new Place();
+    //     $dm = $this->get('doctrine_mongodb')->getManager();
+    //     $repository = $this->get('doctrine_mongodb')
+    //     ->getManager()
+    //     ->getRepository('AubainePlaceBundle:Place');
 
-        $place->setTitle($user->getUsername());
-        $place->setIntroduction($user->getDescription());
-        $place->setAddress($user->getAddressDisplayed());
-        $place->setCity($user->getCity());
-        $place->setCategory($user->getCategory());
-        $place->setZipcode($user->getZipcode());
-        $place->setLati($user->getLati());
-        $place->setLongi($user->getLongi());
-        $place->setHoursMonday($user->getHoursMonday());
-        $place->setHoursTuesday($user->getHoursTuesday());
-        $place->setHoursWednesday($user->getHoursWednesday());
-        $place->setHoursThursday($user->getHoursThursday());
-        $place->setHoursFriday($user->getHoursFriday());
-        $place->setHoursSaturday($user->getHoursSaturday());
-        $place->setHoursSunday($user->getHoursSunday());
-        $place->setContent("");
-        $place->setConclusion("");
-        $place->setInformation("");
-        $place->setThumbnail($user->getImageName());
-        $place->setImageHeader("59578b2ad8147.png");
-        $place->setImage1("59578290c4b9e.png");
-        $place->setImage2("59578290c40fd.png");
-        $place->setPublished(False);
+        $user->setPlacesId( array( $user->getPlaceId() ) );
+    //     $place->setIntroduction($user->getDescription());
+    //     $place->setAddress($user->getAddressDisplayed());
+    //     $place->setCity($user->getCity());
+    //     $place->setCategory($user->getCategory());
+    //     $place->setZipcode($user->getZipcode());
+    //     $place->setLati($user->getLati());
+    //     $place->setLongi($user->getLongi());
+    //     $place->setHoursMonday($user->getHoursMonday());
+    //     $place->setHoursTuesday($user->getHoursTuesday());
+    //     $place->setHoursWednesday($user->getHoursWednesday());
+    //     $place->setHoursThursday($user->getHoursThursday());
+    //     $place->setHoursFriday($user->getHoursFriday());
+    //     $place->setHoursSaturday($user->getHoursSaturday());
+    //     $place->setHoursSunday($user->getHoursSunday());
+    //     $place->setContent("");
+    //     $place->setConclusion("");
+    //     $place->setInformation("");
+    //     $place->setThumbnail($user->getImageName());
+    //     $place->setImageHeader("59578b2ad8147.png");
+    //     $place->setImage1("59578290c4b9e.png");
+    //     $place->setImage2("59578290c40fd.png");
+    //     $place->setPublished(False);
 
-        $dm->persist($place);
-        $dm->flush();
+    //     $dm->persist($place);
+    //     $dm->flush();
 
 
-        $user->setPlaceId($place->getId());
-        $userManager->updateUser($user,false);
+    //     $user->setPlaceId($place->getId());
+    //     $userManager->updateUser($user,false);
     }
+    $dm->flush();
     $request->getSession()->getFlashBag()->add('info', "Modifications effectuées");
     return $this->redirectToRoute('aubaine_platform_home');
 
@@ -354,6 +375,28 @@ class UserController extends Controller
         return $this->render('AubaineUserBundle:User:editAvatar.html.twig', array(
           'user' => $user,
           'form'   => $form->createView(),
+        ));
+
+    } 
+  
+  /**
+  * @Security("has_role('ROLE_USER')")
+  */
+  public function myProfileAction(Request $request)
+  {
+        $dm = $this->get('doctrine_mongodb')->getManager();
+        $user= $this->get('security.token_storage')->getToken()->getUser();
+
+        $placesId = $user->getPlacesId();
+        $places=[];
+        foreach ($placesId as $placeId) {
+          $places[$placeId] = $dm->getRepository('AubainePlaceBundle:Place')->find($placeId);
+        }
+    
+
+        return $this->render('AubaineUserBundle:User:myProfile.html.twig', array(
+          'user' => $user,
+          'places' => $places
         ));
 
     } 

@@ -5,6 +5,7 @@ namespace Aubaine\PlatformBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -23,7 +24,8 @@ class AubaineType extends AbstractType
     {
         $builder
         ->add('message',   TextareaType::class)
-        ->add('date',   DateType::class)
+        ->add('start',   DateType::class)
+        ->add('end',   DateType::class)
         ->add('category', ChoiceType::class, array(
             'choices'  => array(
                 'Bar, Café, Restaurant' => "eat",
@@ -31,9 +33,9 @@ class AubaineType extends AbstractType
                 'Bien être' => "wellness",
                 'Évènement' => "event"
             )))
-        ->add('author', DocumentType::class, array(
-            'class'        => 'AubaineUserBundle:User',
-            'choice_label' => 'username'
+        ->add('place', DocumentType::class, array(
+            'class'        => 'AubainePlaceBundle:Place',
+            'choice_label' => 'title'
           ))
         ->add('save',      SubmitType::class);
     }

@@ -23,9 +23,11 @@
   </p>
 
   <h2>{{ aubaine.title }}</h2>
+  <h2>{{ aubaine.place.lati }}</h2>
+  <h2>{{ aubaine.place.longi }}</h2>
   <p>{{ aubaine.message }}</p>
   <p>Catégorie : {{ aubaine.category }}</p>
-  <i>Par {{ aubaine.author.username }} </i>
+  <i>Par {{ aubaine.place.title }} </i>
 
 
 {% endblock %}

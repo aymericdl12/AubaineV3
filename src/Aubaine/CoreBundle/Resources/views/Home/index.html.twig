@@ -2,26 +2,120 @@
 
 {% block body_column_center %}
 
-    <h1>Tous les bons plans de votre ville</h1>
-
-    <p>le meilleur de Toulouse</p>
-    <p>Des bons plans sous toutes leur formes</p>
-
-    <h2>Derniers lieux magiques</h2>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore iste sint reprehenderit mollitia, obcaecati ratione facilis atque eos cum repellat. Quas eligendi animi, recusandae neque aut molestias dolore facilis reiciendis.</p>
-
-    <h2>Tout sur une carte</h2>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore iste sint reprehenderit mollitia, obcaecati ratione facilis atque eos cum repellat. Quas eligendi animi, recusandae neque aut molestias dolore facilis reiciendis.</p>
-
-    <h2>Actualités sur notre Startup</h2>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore iste sint reprehenderit mollitia, obcaecati ratione facilis atque eos cum repellat. Quas eligendi animi, recusandae neque aut molestias dolore facilis reiciendis.</p>
-
-    <h2>Signalez-nous un bon plan</h2>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore iste sint reprehenderit mollitia, obcaecati ratione facilis atque eos cum repellat. Quas eligendi animi, recusandae neque aut molestias dolore facilis reiciendis.</p>
+<div id="body-home">
+        <div id='home-header'>
+            <h1>
+                <img alt="Brand" src="{{ asset('images/logo-aubaine-new-large.png') }}" style="height:8rem;">
+            </h1>
+            <h2>
+                Les commerçants de votre ville vous transmettent des messages en direct
+            </h2>
+        </div>
+        <div id="home-live">
+            <h2>À la une</h2>
+            {% for aubaine in lastAubaines %}
+                <a class="aubaineExtract" target="_blank" href="{{ path('aubaine_platform_public_view', {'id': aubaine.id}) }}">
+                    <div class="image">
+                        <img src="{{ asset('images/place/' ~ aubaine.place.imageHeader) }}" alt="" class="avatar">
+                    </div>
+                    <div class="content">
+                        {{ aubaine.message }}
+                    </div>
+                    <div class="place">
+                        <img src="{{ asset('images/location.png') }} " alt="" class="location">
+                        {{ aubaine.place.title }}
+                    </div>
+                    <div class="date">
+                        <img src="{{ asset('images/date.png') }} " alt="" class="calendar">
+                        du {{ aubaine.start | date("d M") }} au {{ aubaine.end | date("d M") }}
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+        <div id="home-events">
+            <h2>À venir</h2>
+            {% for aubaine in lastAubaines %}
+                <a class="aubaineExtract" target="_blank" href="{{ path('aubaine_platform_public_view', {'id': aubaine.id}) }}">
+                    <div class="image">
+                        <img src="{{ asset('images/place/' ~ aubaine.place.imageHeader) }}" alt="" class="avatar">
+                    </div>
+                    <div class="content">
+                        {{ aubaine.message }}
+                    </div>
+                    <div class="place">
+                        <img src="{{ asset('images/location.png') }} " alt="" class="location">
+                        {{ aubaine.place.title }}
+                    </div>
+                    <div class="date">
+                        <img src="{{ asset('images/date.png') }} " alt="" class="calendar">
+                        du {{ aubaine.start | date("d M") }} au {{ aubaine.end | date("d M") }}
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+        <div id="home-places">
+            <h2>Toute l'année</h2>
+            {% for aubaine in lastAubaines %}
+                <a class="aubaineExtract" target="_blank" href="{{ path('aubaine_platform_public_view', {'id': aubaine.id}) }}">
+                    <div class="image">
+                        <img src="{{ asset('images/place/' ~ aubaine.place.imageHeader) }}" alt="" class="avatar">
+                    </div>
+                    <div class="content">
+                        {{ aubaine.message }}
+                    </div>
+                    <div class="place">
+                        <img src="{{ asset('images/location.png') }} " alt="" class="location">
+                        {{ aubaine.place.title }}
+                    </div>
+                    <div class="date">
+                        <img src="{{ asset('images/date.png') }} " alt="" class="calendar">
+                        Toute l'année
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+        <div id="home-map">
+            <h2>Tous les bons plans sur une carte</h2>
+            <a href="{{ path('aubaine_core_map') }}" class="btn btn-lg btn-primary">
+                <i class="glyphicon glyphicon-map"></i>
+                Voir la Carte
+            </a>
+        </div>
+        <div id="home-contact">
+            <h2>Partager un bon-plan</h2>
+            <p>
+                N'hésitez pas à nous signaler des endroits, concept ou évènements à connaîtres !
+            </p>
+            <p>
+                <a href="mailto:contact@aubaineapp.fr" class="email">contact@aubaineapp.fr</a> <br>
+            </p>
+        </div>
+        <div id="home-media">
+            <div id='media-list'>
+                <a href="http://www.ladepeche.fr/article/2017/02/28/2526086-le-site-toulousain-aubaine-surfe-sur-les-bons-plans-ephemeres.html" target='_blank'>
+                    <img src="{{ asset('images/depeche-midi.jpg') }}" alt="la depeche">
+                </a>
+                <a href="http://le-toulousain-malin.com/aubaine-les-bons-plans-a-toulouse/" target='_blank'>
+                    <img src="{{ asset('images/toulousain-malin.png') }}" alt="le toulousain malin">
+                </a>
+                <a href="http://www.les-soeurs-vitamine.com/la-nouvelle-start-up-toulousaine-aubaine/" target='_blank'>
+                    <img style='height:4rem;' src="{{ asset('images/soeurs-vitamines.png') }}" alt="les soeurs vitamines">
+                </a>
+                <a href="http://lespepitestech.com/startup-de-la-french-tech/aubaine" target='_blank'>
+                    <img src="{{ asset('images/pepite-tech.jpeg') }}" alt="pepite tech">
+                </a>
+                <a href="http://actu.cotetoulouse.fr/toulouse-aubaine-start-up-bons-plans_56286/" target='_blank'>
+                    <img src="{{ asset('images/cote-toulouse.png') }}" alt="cote toulouse">
+                </a>
+                <a href="https://www.maddyness.com/entrepreneurs/2017/02/24/fastpitch-5-startups-de-semaine-d-clics-habx-aubaine-happy-buy-happysitters/" target='_blank'>
+                    <img style='height:4rem;' src="{{ asset('images/maddyness.png') }}" alt="maddyness">
+                </a>
+                <a href="https://www.toulouscope.fr/bons-plans/mode-beaute-bars-restaurants-aubaine-profite-de-bons-plans-ephemeres-ville-rose/" target='_blank'>
+                    <img style='height:4rem;' src="{{ asset('images/touloscope.png') }}" alt="touloscope">
+                </a>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}
 

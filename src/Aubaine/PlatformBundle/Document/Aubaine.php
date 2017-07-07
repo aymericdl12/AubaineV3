@@ -18,7 +18,7 @@ class Aubaine
     /**
      * @MongoDB\Field(type="string")
      */
-    protected $idAuthor;
+    protected $placeId;
 
     /**
      * @MongoDB\Field(type="string")
@@ -32,7 +32,6 @@ class Aubaine
 
     /**
      * @MongoDB\Field(type="string")
-     * @Assert\Length(min=10)
      */
     protected $title;
 
@@ -43,20 +42,31 @@ class Aubaine
     protected $message;
 
     /**
+     * @MongoDB\Field(type="bool")
+     */
+    protected $permanent = False;
+
+
+    /**
      * @MongoDB\Field(type="date")
      */
-    protected $date;
+    protected $start;
+
+    /**
+     * @MongoDB\Field(type="date")
+     */
+    protected $end;
 
     /** 
-    * @MongoDB\ReferenceOne(targetDocument="Aubaine\UserBundle\Document\User")
+    * @MongoDB\ReferenceOne(targetDocument="Aubaine\PlaceBundle\Document\Place")
     * @Assert\Valid()
     */
-    protected $author;
+    protected $place;
 
 
     public function __construct()
 	  {
-        $this->date         = new \Datetime();
+        $this->start         = new \Datetime();
 	  }
 
     /**
@@ -89,6 +99,50 @@ class Aubaine
     public function getCategory()
     {
         return $this->category;
+    }
+
+    /**
+     * Set place
+     *
+     * @param string $place
+     * @return $this
+     */
+    public function setPlace($place)
+    {
+        $this->place = $place;
+        return $this;
+    }
+
+    /**
+     * Get place
+     *
+     * @return string $place
+     */
+    public function getPlace()
+    {
+        return $this->place;
+    }
+
+    /**
+     * Set placeid
+     *
+     * @param string $placeId
+     * @return $this
+     */
+    public function setPlaceId($placeId)
+    {
+        $this->placeId = $placeId;
+        return $this;
+    }
+
+    /**
+     * Get placeid
+     *
+     * @return string $placeId
+     */
+    public function getPlaceId()
+    {
+        return $this->placeId;
     }
 
     /**
@@ -221,5 +275,71 @@ class Aubaine
     public function getDate()
     {
         return $this->date;
+    }
+
+    /**
+     * Set end
+     *
+     * @param end $end
+     * @return $this
+     */
+    public function setPermanent($permanent)
+    {
+        $this->permanent = $permanent;
+        return $this;
+    }
+
+    /**
+     * Get permanent
+     *
+     * @return permanent $permanent
+     */
+    public function getPermanent()
+    {
+        return $this->permanent;
+    }
+
+    /**
+     * Set end
+     *
+     * @param end $end
+     * @return $this
+     */
+    public function setEnd($end)
+    {
+        $this->end = $end;
+        return $this;
+    }
+
+    /**
+     * Get end
+     *
+     * @return end $end
+     */
+    public function getEnd()
+    {
+        return $this->end;
+    }
+
+    /**
+     * Set start
+     *
+     * @param start $start
+     * @return $this
+     */
+    public function setStart($start)
+    {
+        $this->start = $start;
+        return $this;
+    }
+
+    /**
+     * Get start
+     *
+     * @return start $start
+     */
+    public function getStart()
+    {
+        return $this->start;
     }
 }

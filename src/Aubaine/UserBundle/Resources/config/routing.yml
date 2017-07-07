@@ -43,6 +43,11 @@ aubaine_user_delete_all:
     defaults:
         _controller: AubaineUserBundle:User:deleteAll
 
+aubaine_user_my_profile:
+    path:      /profile
+    defaults:
+        _controller: AubaineUserBundle:User:myProfile
+
 aubaine_user_import:
     path:      /import
     defaults:

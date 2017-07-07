@@ -6,103 +6,32 @@
     Agenda - {{ parent() }}
 {% endblock %}
 
-{% block aubaineplatform_body %}
-<div class="row">
-    <div class="col-md-12">
-        
+{% block body_column_center %}
+<div class="body-myAubaines">
+    <div class="myAubaines-header">
+        <h1>Publier des messages</h1>
+         {% for message in app.session.flashbag.get('info') %}
+            <div class="alert alert-success">{{ message }}</div>
+          {% endfor %}
     </div>
-</div>
- <div class="row">
-  <div class="col-md-8">
-    <div class="myAubaines-list">
-        <div class="list-header">
-            <h1>Agenda</h1>
-            <p>
-              Chaque jour partagez un message en fonction de votre activités, de vos stock, de votre humeur. 
-            </p>
-             {% for message in app.session.flashbag.get('info') %}
-                <div class="alert alert-info">{{ message }}</div>
-              {% endfor %}
-        </div>
-        {% for key,aubaine in days %}
-            {% if aubaine.message %}  
-              <div class="day day-withAubaine" {% if aubaine.date | date("U") == current_day %} id="current_aubaine" {% endif %}>
-                  <div  class="date" >
-                    <div class="dayofmonth">{{ key | date("j") }}</div>
-                    <div class="dayofweek">{{ key | date("D") | trans }}</div>
-                        <div class="shortdate text-muted">{{ key | date("F") | trans }}, {{ key | date("Y") }}</div>
-                  </div>
-                  <div class="aubaine"> 
-                        <div  class="aubaine-message">{{aubaine.message}}
-                            {% if key | date("U") >= current_day %}
-                                <a class="btn btn-xs btn-danger"  href ="{{ path('aubaine_platform_delete_aubaine', {'id': aubaine.id}) }}">
-                                    <span class="glyphicon glyphicon-trash"></span>
-                                </a>
-                            {% else %}
-                                <!-- <a class="aubaine-action" href="#" >
-                                    <button class="btn btn-xs btn-success">
-                                        <span class="glyphicon glyphicon-eye-open"></span> 50 vues
-                                    </button>
-                                </a> -->
-                            {% endif %}
-                            {% if aubaine.category == "event" %}
-                                <div class="event-label">
-                                    <img src="{{ asset('images/event.png') }} " alt="" class="event-label-logo"> <!-- Évènement --> 
-                                </div>
-                            {% endif %}
-                        </div>
-                  </div>
-              </div>
-            {% else %}
-              <div class=" day day-withoutAubaine" {% if key | date("U") == current_day %} id="current_aubaine" {% endif %}>
-                    <div  class="date" >
-                        <div class="dayofmonth">{{ key | date("j") }}</div>
-                        <div class="dayofweek">{{ key | date("D") | trans }}</div>
-                        <div class="shortdate text-muted">{{ key | date("F") | trans }}, {{ key | date("Y") }}</div>
-                    </div>
-                    <div class="aubaine">
-                        {% if key | date("U") >= current_day %} 
-                        <form method="post" class="form myAubaines-form" action ="{{ path('aubaine_platform_ajax_add_aubaine') }}">
-                            <textarea class="form-control" rows="2"  maxlength="250" placeholder="indiquez un message" type="text"  name="message" required="required"></textarea>
-                            {% if app.user.category == "eat" %}
-                                <label  class="checkbox-inline"><input type="checkbox" value="event" name="event"> Il s'agit d'un évènement</label>
-                            {% endif %}
-                            <input class="form-control" type="hidden"  value="{{key}}" name="date" required="required"  autocomplete="off" />
-                            <div class="form-submit-wrapper">
-                                <button class="btn btn-primary my-aubaine-form-submit"  data-loading-text="Enregistrement..." type="submit">Partager</button>
-                            </div>
-                        </form>
-                        {% else %}
-                            <div  class="aubaine-indication">Pas de message</div>
-                        {% endif %}
-                    </div>
-              </div>
-            {% endif %}
-        {% endfor %}
+    <div class="alert alert-info myAubaines-info" role="alert">
+        <p>Cher partenaire,</p>
+        <p>Rédiger un message devient encore plus simple !</p>
+        <p>Vos messages sont maintenant valables sur la durée que vous souhaitez. </p>
+        <p>Si votre message est valable tout au long de l'année, cochez la case "toute l'année" et ne renseignez pas de date</p>
+        <p>Si votre message est valable sur une période définie, saisie les dates de début et de fin. Votre message commencera à être diffusé 1 semaine avant le début.</p>
     </div>
-    <ul id="myAubaines-pagination"  class="pagination">
-        <li  class="previous">
-            <a href="{{ path('aubaine_platform_my_aubaines', {'week': previousWeek}) }}">
-                <span class="glyphicon glyphicon-arrow-left"></span>
-                 Semaine précédente
-            </a>
-        </li>
-        <li class="next">
-            <a href="{{ path('aubaine_platform_my_aubaines', {'week': nextWeek}) }}">
-                Semaine suivante 
-                <span class="glyphicon glyphicon-arrow-right"></span> 
-            </a>
-        </li>
-    </ul>  
-  </div>
-  <div class="col-md-4">
-    <div class="myAubaines-form-multiple-wrapper">
-        <h2>Message récurente</h2>
-        <p>Utilisez ce formulaire pour partager un message récurent. 
-            Par exemple, pour une promotion qui a lieu tous les jeudis du mois de l'année, selectionnez du 01/01/2016 au 31/12/2017, cliquez sur jeudi.</p> <br>
-        <form method="post" class="form myAubaines-form-multiple" action ="{{ path('aubaine_platform_ajax_add_aubaine_multiple') }}">
-            <textarea class="form-control" rows="3"  maxlength="250" placeholder="indiquez un message" type="text"  name="message" required="required"></textarea>
-            <div  class="form-group"  id="dates">                  
+    <div class="myAubaines-form">
+    </div>
+    <div class="myAubaines-currentAubaines">
+        <form method="post" class="form aubaineForm" action ="{{ path('aubaine_platform_my_aubaines') }}">
+            <h3>Publier un Message</h3>
+            <div  class="form-group message">
+                <label for="palce">Message:</label> 
+                <textarea class="form-control" rows="4"  maxlength="450" placeholder="maximum 450 caractères" type="text"  name="message" required="required"></textarea>
+            </div>
+            <div  class="form-group dates">
+                <label for="palce">Dates:</label>                  
                 <div class="input-daterange input-group" id="datepicker">
                     <span class="input-group-addon">du</span>
                     <input type="text" class="input-sm form-control" name="start" />
@@ -110,40 +39,110 @@
                     <input type="text" class="input-sm form-control" name="end" />
                 </div>
             </div>
-            <div id="myAubaines-form-multiple-days" data-toggle="buttons">
-                <label class="btn btn-primary">
-                    <input type="checkbox" name="days_validity[]" value="Monday" autocomplete="off"> <span class="glyphicon glyphicon-ok"></span> Lundi
-                </label>
-                <label class="btn btn-primary">
-                    <input type="checkbox" name="days_validity[]" value="Tuesday" autocomplete="off"><span class="glyphicon glyphicon-ok"></span> Mardi
-                </label>
-                <label class="btn btn-primary">
-                    <input type="checkbox" name="days_validity[]" value="Wednesday" autocomplete="off"><span class="glyphicon glyphicon-ok"></span> Mercredi
-                </label>
-                <label class="btn btn-primary">
-                    <input type="checkbox" name="days_validity[]" value="Thursday" autocomplete="off"><span class="glyphicon glyphicon-ok"></span> Jeudi
-                </label>
-                <label class="btn btn-primary">
-                    <input type="checkbox" name="days_validity[]" value="Friday" autocomplete="off"><span class="glyphicon glyphicon-ok"></span> Vendredi
-                </label>
-                <label class="btn btn-primary">
-                    <input type="checkbox" name="days_validity[]" value="Saturday" autocomplete="off"><span class="glyphicon glyphicon-ok"></span> Samedi
-                </label>
-                <label class="btn btn-primary">
-                    <input type="checkbox" name="days_validity[]" value="Sunday" autocomplete="off"><span class="glyphicon glyphicon-ok"></span> Dimanche
-                </label>
+            <div  class="form-group permanent">
+                <label  class="checkbox-inline"><input type="checkbox" value="permanent" name="permanent"> Toute l'année</label>
             </div>
-            <button class="btn btn-primary btn-block my-aubaine-form-submit"  data-loading-text="Enregistrement..." type="submit">Partager</button>
+            <div  class="form-group category">
+                <label for="palce">Catégorie:</label>
+                <select class="form-control" id="category" name="category" autocomplete="off">
+                    <option value="eat" {% if app.user.category == "eat" %} selected {% endif %}>Boire et Manger</option>
+                    <option value="wellness"  {% if app.user.category == "wellness" %} selected{% endif %}>Bien-être</option>
+                    <option value="event"  {% if app.user.category == "event" %} selected {% endif %}>Évènement</option>
+                    <option value="shop"  {% if app.user.category == "shop" %} selected {% endif %}>Boutique</option>
+                  </select>
+            </div>
+            <div  class="form-group category">
+                <label for="palce">Lieu:</label>
+                <select class="form-control" id="place" name="place" autocomplete="off">
+                    {% for place in places %}
+                        <option value="{{place.id}}">{{place.title}}</option>
+                    {% endfor %}
+                  </select>
+            </div>
+            <div class="form-group action">
+                <button class="btn btn-primary submit"  data-loading-text="Enregistrement..." type="submit">Partager</button>
+            </div>
         </form>
+        <!-- for each place, display the aubaines -->
+        {% for place in places %}
+            {% for aubaine in attribute(currentAubaines, place.id) %}
+                <a class="aubaineExtract" target="_blank" href="{{ path('aubaine_platform_public_view', {'id': aubaine.id}) }}">
+                    <div class="image">
+                        <img src="{{ asset('images/place/' ~ aubaine.place.imageHeader) }}" alt="" class="avatar">
+                    </div>
+                    <div class="content">
+                        {{ aubaine.message }}
+                    </div>
+                    <div class="place">
+                        <img src="{{ asset('images/location.png') }} " alt="" class="location">
+                        {{ aubaine.place.title }}
+                    </div>
+                    <div class="date">
+                        <img src="{{ asset('images/date.png') }} " alt="" class="calendar">
+                        {% if aubaine.permanent %}
+                            Toute l'année
+                        {% else %}
+                            du {{ aubaine.start | date("d M") }} au {{ aubaine.end | date("d M") }}                            
+                        {% endif %}
+                    </div>               
+                </a>
+            {% endfor %}
+        {% endfor %}
+        
+    </div> 
+    <div class="myAubaines-permanentAubaines">
+        {% for place in places %}
+            {% for aubaine in attribute(permanentAubaines, place.id) %}
+                <a class="aubaineExtract" target="_blank" href="{{ path('aubaine_platform_public_view', {'id': aubaine.id}) }}">
+                    <div class="image">
+                        <img src="{{ asset('images/place/' ~ aubaine.place.imageHeader) }}" alt="" class="avatar">
+                    </div>
+                    <div class="content">
+                        {{ aubaine.message }}
+                    </div>
+                    <div class="place">
+                        <img src="{{ asset('images/location.png') }} " alt="" class="location">
+                        {{ aubaine.place.title }}
+                    </div>
+                    <div class="date">
+                        <img src="{{ asset('images/date.png') }} " alt="" class="calendar">
+                        {% if aubaine.permanent == true %}
+                            Toute l'année
+                        {% else %}
+                            du {{ aubaine.start | date("d M") }} au {{ aubaine.end | date("d M") }}                            
+                        {% endif %}
+                    </div>               
+                </a>
+            {% endfor %}
+        {% endfor %}        
+    </div>
+    <div class="myAubaines-oldAubaines">
+        {% for place in places %}
+            {% for aubaine in attribute(oldAubaines, place.id) %}
+                <a class="aubaineExtract" target="_blank" href="{{ path('aubaine_platform_public_view', {'id': aubaine.id}) }}">
+                    <div class="image">
+                        <img src="{{ asset('images/place/' ~ aubaine.place.imageHeader) }}" alt="" class="avatar">
+                    </div>
+                    <div class="content">
+                        {{ aubaine.message }}
+                    </div>
+                    <div class="place">
+                        <img src="{{ asset('images/location.png') }} " alt="" class="location">
+                        {{ aubaine.place.title }}
+                    </div>
+                    <div class="date">
+                        <img src="{{ asset('images/date.png') }} " alt="" class="calendar">
+                        {% if aubaine.permanent %}
+                            Toute l'année
+                        {% else %}
+                            du {{ aubaine.start | date("d M") }} au {{ aubaine.end | date("d M") }}                            
+                        {% endif %}
+                    </div>               
+                </a>
+            {% endfor %}
+        {% endfor %}        
     </div>
 </div>
-</div>
-<script>
-    var user = {{ user | raw }};
-    var avatarDir = "{{ asset('images/avatars/') }}";
-    var loadMarkerUrl = "{{ path('aubaine_platform_load_marker')}}";
-    var currentAubaine = {{ current_aubaine | raw }};
-</script>
 
 {% endblock %}
 

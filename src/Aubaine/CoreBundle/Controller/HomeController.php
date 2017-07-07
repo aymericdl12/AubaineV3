@@ -21,20 +21,23 @@ class HomeController extends Controller
 	    $current_day_datetime = new \DateTime();
 	    $current_day_datetime->setTimestamp($current_day);
 
-	    $listPlaces = $dm->getRepository('AubainePlaceBundle:Place')->findBy(
-		    array('published' => True),
-		    array('city' => 'toulouse')
-		);
+	    $lastAubaines = $dm->getRepository('AubainePlatformBundle:Aubaine')->getLastAubaines(3)->toArray();
+	    $lastPlaces = $dm->getRepository('AubainePlaceBundle:Place')->getLastPlaces(3)->toArray();
+	    $lastEvents = $dm->getRepository('AubaineEventBundle:Event')->getLastEvents(3)->toArray();
+	    $number_partner = $this->get('doctrine_mongodb')->getManager()->getRepository('AubaineUserBundle:User')->findAll();
 
 	    $hoursDay="hours".date("l");
 
 	    $serializer = $this->container->get('jms_serializer');
-	    $listPlacesJson = $serializer->serialize($listPlaces, "json");
+	    $listPlacesJson = $serializer->serialize($lastPlaces, "json");
 
 	    $array_response=array(
 	      'hoursDay' => $hoursDay,
+	      'number_partner' => sizeof($number_partner),
 	      'listPlacesJson' => $listPlacesJson,
-	      'listPlaces' => $listPlaces,
+	      'lastAubaines' => $lastAubaines,
+	      'lastEvents' => $lastEvents,
+	      'lastPlaces' => $lastPlaces,
 	      'current_day' => $current_day
 	    );
 
@@ -61,16 +64,22 @@ class HomeController extends Controller
 		    array('published' => True),
 		    array('city' => 'toulouse')
 		);
+	    $listAubaines = $dm->getRepository('AubainePlatformBundle:Aubaine')->findBy(
+		    array('city' => 'toulouse')
+		);
 
 	    $hoursDay="hours".date("l");
 
 	    $serializer = $this->container->get('jms_serializer');
 	    $listPlacesJson = $serializer->serialize($listPlaces, "json");
+	    $listAubainesJson = $serializer->serialize($listAubaines, "json");
 
 	    $array_response=array(
 	      'hoursDay' => $hoursDay,
 	      'listPlacesJson' => $listPlacesJson,
 	      'listPlaces' => $listPlaces,
+	      'listAubainesJson' => $listAubainesJson,
+	      'listAubaines' => $listAubaines,
 	      'current_day' => $current_day
 	    );
 
@@ -81,6 +90,39 @@ class HomeController extends Controller
 	    }
 
 		return $this->render('AubaineCoreBundle:Home:map.html.twig', $array_response);
+	    
+	}
+    // La page carte
+	public function liveAction()
+	{
+
+		$dm = $this->get('doctrine_mongodb')->getManager();
+
+	    $current_day= strtotime(date("Y-m-d 00:00:00"));
+	    $current_day_datetime = new \DateTime();
+	    $current_day_datetime->setTimestamp($current_day);
+
+	    $listAubaines = $dm->getRepository('AubainePlatformBundle:Aubaine')->findBy(
+		    // array('published' => True),
+		    // array('hasMessage' => True),
+		    array('city' => 'toulouse')
+		);
+
+	    $hoursDay="hours".date("l");
+
+	    $array_response=array(
+	      'hoursDay' => $hoursDay,
+	      'listAubaines' => $listAubaines,
+	      'current_day' => $current_day
+	    );
+
+	    // if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+	    // 	$userId= $this->get('security.token_storage')->getToken()->getUser()->getId();
+	    //     $current_aubaine = $dm->getRepository('AubainePlatformBundle:Aubaine')->getCurrentAubaineByAuthor($userId, $current_day_datetime);
+	    //     $array_response['current_aubaine'] = $current_aubaine;
+	    // }
+
+		return $this->render('AubaineCoreBundle:Home:live.html.twig', $array_response);
 	    
 	}
 	// La page de contact

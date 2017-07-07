@@ -10,13 +10,20 @@
 <h1>Les Évènements à ne pas louper</h1>
   <div class="eventList">
     {% for event in listEvents %}
-      <a class="eventExtract" href="{{ path('aubaine_event_public_view', {'id': event.id}) }}">
-        <div class="header">
-          <h3 class="event"><img src="{{ asset('images/event.png') }} " alt="" class="category category-event"> {{ event.title }}</h3>
-          <img src="{{ asset('images/event/' ~ event.imageHeader) }}" alt="" class="imageHeader">
-        </div>
-        <div class="introduction">{{ event.introduction | raw }}</div>
-      </a>
+      <div class="messageExtract">
+          <div class="image">
+              <img src="{{ asset('images/event/' ~ event.imageHeader) }}" alt="" class="avatar">
+          </div>
+          <div class="content">
+              Le festival des orgues se donne en folie toute la semaine du 17 Juillet
+          </div>
+          <div class="place">
+              <a href="{{ path('aubaine_event_public_view', {'id': event.id}) }}" class="btn btn-primary category-event">
+                  <img src="{{ asset('images/event.png') }} " alt="" class="category category-{{ event.category }}">
+                  {{ event.title }}
+              </a>
+          </div>
+      </div>
     {% endfor %}
   </div>
   <ul class="pagination">

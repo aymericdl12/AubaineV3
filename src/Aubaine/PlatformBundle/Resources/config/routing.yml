@@ -11,15 +11,15 @@ aubaine_platform_view:
     defaults:
         _controller: AubainePlatformBundle:Aubaine:view
 
+aubaine_platform_public_view:
+    path:      /aubaine/{id}
+    defaults:
+        _controller: AubainePlatformBundle:Aubaine:publicView
+
 aubaine_platform_add:
     path:      /admin/add
     defaults:
         _controller: AubainePlatformBundle:Aubaine:add
-
-aubaine_platform_add_multiple:
-    path:      /admin/add_multiple
-    defaults:
-        _controller: AubainePlatformBundle:Aubaine:addMultiple
 
 aubaine_platform_edit:
     path:      /admin/edit/{id}
@@ -36,32 +36,8 @@ aubaine_platform_delete_aubaine:
     defaults:
         _controller: AubainePlatformBundle:Aubaine:deleteAubaine
 
-aubaine_platform_populate:
-    path:      /admin/populate
-    defaults:
-        _controller: AubainePlatformBundle:Aubaine:populate
 
 aubaine_platform_my_aubaines:
-    path:      /agenda/{week}
+    path:      /agenda
     defaults:
         _controller: AubainePlatformBundle:Aubaine:my_aubaines
-
- # Ajax
-aubaine_platform_ajax_add_aubaine:
-    path:  /ajax_add_aubaine
-    defaults: { _controller: AubainePlatformBundle:Aubaine:ajax_add_aubaine }
-    requirements:
-      _method: POST
-
-aubaine_platform_ajax_add_aubaine_multiple:
-    path:  /ajax_add_aubaine_multiple
-    defaults: { _controller: AubainePlatformBundle:Aubaine:ajax_add_aubaine_multiple }
-    requirements:
-      _method: POST
-
-aubaine_platform_load_marker:
-    path:      /load_marker
-    defaults:
-        _controller: AubainePlatformBundle:Aubaine:load_marker
-    requirements:
-        _method: POST

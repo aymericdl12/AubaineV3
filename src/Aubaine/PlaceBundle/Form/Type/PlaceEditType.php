@@ -9,9 +9,9 @@ class PlaceEditType extends AbstractType
 {
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
-    $builder->remove('imageFileHeader')
-            ->remove('imageFile1')
-            ->remove('imageFile2');
+    // $builder->remove('imageFileHeader')
+            // ->remove('imageFile1')
+            // ->remove('imageFile2');
   }
   public function getParent()
   {

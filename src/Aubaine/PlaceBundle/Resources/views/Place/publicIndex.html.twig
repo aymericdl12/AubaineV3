@@ -10,13 +10,20 @@
 <h1>Découvrez les endroits magiques de Toulouse</h1>
   <div class="placeList">
     {% for place in listPlaces %}
-      <a class="placeExtract" href="{{ path('aubaine_place_public_view', {'id': place.id}) }}">
-        <div class="header">
-          <h3 class="{{ place.category }}"><img src="{{ asset('images/' ~ place.category ~ '.png') }} " alt="" class="category category-{{ place.category }}"> {{ place.title }}</h3>
-          <img src="{{ asset('images/place/' ~ place.imageHeader) }}" alt="" class="imageHeader">
-        </div>
-        <div class="introduction">{{ place.introduction | raw }}</div>
-      </a>
+      <div class="messageExtract">
+          <div class="image">
+              <img src="{{ asset('images/place/' ~ place.imageHeader) }}" alt="" class="avatar">
+          </div>
+          <div class="content">
+              Le meilleur endroit de Toulouse pour profiter de tout ce qui est cool!
+          </div>
+          <div class="place">
+              <a href="{{ path('aubaine_place_public_view', {'id': place.id}) }}" class="btn btn-primary category-{{ place.category }}">
+                  <img src="{{ asset('images/' ~ place.category ~ '.png') }} " alt="" class="category category-{{ place.category }}">
+                  {{ place.title }}
+              </a>
+          </div>
+      </div>
     {% endfor %}
   </div>
   <ul class="pagination">

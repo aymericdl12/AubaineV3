@@ -22,4 +22,13 @@ class PlaceRepository extends DocumentRepository
           ->execute()
 		;
 	}
+    public function getLastPlaces($max)
+	{
+		return $this->createQueryBuilder()
+		  ->sort('date', 'ASC')
+		  ->limit($max)
+		  ->getQuery()
+          ->execute()
+		;
+	}
 }

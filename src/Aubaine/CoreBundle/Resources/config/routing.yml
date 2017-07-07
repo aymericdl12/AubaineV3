@@ -4,6 +4,9 @@ aubaine_core_homepage:
 aubaine_core_map:
     path:     /carte
     defaults: { _controller: AubaineCoreBundle:Home:map }
+aubaine_core_live:
+    path:     /live
+    defaults: { _controller: AubaineCoreBundle:Home:live }
 aubaine_core_concept:
     path:     /concept
     defaults: { _controller: AubaineCoreBundle:Home:concept }

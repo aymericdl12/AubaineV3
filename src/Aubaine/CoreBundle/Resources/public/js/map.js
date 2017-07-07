@@ -11,7 +11,7 @@ jq(document).ready( function() {
 	// load a tile layer
 	L.tileLayer('https://api.mapbox.com/styles/v1/aymericdl2/cj1ypxtb0000g2sqry16pzm0o/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYXltZXJpY2RsMiIsImEiOiJjajF5b2dhMzIwMDBmMzNuenBsMXRpeWVoIn0.EGdbIzhLpXPATY5FzxdsHg', 
 		{}).addTo(map);
-	print_results(listPlaces );
+	print_results(listAubaines );
 
 	// Print user position
 	if(navigator.geolocation) {
@@ -36,54 +36,35 @@ jq(document).ready( function() {
 		},function() { } );
 	}
 
-	function print_results(listPlaces){
-		// alert(JSON.stringify(listPlaces));
+	function print_results(listAubaines){
 
-		for (var i = 0; i <=listPlaces.length-1; i++) {
-			var id = listPlaces[i].id;
-			var authorName = listPlaces[i].title;
-			var authorImageName = listPlaces[i].image1;
-			var authorCategory = listPlaces[i].category;
-			var authorIntroduction = listPlaces[i].introduction;
-			var authorLati = listPlaces[i].lati;
-			var authorLongi = listPlaces[i].longi;
-			var authorAddress = listPlaces[i].address;
+		for (var i = 0; i <=listAubaines.length-1; i++) {
+			var id = listAubaines[i].id;
+			var permanent = listAubaines[i].permanent;
+			var start = listAubaines[i].start;
+			var end = listAubaines[i].end;
+			var message = listAubaines[i].message;
+			var category = listAubaines[i].category;
+			var place = listAubaines[i].place.title;
+			var image = listAubaines[i].place.image_header;
+			var authorLati = listAubaines[i].place.lati;
+			var authorLongi = listAubaines[i].place.longi;
 
 			infos_deal = {
-				"author": authorName,
-				"address": authorAddress,
-				"img": "<img src='"+avatarDir+authorImageName+"'>",
-				"introduction": authorIntroduction,
-				"hours_open": "",
-				"category": authorCategory,
+				"place": place,
+				"start": start,
+				"end": end,
+				"category": category,
+				"image": "<img src='"+avatarDir+image+"'>",
+				"message": message
 			};
-
-			addMarkerByAdress(id, 3, infos_deal, authorLati, authorLongi);
-		}
-
-		// for (var i = 0; i <=listAubaines.length-1; i++) {
-		// 	var id = listAubaines[i].id;
-		// 	var message = listAubaines[i].message;
-		// 	var category = listAubaines[i].category;
-		// 	var authorName = listAubaines[i].author.username;
-		// 	var authorImageName = listAubaines[i].author.image_name;
-		// 	var authorDescription = listAubaines[i].author.description;
-		// 	var authorLati = listAubaines[i].author.lati;
-		// 	var authorLongi = listAubaines[i].author.longi;
-		// 	var authorAddressDisplayed = listAubaines[i].author.address_displayed;
-
-		// 	infos_deal = {
-		// 		"author": authorName,
-		// 		"address": authorAddressDisplayed.split(",")[0],
-		// 		"category": category,
-		// 		"img": "<img src='"+avatarDir+authorImageName+"'>",
-		// 		"subtitle": message,
-		// 		"teaser": authorDescription,
-		// 		"hours_open": "",
-		// 	};
-
-		// 	addMarkerByAdress(id, 1, infos_deal, authorLati, authorLongi);
-		// }	 	    
+			if(permanent){
+				addMarkerByAdress(id, 3, infos_deal, authorLati, authorLongi);
+			}
+			else{
+				addMarkerByAdress(id, 1, infos_deal, authorLati, authorLongi);
+			}
+		}	 	    
 	}
 
     function addMarkerByAdress(id,deal_type, infos_deal,latti,longi){
@@ -91,22 +72,21 @@ jq(document).ready( function() {
 		var infobox_content;
 		var marker_icon;
 		if(deal_type==1){
-			infobox_content =   '<div class="dealMap" >' +
-	                                '<div class="dealMap-header">'+
-                                        '<div class="dealMap-subtitle">'+infos_deal.subtitle+'</div>' +
-	                                '</div>' +
-	                                '<div class="dealMap-content">' +
-	                                    '<div class="dealMap-author">'+ 
-	                                        '<div class="dealMap-author-details">'+
-	                                    		infos_deal.img +
-	                                            '<div class="dealMap-name">'+infos_deal.author+'</div>' +
-	                                            '<div class="dealMap-address">'+infos_deal.address+'</div>' +
-	                                            '<div class="dealMap-hours_open">'+infos_deal.hours_open+'</div>' +
-	                                        '</div>'+
-	                                        '<div class="dealMap-description">'+infos_deal.introduction+'</div>'+
-	                                    '</div>'+
-	                                '</div>' +
-	                            '</div>';	
+			infobox_content =   '<a target="_blank" href="'+viewUrl.replace("toreplace", id)+'" class="dealMap" >' +
+                                    '<div class="image">'+
+                                    	infos_deal.image +
+                                    '</div>' +
+	                                '<div class="content">'+
+	                                	infos_deal.message+
+                                    '</div>' +
+                                    '<div class="place">'+
+                                    	'<img src="'+imageDir+'location.png" alt="" class="location">'+
+                                    	infos_deal.place+
+                                    '</div>' +
+                                    // '<div class="dates">'+
+                                    	// 'du '+infos_deal.start+' au '+infos_deal.end;
+                                    // '</div>' +
+	                            '</a>';
 			var marker_icon = L.icon({
 			    iconUrl: imageDir+infos_deal.category+".png",
 			    className: 'marker-map marker-map-'+deal_type+' marker-map-'+infos_deal.category,
@@ -116,19 +96,18 @@ jq(document).ready( function() {
 			});	   				
 		}
 		else{
-			infobox_content =   '<div class="dealMap" >' +
-	                                '<div class="dealMap-content">' +
-	                                    '<div class="dealMap-author">'+
-	                                        '<div class="dealMap-author-details">'+
-	                                        	infos_deal.img +
-	                                            '<div class="dealMap-name">'+infos_deal.author+'</div>' +
-	                                            '<div class="dealMap-address">'+infos_deal.address+'</div>' +
-	                                            '<div class="dealMap-hours_open">'+infos_deal.hours_open+'</div>' +
-	                                        '</div>'+
-	                                        '<div class="dealMap-description">'+infos_deal.introduction+'</div>'+
-	                                    '</div>'+
-	                                '</div>' +
-	                            '</div>';
+			infobox_content =   '<a target="_blank" href="'+viewUrl.replace("toreplace", id)+'" class="dealMap" >' +
+                                    '<div class="image">'+
+                                    	infos_deal.image +
+                                    '</div>' +
+	                                '<div class="content">'+
+	                                	infos_deal.message+
+                                    '</div>' +
+                                    '<div class="place">'+
+                                    	'<img src="'+imageDir+'location.png" alt="" class="location">'+
+                                    	infos_deal.place+
+                                    '</div>' +
+	                            '</a>';
 			var marker_icon = L.icon({
 			    iconUrl: imageDir+infos_deal.category+".png",
 			    className: 'marker-map marker-map-'+deal_type+' marker-map-'+infos_deal.category,
@@ -147,7 +126,7 @@ jq(document).ready( function() {
 		}
 		marker.bindPopup(infobox_content,infobox_option);
 		arrMarkers[id] = marker;
-		jq('#deal-'+id).click(function(){
+		jq('#deal-'+id).hover(function(){
 			marker.fireEvent('click'); 
 		});
     }

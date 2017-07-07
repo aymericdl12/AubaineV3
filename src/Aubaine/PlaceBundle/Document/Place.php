@@ -19,19 +19,9 @@ class Place
     protected $id;
 
     /**
-      * @MongoDB\Field(type="bool")
-     */
-    private $published;
-
-    /**
      * @MongoDB\Field(type="string")
      */
     protected $category;
-
-    /**
-     * @MongoDB\Field(type="string")
-     */
-    protected $panel;
 
     /**
      * @MongoDB\Field(type="string")
@@ -235,46 +225,6 @@ class Place
     public function getThumbnail()
     {
         return $this->thumbnail;
-    }
-
-    /**
-     * @param string $publiShed
-     *
-     * @return Product
-     */
-    public function setPublished($published)
-    {
-        $this->published = $published;
-        
-        return $this;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getPublished()
-    {
-        return $this->published;
-    }
-
-    /**
-     * @param string $panel
-     *
-     * @return Product
-     */
-    public function setPanel($panel)
-    {
-        $this->panel = $panel;
-        
-        return $this;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getPanel()
-    {
-        return $this->panel;
     }
 
     /**

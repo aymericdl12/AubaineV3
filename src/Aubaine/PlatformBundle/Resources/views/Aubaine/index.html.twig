@@ -13,11 +13,6 @@
     Ajouter une Aubaine
   </a>
 
-  <a href="{{ path('aubaine_platform_add_multiple') }}" class="btn btn-default">
-    <i class="glyphicon glyphicon-plus"></i>
-    Ajouter une Aubaine recurente
-  </a>
-
   <h2>Liste des aubaines</h2>
 
 
@@ -28,31 +23,41 @@
   <table class="table table-hover">
     <thead>
         <tr>
-          <th>Date</th>
-          <th>Aubaine</th>
-          <th>Auteur</th>
+          <th>Début</th>
+          <th>Fin</th>
+          <th>Message</th>
+          <th>Lieu</th>
           <th>Catégorie</th>
-          <th>action</th>
+          <th>Action</th>
         </tr>
     </thead>
     <tbody>
         {% for aubaine in listAubaines %}
             <tr>
                 <td>
-                    {{ aubaine.date | date("d/m/y") }}
+                    {{ aubaine.start | date("d/m/y") }}
                 </td>
                 <td>
-                    <a href="{{ path('aubaine_platform_edit', {'id': aubaine.id}) }}" >      
+                    {{ aubaine.end | date("d/m/y") }} 
+                </td>
+                <td>
+                    <a href="{{ path('aubaine_platform_view', {'id': aubaine.id}) }}" >      
                         <h4 class="list-group-item-heading">{{ aubaine.message }}</h4>
                     </a>
                 </td>
                 <td>
-                  <a href="{{ path('aubaine_user_view', {'id': aubaine.author.id}) }}" >      
-                      {{ aubaine.author.username }} 
-                  </a>
+                  {% if aubaine.place %}
+                    {{ aubaine.place.title }} 
+                    {% endif %}
                 </td>
                 <td>
-                    {{ aubaine.category }} 
+                    {{ aubaine.place.category }} 
+                </td>
+                <td>
+                    <a href="{{ path('aubaine_platform_edit', {'id': aubaine.id}) }}" class="btn btn-default">
+                      <i class="glyphicon glyphicon-edit"></i>
+                      Modifier le message
+                    </a>
                 </td>
             </tr>
         {% endfor %}
