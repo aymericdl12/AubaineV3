@@ -18,6 +18,11 @@ class Aubaine
     /**
      * @MongoDB\Field(type="string")
      */
+    protected $idAuthor;
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
     protected $placeId;
 
     /**
@@ -341,5 +346,14 @@ class Aubaine
     public function getStart()
     {
         return $this->start;
+    }
+    /**
+     * Get start
+     *
+     * @return start $start
+     */
+    public function getIdAuthor()
+    {
+        return $this->idAuthor;
     }
 }

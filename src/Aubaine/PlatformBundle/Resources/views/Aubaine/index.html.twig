@@ -48,11 +48,11 @@
                 <td>
                   {% if aubaine.place %}
                     {{ aubaine.place.title }} 
-                    {% endif %}
                 </td>
                 <td>
                     {{ aubaine.place.category }} 
                 </td>
+                    {% endif %}
                 <td>
                     <a href="{{ path('aubaine_platform_edit', {'id': aubaine.id}) }}" class="btn btn-default">
                       <i class="glyphicon glyphicon-edit"></i>
