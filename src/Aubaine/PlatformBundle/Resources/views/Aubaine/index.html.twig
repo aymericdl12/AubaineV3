@@ -41,9 +41,6 @@
                     {{ aubaine.end | date("d/m/y") }} 
                 </td>
                 <td>
-                    {{ aubaine | json_encode() }} 
-                </td>
-                <td>
                     <a href="{{ path('aubaine_platform_view', {'id': aubaine.id}) }}" >      
                         <h4 class="list-group-item-heading">{{ aubaine.message }}</h4>
                     </a>

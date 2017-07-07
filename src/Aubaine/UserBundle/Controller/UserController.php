@@ -187,30 +187,31 @@ class UserController extends Controller
     $dm = $this->get('doctrine_mongodb')->getManager();
     $userManager = $this->get('fos_user.user_manager');
 
-    $aubaines = $dm->getRepository('AubainePlatformBundle:Aubaine')->findAll();
-    foreach ($aubaines as $aubaine) {
-      $author = $userManager->findUserBy(array( 'id' => $aubaine->getIdAuthor() ));
-      $placeId = $author->getPlaceId();
-      $place = $dm->getRepository('AubainePlaceBundle:Place')->find($placeId);
-      $aubaine->setPlace($place);
-      $aubaine->setPlaceId($place->getId());
-      $aubaine->setPermanent( True );
-    }
-
-
-    // $places = $dm->getRepository('AubainePlaceBundle:Place')->findAll();
-    // foreach ($places as $place) {
-    //   $aubaine = new Aubaine();
+    // $aubaines = $dm->getRepository('AubainePlatformBundle:Aubaine')->findAll();
+    // foreach ($aubaines as $aubaine) {
+    //   $author = $userManager->findUserBy(array( 'id' => $aubaine->getIdAuthor() ));
+    //   $placeId = $author->getPlacesId()[0];
+    //   $place = $dm->getRepository('AubainePlaceBundle:Place')->find($placeId);
     //   $aubaine->setPlace($place);
     //   $aubaine->setPlaceId($place->getId());
     //   $aubaine->setPermanent( True );
-    //   $aubaine->setStart( new \DateTime("now") );
-    //   $aubaine->setEnd( new \DateTime("+3 year") );
-    //   $aubaine->setCity( $place->getCity() );
-    //   $aubaine->setMessage( "Ceci est un lieu magique ! On y trouve le meilleur du meilleur" );
-    //   $aubaine->setCategory( $place->getCategory() );
-    //   $dm->persist($aubaine);
     // }
+
+
+    $places = $dm->getRepository('AubainePlaceBundle:Place')->findAll();
+    foreach ($places as $place) {
+      $aubaine = new Aubaine();
+      $aubaine->setPlace($place);
+      $aubaine->setPlaceId($place->getId());
+      $aubaine->setPermanent( True );
+      $aubaine->setDate( new \DateTime('-3 days') );
+      $aubaine->setStart( new \DateTime("now") );
+      $aubaine->setEnd( new \DateTime("+3 year") );
+      $aubaine->setCity( $place->getCity() );
+      $aubaine->setMessage( "Ceci est un lieu magique !" );
+      $aubaine->setCategory( $place->getCategory() );
+      $dm->persist($aubaine);
+    }
 
 
     // $users=$userManager->findUsers();
@@ -251,7 +252,7 @@ class UserController extends Controller
 
     //     $user->setPlaceId($place->getId());
     //     $userManager->updateUser($user,false);
-    // }
+    }
     $dm->flush();
     $request->getSession()->getFlashBag()->add('info', "Modifications effectuées");
     return $this->redirectToRoute('aubaine_platform_home');

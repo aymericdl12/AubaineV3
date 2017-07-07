@@ -55,6 +55,12 @@ class Aubaine
     /**
      * @MongoDB\Field(type="date")
      */
+    protected $date;
+
+
+    /**
+     * @MongoDB\Field(type="date")
+     */
     protected $start;
 
     /**
