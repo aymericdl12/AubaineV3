@@ -347,13 +347,4 @@ class Aubaine
     {
         return $this->start;
     }
-    /**
-     * Get start
-     *
-     * @return start $start
-     */
-    public function getIdAuthor()
-    {
-        return $this->idAuthor;
-    }
 }
