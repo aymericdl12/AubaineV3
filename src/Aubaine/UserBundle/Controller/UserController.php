@@ -187,19 +187,15 @@ class UserController extends Controller
     $dm = $this->get('doctrine_mongodb')->getManager();
     $userManager = $this->get('fos_user.user_manager');
 
-    // $aubaines = $dm->getRepository('AubainePlatformBundle:Aubaine')->findAll();
-    // foreach ($aubaines as $aubaine) {
-      // $place= new Place();
-      // $aubaine->setPlace($place);
-      // $dm->remove($aubaine);
-      // $author = $userManager->findUserBy(array( 'id' => $aubaine->getIdAuthor() ));
-      // $placeId = $author->getPlaceId();
-      // $place = $dm->getRepository('AubainePlaceBundle:Place')->find($placeId);
-      // $aubaine->setPlace($place);
-      // $aubaine->setPlaceId($place->getId());
-      // $aubaine->setDate( new \DateTime() );
-      // $aubaine->setDuration( 2928 );
-    // }
+    $aubaines = $dm->getRepository('AubainePlatformBundle:Aubaine')->findAll();
+    foreach ($aubaines as $aubaine) {
+      $author = $userManager->findUserBy(array( 'id' => $aubaine->getIdAuthor() ));
+      $placeId = $author->getPlaceId();
+      $place = $dm->getRepository('AubainePlaceBundle:Place')->find($placeId);
+      $aubaine->setPlace($place);
+      $aubaine->setPlaceId($place->getId());
+      $aubaine->setPermanent( True );
+    }
 
 
     // $places = $dm->getRepository('AubainePlaceBundle:Place')->findAll();
@@ -217,15 +213,15 @@ class UserController extends Controller
     // }
 
 
-    $users=$userManager->findUsers();
-    foreach ($users as $user) {
+    // $users=$userManager->findUsers();
+    // foreach ($users as $user) {
     //     $place= new Place();
     //     $dm = $this->get('doctrine_mongodb')->getManager();
     //     $repository = $this->get('doctrine_mongodb')
     //     ->getManager()
     //     ->getRepository('AubainePlaceBundle:Place');
 
-        $user->setPlacesId( array( $user->getPlaceId() ) );
+        // $user->setPlacesId( array( $user->getPlaceId() ) );
     //     $place->setIntroduction($user->getDescription());
     //     $place->setAddress($user->getAddressDisplayed());
     //     $place->setCity($user->getCity());
@@ -255,7 +251,7 @@ class UserController extends Controller
 
     //     $user->setPlaceId($place->getId());
     //     $userManager->updateUser($user,false);
-    }
+    // }
     $dm->flush();
     $request->getSession()->getFlashBag()->add('info', "Modifications effectuées");
     return $this->redirectToRoute('aubaine_platform_home');
