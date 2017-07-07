@@ -189,6 +189,8 @@ class UserController extends Controller
 
     // $aubaines = $dm->getRepository('AubainePlatformBundle:Aubaine')->findAll();
     // foreach ($aubaines as $aubaine) {
+      // $place= new Place();
+      // $aubaine->setPlace($place);
       // $dm->remove($aubaine);
       // $author = $userManager->findUserBy(array( 'id' => $aubaine->getIdAuthor() ));
       // $placeId = $author->getPlaceId();
