@@ -1,0 +1,41 @@
+{% extends "AubaineCoreBundle::layout.html.twig" %}
+
+{% block body_column_center %}
+
+<div id="body-live">
+        <div id='live-header'>
+            <h1>
+                Vous êtes en direct, restez à l'affût !
+            </h1>
+        </div>
+        <div id="live-list">
+            {% for aubaine in listAubaines %}
+                <a class="aubaineExtract" target="_blank" href="{{ path('aubaine_platform_public_view', {'id': aubaine.id}) }}">
+                    <div class="image">
+                        <img src="{{ asset('images/place/' ~ aubaine.place.imageHeader) }}" alt="" class="avatar">
+                    </div>
+                    <div class="content">
+                        {{ aubaine.message }}
+                    </div>
+                    <div class="place">
+                        <img src="{{ asset('images/location.png') }} " alt="" class="location">
+                        {{ aubaine.place.title }}
+                    </div>
+                    <div class="date">
+                        <img src="{{ asset('images/date.png') }} " alt="" class="calendar">
+                        du {{ aubaine.start | date("d M") }} au {{ aubaine.end | date("d M") }}
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts filter='jsqueeze'
+        'bundles/aubainecore/js/main.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

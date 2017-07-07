@@ -1,0 +1,84 @@
+{# src/OC/PlatformBundle/Resources/view/Advert/view.html.twig #}
+
+{% extends "AubainePlatformBundle::layout.html.twig" %}
+
+{% block title %}
+  Aubaine - {{ parent() }}
+{% endblock %}
+
+{% block aubaineplatform_body %}
+
+
+  <div class="aubaine">
+    <div class="header">
+      <img src="{{ asset('images/place/' ~ aubaine.place.imageHeader) }}" alt="" class="avatar">
+    </div>
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+      {% if aubaine.place.id == app.user.placeId %}
+        <div class="edit">
+          <a class="btn btn-danger" href="{{ path('aubaine_platform_delete_aubaine', {'id': aubaine.id}) }}">Supprimer</a>
+        </div>  
+      {% endif %}
+    {% endif %}
+
+		<h1>{{ aubaine.message }}</h1>
+    <h2> <img src="{{ asset('images/location.png') }} " alt="" class="location"> {{ aubaine.place.title }}</h2>
+  	
+    <div class="row">
+        <div class="col-md-6">
+          <div class="introduction">{{ aubaine.place.introduction | raw }}</div>
+          <div class="content">{{ aubaine.place.content | raw }}</div>
+          <div class="information">{{ aubaine.place.information | raw }}</div>
+          <div class="address">
+             <b>Adresse</b>
+             <p>{{ aubaine.place.address }}, {{ aubaine.place.zipcode }} {{ aubaine.place.city }}</p>
+          </div>
+          <div class="phone">
+             <b>Téléphone</b>
+             <p>{% if aubaine.place.phone %} {{ aubaine.place.phone }} {% else %} ----- {% endif %}</p>
+          </div>
+          <div class="hours">
+             <b>Horaires d'ouverture</b>
+            <table class="table">
+                <tbody>
+                  <tr>
+                    <td>Lundi</td>
+                    <td>{{ aubaine.place.hoursMonday }}</td>
+                  </tr>
+                  <tr>
+                    <td>Mardi</td>
+                    <td>{{ aubaine.place.hoursTuesday }}</td>
+                  </tr>
+                  <tr>
+                    <td>Mercredi</td>
+                    <td>{{ aubaine.place.hoursWednesday }}</td>
+                  </tr>
+                  <tr>
+                    <td>Jeudi</td>
+                    <td>{{ aubaine.place.hoursThursday }}</td>
+                  </tr>
+                  <tr>
+                    <td>Vendredi</td>
+                    <td>{{ aubaine.place.hoursFriday }}</td>
+                  </tr>
+                  <tr>
+                    <td>Samedi</td>
+                    <td>{{ aubaine.place.hoursSaturday }}</td>
+                  </tr>
+                  <tr>
+                    <td>Dimanche</td>
+                    <td>{{ aubaine.place.hoursSunday }}</td>
+                  </tr>
+                </tbody>
+              </table>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <img class="image" src="{{ asset('images/place/' ~ aubaine.place.image1) }}" alt="">
+          <img class="image" src="{{ asset('images/place/' ~ aubaine.place.image2) }}" alt="">
+        </div>      
+    </div>
+  </div>
+
+
+{% endblock %}

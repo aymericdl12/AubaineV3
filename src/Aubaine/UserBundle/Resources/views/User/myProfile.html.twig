@@ -1,0 +1,136 @@
+{# src/OC/PlatformBundle/Resources/view/Advert/view.html.twig #}
+
+{% extends "AubaineUserBundle::layout.html.twig" %}
+
+{% block title %}
+  Vue du membre - {{ parent() }}
+{% endblock %}
+
+{% block body_column_center %}
+
+
+
+<div class="body-myProfile">
+  <div class="myProfile">
+    <h1>Mes informations</h1>
+    <div class="alert alert-info">
+      <p>Ces information concernent votre compte, vous seul pouvez les voir.</p>
+    </div>
+    <table class="table">
+    <tbody>
+      <tr>
+        <td>Nom d'utilisateur</td>
+        <td>{{ user.username }}</td>
+      </tr>
+      <tr>
+        <td>Adresse email</td>
+        <td>{{ user.email }}</td>
+      </tr>
+      <tr>
+        <td>Téléphone</td>
+        <td>{{ user.phone }}</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+
+
+  <div class="myPlaces">
+    <h1>Mes lieux</h1>
+    <div class="alert alert-info">
+      <p>Vos lieux sont les endroits où vous pouvez envoyer un message</p>
+      <p>Pour ajouter ou modifier un lieu, merci d'envoyer un mail à <a href="mailto:contact@aubaineapp.fr">contact@aubaineapp.fr</a></p>
+    </div>
+    <div class="row">
+      {% for place in places %}
+      <div class="col col-md-6">
+            <div class="aubaine">
+              <div class="header">
+                <img src="{{ asset('images/place/' ~ place.imageHeader) }}" alt="" class="avatar">
+              </div>
+              <h2> <img src="{{ asset('images/location.png') }} " alt="" class="location"> {{ place.title }}</h2>
+              
+              <div class="row">
+                  <div class="col-md-6">
+                    <div class="introduction">{{ place.introduction | raw }}</div>
+                    <div class="content">{{ place.content | raw }}</div>
+                    <div class="information">{{ place.information | raw }}</div>
+                    <div class="address">
+                       <b>Adresse</b>
+                       <p>{{ place.address }}, {{ place.zipcode }} {{ place.city }}</p>
+                    </div>
+                    <div class="phone">
+                       <b>Téléphone</b>
+                       <p>{% if place.phone %} {{ place.phone }} {% else %} ----- {% endif %}</p>
+                    </div>
+                    <div class="hours">
+                       <b>Horaires d'ouverture</b>
+                      <table class="table">
+                          <tbody>
+                            <tr>
+                              <td>Lundi</td>
+                              <td>{{ place.hoursMonday }}</td>
+                            </tr>
+                            <tr>
+                              <td>Mardi</td>
+                              <td>{{ place.hoursTuesday }}</td>
+                            </tr>
+                            <tr>
+                              <td>Mercredi</td>
+                              <td>{{ place.hoursWednesday }}</td>
+                            </tr>
+                            <tr>
+                              <td>Jeudi</td>
+                              <td>{{ place.hoursThursday }}</td>
+                            </tr>
+                            <tr>
+                              <td>Vendredi</td>
+                              <td>{{ place.hoursFriday }}</td>
+                            </tr>
+                            <tr>
+                              <td>Samedi</td>
+                              <td>{{ place.hoursSaturday }}</td>
+                            </tr>
+                            <tr>
+                              <td>Dimanche</td>
+                              <td>{{ place.hoursSunday }}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <img class="image" src="{{ asset('images/place/' ~ place.image1) }}" alt="">
+                    <img class="image" src="{{ asset('images/place/' ~ place.image2) }}" alt="">
+                  </div>      
+              </div>
+            </div>
+        </div>
+      <div class="col col-md-6">
+            <div class="aubaine">
+              <div class="header">
+                <img src="{{ asset('images/place/' ~ place.imageHeader) }}" alt="" class="avatar">
+              </div>
+              <h2> <img src="{{ asset('images/location.png') }} " alt="" class="location"> {{ place.title }}</h2>
+              
+              <div class="row">
+                  <div class="col-md-6">
+                    <div class="introduction">{{ place.introduction | raw }}</div>
+                    <div class="content">{{ place.content | raw }}</div>
+                    <div class="information">{{ place.information | raw }}</div>
+                  </div>
+                  <div class="col-md-6">
+                    <img class="image" src="{{ asset('images/place/' ~ place.image1) }}" alt="">
+                    <img class="image" src="{{ asset('images/place/' ~ place.image2) }}" alt="">
+                  </div>      
+              </div>
+            </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
