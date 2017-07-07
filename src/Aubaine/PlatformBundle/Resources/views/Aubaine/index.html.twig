@@ -41,7 +41,7 @@
                     {{ aubaine.end | date("d/m/y") }} 
                 </td>
                 <td>
-                    {{ aubaine.idAuthor }} 
+                    {{ aubaine | json_encode() }} 
                 </td>
                 <td>
                     <a href="{{ path('aubaine_platform_view', {'id': aubaine.id}) }}" >      
