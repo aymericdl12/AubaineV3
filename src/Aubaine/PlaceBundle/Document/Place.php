@@ -30,13 +30,11 @@ class Place
 
     /**
      * @MongoDB\Field(type="string")
-     * @Assert\Length(min=10)
      */
     protected $introduction;
 
     /**
      * @MongoDB\Field(type="string")
-     * @Assert\Length(min=10)
      */
     protected $conclusion;
 
@@ -47,7 +45,6 @@ class Place
 
     /**
      * @MongoDB\Field(type="string")
-     * @Assert\NotBlank()
      */
     protected $content;
 
@@ -86,7 +83,6 @@ class Place
 
     /**
      * @MongoDB\Field(type="string")
-     * @Assert\NotBlank()
      */
     protected $address;
 
