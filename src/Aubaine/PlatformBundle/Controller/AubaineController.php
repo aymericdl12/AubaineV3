@@ -281,8 +281,11 @@ class AubaineController extends Controller
       $aubaine->setCity( $places[ $request->request->get('place') ]->getCity());
       $aubaine->setCategory( $request->request->get('category') );
       if($request->request->get('permanent')){
-        $aubaine->setPermanent( True );
+        $aubaine->setType( 1 );
       }  
+      else{
+        $aubaine->setType( 2 );
+      }
       $dm->persist($aubaine);
       $dm->flush();
       $request->getSession()->getFlashBag()->add('info', "Le message a bien été publié.");
