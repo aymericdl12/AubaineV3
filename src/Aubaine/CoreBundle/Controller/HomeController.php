@@ -22,9 +22,9 @@ class HomeController extends Controller
 	    $current_day_datetime = new \DateTime();
 	    $current_day_datetime->setTimestamp($current_day);
 
-	    $listAubaines1 = $dm->getRepository('AubainePlatformBundle:Aubaine')->getLastAubaines(1,3)->toArray();
-	    $listAubaines2 = $dm->getRepository('AubainePlatformBundle:Aubaine')->getLastAubaines(2,3)->toArray();
-	    $listAubaines3 = $dm->getRepository('AubainePlatformBundle:Aubaine')->getLastAubaines(3,3)->toArray();
+	    $listAubaines1 = $dm->getRepository('AubainePlatformBundle:Aubaine')->getLastAubaines(array(1,2),3)->toArray();
+	    // $listAubaines2 = $dm->getRepository('AubainePlatformBundle:Aubaine')->getLastAubaines(array(1,2),3)->toArray();
+	    $listAubaines3 = $dm->getRepository('AubainePlatformBundle:Aubaine')->getLastAubaines(array(3),3)->toArray();
 	    $number_partner = $this->get('doctrine_mongodb')->getManager()->getRepository('AubaineUserBundle:User')->findAll();
 
 	    $hoursDay="hours".date("l");
@@ -34,7 +34,7 @@ class HomeController extends Controller
 	    $array_response=array(
 	      'hoursDay' => $hoursDay,
 	      'listAubaines1' => $listAubaines1,
-	      'listAubaines2' => $listAubaines2,
+	      // 'listAubaines2' => $listAubaines2,
 	      'listAubaines3' => $listAubaines3,
 	      'current_day' => $current_day
 	    );

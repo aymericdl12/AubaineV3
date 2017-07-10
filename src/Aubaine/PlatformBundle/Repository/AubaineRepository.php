@@ -59,10 +59,10 @@ class AubaineRepository extends DocumentRepository
 			->execute()
 		;
 	}
-    public function getLastAubaines($type, $max)
+    public function getLastAubaines($types, $max)
 	{
 		return $this->createQueryBuilder()
-		  ->field('type')->equals($type)
+		  ->field('type')->in($types)
 		  ->sort('date', 'ASC')
 		  ->limit($max)
 		  ->getQuery()

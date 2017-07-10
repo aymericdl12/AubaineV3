@@ -28,7 +28,7 @@
             </form>
         </div>
         <div id="home-live">
-            <h2>À la une</h2>
+            <h2>Messages Éhphémères</h2>
             {% for aubaine in listAubaines3 %}
                 <a class="aubaineExtract" target="_blank" href="{{ path('aubaine_platform_public_view', {'id': aubaine.id}) }}">
                     <div class="image" style="background-image:url('{{ asset('images/place/' ~ aubaine.place.imageHeader) }}')"></div>
@@ -44,33 +44,11 @@
                         {% if  aubaine.type == 3 %}
                         Le {{ aubaine.start | date("d") }} {{ aubaine.start | date("F") | trans }}
                         {% elseif aubaine.type == 2 %}
-                        Du {{ aubaine.start | date("d") }} {{ aubaine.start | date("F") | trans }} au {{ aubaine.end | date("d") }} {{ aubaine.end | date("F") | trans }}
-                        {% else %}
-                        Toute l'année
-                        {% endif %}
-                    </div>
-                    <img src="{{ asset('images/'~aubaine.category~'.png') }} " alt="" class="category category-{{ aubaine.category }}">
-                </a>
-            {% endfor %}
-        </div>
-        <div id="home-events">
-            <h2>À venir</h2>
-            {% for aubaine in listAubaines2 %}
-                <a class="aubaineExtract" target="_blank" href="{{ path('aubaine_platform_public_view', {'id': aubaine.id}) }}">
-                    <div class="image" style="background-image:url('{{ asset('images/place/' ~ aubaine.place.imageHeader) }}')"></div>
-                    <div class="content">
-                        {{ aubaine.message | raw }}
-                    </div>
-                    <div class="place">
-                        <img src="{{ asset('images/location.png') }} " alt="" class="location">
-                        {{ aubaine.place.title }}
-                    </div>
-                    <div class="date">
-                        <img src="{{ asset('images/date.png') }} " alt="" class="calendar">
-                        {% if  aubaine.type == 3 %}
-                        Le {{ aubaine.start | date("d M") }}
-                        {% elseif aubaine.type == 2 %}
-                        Du {{ aubaine.start | date("d M") }} au {{ aubaine.end | date("d F") }}
+                            {% if aubaine.start | date("F") == aubaine.end | date("F") %}
+                                Du {{ aubaine.start | date("d") }} au {{ aubaine.end | date("d") }} {{ aubaine.end | date("F") | trans }}
+                            {% else %}
+                                Du {{ aubaine.start | date("d") }} {{ aubaine.start | date("F") | trans }} au {{ aubaine.end | date("d") }} {{ aubaine.end | date("F") | trans }}
+                            {% endif %}
                         {% else %}
                         Toute l'année
                         {% endif %}
@@ -94,9 +72,13 @@
                     <div class="date">
                         <img src="{{ asset('images/date.png') }} " alt="" class="calendar">
                         {% if  aubaine.type == 3 %}
-                        Le {{ aubaine.start | date("d M") }}
+                        Le {{ aubaine.start | date("d") }} {{ aubaine.start | date("F") | trans }}
                         {% elseif aubaine.type == 2 %}
-                        Du {{ aubaine.start | date("d F") }} au {{ aubaine.end | date("d F") }}
+                            {% if aubaine.start | date("F") == aubaine.end | date("F") %}
+                                Du {{ aubaine.start | date("d") }} au {{ aubaine.end | date("d") }} {{ aubaine.end | date("F") | trans }}
+                            {% else %}
+                                Du {{ aubaine.start | date("d") }} {{ aubaine.start | date("F") | trans }} au {{ aubaine.end | date("d") }} {{ aubaine.end | date("F") | trans }}
+                            {% endif %}
                         {% else %}
                         Toute l'année
                         {% endif %}

@@ -49,6 +49,7 @@ jq(document).ready( function() {
 			var image = listAubaines[i].place.image_header;
 			var authorLati = listAubaines[i].place.lati;
 			var authorLongi = listAubaines[i].place.longi;
+			var type = listAubaines[i].type;
 
 			infos_deal = {
 				"place": place,
@@ -58,12 +59,7 @@ jq(document).ready( function() {
 				"image": "<img src='"+avatarDir+image+"'>",
 				"message": message
 			};
-			if(permanent){
-				addMarkerByAdress(id, 3, infos_deal, authorLati, authorLongi);
-			}
-			else{
-				addMarkerByAdress(id, 1, infos_deal, authorLati, authorLongi);
-			}
+			addMarkerByAdress(id, type, infos_deal, authorLati, authorLongi);
 		}	 	    
 	}
 

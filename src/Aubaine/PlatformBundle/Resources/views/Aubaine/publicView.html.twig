@@ -19,7 +19,7 @@
       {% endif %}
     {% endif %}
 
-		<h1>  {{ aubaine.message }}</h1>
+		<h1>  {{ aubaine.message | raw }}</h1>
   	<div class="category">
       <h2>
         <img src="{{ asset('images/'~aubaine.category~'.png') }} " alt="" class="category-logo category-{{ aubaine.category }}">
