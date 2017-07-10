@@ -79,10 +79,6 @@ class PlaceType extends AbstractType
         ->add('phone',     TextType::class, array(
             'required' => false,
         ))
-        ->add('published', CheckboxType::class, array(
-            'label'    => 'Publier ce lieu ?',
-            'required' => false,
-        ))
         ->add('save',      SubmitType::class);
     }
 
