@@ -199,8 +199,9 @@ class UserController extends Controller
     // }
 
 
-    // $places = $dm->getRepository('AubainePlaceBundle:Place')->findAll();
-    // foreach ($places as $place) {
+    $places = $dm->getRepository('AubainePlaceBundle:Place')->findAll();
+    foreach ($places as $place) {
+      $place->setInformation("");
     //   $aubaine = new Aubaine();
     //   $aubaine->setPlace($place);
     //   $aubaine->setPlaceId($place->getId());
@@ -213,7 +214,7 @@ class UserController extends Controller
     //   $aubaine->setType( 1 );
     //   $aubaine->setCategory( $place->getCategory() );
     //   $dm->persist($aubaine);
-    // }
+    }
 
 
     // $users=$userManager->findUsers();

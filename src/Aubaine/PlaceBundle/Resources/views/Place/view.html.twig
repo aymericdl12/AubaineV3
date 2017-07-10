@@ -19,22 +19,83 @@
     </a>
   </p>
   
-  <div class="place">
+    <div class="aubaine">
     <div class="header">
-      <h1>{{ place.title }}</h1>
       <img src="{{ asset('images/place/' ~ place.imageHeader) }}" alt="" class="avatar">
     </div>
-    <div class="introduction">{{ place.introduction | raw }}</div>
-    <div class="row">
-        <div class="col-md-6">
-          <div class="content">{{ place.content | raw }}</div>
-          <div class="information">{{ place.information | raw }}</div>
-          <div class="information">{{ place.address }}, {{ place.zipcode }} {{ place.city }}</div>
-        </div>
-        <div class="col-md-6">
-          <img class="image" src="{{ asset('images/place/' ~ place.image1) }}" alt="">
-          <img class="image" src="{{ asset('images/place/' ~ place.image2) }}" alt="">
-        </div>      
+
+    <h1>"Message"</h1>
+    <div class="category">
+      <h2>
+        <img src="{{ asset('images/'~place.category~'.png') }} " alt="" class="category-logo category-{{ place.category }}">
+        Boire et Manger
+      </h2>
+    </div>
+    <div class="dates">
+        <h2>
+          <img src="{{ asset('images/date.png') }} " alt="" class="calendar">
+          date
+        </h2>        
+    </div>
+    <div class="place">
+      <h2>
+        <img src="{{ asset('images/location.png') }} " alt="" class="location"> 
+        {{ place.title }}
+      </h2>
+      <div class="row">
+          <div class="col-md-6">
+            <div class="introduction">{{ place.introduction | raw }}</div>
+            <div class="content">{{ place.content | raw }}</div>
+            <div class="information">{{ place.information | raw }}</div>
+            <div class="address">
+               <b>Adresse</b>
+               <p>{{ place.address }}, {{ place.zipcode }} {{ place.city }}</p>
+            </div>
+            <div class="phone">
+               <b>Téléphone</b>
+               <p>{% if place.phone %} {{ place.phone }} {% else %} ----- {% endif %}</p>
+            </div>
+            <div class="hours">
+               <b>Horaires d'ouverture</b>
+              <table class="table">
+                  <tbody>
+                    <tr>
+                      <td>Lundi</td>
+                      <td>{{ place.hoursMonday }}</td>
+                    </tr>
+                    <tr>
+                      <td>Mardi</td>
+                      <td>{{ place.hoursTuesday }}</td>
+                    </tr>
+                    <tr>
+                      <td>Mercredi</td>
+                      <td>{{ place.hoursWednesday }}</td>
+                    </tr>
+                    <tr>
+                      <td>Jeudi</td>
+                      <td>{{ place.hoursThursday }}</td>
+                    </tr>
+                    <tr>
+                      <td>Vendredi</td>
+                      <td>{{ place.hoursFriday }}</td>
+                    </tr>
+                    <tr>
+                      <td>Samedi</td>
+                      <td>{{ place.hoursSaturday }}</td>
+                    </tr>
+                    <tr>
+                      <td>Dimanche</td>
+                      <td>{{ place.hoursSunday }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <img class="image" src="{{ asset('images/place/' ~ place.image1) }}" alt="">
+            <img class="image" src="{{ asset('images/place/' ~ place.image2) }}" alt="">
+          </div>      
+      </div>
     </div>
   </div>
 
