@@ -32,4 +32,3 @@ security:
   access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/user, roles: ROLE_ADMIN }
-        - { path: ^/aubaines, roles: ROLE_USER }
