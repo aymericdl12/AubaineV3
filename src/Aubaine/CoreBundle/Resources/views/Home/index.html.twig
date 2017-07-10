@@ -33,7 +33,7 @@
                 <a class="aubaineExtract" target="_blank" href="{{ path('aubaine_platform_public_view', {'id': aubaine.id}) }}">
                     <div class="image" style="background-image:url('{{ asset('images/place/' ~ aubaine.place.imageHeader) }}')"></div>
                     <div class="content  category-{{ aubaine.category }}">
-                        {{ aubaine.message }}
+                        {{ aubaine.message | raw }}
                     </div>
                     <div class="place">
                         <img src="{{ asset('images/location.png') }} " alt="" class="location">
@@ -59,7 +59,7 @@
                 <a class="aubaineExtract" target="_blank" href="{{ path('aubaine_platform_public_view', {'id': aubaine.id}) }}">
                     <div class="image" style="background-image:url('{{ asset('images/place/' ~ aubaine.place.imageHeader) }}')"></div>
                     <div class="content">
-                        {{ aubaine.message }}
+                        {{ aubaine.message | raw }}
                     </div>
                     <div class="place">
                         <img src="{{ asset('images/location.png') }} " alt="" class="location">
@@ -85,7 +85,7 @@
                 <a class="aubaineExtract" target="_blank" href="{{ path('aubaine_platform_public_view', {'id': aubaine.id}) }}">
                     <div class="image" style="background-image:url('{{ asset('images/place/' ~ aubaine.place.imageHeader) }}')"></div>
                     <div class="content">
-                        {{ aubaine.message }}
+                        {{ aubaine.message | raw }}
                     </div>
                     <div class="place">
                         <img src="{{ asset('images/location.png') }} " alt="" class="location">

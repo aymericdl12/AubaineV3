@@ -58,41 +58,43 @@
                <b>Adresse</b>
                <p>{{ aubaine.place.address }}, {{ aubaine.place.zipcode }} {{ aubaine.place.city }}</p>
             </div>
-            <div class="phone">
-               <b>Téléphone</b>
-               <p>{% if aubaine.place.phone %} {{ aubaine.place.phone }} {% else %} ----- {% endif %}</p>
-            </div>
+            {% if aubaine.place.phone %} 
+              <div class="phone">
+                 <b>Téléphone</b>
+                 <p>{{ aubaine.place.phone  | default('-----') }} </p>
+              </div>
+            {% endif %}
             <div class="hours">
                <b>Horaires d'ouverture</b>
               <table class="table">
                   <tbody>
                     <tr>
                       <td>Lundi</td>
-                      <td>{{ aubaine.place.hoursMonday }}</td>
+                      <td>{{ aubaine.place.hoursMonday | default('fermé') }}</td>
                     </tr>
                     <tr>
                       <td>Mardi</td>
-                      <td>{{ aubaine.place.hoursTuesday }}</td>
+                      <td>{{ aubaine.place.hoursTuesday | default('fermé') }}</td>
                     </tr>
                     <tr>
                       <td>Mercredi</td>
-                      <td>{{ aubaine.place.hoursWednesday }}</td>
+                      <td>{{ aubaine.place.hoursWednesday | default('fermé') }}</td>
                     </tr>
                     <tr>
                       <td>Jeudi</td>
-                      <td>{{ aubaine.place.hoursThursday }}</td>
+                      <td>{{ aubaine.place.hoursThursday | default('fermé') }}</td>
                     </tr>
                     <tr>
                       <td>Vendredi</td>
-                      <td>{{ aubaine.place.hoursFriday }}</td>
+                      <td>{{ aubaine.place.hoursFriday | default('fermé') }}</td>
                     </tr>
                     <tr>
                       <td>Samedi</td>
-                      <td>{{ aubaine.place.hoursSaturday }}</td>
+                      <td>{{ aubaine.place.hoursSaturday | default('fermé') }}</td>
                     </tr>
                     <tr>
                       <td>Dimanche</td>
-                      <td>{{ aubaine.place.hoursSunday }}</td>
+                      <td>{{ aubaine.place.hoursSunday | default('fermé') }}</td>
                     </tr>
                   </tbody>
                 </table>
