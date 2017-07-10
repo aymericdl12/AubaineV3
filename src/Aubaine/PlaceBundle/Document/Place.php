@@ -25,7 +25,6 @@ class Place
 
     /**
      * @MongoDB\Field(type="string")
-     * @Assert\Length(min=10)
      */
     protected $title;
 
