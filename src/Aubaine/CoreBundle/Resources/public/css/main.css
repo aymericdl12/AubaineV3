@@ -477,7 +477,7 @@ body{
 #body-home h2{
   font-size: 2.5rem;
   margin: 4rem 1rem 0;
-  color:#fff;
+  color:#666;
   position:relative;
   z-index: 1;
 }

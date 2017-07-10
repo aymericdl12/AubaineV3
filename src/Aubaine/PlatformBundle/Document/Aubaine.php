@@ -47,9 +47,9 @@ class Aubaine
     protected $message;
 
     /**
-     * @MongoDB\Field(type="bool")
+     * @MongoDB\Field(type="int")
      */
-    protected $permanent = False;
+    protected $type = 1;
 
 
     /**
@@ -294,20 +294,20 @@ class Aubaine
      * @param end $end
      * @return $this
      */
-    public function setPermanent($permanent)
+    public function setType($type)
     {
-        $this->permanent = $permanent;
+        $this->type = $type;
         return $this;
     }
 
     /**
-     * Get permanent
+     * Get type
      *
-     * @return permanent $permanent
+     * @return type $type
      */
-    public function getPermanent()
+    public function getType()
     {
-        return $this->permanent;
+        return $this->type;
     }
 
     /**
