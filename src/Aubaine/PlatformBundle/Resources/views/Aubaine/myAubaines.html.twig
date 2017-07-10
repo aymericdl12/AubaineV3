@@ -67,9 +67,9 @@
         {% for place in places %}
             {% for aubaine in attribute(currentAubaines, place.id) %}
                 <a class="aubaineExtract" target="_blank" href="{{ path('aubaine_platform_public_view', {'id': aubaine.id}) }}">
-                    <div class="image" style="background-image:url('{{ asset('images/place/' ~ aubaine.place.imageHeader) }}')" alt="" class="avatar"></div>
-                    <div class="content">
-                        {{ aubaine.message }}
+                    <div class="image" style="background-image:url('{{ asset('images/place/' ~ aubaine.place.imageHeader) }}')"></div>
+                    <div class="content  category-{{ aubaine.category }}">
+                        {{ aubaine.message |length > 100 ? aubaine.message |slice(0, 100) ~ '...' : aubaine.message   }}
                     </div>
                     <div class="place">
                         <img src="{{ asset('images/location.png') }} " alt="" class="location">
@@ -78,13 +78,72 @@
                     <div class="date">
                         <img src="{{ asset('images/date.png') }} " alt="" class="calendar">
                         {% if  aubaine.type == 3 %}
-                        Le {{ aubaine.start | date("d M") }}
+                        Le {{ aubaine.start | date("d") }} {{ aubaine.start | date("F") | trans }}
                         {% elseif aubaine.type == 2 %}
-                        Du {{ aubaine.start | date("d F") }} au {{ aubaine.end | date("d F") }}
+                            {% if aubaine.start | date("F") == aubaine.end | date("F") %}
+                                Du {{ aubaine.start | date("d") }} au {{ aubaine.end | date("d") }} {{ aubaine.end | date("F") | trans }}
+                            {% else %}
+                                Du {{ aubaine.start | date("d") }} {{ aubaine.start | date("F") | trans }} au {{ aubaine.end | date("d") }} {{ aubaine.end | date("F") | trans }}
+                            {% endif %}
                         {% else %}
                         Toute l'année
                         {% endif %}
-                    </div>              
+                    </div>
+                    <img src="{{ asset('images/'~aubaine.category~'.png') }} " alt="" class="category category-{{ aubaine.category }}">
+                </a>
+            {% endfor %}
+            {% for aubaine in attribute(oldAubaines, place.id) %}
+                <a class="aubaineExtract" target="_blank" href="{{ path('aubaine_platform_public_view', {'id': aubaine.id}) }}">
+                    <div class="image" style="background-image:url('{{ asset('images/place/' ~ aubaine.place.imageHeader) }}')"></div>
+                    <div class="content  category-{{ aubaine.category }}">
+                        {{ aubaine.message |length > 100 ? aubaine.message |slice(0, 100) ~ '...' : aubaine.message   }}
+                    </div>
+                    <div class="place">
+                        <img src="{{ asset('images/location.png') }} " alt="" class="location">
+                        {{ aubaine.place.title }}
+                    </div>
+                    <div class="date">
+                        <img src="{{ asset('images/date.png') }} " alt="" class="calendar">
+                        {% if  aubaine.type == 3 %}
+                        Le {{ aubaine.start | date("d") }} {{ aubaine.start | date("F") | trans }}
+                        {% elseif aubaine.type == 2 %}
+                            {% if aubaine.start | date("F") == aubaine.end | date("F") %}
+                                Du {{ aubaine.start | date("d") }} au {{ aubaine.end | date("d") }} {{ aubaine.end | date("F") | trans }}
+                            {% else %}
+                                Du {{ aubaine.start | date("d") }} {{ aubaine.start | date("F") | trans }} au {{ aubaine.end | date("d") }} {{ aubaine.end | date("F") | trans }}
+                            {% endif %}
+                        {% else %}
+                        Toute l'année
+                        {% endif %}
+                    </div>
+                    <img src="{{ asset('images/'~aubaine.category~'.png') }} " alt="" class="category category-{{ aubaine.category }}">
+                </a>
+            {% endfor %}
+            {% for aubaine in attribute(permanentAubaines, place.id) %}
+                <a class="aubaineExtract" target="_blank" href="{{ path('aubaine_platform_public_view', {'id': aubaine.id}) }}">
+                    <div class="image" style="background-image:url('{{ asset('images/place/' ~ aubaine.place.imageHeader) }}')"></div>
+                    <div class="content  category-{{ aubaine.category }}">
+                        {{ aubaine.message |length > 100 ? aubaine.message |slice(0, 100) ~ '...' : aubaine.message   }}
+                    </div>
+                    <div class="place">
+                        <img src="{{ asset('images/location.png') }} " alt="" class="location">
+                        {{ aubaine.place.title }}
+                    </div>
+                    <div class="date">
+                        <img src="{{ asset('images/date.png') }} " alt="" class="calendar">
+                        {% if  aubaine.type == 3 %}
+                        Le {{ aubaine.start | date("d") }} {{ aubaine.start | date("F") | trans }}
+                        {% elseif aubaine.type == 2 %}
+                            {% if aubaine.start | date("F") == aubaine.end | date("F") %}
+                                Du {{ aubaine.start | date("d") }} au {{ aubaine.end | date("d") }} {{ aubaine.end | date("F") | trans }}
+                            {% else %}
+                                Du {{ aubaine.start | date("d") }} {{ aubaine.start | date("F") | trans }} au {{ aubaine.end | date("d") }} {{ aubaine.end | date("F") | trans }}
+                            {% endif %}
+                        {% else %}
+                        Toute l'année
+                        {% endif %}
+                    </div>
+                    <img src="{{ asset('images/'~aubaine.category~'.png') }} " alt="" class="category category-{{ aubaine.category }}">
                 </a>
             {% endfor %}
         {% endfor %}

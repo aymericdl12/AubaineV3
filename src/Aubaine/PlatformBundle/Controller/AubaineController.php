@@ -274,17 +274,25 @@ class AubaineController extends Controller
       $aubaine= new Aubaine();
       $aubaine->setTitle($request->request->get('title'));
       $aubaine->setMessage($request->request->get('message'));
-      $aubaine->setStart($request->request->get('start'));
-      $aubaine->setEnd($request->request->get('end'));
       $aubaine->setPlace( $places[ $request->request->get('place') ] );
       $aubaine->setPlaceId( $places[ $request->request->get('place') ]->getId() );
       $aubaine->setCity( $places[ $request->request->get('place') ]->getCity());
       $aubaine->setCategory( $request->request->get('category') );
       if($request->request->get('permanent')){
         $aubaine->setType( 1 );
+        $start_datetime = new \DateTime();
+        $start_datetime->setTimestamp(1499709965);
+
+        $end_datetime = new \DateTime();
+        $end_datetime->setTimestamp(1580601600);
+
+        $aubaine->setStart($start_datetime);
+        $aubaine->setEnd($end_datetime);
       }  
       else{
         $aubaine->setType( 2 );
+        $aubaine->setStart($request->request->get('start'));
+        $aubaine->setEnd($request->request->get('end'));
       }
       $dm->persist($aubaine);
       $dm->flush();
