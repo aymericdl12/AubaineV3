@@ -339,44 +339,6 @@ class UserController extends Controller
 
   }
   
-  /**
-  * @Security("has_role('ROLE_USER')")
-  */
-  public function changeAvatarAction(Request $request)
-  {
-        $em = $this->get('doctrine_mongodb')->getManager();
-        $user= $this->get('security.token_storage')->getToken()->getUser();
-        $em->persist($user);
-
-        // On crée le FormBuilder grâce au service form factory
-        $form = $this->createForm(UserEditAvatarType::class, $user);
-
-        // Si la requête est en POST
-        if ($request->isMethod('POST')) {
-          
-          // On fait le lien Requête <-> Formulaire
-          // À partir de maintenant, la variable $advert contient les valeurs entrées dans le formulaire par le visiteur
-          $form->handleRequest($request);
-
-          // On vérifie que les valeurs entrées sont correctes
-          // (Nous verrons la validation des objets en détail dans le prochain chapitre)
-          if ($form->isValid()) {
-            // $user->setLati(234567);
-            $em->flush();
-
-            $request->getSession()->getFlashBag()->add('notice', 'Image principale mide a jour');
-
-            // On redirige vers la page de visualisation de l'annonce nouvellement créée
-            return $this->redirectToRoute('fos_user_profile_show');
-          }
-        }
-
-        return $this->render('AubaineUserBundle:User:editAvatar.html.twig', array(
-          'user' => $user,
-          'form'   => $form->createView(),
-        ));
-
-    } 
   
   /**
   * @Security("has_role('ROLE_USER')")

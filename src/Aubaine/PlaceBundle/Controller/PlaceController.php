@@ -12,6 +12,9 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Response;
 use Aubaine\PlaceBundle\Form\Type\PlaceType;
 use Aubaine\PlaceBundle\Form\Type\PlaceEditType;
+use Aubaine\PlaceBundle\Form\Type\PlaceEditMainPictureType;
+use Aubaine\PlaceBundle\Form\Type\PlaceEditSecondPicture1Type;
+use Aubaine\PlaceBundle\Form\Type\PlaceEditSecondPicture2Type;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class PlaceController extends Controller
@@ -162,7 +165,6 @@ class PlaceController extends Controller
     ));
   }
 
-
   /**
   * @Security("has_role('ROLE_ADMIN')")
   */
@@ -175,6 +177,80 @@ class PlaceController extends Controller
     }
     $form = $this->get('form.factory')->create(PlaceEditType::class, $place);
     if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+      $dm->flush();
+      $request->getSession()->getFlashBag()->add('notice', 'Aubaine bien modifiée.');
+      return $this->redirectToRoute('aubaine_place_home');
+    }
+
+    return $this->render('AubainePlaceBundle:Place:edit.html.twig', array(
+      'place' => $place,
+      'form'   => $form->createView()
+    ));
+  }
+
+
+  /**
+  * @Security("has_role('ROLE_ADMIN')")
+  */
+  public function editMainPictureAction($id, Request $request)
+  {
+    $dm = $this->get('doctrine_mongodb')->getManager();
+    $place = $dm->getRepository('AubainePlaceBundle:Place')->find($id);
+    if (null === $place) {
+      throw new NotFoundHttpException("L'article d'id ".$id." n'existe pas.");
+    }
+    $form = $this->get('form.factory')->create(PlaceEditMainPictureType::class, $place);
+    if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+      $place->setImageHeader("blank");
+      $dm->flush();
+      $request->getSession()->getFlashBag()->add('notice', 'Aubaine bien modifiée.');
+      return $this->redirectToRoute('aubaine_place_home');
+    }
+
+    return $this->render('AubainePlaceBundle:Place:edit.html.twig', array(
+      'place' => $place,
+      'form'   => $form->createView()
+    ));
+  }
+
+
+  /**
+  * @Security("has_role('ROLE_ADMIN')")
+  */
+  public function editSecondPicture1Action($id, Request $request)
+  {
+    $dm = $this->get('doctrine_mongodb')->getManager();
+    $place = $dm->getRepository('AubainePlaceBundle:Place')->find($id);
+    if (null === $place) {
+      throw new NotFoundHttpException("L'article d'id ".$id." n'existe pas.");
+    }
+    $form = $this->get('form.factory')->create(PlaceEditSecondPicture1Type::class, $place);
+    if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+      $place->setImage1("blank");
+      $dm->flush();
+      $request->getSession()->getFlashBag()->add('notice', 'Aubaine bien modifiée.');
+      return $this->redirectToRoute('aubaine_place_home');
+    }
+
+    return $this->render('AubainePlaceBundle:Place:edit.html.twig', array(
+      'place' => $place,
+      'form'   => $form->createView()
+    ));
+  }
+
+  /**
+  * @Security("has_role('ROLE_ADMIN')")
+  */
+  public function editSecondPicture2Action($id, Request $request)
+  {
+    $dm = $this->get('doctrine_mongodb')->getManager();
+    $place = $dm->getRepository('AubainePlaceBundle:Place')->find($id);
+    if (null === $place) {
+      throw new NotFoundHttpException("L'article d'id ".$id." n'existe pas.");
+    }
+    $form = $this->get('form.factory')->create(PlaceEditSecondPicture2Type::class, $place);
+    if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+      $place->setImage1("blank");
       $dm->flush();
       $request->getSession()->getFlashBag()->add('notice', 'Aubaine bien modifiée.');
       return $this->redirectToRoute('aubaine_place_home');

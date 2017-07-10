@@ -2,11 +2,11 @@ aubaine_core_homepage:
     path:     /
     defaults: { _controller: AubaineCoreBundle:Home:index }
 aubaine_core_map:
-    path:     /carte
-    defaults: { _controller: AubaineCoreBundle:Home:map }
+    path:     /carte/{city}
+    defaults: { _controller: AubaineCoreBundle:Home:map, city: toulouse}
 aubaine_core_live:
-    path:     /live
-    defaults: { _controller: AubaineCoreBundle:Home:live }
+    path:     /recherche/{city}/{category}/{search}
+    defaults: { _controller: AubaineCoreBundle:Home:live, city: toulouse , category: all , search: all }
 aubaine_core_concept:
     path:     /concept
     defaults: { _controller: AubaineCoreBundle:Home:concept }
@@ -19,3 +19,6 @@ aubaine_core_cgu:
 aubaine_core_ajax_newsletter:
     path:     /ajax-newsletter
     defaults: { _controller: AubaineCoreBundle:Home:ajax_newsletter }
+aubaine_core_search:
+    path:     /search
+    defaults: { _controller: AubaineCoreBundle:Home:search }

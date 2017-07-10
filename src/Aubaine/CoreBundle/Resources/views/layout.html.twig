@@ -44,6 +44,7 @@
     {% block stylesheets %}
 
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.3/css/bootstrap-select.min.css">
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ==" crossorigin=""/>
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css">
         {% stylesheets filter='cssrewrite, scssphp' 
@@ -66,8 +67,9 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav navbar-left">
-                <li class="{% if app.request.attributes.get('_route') == 'aubaine_core_live' %}active{% endif %}"  id='menu-tab-accueil'><a id='menu-button-accueil' href="{{ path('aubaine_core_live') }}"> Liste</a></li>
+                <li class="{% if app.request.attributes.get('_route') == 'aubaine_core_concept' %}active{% endif %}"  id='menu-tab-accueil'><a id='menu-button-accueil' href="{{ path('aubaine_core_concept') }}"> Concept</a></li>
                 <li class="{% if app.request.attributes.get('_route') == 'aubaine_core_map' %}active{% endif %}"  id='menu-tab-accueil'><a id='menu-button-accueil' href="{{ path('aubaine_core_map') }}"> Carte</a></li>
+                <li class="{% if app.request.attributes.get('_route') == 'aubaine_core_partner' %}active{% endif %}"  id='menu-tab-accueil'><a id='menu-button-accueil' href="{{ path('aubaine_core_partner') }}"> Devenir Partenaire</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
@@ -161,6 +163,7 @@
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js" charset="UTF-8"></script>
 		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.3/js/bootstrap-select.min.js"></script>
         <script>
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();

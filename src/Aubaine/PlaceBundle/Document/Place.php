@@ -53,11 +53,6 @@ class Place
     protected $content;
 
     /**
-     * @MongoDB\Field(type="date")
-     */
-    protected $date;    
-
-    /**
      * 
      * @Vich\UploadableField(mapping="place_imageHeader", fileNameProperty="imageHeader")
      */
@@ -172,8 +167,6 @@ class Place
 
     public function __construct()
 	  {
-        $this->date         = new \Datetime();
-        $this->published    = false;
 	  }
 
     /**
@@ -688,28 +681,6 @@ class Place
     public function getIdAuthor()
     {
         return $this->idAuthor;
-    }
-
-    /**
-     * Set date
-     *
-     * @param date $date
-     * @return $this
-     */
-    public function setDate($date)
-    {
-        $this->date = $date;
-        return $this;
-    }
-
-    /**
-     * Get date
-     *
-     * @return date $date
-     */
-    public function getDate()
-    {
-        return $this->date;
     }
 
      /**

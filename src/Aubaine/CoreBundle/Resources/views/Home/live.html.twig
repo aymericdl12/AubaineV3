@@ -1,16 +1,36 @@
 {% extends "AubaineCoreBundle::layout.html.twig" %}
 
-{% block body_column_center %}
+{% block body %}
 
-<div id="body-live">
-        <div id='live-header'>
-            <h1>
-                Vous êtes en direct, restez à l'affût !
-            </h1>
-        </div>
-        <div id="live-list">
+<div class="body-live">
+    <div class='map_wrapper'>
+        <div class='map' id='map'></div>
+    </div>
+    <div class="list_wrapper">
+        <div class="today">{{ 'now' | date('l') | trans }} {{ 'now' | date('j') }} {{ 'now' | date('F') | trans }}</div>
+        <div class="city">Toulouse</div>
+        <h1>
+            En direct des commerçants
+        </h1>
+        <form action="{{ path('aubaine_core_search') }}" class="form-inline search" method="post">
+            <select class="selectpicker  show-menu-arrow field" id="city" name="city">
+                <option value="toulouse" selected>Toulouse</option>
+                <option value="paris" disabled>Paris</option>
+                <option value="lyon" disabled>Lyon</option>
+                <option value="bordeaux" disabled>Bordeaux</option>
+            </select>
+            <select class="selectpicker  show-menu-arrow field" id="category" name="category">
+                <option value="all" selected>Toutes les catégories</option>
+                <option value="eat" data-content="<img src='{{ asset('images/eat.png') }}' alt='' class='category category-eat' > Boire et Manger" > Boire et Manger</option>
+                <option value="eat" data-content="<img src='{{ asset('images/shop.png') }}' alt='' class='category category-shop' > Boutiques" > Boutique</option>
+                <option value="eat" data-content="<img src='{{ asset('images/wellness.png') }}' alt='' class='category category-wellness' > Bien-être" > Boire et Manger</option>
+                <option value="eat" data-content="<img src='{{ asset('images/event.png') }}' alt='' class='category category-event' > Évènements" > Boire et Manger</option>
+          </select>
+          <input type="submit" class="btn btn-primary field" value="rechercher">
+        </form>
+        <div class="list">
             {% for aubaine in listAubaines %}
-                <a class="aubaineExtract" target="_blank" href="{{ path('aubaine_platform_public_view', {'id': aubaine.id}) }}">
+                <a id="deal-{{ aubaine.id }}"class="aubaineExtract" target="_blank" href="{{ path('aubaine_platform_public_view', {'id': aubaine.id}) }}">
                     <div class="image">
                         <img src="{{ asset('images/place/' ~ aubaine.place.imageHeader) }}" alt="" class="avatar">
                     </div>
@@ -25,17 +45,29 @@
                         <img src="{{ asset('images/date.png') }} " alt="" class="calendar">
                         du {{ aubaine.start | date("d M") }} au {{ aubaine.end | date("d M") }}
                     </div>
+                    <img src="{{ asset('images/'~aubaine.category~'.png') }} " alt="" class="category category-{{ aubaine.category }}">
                 </a>
             {% endfor %}
         </div>
     </div>
+</div>
+<script>
 
+    var imageDir = "{{ asset('images/') }}";
+    var avatarDir = imageDir+'place/';
+    var viewUrl = "{{ path('aubaine_platform_public_view', {'id': 'toreplace'}) }}";
+    // var viewUrl = {{ path('aubaine_place_public_view', {'id': 'toreplace'}) }};
+    var listAubaines = {{listAubainesJson | raw }}
+
+</script>
+{% endblock %}
+{% block footer %}
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
     {% javascripts filter='jsqueeze'
-        'bundles/aubainecore/js/main.js' %}
+        'bundles/aubainecore/js/live.js' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
 {% endblock %}

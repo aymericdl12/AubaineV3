@@ -96,7 +96,7 @@ jq(document).ready( function() {
 			});	   				
 		}
 		else{
-			infobox_content =   '<a target="_blank" href="'+viewUrl.replace("toreplace", id)+'" class="dealMap" >' +
+			infobox_content =   '<div target="_blank" href="'+viewUrl.replace("toreplace", id)+'" class="dealMap" >' +
                                     '<div class="image">'+
                                     	infos_deal.image +
                                     '</div>' +
@@ -107,7 +107,7 @@ jq(document).ready( function() {
                                     	'<img src="'+imageDir+'location.png" alt="" class="location">'+
                                     	infos_deal.place+
                                     '</div>' +
-	                            '</a>';
+	                            '</div>';
 			var marker_icon = L.icon({
 			    iconUrl: imageDir+infos_deal.category+".png",
 			    className: 'marker-map marker-map-'+deal_type+' marker-map-'+infos_deal.category,
@@ -130,6 +130,37 @@ jq(document).ready( function() {
 			marker.fireEvent('click'); 
 		});
     }
+
+    jq(".myAubaines-form").submit(function(event) {
+        event.preventDefault();
+        var form = jq(this);
+        jq.ajax({
+            beforeSend:  function() { 
+                form.children(".form-submit-wrapper").children(".my-aubaine-form-submit").button('loading');
+            },
+            url: jq(this).attr('action'), // le nom du fichier indiqué dans le formulaire
+            type: "POST", // la méthode indiquée dans le formulaire (get ou post)
+            cache: false,
+            data: form.serialize(),
+            success: function(data) {
+
+                // update map marker
+                // if(form.parent().parent("tr").attr("id") == "current_aubaine"){
+                //     aubaine = {
+                //         "message": data.message
+                //     };
+                //     addMarkerByAdress(1, author, aubaine)
+                // }
+                form.replaceWith(   '<div  class="message">'+
+                                        data.message+
+                                        ' <a class="btn btn-xs btn-danger"  href ="'+ data.delete_link+'") }}">'+
+                                           '<span class="glyphicon glyphicon-trash"></span>'+
+                                        '</a>'+
+                                	'</div>' );
+            }       
+        });
+    });
+
    
 
 }); //document ready

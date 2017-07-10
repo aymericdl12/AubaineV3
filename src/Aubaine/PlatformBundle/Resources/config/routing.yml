@@ -36,7 +36,6 @@ aubaine_platform_delete_aubaine:
     defaults:
         _controller: AubainePlatformBundle:Aubaine:deleteAubaine
 
-
 aubaine_platform_my_aubaines:
     path:      /agenda
     defaults:

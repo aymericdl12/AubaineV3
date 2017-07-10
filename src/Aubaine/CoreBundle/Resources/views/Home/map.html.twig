@@ -1,39 +1,11 @@
 {% extends "AubaineCoreBundle::layout.html.twig" %}
 
 {% block body %}
-
-<!-- <div id="map_wrapper"> -->
-    <div id='map_wrapper'>
-        <div id='map'></div>
+<div class="body-map">
+    <div class='map_wrapper'>
+        <div  class='map' id='map'></div>
     </div>
-    <div id="listAubaines-map">
-        <div class="today">{{ 'now' | date('l') | trans }} {{ 'now' | date('j') }} {{ 'now' | date('F') | trans }}</div>
-        <div class="city">Toulouse</div>
-        <h1>
-            Tous les bons plans sur une carte
-        </h1>
-        <ul id="aubaine-list">
-
-            {% for aubaine in listAubaines %}
-                <a class="aubaineExtract" target="_blank" href="{{ path('aubaine_platform_public_view', {'id': aubaine.id}) }}">
-                    <div class="image">
-                        <img src="{{ asset('images/place/' ~ aubaine.place.imageHeader) }}" alt="" class="avatar">
-                    </div>
-                    <div class="content">
-                        {{ aubaine.message }}
-                    </div>
-                    <div class="place">
-                        <img src="{{ asset('images/location.png') }} " alt="" class="location">
-                        {{ aubaine.place.title }}
-                    </div>
-                    <div class="date">
-                        <img src="{{ asset('images/date.png') }} " alt="" class="calendar">
-                        du {{ aubaine.start | date("d M") }} au {{ aubaine.end | date("d M") }}
-                    </div>
-                </a>
-            {% endfor %}
-        </ul>
-    </div>
+</div>
 <script>
 
     var imageDir = "{{ asset('images/') }}";

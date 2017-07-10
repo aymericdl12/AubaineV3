@@ -8,8 +8,24 @@
                 <img alt="Brand" src="{{ asset('images/logo-aubaine-new-large.png') }}" style="height:8rem;">
             </h1>
             <h2>
-                Les commerçants de votre ville vous transmettent des messages en direct
+                Les commerçants de votre ville vous transmettent des messages.
             </h2>
+            <form action="{{ path('aubaine_core_search') }}" class="form-inline search" method="post">
+                <select class="selectpicker  show-menu-arrow field" id="city" name="city">
+                    <option value="toulouse" selected>Toulouse</option>
+                    <option value="paris" disabled>Paris</option>
+                    <option value="lyon" disabled>Lyon</option>
+                    <option value="bordeaux" disabled>Bordeaux</option>
+                </select>
+                <select class="selectpicker  show-menu-arrow field" id="category" name="category">
+                    <option value="all" selected>Toutes les catégories</option>
+                    <option value="eat" data-content="<img src='{{ asset('images/eat.png') }}' alt='' class='category category-eat' > Boire et Manger" > Boire et Manger</option>
+                    <option value="eat" data-content="<img src='{{ asset('images/shop.png') }}' alt='' class='category category-shop' > Boutiques" > Boutique</option>
+                    <option value="eat" data-content="<img src='{{ asset('images/wellness.png') }}' alt='' class='category category-wellness' > Bien-être" > Boire et Manger</option>
+                    <option value="eat" data-content="<img src='{{ asset('images/event.png') }}' alt='' class='category category-event' > Évènements" > Boire et Manger</option>
+              </select>
+              <input type="submit" class="btn btn-primary field" value="rechercher">
+            </form>
         </div>
         <div id="home-live">
             <h2>À la une</h2>
@@ -18,7 +34,7 @@
                     <div class="image">
                         <img src="{{ asset('images/place/' ~ aubaine.place.imageHeader) }}" alt="" class="avatar">
                     </div>
-                    <div class="content">
+                    <div class="content  category-{{ aubaine.category }}">
                         {{ aubaine.message }}
                     </div>
                     <div class="place">
@@ -29,6 +45,7 @@
                         <img src="{{ asset('images/date.png') }} " alt="" class="calendar">
                         du {{ aubaine.start | date("d M") }} au {{ aubaine.end | date("d M") }}
                     </div>
+                    <img src="{{ asset('images/'~aubaine.category~'.png') }} " alt="" class="category category-{{ aubaine.category }}">
                 </a>
             {% endfor %}
         </div>
@@ -50,6 +67,7 @@
                         <img src="{{ asset('images/date.png') }} " alt="" class="calendar">
                         du {{ aubaine.start | date("d M") }} au {{ aubaine.end | date("d M") }}
                     </div>
+                    <img src="{{ asset('images/'~aubaine.category~'.png') }} " alt="" class="category category-{{ aubaine.category }}">
                 </a>
             {% endfor %}
         </div>
@@ -71,6 +89,7 @@
                         <img src="{{ asset('images/date.png') }} " alt="" class="calendar">
                         Toute l'année
                     </div>
+                    <img src="{{ asset('images/'~aubaine.category~'.png') }} " alt="" class="category category-{{ aubaine.category }}">
                 </a>
             {% endfor %}
         </div>

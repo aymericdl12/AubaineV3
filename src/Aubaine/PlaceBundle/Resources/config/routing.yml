@@ -21,6 +21,21 @@ aubaine_place_edit:
     defaults:
         _controller: AubainePlaceBundle:Place:edit
 
+aubaine_place_edit_main_picture:
+    path:      /admin/editmainpicture/{id}
+    defaults:
+        _controller: AubainePlaceBundle:Place:editMainPicture
+
+aubaine_place_edit_second_picture_1:
+    path:      /admin/editsecondpicture1/{id}
+    defaults:
+        _controller: AubainePlaceBundle:Place:editSecondPicture1
+
+aubaine_place_edit_second_picture_2:
+    path:      /admin/editsecondpicture2/{id}
+    defaults:
+        _controller: AubainePlaceBundle:Place:editSecondPicture2
+
 aubaine_place_delete:
     path:      /admin/delete/{id}
     defaults:

@@ -21,62 +21,78 @@
       {% endif %}
     {% endif %}
 
-		<h1>{{ aubaine.message }}</h1>
-    <h2> <img src="{{ asset('images/location.png') }} " alt="" class="location"> {{ aubaine.place.title }}</h2>
-  	
-    <div class="row">
-        <div class="col-md-6">
-          <div class="introduction">{{ aubaine.place.introduction | raw }}</div>
-          <div class="content">{{ aubaine.place.content | raw }}</div>
-          <div class="information">{{ aubaine.place.information | raw }}</div>
-          <div class="address">
-             <b>Adresse</b>
-             <p>{{ aubaine.place.address }}, {{ aubaine.place.zipcode }} {{ aubaine.place.city }}</p>
+		<h1>  {{ aubaine.message }}</h1>
+  	<div class="category">
+      <h2>
+        <img src="{{ asset('images/'~aubaine.category~'.png') }} " alt="" class="category-logo category-{{ aubaine.category }}">
+        Boire et Manger
+      </h2>
+    </div>
+    <div class="dates">
+        <h2>
+          <img src="{{ asset('images/date.png') }} " alt="" class="calendar">
+          du {{ aubaine.start | date("d M") }} au {{ aubaine.end | date("d M") }}
+        </h2>        
+    </div>
+    <div class="place">
+      <h2>
+        <img src="{{ asset('images/location.png') }} " alt="" class="location"> 
+        {{ aubaine.place.title }}
+      </h2>
+      <div class="row">
+          <div class="col-md-6">
+            <div class="introduction">{{ aubaine.place.introduction | raw }}</div>
+            <div class="content">{{ aubaine.place.content | raw }}</div>
+            <div class="information">{{ aubaine.place.information | raw }}</div>
+            <div class="address">
+               <b>Adresse</b>
+               <p>{{ aubaine.place.address }}, {{ aubaine.place.zipcode }} {{ aubaine.place.city }}</p>
+            </div>
+            <div class="phone">
+               <b>Téléphone</b>
+               <p>{% if aubaine.place.phone %} {{ aubaine.place.phone }} {% else %} ----- {% endif %}</p>
+            </div>
+            <div class="hours">
+               <b>Horaires d'ouverture</b>
+              <table class="table">
+                  <tbody>
+                    <tr>
+                      <td>Lundi</td>
+                      <td>{{ aubaine.place.hoursMonday }}</td>
+                    </tr>
+                    <tr>
+                      <td>Mardi</td>
+                      <td>{{ aubaine.place.hoursTuesday }}</td>
+                    </tr>
+                    <tr>
+                      <td>Mercredi</td>
+                      <td>{{ aubaine.place.hoursWednesday }}</td>
+                    </tr>
+                    <tr>
+                      <td>Jeudi</td>
+                      <td>{{ aubaine.place.hoursThursday }}</td>
+                    </tr>
+                    <tr>
+                      <td>Vendredi</td>
+                      <td>{{ aubaine.place.hoursFriday }}</td>
+                    </tr>
+                    <tr>
+                      <td>Samedi</td>
+                      <td>{{ aubaine.place.hoursSaturday }}</td>
+                    </tr>
+                    <tr>
+                      <td>Dimanche</td>
+                      <td>{{ aubaine.place.hoursSunday }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
           </div>
-          <div class="phone">
-             <b>Téléphone</b>
-             <p>{% if aubaine.place.phone %} {{ aubaine.place.phone }} {% else %} ----- {% endif %}</p>
-          </div>
-          <div class="hours">
-             <b>Horaires d'ouverture</b>
-            <table class="table">
-                <tbody>
-                  <tr>
-                    <td>Lundi</td>
-                    <td>{{ aubaine.place.hoursMonday }}</td>
-                  </tr>
-                  <tr>
-                    <td>Mardi</td>
-                    <td>{{ aubaine.place.hoursTuesday }}</td>
-                  </tr>
-                  <tr>
-                    <td>Mercredi</td>
-                    <td>{{ aubaine.place.hoursWednesday }}</td>
-                  </tr>
-                  <tr>
-                    <td>Jeudi</td>
-                    <td>{{ aubaine.place.hoursThursday }}</td>
-                  </tr>
-                  <tr>
-                    <td>Vendredi</td>
-                    <td>{{ aubaine.place.hoursFriday }}</td>
-                  </tr>
-                  <tr>
-                    <td>Samedi</td>
-                    <td>{{ aubaine.place.hoursSaturday }}</td>
-                  </tr>
-                  <tr>
-                    <td>Dimanche</td>
-                    <td>{{ aubaine.place.hoursSunday }}</td>
-                  </tr>
-                </tbody>
-              </table>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <img class="image" src="{{ asset('images/place/' ~ aubaine.place.image1) }}" alt="">
-          <img class="image" src="{{ asset('images/place/' ~ aubaine.place.image2) }}" alt="">
-        </div>      
+          <div class="col-md-6">
+            <img class="image" src="{{ asset('images/place/' ~ aubaine.place.image1) }}" alt="">
+            <img class="image" src="{{ asset('images/place/' ~ aubaine.place.image2) }}" alt="">
+          </div>      
+      </div>
     </div>
   </div>
 
