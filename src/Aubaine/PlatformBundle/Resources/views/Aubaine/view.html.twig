@@ -41,12 +41,17 @@
           {{ aubaine.category | trans }}
         </h2>
       </div>
-      <div class="dates">
-          <h2>
-            <img src="{{ asset('images/date.png') }} " alt="" class="calendar">
-            du {{ aubaine.start | date("d M") }} au {{ aubaine.end | date("d M") }}
-          </h2>        
-      </div>
+      {% if  aubaine.type == 3 %}
+        Le {{ aubaine.start | date("d") }} {{ aubaine.start | date("F") | trans }}
+        {% elseif aubaine.type == 2 %}
+            {% if aubaine.start | date("F") == aubaine.end | date("F") %}
+                Du {{ aubaine.start | date("d") }} au {{ aubaine.end | date("d") }} {{ aubaine.end | date("F") | trans }}
+            {% else %}
+                Du {{ aubaine.start | date("d") }} {{ aubaine.start | date("F") | trans }} au {{ aubaine.end | date("d") }} {{ aubaine.end | date("F") | trans }}
+            {% endif %}
+        {% else %}
+        Toute l'année
+        {% endif %}
       <div class="place">
         <h2>
           <img src="{{ asset('images/location.png') }} " alt="" class="location"> 

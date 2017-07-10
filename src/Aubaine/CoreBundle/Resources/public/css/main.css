@@ -317,6 +317,22 @@ body{
   box-shadow: 0 0 0 rgba(242, 142, 0, 0.8);
   animation: pulse_yellow 2s ease-out infinite;
 }
+.marker-map-2.marker-map-eat {
+  box-shadow: 0 0 0 rgba(255, 0, 0, 0.8);
+  animation: pulse_red 2s ease-out infinite;
+}
+.marker-map-2.marker-map-shop {
+  box-shadow: 0 0 0 rgba(0, 86, 27, 0.8);
+  animation: pulse_green 2s ease-out infinite;
+}
+.marker-map-2.marker-map-wellness {
+  box-shadow: 0 0 0 rgba(222, 41, 22, 0.8);
+  animation: pulse_blue 2s ease-out infinite;
+}
+.marker-map-2.marker-map-event {
+  box-shadow: 0 0 0 rgba(242, 142, 0, 0.8);
+  animation: pulse_yellow 2s ease-out infinite;
+}
 
 @-webkit-keyframes pulse_red {
   0% {

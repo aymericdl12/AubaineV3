@@ -83,7 +83,7 @@
                       <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-lock"></span> Admin
                       <span class="caret"></span></a>
                       <ul class="dropdown-menu">
-                        <li class="{% if app.request.attributes.get('_route') == 'aubaine_platform_home' %}active{% endif %}"><a href="{{ path('aubaine_platform_home') }}"><span class="glyphicon glyphicon-record"></span> Aubaine</a></li>
+                        <li class="{% if app.request.attributes.get('_route') == 'aubaine_platform_home' %}active{% endif %}"><a href="{{ path('aubaine_platform_home') }}"><span class="glyphicon glyphicon-star"></span> Aubaine</a></li>
                         <li class="{% if app.request.attributes.get('_route') == 'aubaine_place_home' %}active{% endif %}"><a href="{{ path('aubaine_place_home') }}"><span class="glyphicon glyphicon-record"></span> Lieux</a></li>
                         <li class="{% if app.request.attributes.get('_route') == 'aubaine_user_home' %}active{% endif %}"><a href="{{ path('aubaine_user_home') }}"><span class="glyphicon glyphicon-user"></span> Utilisateurs</a></li>
                       </ul>
