@@ -1126,3 +1126,14 @@ body{
   height:2rem;
   width:auto;
 }
+
+.adminAction{
+  padding:1rem;
+  background:#ddd;
+  max-width: 800px;
+  margin:2rem auto;
+  border:2px solid #bbb;
+}
+.adminAction a{
+  margin:1rem;
+}

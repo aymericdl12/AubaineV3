@@ -4,20 +4,32 @@
 
 
 {% block aubaineplace_body %}
-  <p>
+  <div class="adminAction">
     <a href="{{ path('aubaine_place_home') }}" class="btn btn-default">
       <i class="glyphicon glyphicon-chevron-left"></i>
       Retour à la liste
     </a>
     <a href="{{ path('aubaine_place_edit', {'id': place.id}) }}" class="btn btn-default">
       <i class="glyphicon glyphicon-edit"></i>
-      Modifier le lieu
+      Modifier le contenu
+    </a>
+    <a href="{{ path('aubaine_place_edit_main_picture', {'id': place.id}) }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-edit"></i>
+      Changer la photo principale
+    </a>
+    <a href="{{ path('aubaine_place_edit_second_picture_1', {'id': place.id}) }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-edit"></i>
+      Changer la photo secondaire 1
+    </a>
+    <a href="{{ path('aubaine_place_edit_second_picture_2', {'id': place.id}) }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-edit"></i>
+      Changer la photo secondaire 2
     </a>
     <a href="{{ path('aubaine_place_delete', {'id': place.id}) }}" class="btn btn-danger">
       <i class="glyphicon glyphicon-trash"></i>
       Supprimer le lieu
     </a>
-  </p>
+  </div>
 
 
   {% for message in app.session.flashbag.get('info') %}

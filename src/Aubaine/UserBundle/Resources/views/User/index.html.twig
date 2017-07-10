@@ -27,6 +27,7 @@
           <th>Nom</th>
           <th>Email</th>
           <th>Categorie</th>
+          <th>id</th>
           <th>Places</th>
           <th>Action</th>
         </tr>
@@ -49,6 +50,9 @@
                 </td>
                 <td>
                     {{ user.category }}
+                </td>
+                <td>
+                    {{ user.id }}
                 </td>
                 <td>
                   {% for placeId in user.placesId %}
