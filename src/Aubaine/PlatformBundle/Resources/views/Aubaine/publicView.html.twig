@@ -32,7 +32,7 @@
       {% if  aubaine.type == 3 %}
         <h2>
           <img src="{{ asset('images/date.png') }} " alt="" class="calendar">
-          Le {{ aubaine.start | date("d F") }}
+          Le {{ aubaine.start | date("d F") | trans }}
         </h2> 
       {% elseif aubaine.type == 2 %}
         <h2>

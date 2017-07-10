@@ -989,8 +989,6 @@ body{
 }
 .aubaine .header{
   width:100%;
-  height:30rem;
-  overflow:hidden;
   position:relative;
 }
 .aubaine .header img{
@@ -1035,11 +1033,10 @@ body{
 .aubaine .introduction{
   font-weight: bold;
   font-size: 1.5rem;
-  padding: 2rem 0;
 }
 .aubaine .image{
   width:100%;
-  margin-top:20px;
+  margin-bottom:20px;
 }
 .aubaine .content{
 }
