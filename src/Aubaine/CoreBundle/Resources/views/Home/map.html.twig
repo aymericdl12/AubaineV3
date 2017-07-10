@@ -1,0 +1,35 @@
+{% extends "AubaineCoreBundle::layout.html.twig" %}
+
+{% block body %}
+<div class="body-map">
+    <div class='map_wrapper'>
+        <div  class='map' id='map'></div>
+    </div>
+</div>
+<script>
+
+    var imageDir = "{{ asset('images/') }}";
+    var avatarDir = imageDir+'place/';
+    var viewUrl = "{{ path('aubaine_platform_public_view', {'id': 'toreplace'}) }}";
+    // var viewUrl = {{ path('aubaine_place_public_view', {'id': 'toreplace'}) }};
+    var listAubaines = {{listAubainesJson | raw }}
+
+</script> 
+<style>    
+    .navbar{
+        position: fixed;
+        top:0;
+        width: 100%;
+    }
+</style>
+{% endblock %}
+{% block footer %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts filter='jsqueeze'
+        'bundles/aubainecore/js/map.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
