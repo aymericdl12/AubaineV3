@@ -117,6 +117,11 @@ jq(document).ready( function() {
 			maxWidth : 560
 		}
 		marker.bindPopup(infobox_content,infobox_option);
+		// marker.on("click", function() {
+		//   jq(".list_wrapper").animate({
+		//         scrollTop: jq('#deal-'+id).offset().top
+		//     }, 500);
+		// });
 		arrMarkers[id] = marker;
 		jq('#deal-'+id).hover(function(){
 			marker.fireEvent('click'); 

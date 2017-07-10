@@ -30,7 +30,7 @@
         </form>
         <div class="list">
             {% for aubaine in listAubaines %}
-                <a class="aubaineExtract" target="_blank" href="{{ path('aubaine_platform_public_view', {'id': aubaine.id}) }}">
+                <a id="deal-{{ aubaine.id }}" class="aubaineExtract" target="_blank" href="{{ path('aubaine_platform_public_view', {'id': aubaine.id}) }}">
                     <div class="image" style="background-image:url('{{ asset('images/place/' ~ aubaine.place.imageHeader) }}')"></div>
                     <div class="content  category-{{ aubaine.category }}">
                         {{ aubaine.message |length > 100 ? aubaine.message |slice(0, 100) ~ '...' : aubaine.message   }}
