@@ -31,9 +31,7 @@
             <h2>À la une</h2>
             {% for aubaine in listAubaines3 %}
                 <a class="aubaineExtract" target="_blank" href="{{ path('aubaine_platform_public_view', {'id': aubaine.id}) }}">
-                    <div class="image">
-                        <img src="{{ asset('images/place/' ~ aubaine.place.imageHeader) }}" alt="" class="avatar">
-                    </div>
+                    <div class="image" style="background-image:url('{{ asset('images/place/' ~ aubaine.place.imageHeader) }}')"></div>
                     <div class="content  category-{{ aubaine.category }}">
                         {{ aubaine.message }}
                     </div>
@@ -44,9 +42,9 @@
                     <div class="date">
                         <img src="{{ asset('images/date.png') }} " alt="" class="calendar">
                         {% if  aubaine.type == 3 %}
-                        Le {{ aubaine.start | date("d M") }}
+                        Le {{ aubaine.start | date("d") }} {{ aubaine.start | date("F") | trans }}
                         {% elseif aubaine.type == 2 %}
-                        Du {{ aubaine.start | date("d F") }} au {{ aubaine.end | date("d F") }}
+                        Du {{ aubaine.start | date("d") }} {{ aubaine.start | date("F") | trans }} au {{ aubaine.end | date("d") }} {{ aubaine.end | date("F") | trans }}
                         {% else %}
                         Toute l'année
                         {% endif %}
@@ -59,9 +57,7 @@
             <h2>À venir</h2>
             {% for aubaine in listAubaines2 %}
                 <a class="aubaineExtract" target="_blank" href="{{ path('aubaine_platform_public_view', {'id': aubaine.id}) }}">
-                    <div class="image">
-                        <img src="{{ asset('images/place/' ~ aubaine.place.imageHeader) }}" alt="" class="avatar">
-                    </div>
+                    <div class="image" style="background-image:url('{{ asset('images/place/' ~ aubaine.place.imageHeader) }}')"></div>
                     <div class="content">
                         {{ aubaine.message }}
                     </div>
@@ -87,9 +83,7 @@
             <h2>Toute l'année</h2>
             {% for aubaine in listAubaines1 %}
                 <a class="aubaineExtract" target="_blank" href="{{ path('aubaine_platform_public_view', {'id': aubaine.id}) }}">
-                    <div class="image">
-                        <img src="{{ asset('images/place/' ~ aubaine.place.imageHeader) }}" alt="" class="avatar">
-                    </div>
+                    <div class="image" style="background-image:url('{{ asset('images/place/' ~ aubaine.place.imageHeader) }}')"></div>
                     <div class="content">
                         {{ aubaine.message }}
                     </div>

@@ -3,7 +3,7 @@
 {% extends "AubainePlatformBundle::layout.html.twig" %}
 
 {% block title %}
-  Lecture d'une annonce - {{ parent() }}
+  Aperçu lieu - {{ parent() }}
 {% endblock %}
 
 {% block aubaineplatform_body %}
@@ -101,12 +101,14 @@
                   </table>
               </div>
             </div>
-            {% if aubaine.place.image1 %}
-              <img class="image" src="{{ asset('images/place/' ~ aubaine.place.image1) }}" alt="">
-            {% endif %}
-            {% if aubaine.place.image2 %}
-              <img class="image" src="{{ asset('images/place/' ~ aubaine.place.image2) }}" alt="">
-            {% endif %}      
+            <div class="col-md-6">
+              {% if aubaine.place.image1 %}
+                <img class="image" src="{{ asset('images/place/' ~ aubaine.place.image1) }}" alt="">
+              {% endif %}
+              {% if aubaine.place.image2 %}
+                <img class="image" src="{{ asset('images/place/' ~ aubaine.place.image2) }}" alt="">
+              {% endif %}
+            </div>   
         </div>
       </div>
     </div>

@@ -179,7 +179,7 @@ class PlaceController extends Controller
     if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
       $dm->flush();
       $request->getSession()->getFlashBag()->add('notice', 'Aubaine bien modifiée.');
-      return $this->redirectToRoute('aubaine_place_home');
+      return $this->redirectToRoute('aubaine_place_view', array("id"=>$id));
     }
 
     return $this->render('AubainePlaceBundle:Place:edit.html.twig', array(
@@ -204,7 +204,7 @@ class PlaceController extends Controller
       $place->setImageHeader("blank");
       $dm->flush();
       $request->getSession()->getFlashBag()->add('notice', 'Aubaine bien modifiée.');
-      return $this->redirectToRoute('aubaine_place_home');
+      return $this->redirectToRoute('aubaine_place_view', array("id"=>$id));
     }
 
     return $this->render('AubainePlaceBundle:Place:edit.html.twig', array(
@@ -229,7 +229,7 @@ class PlaceController extends Controller
       $place->setImage1("blank");
       $dm->flush();
       $request->getSession()->getFlashBag()->add('notice', 'Aubaine bien modifiée.');
-      return $this->redirectToRoute('aubaine_place_home');
+      return $this->redirectToRoute('aubaine_place_view', array("id"=>$id));
     }
 
     return $this->render('AubainePlaceBundle:Place:edit.html.twig', array(
@@ -253,7 +253,7 @@ class PlaceController extends Controller
       $place->setImage1("blank");
       $dm->flush();
       $request->getSession()->getFlashBag()->add('notice', 'Aubaine bien modifiée.');
-      return $this->redirectToRoute('aubaine_place_home');
+      return $this->redirectToRoute('aubaine_place_view', array("id"=>$id));
     }
 
     return $this->render('AubainePlaceBundle:Place:edit.html.twig', array(

@@ -18,6 +18,12 @@
       Supprimer le lieu
     </a>
   </p>
+
+
+  {% for message in app.session.flashbag.get('info') %}
+    <div class="alert alert-info">{{ message }}</div>
+  {% endfor %}
+
   
     <div class="aubaine">
     <div class="header">
@@ -91,12 +97,14 @@
                 </table>
             </div>
           </div>
+          <div class="col-md-6">
             {% if place.image1 %}
               <img class="image" src="{{ asset('images/place/' ~ place.image1) }}" alt="">
             {% endif %}
             {% if place.image2 %}
               <img class="image" src="{{ asset('images/place/' ~ place.image2) }}" alt="">
-            {% endif %}         
+            {% endif %}
+          </div>           
       </div>
     </div>
   </div>

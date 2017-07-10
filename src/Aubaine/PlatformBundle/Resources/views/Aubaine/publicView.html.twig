@@ -10,9 +10,7 @@
 
 
   <div class="aubaine">
-    <div class="header">
-      <img src="{{ asset('images/place/' ~ aubaine.place.imageHeader) }}" alt="" class="avatar">
-    </div>
+    <div class="image" style="background-image:url('{{ asset('images/place/' ~ aubaine.place.imageHeader) }}')"></div>
     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
       {% if aubaine.place.id == app.user.placeId %}
         <div class="edit">

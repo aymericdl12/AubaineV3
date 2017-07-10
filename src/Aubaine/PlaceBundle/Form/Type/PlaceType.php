@@ -25,12 +25,12 @@ class PlaceType extends AbstractType
         $builder
         ->add('title',   TextType::class)
         ->add( 'imageFileHeader', FileType::class )
-        ->add('introduction',   TextareaType::class)
-        ->add( 'imageFile1', FileType::class )
-        ->add( 'imageFile2', FileType::class )
-        ->add('content',   TextareaType::class)
-        ->add('conclusion',   TextareaType::class)
-        ->add('information',   TextareaType::class)
+        ->add('introduction',   TextareaType::class,array('required' => false))
+        ->add( 'imageFile1', FileType::class,array('required' => false) )
+        ->add( 'imageFile2', FileType::class,array('required' => false) )
+        ->add('content',   TextareaType::class,array('required' => false))
+        ->add('conclusion',   TextareaType::class,array('required' => false))
+        ->add('information',   TextareaType::class,array('required' => false))
         ->add('category', ChoiceType::class, array(
             'choices'  => array(
                 'Bar, Café, Restaurant' => "eat",
