@@ -250,7 +250,7 @@ class PlaceController extends Controller
     }
     $form = $this->get('form.factory')->create(PlaceEditSecondPicture2Type::class, $place);
     if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-      $place->setImage1("blank");
+      $place->setImage2("blank");
       $dm->flush();
       $request->getSession()->getFlashBag()->add('notice', 'Aubaine bien modifiée.');
       return $this->redirectToRoute('aubaine_place_view', array("id"=>$id));
