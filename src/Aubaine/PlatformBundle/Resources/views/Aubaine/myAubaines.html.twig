@@ -79,68 +79,18 @@
                     </div>
                     <div class="date">
                         <img src="{{ asset('images/date.png') }} " alt="" class="calendar">
-                        {% if aubaine.permanent %}
-                            Toute l'année
+                        {% if  aubaine.type == 3 %}
+                        Le {{ aubaine.start | date("d M") }}
+                        {% elseif aubaine.type == 2 %}
+                        Du {{ aubaine.start | date("d F") }} au {{ aubaine.end | date("d F") }}
                         {% else %}
-                            du {{ aubaine.start | date("d M") }} au {{ aubaine.end | date("d M") }}                            
+                        Toute l'année
                         {% endif %}
-                    </div>               
+                    </div>              
                 </a>
             {% endfor %}
         {% endfor %}
         
-    </div> 
-    <div class="myAubaines-permanentAubaines">
-        {% for place in places %}
-            {% for aubaine in attribute(permanentAubaines, place.id) %}
-                <a class="aubaineExtract" target="_blank" href="{{ path('aubaine_platform_public_view', {'id': aubaine.id}) }}">
-                    <div class="image">
-                        <img src="{{ asset('images/place/' ~ aubaine.place.imageHeader) }}" alt="" class="avatar">
-                    </div>
-                    <div class="content">
-                        {{ aubaine.message }}
-                    </div>
-                    <div class="place">
-                        <img src="{{ asset('images/location.png') }} " alt="" class="location">
-                        {{ aubaine.place.title }}
-                    </div>
-                    <div class="date">
-                        <img src="{{ asset('images/date.png') }} " alt="" class="calendar">
-                        {% if aubaine.permanent == true %}
-                            Toute l'année
-                        {% else %}
-                            du {{ aubaine.start | date("d M") }} au {{ aubaine.end | date("d M") }}                            
-                        {% endif %}
-                    </div>               
-                </a>
-            {% endfor %}
-        {% endfor %}        
-    </div>
-    <div class="myAubaines-oldAubaines">
-        {% for place in places %}
-            {% for aubaine in attribute(oldAubaines, place.id) %}
-                <a class="aubaineExtract" target="_blank" href="{{ path('aubaine_platform_public_view', {'id': aubaine.id}) }}">
-                    <div class="image">
-                        <img src="{{ asset('images/place/' ~ aubaine.place.imageHeader) }}" alt="" class="avatar">
-                    </div>
-                    <div class="content">
-                        {{ aubaine.message }}
-                    </div>
-                    <div class="place">
-                        <img src="{{ asset('images/location.png') }} " alt="" class="location">
-                        {{ aubaine.place.title }}
-                    </div>
-                    <div class="date">
-                        <img src="{{ asset('images/date.png') }} " alt="" class="calendar">
-                        {% if aubaine.permanent %}
-                            Toute l'année
-                        {% else %}
-                            du {{ aubaine.start | date("d M") }} au {{ aubaine.end | date("d M") }}                            
-                        {% endif %}
-                    </div>               
-                </a>
-            {% endfor %}
-        {% endfor %}        
     </div>
 </div>
 

@@ -25,15 +25,27 @@
   	<div class="category">
       <h2>
         <img src="{{ asset('images/'~aubaine.category~'.png') }} " alt="" class="category-logo category-{{ aubaine.category }}">
-        Boire et Manger
+        {{ aubaine.category | trans }}
       </h2>
     </div>
     <div class="dates">
+      {% if  aubaine.type == 3 %}
         <h2>
           <img src="{{ asset('images/date.png') }} " alt="" class="calendar">
-          du {{ aubaine.start | date("d M") }} au {{ aubaine.end | date("d M") }}
-        </h2>        
-    </div>
+          Le {{ aubaine.start | date("d F") }}
+        </h2> 
+      {% elseif aubaine.type == 2 %}
+        <h2>
+          <img src="{{ asset('images/date.png') }} " alt="" class="calendar">
+          Du {{ aubaine.start | date("d F") }} au {{ aubaine.end | date("d F") }}
+        </h2> 
+      {% else %}
+        <h2>
+          <img src="{{ asset('images/date.png') }} " alt="" class="calendar">
+          Toute l'année
+        </h2> 
+      {% endif %}
+  </div>
     <div class="place">
       <h2>
         <img src="{{ asset('images/location.png') }} " alt="" class="location"> 

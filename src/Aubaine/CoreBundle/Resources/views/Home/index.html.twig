@@ -46,7 +46,7 @@
                         {% if  aubaine.type == 3 %}
                         Le {{ aubaine.start | date("d M") }}
                         {% elseif aubaine.type == 2 %}
-                        Du {{ aubaine.start | date("d M") }} au {{ aubaine.end | date("d M") }}
+                        Du {{ aubaine.start | date("d F") }} au {{ aubaine.end | date("d F") }}
                         {% else %}
                         Toute l'année
                         {% endif %}
@@ -74,7 +74,7 @@
                         {% if  aubaine.type == 3 %}
                         Le {{ aubaine.start | date("d M") }}
                         {% elseif aubaine.type == 2 %}
-                        Du {{ aubaine.start | date("d M") }} au {{ aubaine.end | date("d M") }}
+                        Du {{ aubaine.start | date("d M") }} au {{ aubaine.end | date("d F") }}
                         {% else %}
                         Toute l'année
                         {% endif %}
@@ -102,7 +102,7 @@
                         {% if  aubaine.type == 3 %}
                         Le {{ aubaine.start | date("d M") }}
                         {% elseif aubaine.type == 2 %}
-                        Du {{ aubaine.start | date("d M") }} au {{ aubaine.end | date("d M") }}
+                        Du {{ aubaine.start | date("d F") }} au {{ aubaine.end | date("d F") }}
                         {% else %}
                         Toute l'année
                         {% endif %}
@@ -121,7 +121,7 @@
         <div id="home-contact">
             <h2>Partager un bon-plan</h2>
             <p>
-                N'hésitez pas à nous signaler des endroits, concept ou évènements à connaîtres !
+                N'hésitez pas à nous signaler des endroits, concepts ou évènements à connaîtres !
             </p>
             <p>
                 <a href="mailto:contact@aubaineapp.fr" class="email">contact@aubaineapp.fr</a> <br>
