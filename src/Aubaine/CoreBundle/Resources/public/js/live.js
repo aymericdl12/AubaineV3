@@ -123,9 +123,9 @@ jq(document).ready( function() {
 		//     }, 500);
 		// });
 		arrMarkers[id] = marker;
-		jq('#deal-'+id).hover(function(){
-			marker.fireEvent('click'); 
-		});
+		// jq('#deal-'+id).hover(function(){
+		// 	marker.fireEvent('click'); 
+		// });
     }
 
     jq(".myAubaines-form").submit(function(event) {
