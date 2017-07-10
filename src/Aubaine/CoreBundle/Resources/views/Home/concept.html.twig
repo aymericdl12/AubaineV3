@@ -4,16 +4,13 @@
   Concept - {{ parent() }}
 {% endblock %}
 
-{% block body %}
+{% block body_column_center %}
 
     <div id="body-concept">
         <div id='concept-header'>
             <h1>
-                <img alt="Brand" src="{{ asset('images/logo-aubaine-new-large.png') }}" style="height:8rem;">
+                Les commerçants vous transmettent des bons-plans
             </h1>
-            <h2>
-                Les bons plans autour de vous aujourd'hui, restez à l'affut !
-            </h2>
         </div>
         <div id="concept-user">
             <h3>
@@ -104,6 +101,32 @@
                 <a href="mailto:contact@aubaineapp.fr" class="email">contact@aubaineapp.fr</a> <br>
                 <span class="phone">07 83 86 60 99</span>
             </p>
+        </div>
+        <div id="concept-media">
+            <!-- <h3>Presse</h3> -->
+            <div id='media-list'>
+                <a href="http://www.ladepeche.fr/article/2017/02/28/2526086-le-site-toulousain-aubaine-surfe-sur-les-bons-plans-ephemeres.html" target='_blank'>
+                    <img src="{{ asset('images/depeche-midi.jpg') }}" alt="la depeche">
+                </a>
+                <a href="http://le-toulousain-malin.com/aubaine-les-bons-plans-a-toulouse/" target='_blank'>
+                    <img src="{{ asset('images/toulousain-malin.png') }}" alt="le toulousain malin">
+                </a>
+                <a href="http://www.les-soeurs-vitamine.com/la-nouvelle-start-up-toulousaine-aubaine/" target='_blank'>
+                    <img style='height:4rem;' src="{{ asset('images/soeurs-vitamines.png') }}" alt="les soeurs vitamines">
+                </a>
+                <a href="http://lespepitestech.com/startup-de-la-french-tech/aubaine" target='_blank'>
+                    <img src="{{ asset('images/pepite-tech.jpeg') }}" alt="pepite tech">
+                </a>
+                <a href="http://actu.cotetoulouse.fr/toulouse-aubaine-start-up-bons-plans_56286/" target='_blank'>
+                    <img src="{{ asset('images/cote-toulouse.png') }}" alt="cote toulouse">
+                </a>
+                <a href="https://www.maddyness.com/entrepreneurs/2017/02/24/fastpitch-5-startups-de-semaine-d-clics-habx-aubaine-happy-buy-happysitters/" target='_blank'>
+                    <img style='height:4rem;' src="{{ asset('images/maddyness.png') }}" alt="maddyness">
+                </a>
+                <a href="https://www.toulouscope.fr/bons-plans/mode-beaute-bars-restaurants-aubaine-profite-de-bons-plans-ephemeres-ville-rose/" target='_blank'>
+                    <img style='height:4rem;' src="{{ asset('images/touloscope.png') }}" alt="touloscope">
+                </a>
+            </div>
         </div>
     </div>
 

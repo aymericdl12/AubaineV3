@@ -56,7 +56,7 @@ jq(document).ready( function() {
 				"start": start,
 				"end": end,
 				"category": category,
-				"image": "<img src='"+avatarDir+image+"'>",
+				"image": avatarDir+image,
 				"message": message
 			};
 			addMarkerByAdress(id, type, infos_deal, authorLati, authorLongi);
@@ -69,9 +69,7 @@ jq(document).ready( function() {
 		var marker_icon;
 		if(deal_type==1){
 			infobox_content =   '<a target="_blank" href="'+viewUrl.replace("toreplace", id)+'" class="dealMap" >' +
-                                    '<div class="image">'+
-                                    	infos_deal.image +
-                                    '</div>' +
+                                    '<div class="image" style="background-image:url(\''+infos_deal.image+'\')"></div>'+
 	                                '<div class="content">'+
 	                                	infos_deal.message+
                                     '</div>' +
@@ -86,16 +84,14 @@ jq(document).ready( function() {
 			var marker_icon = L.icon({
 			    iconUrl: imageDir+infos_deal.category+".png",
 			    className: 'marker-map marker-map-'+deal_type+' marker-map-'+infos_deal.category,
-			    iconSize:     [35, 35], // size of the icon
-			    iconAnchor:   [17.5, 17.5], // point of the icon which will correspond to marker's location
+			    iconSize:     [30, 30], // size of the icon
+			    iconAnchor:   [15, 15], // point of the icon which will correspond to marker's location
 			    popupAnchor:  [0, -10] // point from which the popup should open relative to the iconAnchor
 			});	   				
 		}
 		else{
 			infobox_content =   '<div target="_blank" href="'+viewUrl.replace("toreplace", id)+'" class="dealMap" >' +
-                                    '<div class="image">'+
-                                    	infos_deal.image +
-                                    '</div>' +
+                                    '<div class="image" style="background-image:url(\''+infos_deal.image+'\')"></div>'+
 	                                '<div class="content">'+
 	                                	infos_deal.message+
                                     '</div>' +
@@ -107,8 +103,8 @@ jq(document).ready( function() {
 			var marker_icon = L.icon({
 			    iconUrl: imageDir+infos_deal.category+".png",
 			    className: 'marker-map marker-map-'+deal_type+' marker-map-'+infos_deal.category,
-			    iconSize:     [30, 30], // size of the icon
-			    iconAnchor:   [15, 15], // point of the icon which will correspond to marker's location
+			    iconSize:     [35, 35], // size of the icon
+			    iconAnchor:   [17.5, 17.5], // point of the icon which will correspond to marker's location
 			    popupAnchor:  [0, -10] // point from which the popup should open relative to the iconAnchor
 			});
 		}

@@ -264,9 +264,7 @@ body{
   width:100%;
   height:13rem;
   overflow:hidden;
-}
-.dealMap .image img{
-  width:100%;
+  background-size: cover;
 }
 .leaflet-popup-content-wrapper{
   background: transparent;
@@ -597,7 +595,7 @@ body{
   position:relative;
 }
 /*home-contact*/
-#home-contact{
+#home-concept{
   margin: 0 0 10rem;
   display:inline-block;
   border:2px solid;
@@ -605,30 +603,12 @@ body{
   padding:2rem;
   line-height: 3rem
 }
-#home-contact h2{
+#home-concept h2{
   margin:2rem 0;
 }
-#home-contact p{
+#home-concept p{
   font-size: 1.6rem;
-}
-#home-contact .phone,
-#home-contact .email{
-    display:inline-block;
-    margin:0.5rem 0;
-    font-weight:bold;
-}
-#home-media{
-  text-align: left;
-}
-/*home-Media*/
-#media-list{
-}
-#media-list img{
-  height: 5rem;
-  margin-bottom:3rem;
-  margin-right:3rem;
-  display:inline-block;
-  max-width: 80%;
+  margin-bottom: 2rem;
 }
 
 
@@ -638,15 +618,15 @@ body{
   color:#666;
 }
 #body-concept h1{
-  font-size: 4.5rem;
+  font-size: 3.7rem;
   margin:0 0 2rem ;
-  color:#ec4940;
+  color:#555;
   text-transform: uppercase;
-  letter-spacing: 1rem;
-  font-weight: normal;
+  /*font-weight: normal;*/
+  line-height: 5rem;
 }
 #body-concept h2{
-  font-size: 2.5rem;
+  font-size: 2.3rem;
   margin: 4rem 0rem ;
   color:#555;
   line-height: 4rem;
@@ -658,7 +638,6 @@ body{
   text-transform: uppercase;
   letter-spacing: 0.4rem;
   color:#333;
-
 }
 #body-concept h4{
   color: #ec4940;
@@ -671,18 +650,13 @@ body{
 }
 /*concept-header*/
 #concept-header{
-  background-image: url('../images/concept3.png');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  width:100%;
-  background-size:cover;
-  padding:9rem 2rem 9rem;
+  padding:6rem 2rem 4rem;
 }
 /*concept-user*/
 #concept-user{
     display: inline-block;
     width: 100%;
-    padding:8rem 2rem 0;
+    padding:4rem 2rem 0;
     line-height: 2.5rem;
 }
 #concept-user .assets{
@@ -751,16 +725,24 @@ body{
     margin:0.5rem 0;
     font-weight:bold;
 }
+/*concept-Media*/
 #concept-media{
     padding:3rem;
 }
-/*concept-Media*/
 #media-list{
   padding:4rem 2rem;
 }
 #media-list img{
   height: 5rem;
   margin:1.5rem;
+  display:inline-block;
+  max-width: 80%;
+}
+/*home-Media*/
+#media-list img{
+  height: 5rem;
+  margin-bottom:3rem;
+  margin-right:3rem;
   display:inline-block;
   max-width: 80%;
 }
@@ -772,15 +754,15 @@ body{
   color:#666;
 }
 #body-partner h1{
-  font-size: 3.5rem;
+  font-size: 3.7rem;
   margin:0 0 2rem ;
-  color:#ec4940;
+  color:#555;
   text-transform: uppercase;
-  letter-spacing: 1rem;
-  font-weight: normal;
+  /*font-weight: normal;*/
+  line-height: 5rem;
 }
 #body-partner h2{
-  font-size: 2.5rem;
+  font-size: 2.3rem;
   margin: 4rem 0rem ;
   line-height: 4rem;
   color:#444;
@@ -802,12 +784,7 @@ body{
   margin:1rem auto;
 }
 #partner-header{
-  background-image: url('../images/concept3.png');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  width:100%;
-  background-size:cover;
-  padding:9rem 3rem 9rem;
+  padding:6rem 2rem 4rem;
 }
 #partner-avantages{
   margin:8rem 0;
@@ -1078,6 +1055,8 @@ body{
     font-weight: bold;
     position:relative;    
     color:#444;
+    height:12rem;
+    overflow:hidden;
 }
 .aubaineExtract .category{
   position:absolute;
