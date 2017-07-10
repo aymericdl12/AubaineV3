@@ -91,10 +91,12 @@
                 </table>
             </div>
           </div>
-          <div class="col-md-6">
-            <img class="image" src="{{ asset('images/place/' ~ place.image1) }}" alt="">
-            <img class="image" src="{{ asset('images/place/' ~ place.image2) }}" alt="">
-          </div>      
+            {% if place.image1 %}
+              <img class="image" src="{{ asset('images/place/' ~ place.image1) }}" alt="">
+            {% endif %}
+            {% if place.image2 %}
+              <img class="image" src="{{ asset('images/place/' ~ place.image2) }}" alt="">
+            {% endif %}         
       </div>
     </div>
   </div>

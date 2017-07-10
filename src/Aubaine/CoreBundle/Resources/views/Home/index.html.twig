@@ -29,7 +29,7 @@
         </div>
         <div id="home-live">
             <h2>À la une</h2>
-            {% for aubaine in lastAubaines %}
+            {% for aubaine in listAubaines3 %}
                 <a class="aubaineExtract" target="_blank" href="{{ path('aubaine_platform_public_view', {'id': aubaine.id}) }}">
                     <div class="image">
                         <img src="{{ asset('images/place/' ~ aubaine.place.imageHeader) }}" alt="" class="avatar">
@@ -43,7 +43,13 @@
                     </div>
                     <div class="date">
                         <img src="{{ asset('images/date.png') }} " alt="" class="calendar">
-                        du {{ aubaine.start | date("d M") }} au {{ aubaine.end | date("d M") }}
+                        {% if  aubaine.type == 3 %}
+                        Le {{ aubaine.start | date("d M") }}
+                        {% elseif aubaine.type == 2 %}
+                        Du {{ aubaine.start | date("d M") }} au {{ aubaine.end | date("d M") }}
+                        {% else %}
+                        Toute l'année
+                        {% endif %}
                     </div>
                     <img src="{{ asset('images/'~aubaine.category~'.png') }} " alt="" class="category category-{{ aubaine.category }}">
                 </a>
@@ -51,7 +57,7 @@
         </div>
         <div id="home-events">
             <h2>À venir</h2>
-            {% for aubaine in lastAubaines %}
+            {% for aubaine in listAubaines2 %}
                 <a class="aubaineExtract" target="_blank" href="{{ path('aubaine_platform_public_view', {'id': aubaine.id}) }}">
                     <div class="image">
                         <img src="{{ asset('images/place/' ~ aubaine.place.imageHeader) }}" alt="" class="avatar">
@@ -65,7 +71,13 @@
                     </div>
                     <div class="date">
                         <img src="{{ asset('images/date.png') }} " alt="" class="calendar">
-                        du {{ aubaine.start | date("d M") }} au {{ aubaine.end | date("d M") }}
+                        {% if  aubaine.type == 3 %}
+                        Le {{ aubaine.start | date("d M") }}
+                        {% elseif aubaine.type == 2 %}
+                        Du {{ aubaine.start | date("d M") }} au {{ aubaine.end | date("d M") }}
+                        {% else %}
+                        Toute l'année
+                        {% endif %}
                     </div>
                     <img src="{{ asset('images/'~aubaine.category~'.png') }} " alt="" class="category category-{{ aubaine.category }}">
                 </a>
@@ -73,7 +85,7 @@
         </div>
         <div id="home-places">
             <h2>Toute l'année</h2>
-            {% for aubaine in lastAubaines %}
+            {% for aubaine in listAubaines1 %}
                 <a class="aubaineExtract" target="_blank" href="{{ path('aubaine_platform_public_view', {'id': aubaine.id}) }}">
                     <div class="image">
                         <img src="{{ asset('images/place/' ~ aubaine.place.imageHeader) }}" alt="" class="avatar">
@@ -87,7 +99,13 @@
                     </div>
                     <div class="date">
                         <img src="{{ asset('images/date.png') }} " alt="" class="calendar">
+                        {% if  aubaine.type == 3 %}
+                        Le {{ aubaine.start | date("d M") }}
+                        {% elseif aubaine.type == 2 %}
+                        Du {{ aubaine.start | date("d M") }} au {{ aubaine.end | date("d M") }}
+                        {% else %}
                         Toute l'année
+                        {% endif %}
                     </div>
                     <img src="{{ asset('images/'~aubaine.category~'.png') }} " alt="" class="category category-{{ aubaine.category }}">
                 </a>

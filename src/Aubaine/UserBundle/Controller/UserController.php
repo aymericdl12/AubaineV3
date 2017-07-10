@@ -187,22 +187,22 @@ class UserController extends Controller
     $dm = $this->get('doctrine_mongodb')->getManager();
     $userManager = $this->get('fos_user.user_manager');
 
-    // $aubaines = $dm->getRepository('AubainePlatformBundle:Aubaine')->findAll();
-    // foreach ($aubaines as $aubaine) {
-    //   $dm->remove($aubaine);
+    $aubaines = $dm->getRepository('AubainePlatformBundle:Aubaine')->findAll();
+    foreach ($aubaines as $aubaine) {
+      $dm->remove($aubaine);
     //   $author = $userManager->findUserBy(array( 'id' => $aubaine->getIdAuthor() ));
     //   $placeId = $author->getPlacesId()[0];
     //   $place = $dm->getRepository('AubainePlaceBundle:Place')->find($placeId);
     //   $aubaine->setPlace($place);
     //   $aubaine->setPlaceId($place->getId());
     //   $aubaine->setPermanent( True );
-    // }
+    }
 
 
-    $places = $dm->getRepository('AubainePlaceBundle:Place')->findAll();
-    foreach ($places as $place) {
-      $place->setInformation("");
-    //   $aubaine = new Aubaine();
+    // $places = $dm->getRepository('AubainePlaceBundle:Place')->findAll();
+    // foreach ($places as $place) {
+      // $place->setInformation("");
+      // $aubaine = new Aubaine();
     //   $aubaine->setPlace($place);
     //   $aubaine->setPlaceId($place->getId());
     //   $aubaine->setPermanent( True );
@@ -214,7 +214,7 @@ class UserController extends Controller
     //   $aubaine->setType( 1 );
     //   $aubaine->setCategory( $place->getCategory() );
     //   $dm->persist($aubaine);
-    }
+    // }
 
 
     // $users=$userManager->findUsers();

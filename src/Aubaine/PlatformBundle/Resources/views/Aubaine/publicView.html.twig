@@ -89,8 +89,12 @@
             </div>
           </div>
           <div class="col-md-6">
-            <img class="image" src="{{ asset('images/place/' ~ aubaine.place.image1) }}" alt="">
-            <img class="image" src="{{ asset('images/place/' ~ aubaine.place.image2) }}" alt="">
+            {% if aubaine.place.image1 %}
+              <img class="image" src="{{ asset('images/place/' ~ aubaine.place.image1) }}" alt="">
+            {% endif %}
+            {% if aubaine.place.image2 %}
+              <img class="image" src="{{ asset('images/place/' ~ aubaine.place.image2) }}" alt="">
+            {% endif %}
           </div>      
       </div>
     </div>

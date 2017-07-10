@@ -991,6 +991,9 @@ body{
   overflow:hidden;
   position:relative;
 }
+.aubaine .header img{
+  width:100%;
+}
 .aubaine .edit{
   padding:2rem 0;
 }

@@ -22,23 +22,20 @@ class HomeController extends Controller
 	    $current_day_datetime = new \DateTime();
 	    $current_day_datetime->setTimestamp($current_day);
 
-	    $lastAubaines = $dm->getRepository('AubainePlatformBundle:Aubaine')->getLastAubaines(3)->toArray();
-	    $lastPlaces = $dm->getRepository('AubainePlaceBundle:Place')->getLastPlaces(3)->toArray();
-	    $lastEvents = $dm->getRepository('AubaineEventBundle:Event')->getLastEvents(3)->toArray();
+	    $listAubaines1 = $dm->getRepository('AubainePlatformBundle:Aubaine')->getLastAubaines(1,3)->toArray();
+	    $listAubaines2 = $dm->getRepository('AubainePlatformBundle:Aubaine')->getLastAubaines(2,3)->toArray();
+	    $listAubaines3 = $dm->getRepository('AubainePlatformBundle:Aubaine')->getLastAubaines(3,3)->toArray();
 	    $number_partner = $this->get('doctrine_mongodb')->getManager()->getRepository('AubaineUserBundle:User')->findAll();
 
 	    $hoursDay="hours".date("l");
 
 	    $serializer = $this->container->get('jms_serializer');
-	    $listPlacesJson = $serializer->serialize($lastPlaces, "json");
 
 	    $array_response=array(
 	      'hoursDay' => $hoursDay,
-	      'number_partner' => sizeof($number_partner),
-	      'listPlacesJson' => $listPlacesJson,
-	      'lastAubaines' => $lastAubaines,
-	      'lastEvents' => $lastEvents,
-	      'lastPlaces' => $lastPlaces,
+	      'listAubaines1' => $listAubaines1,
+	      'listAubaines2' => $listAubaines2,
+	      'listAubaines3' => $listAubaines3,
 	      'current_day' => $current_day
 	    );
 
