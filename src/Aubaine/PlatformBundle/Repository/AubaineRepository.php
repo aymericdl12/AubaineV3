@@ -31,34 +31,6 @@ class AubaineRepository extends DocumentRepository
           ->execute()
 		;
 	}
-    public function getAubainesByAuthor($userId, $month_first_day, $month_last_day)
-	{
-		return $this->createQueryBuilder()
-			->field('date')->lte($month_last_day)
-			->field('date')->gte($month_first_day)
-			->field('idAuthor')->equals($userId)
-			->getQuery()
-			->execute()
-		;
-	}
-    public function getCurrentAubaineByAuthor($userId, $date)
-	{
-		return $this->createQueryBuilder()
-			->field('date')->equals($date)
-			->field('idAuthor')->equals($userId)
-			->getQuery()
-			->getSingleResult()
-		;
-	}
-    public function getAubaineByDateAndCity($date, $city)
-	{
-		return $this->createQueryBuilder()
-			->field('date')->equals($date)
-			->field('city')->equals($city)
-			->getQuery()
-			->execute()
-		;
-	}
     public function getLastAubaines($types, $max)
 	{
 		return $this->createQueryBuilder()
@@ -74,7 +46,7 @@ class AubaineRepository extends DocumentRepository
 		return $this->createQueryBuilder()
 			->field('end')->gte($max)
 			->field('placeId')->equals($placeId)
-			->field('permanent')->equals(False)
+			->field('type')->in(array(2,3))
 			->getQuery()
 			->execute()
 		;
@@ -84,7 +56,7 @@ class AubaineRepository extends DocumentRepository
 		return $this->createQueryBuilder()
 			->field('end')->lte($max)
 			->field('placeId')->equals($placeId)
-			->field('permanent')->equals(False)
+			->field('type')->in(array(2,3))
 			->getQuery()
 			->execute()
 		;
@@ -92,7 +64,7 @@ class AubaineRepository extends DocumentRepository
     public function getPermanentAubaines($placeId)
 	{
 		return $this->createQueryBuilder()
-			->field('permanent')->equals(True)
+			->field('type')->equals(1)
 			->field('placeId')->equals($placeId)
 			->getQuery()
 			->execute()

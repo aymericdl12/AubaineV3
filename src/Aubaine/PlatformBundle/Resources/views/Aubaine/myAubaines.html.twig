@@ -67,9 +67,7 @@
         {% for place in places %}
             {% for aubaine in attribute(currentAubaines, place.id) %}
                 <a class="aubaineExtract" target="_blank" href="{{ path('aubaine_platform_public_view', {'id': aubaine.id}) }}">
-                    <div class="image">
-                        <img src="{{ asset('images/place/' ~ aubaine.place.imageHeader) }}" alt="" class="avatar">
-                    </div>
+                    <div class="image" style="background-image:url('{{ asset('images/place/' ~ aubaine.place.imageHeader) }}')" alt="" class="avatar"></div>
                     <div class="content">
                         {{ aubaine.message }}
                     </div>
@@ -90,7 +88,6 @@
                 </a>
             {% endfor %}
         {% endfor %}
-        
     </div>
 </div>
 

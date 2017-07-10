@@ -39,12 +39,6 @@ class HomeController extends Controller
 	      'current_day' => $current_day
 	    );
 
-	    if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
-	    	$userId= $this->get('security.token_storage')->getToken()->getUser()->getId();
-	        $current_aubaine = $dm->getRepository('AubainePlatformBundle:Aubaine')->getCurrentAubaineByAuthor($userId, $current_day_datetime);
-	        $array_response['current_aubaine'] = $current_aubaine;
-	    }
-
 		return $this->render('AubaineCoreBundle:Home:index.html.twig', $array_response);
 	    
 	}
@@ -110,12 +104,6 @@ class HomeController extends Controller
 	      'listAubaines' => $listAubaines,
 	      'current_day' => $current_day
 	    );
-
-	    if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
-	    	$userId= $this->get('security.token_storage')->getToken()->getUser()->getId();
-	        $current_aubaine = $dm->getRepository('AubainePlatformBundle:Aubaine')->getCurrentAubaineByAuthor($userId, $current_day_datetime);
-	        $array_response['current_aubaine'] = $current_aubaine;
-	    }
 
 		return $this->render('AubaineCoreBundle:Home:live.html.twig', $array_response);
 	    
