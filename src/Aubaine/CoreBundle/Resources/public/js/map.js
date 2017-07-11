@@ -3,11 +3,18 @@ jq(document).ready( function() {
 
 	var map;
 	var arrMarkers = [];
+	var monthNames = [
+	    "janvier", "Février", "Mars",
+	    "Avril", "Mai", "Juin", "Juillet",
+	    "Août", "Septembre", "Octobre",
+	    "Novembre", "Decembre"
+	  ];
 
 
 	// Print the map
-	var map = L.map('map').setView([43.6044292, 1.4438121000000592], 16);
+	var map = L.map('map', {  minZoom: 13, maxZoom: 30 }).setView([43.6044292, 1.4438121000000592], 16);
 	map.zoomControl.setPosition('bottomright');
+	// map.setPosition('bottomright');
 	// load a tile layer
 	L.tileLayer('https://api.mapbox.com/styles/v1/aymericdl2/cj1ypxtb0000g2sqry16pzm0o/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYXltZXJpY2RsMiIsImEiOiJjajF5b2dhMzIwMDBmMzNuenBsMXRpeWVoIn0.EGdbIzhLpXPATY5FzxdsHg', 
 		{}).addTo(map);
@@ -37,37 +44,44 @@ jq(document).ready( function() {
 	}
 
 	function print_results(listAubaines){
-
-		for (var i = 0; i <=listAubaines.length-1; i++) {
-			var id = listAubaines[i].id;
-			var permanent = listAubaines[i].permanent;
-			var start = listAubaines[i].start;
-			var end = listAubaines[i].end;
-			var message = listAubaines[i].message;
-			var category = listAubaines[i].category;
-			var place = listAubaines[i].place.title;
-			var image = listAubaines[i].place.image_header;
-			var authorLati = listAubaines[i].place.lati;
-			var authorLongi = listAubaines[i].place.longi;
-			var type = listAubaines[i].type;
+		jQuery.each(listAubaines, function(i, val) {
+			var id = val.id;
+			var permanent = val.permanent;
+			var start = val.start;
+			var end = val.end;
+			var message = val.message;
+			var category = val.category;
+			var place = val.place.title;
+			var image = val.place.image_header;
+			var authorLati = val.place.lati;
+			var authorLongi = val.place.longi;
+			var type = val.type;
+			start_date = new Date(start);
+			end_date = new Date(end);
 
 			infos_deal = {
 				"place": place,
-				"start": start,
-				"end": end,
+				"start_date": start_date,
+				"end_date": end_date,
 				"category": category,
 				"image": avatarDir+image,
 				"message": message
 			};
-			addMarkerByAdress(id, type, infos_deal, authorLati, authorLongi);
-		}	 	    
+			// alert(Math.floor(start_date.getTime() / 1000));
+			if(Math.floor(start_date.getTime() / 1000) <= current_timestamp){
+				addMarkerByAdress(id, type, infos_deal, authorLati, authorLongi,1);
+			}
+			else{
+				addMarkerByAdress(id, type, infos_deal, authorLati, authorLongi,0);
+			}
+		}); 	    
 	}
 
-    function addMarkerByAdress(id,deal_type, infos_deal,latti,longi){
+    function addMarkerByAdress(id,deal_type, infos_deal,latti,longi,animated){
 
 		var infobox_content;
 		var marker_icon;
-		if(deal_type==1){
+		if(deal_type==3){
 			infobox_content =   '<a target="_blank" href="'+viewUrl.replace("toreplace", id)+'" class="dealMap" >' +
                                     '<div class="image" style="background-image:url(\''+infos_deal.image+'\')"></div>'+
 	                                '<div class="content">'+
@@ -77,17 +91,33 @@ jq(document).ready( function() {
                                     	'<img src="'+imageDir+'location.png" alt="" class="location">'+
                                     	infos_deal.place+
                                     '</div>' +
-                                    // '<div class="dates">'+
-                                    	// 'du '+infos_deal.start+' au '+infos_deal.end;
-                                    // '</div>' +
-	                            '</a>';
-			var marker_icon = L.icon({
-			    iconUrl: imageDir+infos_deal.category+".png",
-			    className: 'marker-map marker-map-'+deal_type+' marker-map-'+infos_deal.category,
-			    iconSize:     [30, 30], // size of the icon
-			    iconAnchor:   [15, 15], // point of the icon which will correspond to marker's location
-			    popupAnchor:  [0, -10] // point from which the popup should open relative to the iconAnchor
-			});	   				
+                                    '<div class="dates">'+
+                                    	'<img src="'+imageDir+'calendar.png" alt="" class="location">'+
+                                    	'Le '+infos_deal.end_date.getDate()+' '+monthNames[infos_deal.end_date.getMonth()]+
+                                    '</div>' +
+                                '</a>'
+		}
+		else if(deal_type==2){
+			infobox_content =   '<a target="_blank" href="'+viewUrl.replace("toreplace", id)+'" class="dealMap" >' +
+                                    '<div class="image" style="background-image:url(\''+infos_deal.image+'\')"></div>'+
+	                                '<div class="content">'+
+	                                	infos_deal.message+
+                                    '</div>' +
+                                    '<div class="place">'+
+                                    	'<img src="'+imageDir+'location.png" alt="" class="location">'+
+                                    	infos_deal.place+
+                                    '</div>' +
+                                    '<div class="dates">'+
+                                    	'<img src="'+imageDir+'calendar.png" alt="" class="calendar">';
+
+			if(infos_deal.start_date.getMonth() != infos_deal.end_date.getMonth()){
+			    infobox_content +='du '+infos_deal.start_date.getDate()+' '+monthNames[infos_deal.start_date.getMonth()]+' au '+infos_deal.end_date.getDate()+' '+monthNames[infos_deal.end_date.getMonth()];
+			}
+			else{
+				infobox_content +='du '+infos_deal.start_date.getDate()+' au '+infos_deal.end_date.getDate()+' '+monthNames[infos_deal.end_date.getMonth()];
+			}
+
+            infobox_content +='</div></a>';	   				
 		}
 		else{
 			infobox_content =   '<a target="_blank" href="'+viewUrl.replace("toreplace", id)+'" class="dealMap" >' +
@@ -99,15 +129,31 @@ jq(document).ready( function() {
                                     	'<img src="'+imageDir+'location.png" alt="" class="location">'+
                                     	infos_deal.place+
                                     '</div>' +
+                                    '<div class="dates">'+
+                                    	'<img src="'+imageDir+'calendar.png" alt="" class="location">'+
+                                    	'Toute l\'année'+
+                                    '</div>' +
 	                            '</a>';
+		}
+		if(animated){
+			var marker_icon = L.icon({
+				    iconUrl: imageDir+infos_deal.category+".png",
+				    className: 'marker-map marker-map-animated  marker-map-'+infos_deal.category,
+				    iconSize:     [35, 35],
+				    iconAnchor:   [17.5, 17.5],
+				    popupAnchor:  [0, -10] 
+				});	
+		}
+		else{
 			var marker_icon = L.icon({
 			    iconUrl: imageDir+infos_deal.category+".png",
-			    className: 'marker-map marker-map-'+deal_type+' marker-map-'+infos_deal.category,
-			    iconSize:     [35, 35], // size of the icon
-			    iconAnchor:   [17.5, 17.5], // point of the icon which will correspond to marker's location
-			    popupAnchor:  [0, -10] // point from which the popup should open relative to the iconAnchor
+			    className: 'marker-map marker-map-'+infos_deal.category,
+			    iconSize:     [30, 30],
+			    iconAnchor:   [15, 15],
+			    popupAnchor:  [0, -10]
 			});
 		}
+
 		var ll = L.latLng(latti, longi)
 		var marker = L.marker(ll,{icon:marker_icon});
 		marker.addTo(map);
@@ -117,10 +163,15 @@ jq(document).ready( function() {
 			maxWidth : 560
 		}
 		marker.bindPopup(infobox_content,infobox_option);
+		// marker.on("click", function() {
+		//   jq(".list_wrapper").animate({
+		//         scrollTop: jq('#deal-'+id).offset().top
+		//     }, 500);
+		// });
 		arrMarkers[id] = marker;
-		jq('#deal-'+id).hover(function(){
-			marker.fireEvent('click'); 
-		});
+		// jq('#deal-'+id).hover(function(){
+		// 	marker.fireEvent('click'); 
+		// });
     }
    
 

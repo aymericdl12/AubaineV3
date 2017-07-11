@@ -69,7 +69,6 @@
           <ul class="nav navbar-nav navbar-left">
                 <li class="{% if app.request.attributes.get('_route') == 'aubaine_core_map' %}active{% endif %}"  id='menu-tab-accueil'><a id='menu-button-accueil' href="{{ path('aubaine_core_map') }}"> Carte</a></li>
                 <li class="{% if app.request.attributes.get('_route') == 'aubaine_core_concept' %}active{% endif %}"  id='menu-tab-accueil'><a id='menu-button-accueil' href="{{ path('aubaine_core_concept') }}"> Concept</a></li>
-                <li class="{% if app.request.attributes.get('_route') == 'aubaine_core_partner' %}active{% endif %}"  id='menu-tab-accueil'><a id='menu-button-accueil' href="{{ path('aubaine_core_partner') }}"> Devenir Partenaire</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}

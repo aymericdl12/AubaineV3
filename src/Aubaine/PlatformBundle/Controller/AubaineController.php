@@ -110,6 +110,19 @@ class AubaineController extends Controller
 
         $aubaine->setPlaceId($aubaine->getPlace()->getId());
         $aubaine->setCity($aubaine->getPlace()->getCity());
+
+        if($aubaine->getType()==1){
+          $start_datetime = new \DateTime();
+          $start_datetime->setTimestamp(1499709965);
+
+          $end_datetime = new \DateTime();
+          $end_datetime->setTimestamp(1580601600);
+
+          $aubaine->setStart($start_datetime);
+          $aubaine->setEnd($end_datetime);
+      } 
+
+
         $em = $this->get('doctrine_mongodb')->getManager();
         $em->persist($aubaine);
         $em->flush();
@@ -290,7 +303,12 @@ class AubaineController extends Controller
         $aubaine->setEnd($end_datetime);
       }  
       else{
-        $aubaine->setType( 2 );
+        if($request->request->get('start') == $request->request->get('end')){
+          $aubaine->setType( 3 );
+        }
+        else{
+          $aubaine->setType( 2 );
+        }
         $aubaine->setStart($request->request->get('start'));
         $aubaine->setEnd($request->request->get('end'));
       }

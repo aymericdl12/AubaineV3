@@ -51,9 +51,8 @@ class HomeController extends Controller
 	    $current_day= strtotime(date("Y-m-d 00:00:00"));
 	    $current_day_datetime = new \DateTime();
 	    $current_day_datetime->setTimestamp($current_day);
-	    $listAubaines = $dm->getRepository('AubainePlatformBundle:Aubaine')->findBy(
-		    array('city' => 'toulouse')
-		);
+
+	    $listAubaines = $dm->getRepository('AubainePlatformBundle:Aubaine')->getAubainesLive( $current_day_datetime, array('eat','shop','wellness','event'), 'toulouse' )->toArray();
 
 	    $hoursDay="hours".date("l");
 
@@ -80,26 +79,18 @@ class HomeController extends Controller
 	    $current_day_datetime = new \DateTime();
 	    $current_day_datetime->setTimestamp($current_day);
 
-		if($search=="all"){
-			if($category!="all"){
-			    $listAubaines = $dm->getRepository('AubainePlatformBundle:Aubaine')->findBy(
-				    array('city' => $city, 'category' => $category)
-				);
-			}
-			else{
-			    $listAubaines = $dm->getRepository('AubainePlatformBundle:Aubaine')->findBy(
-				    array('city' => $city)
-				);
-			}	    	
+		if($category!="all"){
+		    $listAubaines = $dm->getRepository('AubainePlatformBundle:Aubaine')->getAubainesLive( $current_day_datetime, array('eat','shop','wellness','event'), $city )->toArray();
 		}
-
-	    $hoursDay="hours".date("l");
+		else{
+		    $listAubaines = $dm->getRepository('AubainePlatformBundle:Aubaine')->getAubainesLive( $current_day_datetime, array($category), $city )->toArray();
+		}
 
 	    $serializer = $this->container->get('jms_serializer');
 	    $listAubainesJson = $serializer->serialize($listAubaines, "json");
 
 	    $array_response=array(
-	      'hoursDay' => $hoursDay,
+	      'current_day_datetime' => $current_day_datetime,
 	      'listAubainesJson' => $listAubainesJson,
 	      'listAubaines' => $listAubaines,
 	      'current_day' => $current_day

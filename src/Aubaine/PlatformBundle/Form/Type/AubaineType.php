@@ -24,8 +24,6 @@ class AubaineType extends AbstractType
     {
         $builder
         ->add('message',   TextareaType::class)
-        ->add('start',   DateType::class)
-        ->add('end',   DateType::class)
         ->add('category', ChoiceType::class, array(
             'choices'  => array(
                 'Bar, Café, Restaurant' => "eat",
@@ -33,16 +31,18 @@ class AubaineType extends AbstractType
                 'Bien être' => "wellness",
                 'Évènement' => "event"
             )))
+        ->add('place', DocumentType::class, array(
+            'class'        => 'AubainePlaceBundle:Place',
+            'choice_label' => 'title'
+          ))
         ->add('type', ChoiceType::class, array(
             'choices'  => array(
                 'Toute l\'année' => 1,
                 'Plusieurs jours' => 2,
                 'Uniquement un jour' => 3
             )))
-        ->add('place', DocumentType::class, array(
-            'class'        => 'AubainePlaceBundle:Place',
-            'choice_label' => 'title'
-          ))
+        ->add('start',   DateType::class)
+        ->add('end',   DateType::class)
         ->add('save',      SubmitType::class);
     }
 
