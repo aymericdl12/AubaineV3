@@ -156,6 +156,9 @@ jq(document).ready( function() {
 
 		var ll = L.latLng(latti, longi)
 		var marker = L.marker(ll,{icon:marker_icon});
+		if(animated){
+			marker.setZIndexOffset(10000);
+		}
 		marker.addTo(map);
 
 		infobox_option={
