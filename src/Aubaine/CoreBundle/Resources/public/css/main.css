@@ -550,13 +550,15 @@ body{
 }
 /*home-places*/
 #home-live{
-  text-align: left;
+  text-align: center;
   margin:4rem 0;
+  /*max-width: 750px;*/
 }
 /*home-places*/
 #home-places{
-  text-align: left;
+  text-align: center;
   margin:4rem 0;
+  /*max-width: 750px;*/
 }
 /*home-events*/
 #home-events{

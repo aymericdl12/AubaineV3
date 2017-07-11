@@ -1,6 +1,6 @@
 {% extends "AubaineCoreBundle::layout.html.twig" %}
 
-{% block body_column_center %}
+{% block body %}
 
 <div id="body-home">
         <div id='home-header'>
@@ -28,7 +28,7 @@
             </form>
         </div>
         <div id="home-live">
-            <h2>Messages Éphémères</h2>
+            <h2>Derniers messages éphémères</h2>
             {% for aubaine in listAubaines3 %}
                 <a class="aubaineExtract" target="_blank" href="{{ path('aubaine_platform_public_view', {'id': aubaine.id}) }}">
                     <div class="image" style="background-image:url('{{ asset('images/place/' ~ aubaine.place.imageHeader) }}')"></div>
@@ -58,7 +58,7 @@
             {% endfor %}
         </div>
         <div id="home-places">
-            <h2>Toute l'année</h2>
+            <h2>Ça se passe toute l'année</h2>
             {% for aubaine in listAubaines1 %}
                 <a class="aubaineExtract" target="_blank" href="{{ path('aubaine_platform_public_view', {'id': aubaine.id}) }}">
                     <div class="image" style="background-image:url('{{ asset('images/place/' ~ aubaine.place.imageHeader) }}')"></div>
@@ -96,7 +96,7 @@
         </div>
         <div id="home-concept">
             <h2>Un concept unique</h2>
-            <p>Promotions, nouveautés, évènements,... Aubaine vous transmet en instantané des messages partagés par des commerçants.</p>
+            <p>Promotions, nouveautés, évènements,... Les commerçant vous transmettent des messages en instantanée.</p>
             <a href="{{ path('aubaine_core_concept') }}" class="btn btn-lg btn-primary" target="_blank">
                 <i class="glyphicon glyphicon-map"></i>
                 Découvrir le concept
