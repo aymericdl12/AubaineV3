@@ -626,12 +626,13 @@ body{
   color:#666;
 }
 #body-concept h1{
-  font-size: 3.7rem;
+  font-size: 3rem;
   margin:0 0 2rem ;
   color:#555;
   text-transform: uppercase;
-  /*font-weight: normal;*/
   line-height: 5rem;
+  border:2px solid;
+  padding:1rem;
 }
 #body-concept h2{
   font-size: 2.3rem;
@@ -669,7 +670,7 @@ body{
 #concept-user .assets{
   display: inline-block;
   vertical-align: top;
-  width: 24rem;
+  width: 20rem;
   padding:0 1rem 2rem;
 }
 #concept-partner{
@@ -683,7 +684,7 @@ body{
 }
 #concept-partner .figures{
     width:13rem;
-    margin:8rem auto 12rem;
+    margin:3rem auto 8rem;
     position:relative;
     height:13rem;
     color:#fff;
@@ -745,7 +746,6 @@ body{
   display:inline-block;
   max-width: 80%;
 }
-/*home-Media*/
 #media-list img{
   height: 5rem;
   margin-bottom:3rem;
@@ -753,47 +753,9 @@ body{
   display:inline-block;
   max-width: 80%;
 }
-
-
-/*partner*/
-#body-partner{
-  text-align: center;
-  color:#666;
-}
-#body-partner h1{
-  font-size: 3.7rem;
-  margin:0 0 2rem ;
-  color:#555;
-  text-transform: uppercase;
-  /*font-weight: normal;*/
-  line-height: 5rem;
-}
-#body-partner h2{
-  font-size: 2.3rem;
-  margin: 4rem 0rem ;
-  line-height: 4rem;
-  color:#444;
-}
-#body-partner h3{
-  margin:0 1rem 1rem;
-  line-height: 3rem;
-  font-size: 3rem;
-  letter-spacing: 0.4rem;
-  color:#333;
-}
-#body-partner h4{
-  color: #ec4940;
-  font-size: 2.4rem;
-  letter-spacing: 0.2rem;
-}
-#body-partner p{
-  margin:1rem auto;
-}
-#partner-header{
-  padding:6rem 2rem 0;
-}
+/*partner-*/
 #partner-avantages{
-  margin:8rem 0;
+  margin:8rem 0 0;
   line-height: 2.5rem;
 }
 #partner-avantages .assets{
@@ -803,7 +765,7 @@ body{
   padding:0 1rem 2rem;
 }
 #partner-functionment{
-  margin:10rem 0 6rem;
+  margin:4rem 0 6rem;
 }
 #partner-functionment h3{
   margin-bottom: 3rem;

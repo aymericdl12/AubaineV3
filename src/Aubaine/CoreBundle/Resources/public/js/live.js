@@ -158,7 +158,12 @@ jq(document).ready( function() {
 		var ll = L.latLng(latti, longi)
 		var marker = L.marker(ll,{icon:marker_icon});
 		if(animated){
-			marker.setZIndexOffset(10000);
+			if(type=1){
+				marker.setZIndexOffset(10000);
+			}
+			else{
+				marker.setZIndexOffset(5000);
+			}
 		}
 		marker.addTo(map);
 
