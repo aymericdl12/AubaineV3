@@ -1,3 +1,7 @@
+.padding-30{
+  padding:30px;
+}
+
 
 html {
   font-size: 62.5%;
@@ -23,14 +27,35 @@ body{
 }
 .footer{
   width: 100%;
-  padding:3rem 0 3rem;
+  padding:6rem 2rem;
   margin:2rem 0 0;
   color: #fff;
   background: #222;
-  text-align: center;
   bottom:0;
   vertical-align: bottom;
   z-index: 0;
+}
+.footer .summary{
+  text-align: justify;
+  padding:2rem;
+}
+ .footer .social{
+  padding:2rem 0;
+  text-align: center;
+}
+ .footer .links{
+  padding:2rem;
+}
+ .footer ul{
+  list-style: none;
+  padding:0;
+}
+ .footer li{
+  margin-bottom: 1.5rem;
+}
+ .footer a{
+  color:#fff;
+  margin:1rem 0;
 }
 .social-logo img{
   margin: 0 2rem;
@@ -38,10 +63,6 @@ body{
 .social-logo img{
   width:40px;
   height:40px;
-}
-#footer-followus
-{
-  margin-bottom: 2rem;
 }
 #footer-newsletters{
   padding:3.5rem 0;
@@ -608,8 +629,8 @@ body{
 #home-concept{
   margin: 0 0 10rem;
   display:inline-block;
-  border:2px solid;
-  max-width: 40rem;
+  /*border:2px solid;*/
+  /*max-width: 40rem;*/
   padding:3rem;
   line-height: 3rem
 }
