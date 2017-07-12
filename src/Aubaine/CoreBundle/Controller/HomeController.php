@@ -132,10 +132,17 @@ class HomeController extends Controller
 
 	    ));
 	}
-	// La page de concept
+	// La page de cgu
 	public function cguAction()
 	{
 		return $this->render('AubaineCoreBundle:Home:cgu.html.twig', array(
+
+	    ));
+	}
+	// La page de subscription
+	public function subscriptionAction()
+	{
+		return $this->render('AubaineCoreBundle:Home:subscription.html.twig', array(
 
 	    ));
 	}

@@ -22,3 +22,6 @@ aubaine_core_ajax_newsletter:
 aubaine_core_search:
     path:     /search
     defaults: { _controller: AubaineCoreBundle:Home:search }
+aubaine_core_subscription:
+    path:     /subscription
+    defaults: { _controller: AubaineCoreBundle:Home:subscription }
