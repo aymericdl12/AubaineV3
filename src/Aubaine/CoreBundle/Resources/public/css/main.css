@@ -514,7 +514,9 @@ body{
   letter-spacing: 0.2rem;
 }
 #body-home .search{
-  margin:4rem 2rem;
+  margin:8rem 0 0;
+  background-color: rgba(0,0,0,0.7);
+  padding:2rem 0;
   position:relative;
   z-index: 1;
 }
@@ -554,7 +556,7 @@ body{
   background-attachment: fixed;
   width:100%;
   background-size:cover;
-  padding:9rem 2rem 9rem;
+  padding:12rem 2rem 0rem;
   margin-bottom: 5rem;
   position:relative;
   z-index: 1;
