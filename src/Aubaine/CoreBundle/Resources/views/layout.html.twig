@@ -67,8 +67,9 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav navbar-left">
+                <li class="{% if app.request.attributes.get('_route') == 'aubaine_core_homepage' %}active{% endif %}"  id='menu-tab-accueil'><a id='menu-button-accueil' href="{{ path('aubaine_core_homepage') }}"> Accueil</a></li>
+                <li class="{% if app.request.attributes.get('_route') == 'aubaine_core_live' %}active{% endif %}"  id='menu-tab-accueil'><a id='menu-button-accueil' href="{{ path('aubaine_core_live') }}"> Recherche</a></li>
                 <li class="{% if app.request.attributes.get('_route') == 'aubaine_core_map' %}active{% endif %}"  id='menu-tab-accueil'><a id='menu-button-accueil' href="{{ path('aubaine_core_map') }}"> Carte</a></li>
-                <li class="{% if app.request.attributes.get('_route') == 'aubaine_core_concept' %}active{% endif %}"  id='menu-tab-accueil'><a id='menu-button-accueil' href="{{ path('aubaine_core_concept') }}"> Concept</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
@@ -140,7 +141,7 @@
           <img class="logo" alt="Brand" src="{{ asset('images/logo-aubaine-new-large.png') }}" style="height:26px;">
           <div class="row">
             <div class="col-sm-4 summary">
-                    <p>Aubaine est une plateforme où des commerçants partenaires rédigent des messages. Il peut s'agir de promotions, de nouveautés, d'évènements ou d'autre chose. Les messages sont libres d'accès et à destination de tout le monde.</p>
+                    <p>Aubaine est une plateforme où des commerçants partenaires rédigent des messages. Il peut s'agir de promotions, de nouveautés, d'évènements ou d'autres surprises. Les messages sont libres d'accès et à destination de tout le monde.</p>
             </div>
             <div class="col-sm-4 social">
                     <a href="https://www.facebook.com/aubainetoulousaine/" id="facebook_link_footer" target="_blank"  class="social-logo"><img alt='Facebook2' src="{{ asset('images/face.png') }} "></a>

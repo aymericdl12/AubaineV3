@@ -36,7 +36,7 @@ body{
 .footer{
   width: 100%;
   padding:6rem 2rem;
-  margin:2rem 0 0;
+  margin:0;
   color: #fff;
   background: #222;
   bottom:0;
@@ -495,11 +495,11 @@ body{
 
 
 /*home*/
-#body-home{
+.body-home{
   text-align: center;
   color:#666;
 }
-#body-home h1{
+.body-home h1{
   font-size: 4.5rem;
   margin:0 0 2rem ;
   color:#ec4940;
@@ -509,19 +509,25 @@ body{
   position:relative;
   z-index: 1;
 }
-#body-home h2{
+.body-home h2{
   font-size: 2.5rem;
-  margin: 4rem 1rem 0;
+  margin: 0 1rem 6rem;
   color:#666;
   position:relative;
   z-index: 1;
 }
-#body-home h4{
+.body-home h3{
+  font-size: 2.3rem;
+  margin: 1rem 1rem 3rem;
+  position:relative;
+  z-index: 1;
+}
+.body-home h4{
   color: #ec4940;
   font-size: 2.4rem;
   letter-spacing: 0.2rem;
 }
-#body-home .search{
+.home-search{
   margin:8rem 0 0;
   background-color: rgba(0,0,0,0.7);
   padding:2rem 0;
@@ -565,7 +571,6 @@ body{
   width:100%;
   background-size:cover;
   padding:12rem 2rem 0rem;
-  margin-bottom: 5rem;
   position:relative;
   z-index: 1;
 }
@@ -579,22 +584,13 @@ body{
   background-color:rgba(0,0,0,0.5);
   z-index: 0;
 }
-/*home-places*/
-#home-live{
+/*home-live*/
+.home-live{
   text-align: center;
-  margin:4rem 0;
-  /*max-width: 750px;*/
+  padding:10rem 0;
 }
-/*home-places*/
-#home-places{
-  text-align: center;
-  margin:4rem 0;
-  /*max-width: 750px;*/
-}
-/*home-events*/
-#home-events{
-  text-align: left;
-  margin:4rem 0;
+.home-live h2{
+  margin-bottom: 0;
 }
 /*home-map*/
 #home-map h2{
@@ -602,7 +598,6 @@ body{
   margin-top: 0;
 }
 #home-map{
-  margin: 10rem 0;
   background-color: #003366;
   background-image: url('../images/map.png');  
   background-attachment: fixed;
@@ -625,7 +620,6 @@ body{
   content:"";
 }
 #home-map h2{
-  /*font-size: 1.6rem;*/
   z-index: 1;
   position:relative;
   margin:2rem 0;
@@ -635,90 +629,23 @@ body{
   z-index: 1;
   position:relative;
 }
-/*home-contact*/
-#home-concept{
-  margin: 0 0 10rem;
-  display:inline-block;
-  /*border:2px solid;*/
-  /*max-width: 40rem;*/
-  padding:3rem;
-  line-height: 3rem
-}
-#home-concept h2{
-  margin:0 0 2rem;
-}
-#home-concept p{
-  font-size: 1.6rem;
-  margin-bottom: 2rem;
-}
-
-
-/*concept*/
-#body-concept{
-  text-align: center;
-  color:#666;
-}
-#body-concept h1{
-  font-size: 3rem;
-  margin:0 0 2rem ;
-  color:#555;
-  text-transform: uppercase;
-  line-height: 5rem;
-  border:2px solid;
-  padding:1rem;
-}
-#body-concept h2{
-  font-size: 2.3rem;
-  margin: 4rem 0rem ;
-  color:#555;
-  line-height: 4rem;
-}
-#body-concept h3{
-  margin:0 1rem 0;
-  line-height: 3rem;
-  font-size: 3rem;
-  letter-spacing: 0.4rem;
-  color:#333;
-}
-#body-concept h4{
-  color: #ec4940;
-  font-size: 2.4rem;
-  letter-spacing: 0.2rem;
-}
-#body-concept p{
-  max-width: 500px;
-  margin:1rem auto;
-}
-/*concept-header*/
-#concept-header{
-  padding:6rem 2rem 0;
-}
-/*concept-user*/
-#concept-user{
+/*home-concept*/
+.home-concept{
     display: inline-block;
     width: 100%;
-    padding:4rem 2rem 0;
+    padding:10rem 1rem;
     line-height: 2.5rem;
 }
-#concept-user .assets{
+.home-concept .asset{
   display: inline-block;
   vertical-align: top;
   width: 24rem;
   padding:0 1rem 2rem;
+  line-height: 2.6rem;
 }
-#concept-partner{
-    margin:0 0 8rem;
-    position:relative;
-}
-#concept-partner h3{
-    letter-spacing: inherit;
-    font-size: 2.2rem;
-    text-transform: inherit;
-}
-#concept-partner .figures{
+.home-concept .figures{
     width:13rem;
-    margin:3rem auto 8rem;
-    position:relative;
+    margin:5rem auto 0;
     height:13rem;
     color:#fff;
     background-color: #ff3333;
@@ -727,15 +654,16 @@ body{
     font-size: 1.5rem;
     animation: pulse_red_long 2s ease-out infinite;
 }
-#concept-partner .figures span{
+.home-concept .figures span{
     line-height: normal;
     vertical-align: middle;
     display:inline-block;
 }
-#concept-partner .figures span b{
+.home-concept .figures span b{
     font-size: 3rem;
 }
-#concept-partner .carousel{
+/*home-partner*/
+.home-partner .carousel{
     width:100%;
     max-height: 40rem;
     overflow:hidden;
@@ -747,31 +675,43 @@ body{
     top:0;
     bottom:inherit;
 }
-#concept-partner .carousel-caption h4{
+.home-partner .carousel-caption h3{
     color:#fff;
 }
-#concept-teaser{
-    padding:4rem 2rem;
+/*home-teaser*/
+.home-teaser {
+    padding:10rem 1rem;
 }
-#concept-teaser a{
-    margin-top: 2rem;
+.home-teaser .asset{
+  display: inline-block;
+  vertical-align: top;
+  width: 24rem;
+  padding:0rem 1rem 2rem;
+  line-height: 2.6rem;
 }
-#concept-contact{
-    margin: 5rem auto 1rem;
-    padding: 4rem;
+/*home-contact*/
+.home-contact{
+    padding:6rem 1rem;
+    background:#eee;
+    border-bottom:2px solid #ddd;
+    border-top:2px solid #ddd;
 }
-#concept-contact .phone,
-#concept-contact .email{
+.home-contact h2{
+    margin-bottom: 2rem;
+}
+.home-contact .phone,
+.home-contact .email{
     display:inline-block;
     margin:0.5rem 0;
     font-weight:bold;
+    color:#666;
+    font-size: 1.8rem;
 }
-/*concept-Media*/
-#concept-media{
-    padding:3rem;
+/*home-media*/
+.home-media{
+    padding:2rem 1rem;
 }
 #media-list{
-  padding:4rem 2rem;
 }
 #media-list img{
   height: 5rem;
@@ -785,59 +725,6 @@ body{
   margin-right:3rem;
   display:inline-block;
   max-width: 80%;
-}
-/*partner-*/
-#partner-avantages{
-  margin:8rem 0 0;
-  line-height: 2.5rem;
-}
-#partner-avantages .assets{
-  display: inline-block;
-  vertical-align: top;
-  width: 24rem;
-  padding:0 1rem 2rem;
-}
-#partner-functionment{
-  margin:4rem 0 6rem;
-}
-#partner-functionment h3{
-  margin-bottom: 3rem;
-}
-#partner-functionment .list-examples{
-  margin-bottom: 2rem;
-}
-#partner-functionment .example{
-    font-size: 1.4rem;
-    border: 2px solid #ec4940;
-    border-radius: 0.5rem;
-    color: #ec4940;
-    display: inline-block;
-    margin: 2rem;
-    padding: 1.9rem;
-    width: 17rem;
-}
-#partner-functionment .row{
-  max-width: 1000px;
-  margin:0 auto;
-}
-#partner-functionment .myAubaines-list{
-  text-align: left;
-  max-width: 500px;
-  margin:0 auto 2rem;
-}
-#partner-contact h3{
-    font-size: 3rem;
-}
-#partner-contact{
-    font-size: 1.6rem;
-    margin: 2rem auto 5rem;
-    padding: 4rem;
-}
-#partner-contact .phone,
-#partner-contact .email{
-    display:inline-block;
-    margin:0.5rem 0;
-    font-weight:bold;
 }
 
 

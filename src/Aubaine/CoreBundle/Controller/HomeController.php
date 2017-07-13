@@ -22,21 +22,20 @@ class HomeController extends Controller
 	    $current_day_datetime = new \DateTime();
 	    $current_day_datetime->setTimestamp($current_day);
 
-	    $listAubaines1 = $dm->getRepository('AubainePlatformBundle:Aubaine')->getLastAubaines(array(1),3)->toArray();
-	    // $listAubaines2 = $dm->getRepository('AubainePlatformBundle:Aubaine')->getLastAubaines(array(1,2),3)->toArray();
-	    $listAubaines3 = $dm->getRepository('AubainePlatformBundle:Aubaine')->getLastAubaines(array(2,3),3)->toArray();
+	    $listAubaines = $dm->getRepository('AubainePlatformBundle:Aubaine')->getLastAubaines(array(1,2,3),3)->toArray();
 	    $number_partner = $this->get('doctrine_mongodb')->getManager()->getRepository('AubaineUserBundle:User')->findAll();
 
 	    $hoursDay="hours".date("l");
+
+	    $number_partner = $this->get('doctrine_mongodb')->getManager()->getRepository('AubaineUserBundle:User')->findAll();
 
 	    $serializer = $this->container->get('jms_serializer');
 
 	    $array_response=array(
 	      'hoursDay' => $hoursDay,
-	      'listAubaines1' => $listAubaines1,
-	      // 'listAubaines2' => $listAubaines2,
-	      'listAubaines3' => $listAubaines3,
-	      'current_day' => $current_day
+	      'listAubaines' => $listAubaines,
+	      'current_day' => $current_day,
+		   'number_partner'=> sizeof($number_partner)
 	    );
 
 		return $this->render('AubaineCoreBundle:Home:index.html.twig', $array_response);

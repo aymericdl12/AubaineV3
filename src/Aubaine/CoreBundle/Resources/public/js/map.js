@@ -12,7 +12,7 @@ jq(document).ready( function() {
 
 
 	// Print the map
-	var map = L.map('map', {  minZoom: 13, maxZoom: 30 }).setView([43.6044292, 1.4438121000000592], 16);
+	var map = L.map('map', {  minZoom: 1, maxZoom: 30 }).setView([43.6044292, 1.4438121000000592], 16);
 	map.zoomControl.setPosition('bottomright');
 	// map.setPosition('bottomright');
 	// load a tile layer
