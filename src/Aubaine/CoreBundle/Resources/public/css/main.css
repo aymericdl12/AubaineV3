@@ -588,6 +588,8 @@ body{
 .home-live{
   text-align: center;
   padding:10rem 0;
+  z-index: 0;
+  position:relative;
 }
 .home-live h2{
   margin-bottom: 0;
