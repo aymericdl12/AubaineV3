@@ -534,33 +534,33 @@ body{
   position:relative;
   z-index: 1;
 }
-.search .category{
+.home-search .category{
   height:2.5rem;
   width:2.5rem;
   padding:0.5rem;
   border-radius: 50%;
   margin-right: 0.5rem;
 }
-.search .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn){
+.home-search .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn){
   margin:1rem 0.5rem;
 }
-.search input[type="submit"]{
+.home-search input[type="submit"]{
   font-size: 1.8rem;
   margin:1rem 0.5rem;
 }
-.search .bootstrap-select.btn-group .dropdown-toggle .filter-option{
+.home-search .bootstrap-select.btn-group .dropdown-toggle .filter-option{
   font-size: 1.8rem;
 }
-.search .category-eat{
+.home-search .category-eat{
   background-color: #DE2916;
 }
-.search .category-shop{
+.home-search .category-shop{
   background-color: #00561B;
 }
-.search .category-wellness{
+.home-search .category-wellness{
   background-color: #003366;
 }
-.search .category-event{
+.home-search .category-event{
   background-color: #f5bc05;
 }
 /*home-header*/

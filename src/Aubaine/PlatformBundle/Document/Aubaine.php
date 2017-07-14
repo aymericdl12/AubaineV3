@@ -77,6 +77,7 @@ class Aubaine
 
     public function __construct()
 	  {
+        $this->date         = new \Datetime();
         $this->start         = new \Datetime();
         $this->end         = new \Datetime();
 	  }
