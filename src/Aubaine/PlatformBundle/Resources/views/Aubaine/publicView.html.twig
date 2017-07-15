@@ -28,24 +28,22 @@
         {{ aubaine.category | trans }}
       </h2>
     </div>
-    <div class="dates">
-      {% if  aubaine.type == 3 %}
-        <h2>
-          <img src="{{ asset('images/date.png') }} " alt="" class="calendar">
-          Le {{ aubaine.start | date("d F") | trans }}
-        </h2> 
-      {% elseif aubaine.type == 2 %}
-        <h2>
-          <img src="{{ asset('images/date.png') }} " alt="" class="calendar">
-          Du {{ aubaine.start | date("d F") }} au {{ aubaine.end | date("d F") }}
-        </h2> 
-      {% else %}
-        <h2>
-          <img src="{{ asset('images/date.png') }} " alt="" class="calendar">
-          Toute l'année
-        </h2> 
-      {% endif %}
-  </div>
+    <div class="date">
+      <h2>
+        <img src="{{ asset('images/calendar.png') }} " alt="" class="calendar">
+        {% if  aubaine.type == 3 %}
+        Le {{ aubaine.start | date("d") }} {{ aubaine.start | date("F") | trans }}
+        {% elseif aubaine.type == 2 %}
+            {% if aubaine.start | date("F") == aubaine.end | date("F") %}
+                Du {{ aubaine.start | date("d") }} au {{ aubaine.end | date("d") }} {{ aubaine.end | date("F") | trans }}
+            {% else %}
+                Du {{ aubaine.start | date("d") }} {{ aubaine.start | date("F") | trans }} au {{ aubaine.end | date("d") }} {{ aubaine.end | date("F") | trans }}
+            {% endif %}
+        {% else %}
+        Toute l'année
+        {% endif %}
+      </h2>
+    </div>
     <div class="place">
       <h2>
         <img src="{{ asset('images/location.png') }} " alt="" class="location"> 

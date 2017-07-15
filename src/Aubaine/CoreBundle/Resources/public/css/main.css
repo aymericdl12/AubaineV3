@@ -930,6 +930,16 @@ body{
   background-color: #fff;
   box-shadow: 6px 8px 11px #aaa;
 }
+/*.aubaineExtract:after{
+  content:"";
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 11px 8px 0 8px;
+  border-color: #f33333 transparent transparent;
+  position:absolute;
+  left:2rem;
+}*/
 .aubaineExtract:hover{
   text-decoration: none;
   color:#444;
