@@ -645,40 +645,18 @@ body{
   padding:0 1rem 2rem;
   line-height: 2.6rem;
 }
-.home-concept .figures{
-    width:13rem;
-    margin:5rem auto 0;
-    height:13rem;
-    color:#fff;
-    background-color: #ff3333;
-    border-radius: 50%;
-    line-height: 12rem;
-    font-size: 1.5rem;
-    animation: pulse_red_long 2s ease-out infinite;
-}
-.home-concept .figures span{
-    line-height: normal;
-    vertical-align: middle;
-    display:inline-block;
-}
-.home-concept .figures span b{
-    font-size: 3rem;
-}
 /*home-partner*/
-.home-partner .carousel{
-    width:100%;
-    max-height: 40rem;
-    overflow:hidden;
+.home-partner{
+    background:#fafafa;
+    border:2px solid #eee;
+    padding:10rem 1rem;
 }
-.carousel-caption{
-    background: rgba(0,0,0,0.6);
-    border-bottom-left-radius: 0.5rem;
-    border-bottom-right-radius: 0.5rem;
-    top:0;
-    bottom:inherit;
+.home-partner .list{
+  
 }
-.home-partner .carousel-caption h3{
-    color:#fff;
+.home-partner .partner-name{
+  margin-top: 7px;
+  margin-bottom: 15px;
 }
 /*home-teaser*/
 .home-teaser {
