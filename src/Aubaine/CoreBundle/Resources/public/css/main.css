@@ -638,12 +638,40 @@ body{
     padding:10rem 1rem;
     line-height: 2.5rem;
 }
+.home-concept .keyword-list{
+  line-height: 3rem;
+}
+.home-concept .keyword{
+  display:inline-block;
+  margin:0;
+  color:#ec4940;
+}
+.home-concept .keyword-s{
+  font-size: 1.6rem;
+}
+.home-concept .keyword-m{
+  font-size: 2rem;
+}
+.home-concept .keyword-l{
+  font-size: 2.6rem;
+}
+.home-concept .keyword-xl{
+  font-size: 3.3rem;
+}
 .home-concept .asset{
   display: inline-block;
+  font-weight: bold;
+  line-height: 3rem;
+  list-style: outside none none;
+  margin: 2rem 1rem;
+  text-align: left;
   vertical-align: top;
-  width: 24rem;
-  padding:0 1rem 2rem;
-  line-height: 2.6rem;
+}
+.home-concept .asset li{
+  font-size: 2rem
+}
+.home-concept .asset li:first-child{
+  /*font-weight: bold;*/
 }
 /*home-partner*/
 .home-partner{
