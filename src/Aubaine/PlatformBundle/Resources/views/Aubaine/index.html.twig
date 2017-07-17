@@ -23,6 +23,7 @@
   <table class="table table-hover">
     <thead>
         <tr>
+          <th>Publié le</th>
           <th>Ville</th>
           <th>Type</th>
           <th>Début</th>
@@ -36,6 +37,9 @@
     <tbody>
         {% for aubaine in listAubaines %}
             <tr>
+                <td>
+                    {{ aubaine.date | date("U") }}
+                </td>
                 <td>
                     {{ aubaine.city }}
                 </td>

@@ -189,7 +189,10 @@ class UserController extends Controller
 
     $aubaines = $dm->getRepository('AubainePlatformBundle:Aubaine')->findAll();
     foreach ($aubaines as $aubaine) {
-      $dm->remove($aubaine);
+        $date = new \DateTime();
+        $date->setTimestamp(1500163200);
+        $aubaine->setDate($date);
+      // $dm->remove($aubaine);
     //   $author = $userManager->findUserBy(array( 'id' => $aubaine->getIdAuthor() ));
     //   $placeId = $author->getPlacesId()[0];
     //   $place = $dm->getRepository('AubainePlaceBundle:Place')->find($placeId);
