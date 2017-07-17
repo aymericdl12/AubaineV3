@@ -694,9 +694,9 @@ body{
 /*home-contact*/
 .home-contact{
     padding:6rem 1rem;
-    background:#eee;
-    border-bottom:2px solid #ddd;
-    border-top:2px solid #ddd;
+    background:#fafafa;
+    border-bottom:2px solid #eee;
+    border-top:2px solid #eee;
 }
 .home-contact h2{
     margin-bottom: 2rem;
