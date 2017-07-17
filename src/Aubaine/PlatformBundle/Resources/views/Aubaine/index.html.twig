@@ -38,7 +38,7 @@
         {% for aubaine in listAubaines %}
             <tr>
                 <td>
-                    {{ aubaine.date | date("U") }}
+                    {{ aubaine.date | date("d") }} {{ aubaine.date | date("F") | trans }}
                 </td>
                 <td>
                     {{ aubaine.city }}
