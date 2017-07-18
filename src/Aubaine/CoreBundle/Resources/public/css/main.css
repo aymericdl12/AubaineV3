@@ -727,18 +727,15 @@ body{
   text-align: center;
 }
 .partner-header{
-  padding:10rem 1rem;
-}
-.partner-header h1{
-  font-size: 2.5rem
+  padding:1rem 1rem 5rem;
 }
 .partner-header .website{
   font-size: 1.8rem;
   font-style: italic;
 }
-.partner-header h2{
+.partner-header h1{
   padding:2rem;
-  margin:8rem auto 2rem;
+  margin-top:3rem;
   border:2px solid;
   font-size: 2.2rem;
   border-radius: 0.5rem;
@@ -747,6 +744,14 @@ body{
 }
 .partner-header .logo{
   margin-bottom:2rem;
+}
+#body-partner h2{
+  margin-bottom: 2rem;
+  font-size: 3.5rem;
+  /*color:#888;*/
+  /*background:#ec4940;*/
+  /*color:#fff;*/
+  /*padding:2rem;*/
 }
 .partner-advantages h3{
   font-size: 2rem;
@@ -760,12 +765,20 @@ body{
   line-height: 2.6rem;
 }
 .partner-functionment{
-  padding:10rem 1rem;
+  padding:6rem 1rem;
+}
+.partner-functionment h2{
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
 }
 .partner-figures{
-  padding:10rem 1rem;
+  padding:6rem 1rem;
   background:#eee;
   border-top:#ddd;
+}
+.partner-figures h2{
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
 }
 .partner-figures .figure{
   width: 30rem;
@@ -780,11 +793,22 @@ body{
   display:block;
 }
 .partner-contact{
-  padding:10rem 1rem;
+  padding:6rem 1rem;
   /*background:#eee;*/
   border-top:#ddd;
 }
-
+.partner-contact h2{
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+}
+.partner-contact .phone,
+.partner-contact .email{
+    display:inline-block;
+    margin:0.5rem 0;
+    font-weight:bold;
+    color:#666;
+    font-size: 1.8rem;
+}
 
 /*login form*/
 .form-signin-wrapper {  
