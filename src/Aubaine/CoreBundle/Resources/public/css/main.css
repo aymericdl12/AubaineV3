@@ -729,16 +729,24 @@ body{
 .partner-header{
   padding:10rem 1rem;
 }
+.partner-header h1{
+  font-size: 2.5rem
+}
+.partner-header .website{
+  font-size: 1.8rem;
+  font-style: italic;
+}
 .partner-header h2{
   padding:2rem;
   margin:8rem auto 2rem;
   border:2px solid;
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   border-radius: 0.5rem;
   font-weight: normal;
+  line-height: 4rem;
 }
 .partner-header .logo{
-  margin-bottom:4rem;
+  margin-bottom:2rem;
 }
 .partner-advantages h3{
   font-size: 2rem;
@@ -754,9 +762,26 @@ body{
 .partner-functionment{
   padding:10rem 1rem;
 }
-.partner-contact{
+.partner-figures{
   padding:10rem 1rem;
   background:#eee;
+  border-top:#ddd;
+}
+.partner-figures .figure{
+  width: 30rem;
+  display:inline-block;
+  padding:2rem;
+  margin:1rem auto;
+  vertical-align: top
+}
+.partner-figures .figure span{
+  font-size: 4rem;
+  font-weight: bold;
+  display:block;
+}
+.partner-contact{
+  padding:10rem 1rem;
+  /*background:#eee;*/
   border-top:#ddd;
 }
 
