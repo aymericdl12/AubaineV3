@@ -773,9 +773,9 @@ body{
 }
 .partner-howpublish{
   padding:10rem 1rem;
-  background-color: #eee;
-  border-top:#ddd;
-  border-bottom:#ddd;
+  background-color: #fafafa;
+  border-top:2px solid #eee;
+  border-bottom:2px solid #eee;
 }
 .partner-howpublish h3{
   font-size: 2rem;
@@ -790,8 +790,9 @@ body{
 }
 .partner-figures{
   padding:10rem 1rem;
-  background:#eee;
-  border-top:#ddd;
+  background:#fafafa;
+  border-top:2px solid #eee;
+  border-bottom:2px solid #eee;
 }
 .partner-figures h2{
   margin-bottom: 2rem;
@@ -811,8 +812,6 @@ body{
 }
 .partner-contact{
   padding:10rem 1rem;
-  /*background:#eee;*/
-  border-top:#ddd;
 }
 .partner-contact h2{
   margin-bottom: 2rem;
