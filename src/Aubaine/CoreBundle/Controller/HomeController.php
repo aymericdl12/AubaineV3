@@ -9,6 +9,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use PhpImap\Mailbox;
 
 class HomeController extends Controller
 {
@@ -161,5 +162,30 @@ class HomeController extends Controller
 		$response->headers->set('Content-Type', 'application/json');
 		return $response;
 
+	}
+    // La page carte
+	public function emailAction(Request $request)
+	{
+		$response="coco";
+		$emails=array();
+
+		// $mbox = imap_open("{imap.gmail.com:993/imap/ssl}INBOX", "aymeric.lanouvelle@gmail.com", "****");
+		// $MC = imap_check($mbox);
+		// $emails = imap_fetch_overview($mbox,"1:{$MC->Nmsgs}",0);
+		// imap_close($mbox);
+
+
+
+		// $emails = imap_list($mbox, "{imap.gmail.com:993/imap/ssl}INBOX", "*");
+
+		// $response = imap_qprint(imap_body($mbox, 1));
+
+	    $array_response=array(
+	      'emails' => $emails,
+	      'response'=>$response
+	    );
+
+		return $this->render('AubaineCoreBundle:Home:email.html.twig', $array_response);
+	    
 	}
 }

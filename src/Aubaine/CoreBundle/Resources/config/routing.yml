@@ -25,3 +25,6 @@ aubaine_core_search:
 aubaine_core_subscription:
     path:     /subscription
     defaults: { _controller: AubaineCoreBundle:Home:subscription }
+aubaine_core_email:
+    path:     /email
+    defaults: { _controller: AubaineCoreBundle:Home:email }
