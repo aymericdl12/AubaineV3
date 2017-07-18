@@ -658,21 +658,6 @@ body{
 .home-concept .keyword-xl{
   font-size: 3.3rem;
 }
-.home-concept .asset{
-  display: inline-block;
-  font-weight: bold;
-  line-height: 3rem;
-  list-style: outside none none;
-  margin: 2rem 1rem;
-  text-align: left;
-  vertical-align: top;
-}
-.home-concept .asset li{
-  font-size: 2rem
-}
-.home-concept .asset li:first-child{
-  /*font-weight: bold;*/
-}
 /*home-partner*/
 .home-partner{
     background:#fafafa;
@@ -737,7 +722,43 @@ body{
 
 
 
-
+/*partner*/
+#body-partner{
+  text-align: center;
+}
+.partner-header{
+  padding:10rem 1rem;
+}
+.partner-header h2{
+  padding:2rem;
+  margin:8rem auto 2rem;
+  border:2px solid;
+  font-size: 2.5rem;
+  border-radius: 0.5rem;
+  font-weight: normal;
+}
+.partner-header .logo{
+  margin-bottom:4rem;
+}
+.partner-advantages h3{
+  font-size: 2rem;
+  color:#ec4940;
+}
+.partner-advantages .asset{
+  display: inline-block;
+  vertical-align: top;
+  width: 24rem;
+  padding:0rem 1rem 2rem;
+  line-height: 2.6rem;
+}
+.partner-functionment{
+  padding:10rem 1rem;
+}
+.partner-contact{
+  padding:10rem 1rem;
+  background:#eee;
+  border-top:#ddd;
+}
 
 
 /*login form*/

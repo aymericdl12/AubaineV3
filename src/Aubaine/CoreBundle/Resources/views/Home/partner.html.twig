@@ -4,100 +4,121 @@
   Devenir Partenaire - {{ parent() }}
 {% endblock %}
 
-{% block body_column_center %}
+{% block body %}
     <div id="body-partner" class="body-large">
-        <div id='partner-header'>
-            <h1>
-                Partagez des messages en fonction de votre activité
-             </h1>
-        </div>
-        <div id='partner-avantages'>
-            <div class="assets">
-                <h4>Simple</h4>
-                <p>
-                    Utiliser notre interface est aussi simple et rapide que d'écrire sur une ardoise.
-                </p>
-            </div>
-            <div class="assets">
-                <h4>Instantané</h4>
-                <p>
-                    Nous transmettons vos messages instantanément, vous profitez d'une communication temps réel.
-                </p>
-            </div>
-            <!-- <div class="assets">
-                <h4>Sans limite</h4>
-                <p>
-                    Nous développons des accords pour diffuser vos messages sur d'autres sites et applis mobiles
-                </p>
-            </div> -->
-            <div class="assets">
-                <h4>Gratuit</h4>
-                <p>
-                    La diffusion de messages est totalement gratuite. Des options payantes vous sont proposées.
-                </p>
-            </div>
-        </div>
-        <div id='partner-functionment'>
-            <h3>Communiquer tout ce que vous voulez</h3>
-            <p>Publier des messages temporaires ou permanents</p>
-            <div class="aubaineExtract" target="_blank">
-                <div class="image" style="background-image:url('{{ asset('images/place/toulouse.jpg') }}')"></div>
-                <div class="content">
-                    Soirée exceptionnelle pour la fête nationnale ! Ambiance espagnole toute la nuit.
-                </div>
-                <div class="place">
-                    <img src="{{ asset('images/location.png') }} " alt="" class="location">
-                    Le bougeoir
-                </div>
-                <div class="date">
-                    <img src="{{ asset('images/date.png') }} " alt="" class="calendar">
-                    le 14 Juillet
-                </div>
-            </div>
-            <div class="aubaineExtract" target="_blank">
-                <div class="image" style="background-image:url('{{ asset('images/place/happy.png') }}')"></div>
-                <div class="content">
-                    Tous les lundi, c'est happy hours de 17h à 19h ! Les bières pression sont à moitié prix.
-                </div>
-                <div class="place">
-                    <img src="{{ asset('images/location.png') }} " alt="" class="location">
-                    Le bar des découverte
-                </div>
-                <div class="date">
-                    <img src="{{ asset('images/date.png') }} " alt="" class="calendar">
-                    Toute l'année
-                </div>
-            </div>
-            <div class="aubaineExtract" target="_blank">
-                <div class="image" style="background-image:url('{{ asset('images/place/596337909956f.jpg') }}')"></div>
-                <div class="content">
-                    Nous vous invitons à découvrir l'exposition de l'artiste Toulouse grapher dans notre café.
-                </div>
-                <div class="place">
-                    <img src="{{ asset('images/location.png') }} " alt="" class="location">
-                    Le café du printemps
-                </div>
-                <div class="date">
-                    <img src="{{ asset('images/date.png') }} " alt="" class="calendar">
-                    du 12 Avril au 15 Avril
+        <div class='partner-header'>
+            <div class="container">
+                <div class="row">
+                    <img alt="Brand" src="{{ asset('images/logo-large-rose.png') }}" class="logo" style="height:8rem;">
+                    <p>--- www.aubaineapp.fr ---</p>
+                    <h1>
+                        Partagez des messages en fonction de votre activité et attirez de nouveaux clients
+                     </h1>
+                     <h2>
+                        Aubaine est un site internet sur lequel vous pouvez partager des messages. Promotions, nouveautés, évènements, etc. Ces messages sont visibles par l’ensemble des visiteurs du site.
+                     </h2>
                 </div>
             </div>
         </div>
-
-       <!--  <div id='partner-pricing'>
-            <h3>Un service à la carte</h3>
-            <p>La diffusion de message via notre site est gratuite. <br>
-             Certaines options payantes vous sont proposées pour optimiser votre visibilité.</p>
-        </div> -->
-        <div id="partner-contact">
-            <h3>Contact</h3>
-            <p>
-                Pour obtenir un partenariat ou pour plus d'information sur notre service.
-            </p>
-            <p>
-                <a href="mailto:contact@aubaineapp.fr" class="email">contact@aubaineapp.fr</a> <br>
-                <span class="phone">07 83 86 60 99</span>
-            </p>
+        <div class="partner-advantages">
+            <div class="container">
+                <div class="row">
+                    <div class="asset">
+                        <h3>Simple</h3>
+                        <p>
+                            Publier un message est aussi simple que d'écrire sur une ardoise.
+                        </p>
+                    </div>
+                    <div class="asset">
+                        <h3>Instantané</h3>
+                        <p>
+                            Nous transmettons vos messages instantanément, vous profitez d'une communication temps réel.
+                        </p>
+                    </div>
+                    <div class="asset">
+                        <h3>Gratuit</h3>
+                        <p>
+                            La diffusion de messages est totalement gratuite. Vous êtes entièrement gagnant.
+                        </p>
+                    </div>
+                    <div class="asset">
+                        <h3>Géolocalisé</h3>
+                        <p>
+                            Vos messages sont géolocalisés et mette en valeur votre commerce.
+                        </p>
+                    </div>
+                    <div class="asset">
+                        <h3>Sans limite</h3>
+                        <p>
+                            En publiant sur Aubaine vous augmenter votre chance d'être vu sur internet.
+                        </p>
+                    </div>
+                </div>        
+            </div>        
+        </div>
+        <div class="partner-functionment">
+            <div class="container">
+                <div class="row">
+                    <h3>Communiquer tout ce que vous voulez</h3>
+                    <p>Publier des messages valable un jour, une semaine ou une année</p>
+                    <div class="aubaineExtract" target="_blank">
+                        <div class="image" style="background-image:url('{{ asset('images/place/toulouse.jpg') }}')"></div>
+                        <div class="content">
+                            Soirée exceptionnelle pour la fête nationnale ! Ambiance espagnole toute la nuit.
+                        </div>
+                        <div class="place">
+                            <img src="{{ asset('images/location.png') }} " alt="" class="location">
+                            Le bougeoir
+                        </div>
+                        <div class="date">
+                            <img src="{{ asset('images/calendar.png') }} " alt="" class="calendar">
+                            le 14 Juillet
+                        </div>
+                    </div>
+                    <div class="aubaineExtract" target="_blank">
+                        <div class="image" style="background-image:url('{{ asset('images/place/596337909956f.jpg') }}')"></div>
+                        <div class="content">
+                            Nous vous invitons à découvrir l'exposition de l'artiste Toulouse grapher dans notre café.
+                        </div>
+                        <div class="place">
+                            <img src="{{ asset('images/location.png') }} " alt="" class="location">
+                            Le café du printemps
+                        </div>
+                        <div class="date">
+                            <img src="{{ asset('images/calendar.png') }} " alt="" class="calendar">
+                            du 12 au 15 Avril
+                        </div>
+                    </div>
+                    <div class="aubaineExtract" target="_blank">
+                        <div class="image" style="background-image:url('{{ asset('images/place/happy.png') }}')"></div>
+                        <div class="content">
+                            Tous les lundi, c'est happy hours de 17h à 19h ! Les bières pressions sont à moitié prix.
+                        </div>
+                        <div class="place">
+                            <img src="{{ asset('images/location.png') }} " alt="" class="location">
+                            Le bar des découvertes
+                        </div>
+                        <div class="date">
+                            <img src="{{ asset('images/calendar.png') }} " alt="" class="calendar">
+                            Toute l'année
+                        </div>
+                    </div>
+                </div>        
+            </div>        
+        </div>
+        <div class="partner-contact">
+            <div class="container">
+                <div class="row">
+                    <h3>Contact</h3>
+                    <p>
+                        Pour obtenir un partenariat ou pour plus d'information sur notre service.
+                    </p>
+                    <p>
+                        <a href="mailto:contact@aubaineapp.fr" class="email">contact@aubaineapp.fr</a> <br>
+                        <span class="phone">07 83 86 60 99</span>
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 
