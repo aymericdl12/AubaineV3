@@ -1,0 +1,23 @@
+{% extends "AubaineCoreBundle::layout.html.twig" %}
+
+{% block title %}
+  Devenir Partenaire - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <div id="body-email" class="body-large">
+        {% for email in emails %}
+        {{ email.from }} <br>
+        {% endfor %}
+        {{response}}
+    </div>
+
+{% endblock %}
+
+  {% block javascripts %}
+        {{ parent() }}
+        {% javascripts filter='jsqueeze'
+            'bundles/aubainecore/js/partner.js' %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+  {% endblock %}
