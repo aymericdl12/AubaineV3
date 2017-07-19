@@ -14,7 +14,7 @@ use PhpImap\Mailbox;
 class HomeController extends Controller
 {
     // La page d'accueil
-	public function indexAction()
+	public function indexAction(Request $request)
 	{
 
 		$dm = $this->get('doctrine_mongodb')->getManager();
@@ -25,6 +25,7 @@ class HomeController extends Controller
 
 	    $listAubaines = $dm->getRepository('AubainePlatformBundle:Aubaine')->getLastAubaines(array(1,2,3),3)->toArray();
 	    $number_partner = $this->get('doctrine_mongodb')->getManager()->getRepository('AubaineUserBundle:User')->findAll();
+	    $emailInfos = "";
 
 	    $hoursDay="hours".date("l");
 
@@ -158,7 +159,7 @@ class HomeController extends Controller
 		fclose($list_email_file);
 
 		$response = new Response();
-		$response->setContent(json_encode( array( 'message' => "Email bien enregistrée" ) ));
+		$response->setContent(json_encode( array( 'response' => "Vous avez bien été enregistrée" ) ));
 		$response->headers->set('Content-Type', 'application/json');
 		return $response;
 

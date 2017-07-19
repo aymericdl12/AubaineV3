@@ -522,13 +522,8 @@ body{
   position:relative;
   z-index: 1;
 }
-.body-home h4{
-  color: #ec4940;
-  font-size: 2.4rem;
-  letter-spacing: 0.2rem;
-}
 .home-search{
-  margin:8rem 0 0;
+  margin:15rem 0 0;
   background-color: rgba(0,0,0,0.7);
   padding:2rem 0;
   position:relative;
@@ -570,7 +565,7 @@ body{
   background-attachment: fixed;
   width:100%;
   background-size:cover;
-  padding:12rem 2rem 0rem;
+  padding:16rem 2rem 0rem;
   position:relative;
   z-index: 1;
 }
@@ -609,6 +604,7 @@ body{
   color:#fff;
   padding:6rem 2rem;
   position:relative;
+  display:none;
 }
 #home-map:before{
   background-color: rgba(0,0,0,0.6);
@@ -637,13 +633,19 @@ body{
     width: 100%;
     padding:10rem 1rem;
     line-height: 2.5rem;
+    border-top:2px solid #eee;
+    border-bottom:2px solid #eee;
+    background-color: #f6f6f6;
+}
+.home-concept h2{
+  margin-bottom: 4rem;
 }
 .home-concept .keyword-list{
   line-height: 3rem;
 }
 .home-concept .keyword{
   display:inline-block;
-  margin:0;
+  margin:2rem;
   color:#ec4940;
 }
 .home-concept .keyword-s{
@@ -656,12 +658,41 @@ body{
   font-size: 2.6rem;
 }
 .home-concept .keyword-xl{
-  font-size: 3.3rem;
+  font-size: 3.1rem;
+}
+.home-concept h4{
+  margin-bottom: 2rem;
+  margin-top:0;
+  font-size: 1.6rem;
+  line-height: 2.5rem;
+}
+.home-concept form{
+  max-width: 60rem;
+  display:inline-block;
+  border:2px solid;
+  border-radius: 1rem;
+  padding:3rem;
+  margin-top:5rem;
+}
+.home-concept .emailInput{
+  max-width:30rem;
+  display:inline-block;
+  vertical-align: top;
+  margin-bottom: 2rem;
+}
+.home-concept .emailImage{
+  width:5rem;
+  margin-bottom: 1rem;
+}
+
+.home-concept .submit{
+  margin-bottom: 2rem;
+}
+.home-concept .emailInfos{
+  display:none;
 }
 /*home-partner*/
 .home-partner{
-    background:#fafafa;
-    border:2px solid #eee;
     padding:10rem 1rem;
 }
 .home-partner .list{
@@ -674,6 +705,8 @@ body{
 /*home-teaser*/
 .home-teaser {
     padding:10rem 1rem;
+    background:#f6f6f6;
+    border:2px solid #eee;
 }
 .home-teaser .asset{
   display: inline-block;
@@ -682,23 +715,10 @@ body{
   padding:0rem 1rem 2rem;
   line-height: 2.6rem;
 }
-/*home-contact*/
-.home-contact{
-    padding:6rem 1rem;
-    background:#fafafa;
-    border-bottom:2px solid #eee;
-    border-top:2px solid #eee;
-}
-.home-contact h2{
-    margin-bottom: 2rem;
-}
-.home-contact .phone,
-.home-contact .email{
-    display:inline-block;
-    margin:0.5rem 0;
-    font-weight:bold;
-    color:#666;
-    font-size: 1.8rem;
+.home-teaser h4{
+  color: #ec4940;
+  font-size: 2.4rem;
+  letter-spacing: 0.2rem;
 }
 /*home-media*/
 .home-media{
