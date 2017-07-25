@@ -14,7 +14,7 @@
       <img src="{{ asset('images/place/' ~ aubaine.place.imageHeader) }}" alt="" class="avatar">
     </div>
     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-      {% if aubaine.place.id == app.user.placeId %}
+      {% if aubaine.place.id in app.user.placesId %}
         <div class="edit">
           <a class="btn btn-danger" href="{{ path('aubaine_platform_delete_aubaine', {'id': aubaine.id}) }}">Supprimer</a>
         </div>  
@@ -22,6 +22,7 @@
     {% endif %}
 
 		<h1>  {{ aubaine.message | raw }}</h1>
+    <div class="fb-share-button" data-href="http://localhost/AubaineV3/web/app_dev.php/aubaines/aubaine/596df28615605c2130001a83" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%2FAubaineV3%2Fweb%2Fapp_dev.php%2Faubaines%2Faubaine%2F596df28615605c2130001a83&amp;src=sdkpreparse">Partager</a></div>
   	<div class="category">
       <h2>
         <img src="{{ asset('images/'~aubaine.category~'.png') }} " alt="" class="category-logo category-{{ aubaine.category }}">

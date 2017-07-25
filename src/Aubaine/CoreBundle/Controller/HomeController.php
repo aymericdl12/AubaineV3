@@ -152,9 +152,10 @@ class HomeController extends Controller
 
 		$email=$request->request->get('email');
 		$date=date('d/m/y à h\h');
+		$city="toulouse";
 
 		$list_email_file = fopen("liste_email.txt", "a+");
-		$txt =$email.','.$date."\n";
+		$txt =$email.','.$city.','.$date."\n";
 		fwrite($list_email_file, $txt);
 		fclose($list_email_file);
 

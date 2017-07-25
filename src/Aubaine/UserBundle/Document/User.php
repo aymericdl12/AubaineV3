@@ -22,11 +22,6 @@ class User extends BaseUser
     protected $id;
     
     /**
-     * @MongoDB\Field(type="string")
-     */
-    protected $placeId;
-    
-    /**
      * @MongoDB\Field(type="collection")
      */
     protected $placesId;
@@ -34,29 +29,27 @@ class User extends BaseUser
     /**
      * @MongoDB\Field(type="string")
      */
-    protected $category;
-
-    /**
-     * @MongoDB\Field(type="string")
-     * @Assert\NotBlank()
-     */
-    protected $addressDisplayed;
-
-    /**
-     * @MongoDB\Field(type="string")
-     */
     protected $city;
 
     /**
-     * @MongoDB\Field(type="string")
+     * @MongoDB\Field(type="int")
      */
-    protected $zipcode;
+    protected $sex;
 
     /**
-     * @MongoDB\Field(type="string")
-     * @Assert\NotBlank()
+     * @MongoDB\Field(type="int")
      */
-    protected $description;
+    protected $age;
+
+    /**
+     * @MongoDB\Field(type="collection")
+     */
+    protected $category;
+
+    /**
+     * @MongoDB\Field(type="collection")
+     */
+    protected $categoriesPref;
 
     /**
      * 
@@ -70,56 +63,10 @@ class User extends BaseUser
     private $imageName;
 
     /**
-     * @MongoDB\Field(type="float")
-     * @Assert\NotNull()
-     */
-    protected $lati;
-
-    /**
-     * @MongoDB\Field(type="float")
-     * @Assert\NotNull()
-     */
-    protected $longi;
-
-    /**
      * @MongoDB\Field(type="int")
      */
     protected $phone;
 
-    /**
-     * @MongoDB\Field(type="string")
-     */
-    private $hoursMonday;
-
-    /**
-     * @MongoDB\Field(type="string")
-     */
-    private $hoursTuesday;
-
-    /**
-     * @MongoDB\Field(type="string")
-     */
-    private $hoursWednesday;
-
-    /**
-     * @MongoDB\Field(type="string")
-     */
-    private $hoursThursday;
-
-    /**
-     * @MongoDB\Field(type="string")
-     */
-    private $hoursFriday;
-
-    /**
-     * @MongoDB\Field(type="string")
-     */
-    private $hoursSaturday;
-
-    /**
-     * @MongoDB\Field(type="string")
-     */
-    private $hoursSunday;
 
     public function __construct()
     {
@@ -135,28 +82,6 @@ class User extends BaseUser
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set description
-     *
-     * @param string $placeid
-     * @return $this
-     */
-    public function setPlaceId($placeId)
-    {
-        $this->placeId = $placeId;
-        return $this;
-    }
-
-    /**
-     * Get placeid
-     *
-     * @return string $placeid
-     */
-    public function getPlaceId()
-    {
-        return $this->placeId;
     }
 
     /**
@@ -181,27 +106,6 @@ class User extends BaseUser
         return $this->placesId;
     }
 
-    /**
-     * Set description
-     *
-     * @param string $description
-     * @return $this
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-        return $this;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string $description
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
 
      /**
      *
@@ -245,50 +149,6 @@ class User extends BaseUser
     }
 
     /**
-     * Set lati
-     *
-     * @param float $lati
-     * @return $this
-     */
-    public function setLati($lati)
-    {
-        $this->lati = $lati;
-        return $this;
-    }
-
-    /**
-     * Get lati
-     *
-     * @return float $lati
-     */
-    public function getLati()
-    {
-        return $this->lati;
-    }
-
-    /**
-     * Set longi
-     *
-     * @param float $longi
-     * @return $this
-     */
-    public function setLongi($longi)
-    {
-        $this->longi = $longi;
-        return $this;
-    }
-
-    /**
-     * Get longi
-     *
-     * @return float $longi
-     */
-    public function getLongi()
-    {
-        return $this->longi;
-    }
-
-    /**
      * Set phone
      *
      * @param int $phone
@@ -308,50 +168,6 @@ class User extends BaseUser
     public function getPhone()
     {
         return $this->phone;
-    }
-
-    /**
-     * Set addressDisplayed
-     *
-     * @param string $addressDisplayed
-     * @return $this
-     */
-    public function setAddressDisplayed($addressDisplayed)
-    {
-        $this->addressDisplayed = $addressDisplayed;
-        return $this;
-    }
-
-    /**
-     * Get addressDisplayed
-     *
-     * @return string $addressDisplayed
-     */
-    public function getAddressDisplayed()
-    {
-        return $this->addressDisplayed;
-    }
-
-    /**
-     * Set category
-     *
-     * @param $string $category
-     * @return $this
-     */
-    public function setCategory($category)
-    {
-        $this->category = $category;
-        return $this;
-    }
-
-    /**
-     * Get category
-     *
-     * @return $string $category
-     */
-    public function getCategory()
-    {
-        return $this->category;
     }
 
     /**
@@ -377,179 +193,91 @@ class User extends BaseUser
     }
 
     /**
-     * Set zipcode
+     * Set age
      *
-     * @param string $zipcode
+     * @param string $age
      * @return $this
      */
-    public function setZipcode($zipcode)
+    public function setAge($age)
     {
-        $this->zipcode = $zipcode;
+        $this->age = $age;
         return $this;
     }
 
     /**
-     * Get zipcode
+     * Get age
      *
-     * @return string $zipcode
+     * @return string $age
      */
-    public function getZipcode()
+    public function getAge()
     {
-        return $this->zipcode;
+        return $this->age;
     }
-    
 
     /**
-     * Set hoursMonday
+     * Set categoriesPref
      *
-     * @param string $hoursMonday
+     * @param string $categoriesPref
      * @return $this
      */
-    public function setHoursMonday($hoursMonday)
+    public function setCategoriesPref($categoriesPref)
     {
-        $this->hoursMonday = $hoursMonday;
+        $this->categoriesPref = $categoriesPref;
         return $this;
     }
 
     /**
-     * Get hoursMonday
+     * Get categoriesPref
      *
-     * @return string $hoursMonday
+     * @return string $categoriespref
      */
-    public function getHoursMonday()
+    public function getCategoriesPref()
     {
-        return $this->hoursMonday;
+        return $this->categoriesPref;
     }
 
     /**
-     * Set hoursTuesday
+     * Set category
      *
-     * @param string $hoursTuesday
+     * @param string $category
      * @return $this
      */
-    public function setHoursTuesday($hoursTuesday)
+    public function setCategory($category)
     {
-        $this->hoursTuesday = $hoursTuesday;
+        $this->category = $category;
         return $this;
     }
 
     /**
-     * Get hoursTuesday
+     * Get category
      *
-     * @return string $hoursTuesday
+     * @return string $category
      */
-    public function getHoursTuesday()
+    public function getCategory()
     {
-        return $this->hoursTuesday;
+        return $this->category;
     }
 
     /**
-     * Set hoursWednesday
+     * Set sex
      *
-     * @param string $hoursWednesday
+     * @param string $sex
      * @return $this
      */
-    public function setHoursWednesday($hoursWednesday)
+    public function setSex($sex)
     {
-        $this->hoursWednesday = $hoursWednesday;
+        $this->sex = $sex;
         return $this;
     }
 
     /**
-     * Get hoursWednesday
+     * Get sex
      *
-     * @return string $hoursWednesday
+     * @return string $sex
      */
-    public function getHoursWednesday()
+    public function getSex()
     {
-        return $this->hoursWednesday;
+        return $this->sex;
     }
 
-    /**
-     * Set hoursThursday
-     *
-     * @param string $hoursThursday
-     * @return $this
-     */
-    public function setHoursThursday($hoursThursday)
-    {
-        $this->hoursThursday = $hoursThursday;
-        return $this;
-    }
-
-    /**
-     * Get hoursThursday
-     *
-     * @return string $hoursThursday
-     */
-    public function getHoursThursday()
-    {
-        return $this->hoursThursday;
-    }
-
-    /**
-     * Set hoursFriday
-     *
-     * @param string $hoursFriday
-     * @return $this
-     */
-    public function setHoursFriday($hoursFriday)
-    {
-        $this->hoursFriday = $hoursFriday;
-        return $this;
-    }
-
-    /**
-     * Get hoursFriday
-     *
-     * @return string $hoursFriday
-     */
-    public function getHoursFriday()
-    {
-        return $this->hoursFriday;
-    }
-
-    /**
-     * Set hoursSaturday
-     *
-     * @param string $hoursSaturday
-     * @return $this
-     */
-    public function setHoursSaturday($hoursSaturday)
-    {
-        $this->hoursSaturday = $hoursSaturday;
-        return $this;
-    }
-
-    /**
-     * Get hoursSaturday
-     *
-     * @return string $hoursSaturday
-     */
-    public function getHoursSaturday()
-    {
-        return $this->hoursSaturday;
-    }
-
-    /**
-     * Set hoursSunday
-     *
-     * @param string $hoursSunday
-     * @return $this
-     */
-    public function setHoursSunday($hoursSunday)
-    {
-        $this->hoursSunday = $hoursSunday;
-        return $this;
-    }
-
-    /**
-     * Get hoursSunday
-     *
-     * @return string $hoursSunday
-     */
-    public function getHoursSunday()
-    {
-        return $this->hoursSunday;
-    }
 }
