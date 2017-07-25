@@ -188,7 +188,7 @@ class AubaineController extends Controller
   */
   public function deleteAubaineAction($id, Request $request)
   {
-    $id_place= $this->get('security.token_storage')->getToken()->getUser()->getPlaceId();
+    $id_places= $this->get('security.token_storage')->getToken()->getUser()->getPlacesId();
 
     $dm = $this->get('doctrine_mongodb')->getManager();
     $aubaine = $dm->getRepository('AubainePlatformBundle:Aubaine')->find($id);
@@ -196,7 +196,7 @@ class AubaineController extends Controller
     if (null === $aubaine) {
       throw new NotFoundHttpException("Le message d'id ".$id_aubaine." n'existe pas.");
     }
-    if($aubaine->getPlaceId()!=$id_place){
+    if(!in_array($aubaine->getPlaceId(),$id_places)){
       throw new NotFoundHttpException("Vous n'avez pas la permission de supprimer ce message");
     }
     $dm->remove($aubaine);
