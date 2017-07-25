@@ -8,14 +8,11 @@
                 <img alt="Brand" src="{{ asset('images/logo-aubaine-new-large.png') }}" style="height:8rem;">
             </h1>
             <h2 style="color:#fff">
-                Les commerçants de votre ville vous transmettent des messages.
+                Les commerçants vous transmettent des messages.
             </h2>
             <form action="{{ path('aubaine_core_search') }}" class="form-inline home-search" method="post">
                 <select class="selectpicker  show-menu-arrow field" id="city" name="city">
                     <option value="toulouse" selected>Toulouse</option>
-                    <option value="paris" disabled>Paris</option>
-                    <option value="lyon" disabled>Lyon</option>
-                    <option value="bordeaux" disabled>Bordeaux</option>
                 </select>
                 <select class="selectpicker  show-menu-arrow field" id="category" name="category">
                     <option value="all" selected>Toutes les catégories</option>
