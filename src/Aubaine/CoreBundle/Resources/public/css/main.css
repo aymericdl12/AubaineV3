@@ -790,9 +790,9 @@ body{
   font-style: italic;
 }
 .partner-header h1{
-  padding:2rem;
+  /*padding:2rem;*/
   margin-top:3rem;
-  border:2px solid;
+  /*border:2px solid;*/
   font-size: 2.2rem;
   border-radius: 0.5rem;
   font-weight: normal;
