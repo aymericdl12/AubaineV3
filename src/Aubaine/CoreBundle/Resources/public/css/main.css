@@ -167,8 +167,37 @@ body{
   height: 100%;
   width: 100%;
 }
-.body-live .search{
+.live-search{
  margin:2rem 0;
+}
+.live-search .category{
+  height:2.5rem;
+  width:2.5rem;
+  padding:0.5rem;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+.live-search .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn){
+  margin:1rem 0.5rem;
+}
+.live-search input[type="submit"]{
+  font-size: 1.8rem;
+  margin:1rem 0.5rem;
+}
+.live-search .bootstrap-select.btn-group .dropdown-toggle .filter-option{
+  font-size: 1.8rem;
+}
+.live-search .category-eat{
+  background-color: #DE2916;
+}
+.live-search .category-shop{
+  background-color: #00561B;
+}
+.live-search .category-wellness{
+  background-color: #003366;
+}
+.live-search .category-event{
+  background-color: #f5bc05;
 }
 .body-live .list_wrapper{
   padding:6rem 0rem 0;

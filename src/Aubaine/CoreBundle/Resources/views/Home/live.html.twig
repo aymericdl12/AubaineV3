@@ -14,12 +14,9 @@
         <h1>
             En direct des commerçants
         </h1>
-        <form action="{{ path('aubaine_core_search') }}" class="form-inline search" method="post">
+        <form action="{{ path('aubaine_core_search') }}" class="form-inline live-search" method="post">
             <select class="selectpicker  show-menu-arrow field" id="city" name="city">
                 <option value="toulouse" selected>Toulouse</option>
-                <option value="paris" disabled>Paris</option>
-                <option value="lyon" disabled>Lyon</option>
-                <option value="bordeaux" disabled>Bordeaux</option>
             </select>
             <select class="selectpicker  show-menu-arrow field" id="category" name="category">
                 <option value="all" selected>Toutes les catégories</option>
