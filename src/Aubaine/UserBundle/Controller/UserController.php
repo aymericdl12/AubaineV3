@@ -38,13 +38,44 @@ class UserController extends Controller
   /**
    * @Security("has_role('ROLE_ADMIN')")
    */
-  public function viewAction($id)
+  public function viewAction($id, Request $request)
   {
     $userManager = $this->get('fos_user.user_manager');
+    $dm = $this->get('doctrine_mongodb')->getManager();
+
     $user = $userManager->findUserBy(array('id' => $id));
+    $placesId = $user->getPlacesId();
+    $places=[];
+    if(count($placesId)>0){
+      foreach ($placesId as $placeId) {
+        $place=  $dm->getRepository('AubainePlaceBundle:Place')->find($placeId);
+        if($place){
+          $places[]=  $place;
+        }
+      }      
+    }
+
+    $listPlaces = $dm->getRepository('AubainePlaceBundle:Place')->findAll();
+
+    if ($request->isMethod('POST')) {
+      $placeId = $request->request->get('placeId');
+      $place=  $dm->getRepository('AubainePlaceBundle:Place')->find($placeId);
+      if($place){
+        $places[]=  $place;
+        $user->addPlaceId($placeId);
+        $userManager->updateUser($user);
+        $request->getSession()->getFlashBag()->add('info', 'Le lieu a bien été ajouté à l\'utilisateur');
+      }
+      else{
+        $request->getSession()->getFlashBag()->add('info', 'Le lieu n\'a pas été trouvé');
+      }
+    }
+
 
     return $this->render('AubaineUserBundle:User:view.html.twig', array(
-      'user' => $user
+      'user' => $user,
+      'places'=>$places,
+      'listPlaces'=>$listPlaces
     ));
   }
 
@@ -368,4 +399,5 @@ class UserController extends Controller
         ));
 
     } 
-  } 
+
+} 

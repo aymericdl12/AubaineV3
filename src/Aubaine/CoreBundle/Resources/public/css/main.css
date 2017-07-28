@@ -956,16 +956,14 @@ body{
 .aubaineForm .submit{
 }
 .body-myProfile h1{
-  background-color: #666;
-  color:#fff;
+  border-bottom: 2px solid;
+  color:#444;
   padding:1rem;
   margin:2rem 0 1rem;
 }
 .body-myProfile table{
   display:inline-block;
 }
-
-
 /*Aubaine*/
 .aubaine{
   color:#444;

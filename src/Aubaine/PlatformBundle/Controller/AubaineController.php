@@ -277,7 +277,10 @@ class AubaineController extends Controller
     $currentAubaines = [];
     $oldAubaines = [];
     foreach ($placesId as $placeId) {
-      $places[$placeId] = $dm->getRepository('AubainePlaceBundle:Place')->find($placeId);
+      $place = $dm->getRepository('AubainePlaceBundle:Place')->find($placeId);
+      if($place){
+          $places[$placeId] = $place;
+      }
       $currentAubaines[$placeId] = $dm->getRepository('AubainePlatformBundle:Aubaine')->getCurrentAubaines($placeId, new \DateTime('now') );
       $oldAubaines[$placeId] = $dm->getRepository('AubainePlatformBundle:Aubaine')->getOldAubaines($placeId, new \DateTime('now') );
       $permanentAubaines[$placeId] = $dm->getRepository('AubainePlatformBundle:Aubaine')->getPermanentAubaines($placeId);

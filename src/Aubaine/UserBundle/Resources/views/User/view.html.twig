@@ -7,7 +7,8 @@
 {% endblock %}
 
 {% block body_column_center %}
-  <p>
+
+  <div class="adminAction">
     <a href="{{ path('aubaine_user_home') }}" class="btn btn-default">
       <i class="glyphicon glyphicon-chevron-left"></i>
       Retour à la liste des utilisateur
@@ -20,12 +21,39 @@
       <i class="glyphicon glyphicon-trash"></i>
       Supprimer l'utilisateur
     </a>
-  </p>
+  </div>
 
   <p><img src="{{ asset('images/avatars/' ~ user.imageName) }}"> </p>
+  
+  {% for message in app.session.flashbag.get('info') %}
+    <div class="alert alert-info">{{ message }}</div>
+  {% endfor %}
+
+  <h3>Informations</h3>
   <p>{{ user.username }} </p>
+  <p>{{ user.email }} </p>
   <p>{{ user.password }} </p>
   <p>Catégorie : {{ user.category }} </p>
+
+  <h3>Lieux associés à {{ user.username }}</h3>
+  {% for place in places %}
+    <b>{{ place.title }}</b> <br>
+  {% endfor %}
+
+
+  <form method="post" class="form addplaceForm" action ="{{ path('aubaine_user_view', {'id': user.id}) }}">
+    <h3>Ajouter un lieu</h3>
+    <div  class="form-group category">
+        <select class="form-control" name="placeId">
+          {% for place in listPlaces %}
+              <option value="{{place.id}}">{{ place.title }}</option>
+          {% endfor %}
+        </select>
+    </div>
+    <div class="form-group action">
+        <button class="btn btn-primary submit"  data-loading-text="Enregistrement..." type="submit">Ajouter</button>
+    </div>
+</form> 
 
 
 {% endblock %}

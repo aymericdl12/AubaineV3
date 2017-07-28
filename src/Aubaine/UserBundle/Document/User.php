@@ -71,7 +71,6 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct();
-        $this->description = "pas de description";
     }
 
     /**
@@ -104,6 +103,23 @@ class User extends BaseUser
     public function getPlacesId()
     {
         return $this->placesId;
+    }
+
+    /**
+     * Add placesid
+     *
+     * @return string $placesid
+     */
+    public function addPlaceId($placeId)
+    {
+        if(count($this->placesId)>0){
+            array_push($this->placesId, $placeId);
+        }
+        else{
+            $this->placesId= [$placeId];
+        }
+
+        return $this;
     }
 
 
