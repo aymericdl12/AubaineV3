@@ -1,6 +1,9 @@
 .padding-30{
   padding:30px;
 }
+.padding-top-30{
+  padding-top:3rem;
+}
 .btn-rose{
   background: #ec4940;
   border:#ec4940;
@@ -727,7 +730,8 @@ body{
 .home-partner{
     padding:10rem 1rem;
 }
-.home-partner .list{
+.home-partner .partner-image{
+  border-radius: 5px;
   
 }
 .home-partner .partner-name{
@@ -752,6 +756,23 @@ body{
   font-size: 2.4rem;
   letter-spacing: 0.2rem;
 }
+.home-teaser a{
+  /*border:2px solid #357ebd ;
+  border-radius: 5px;
+  background-color: transparent;
+  color:#428bca;
+  padding:1rem 2rem;
+  margin-top: 2rem;*/
+  font-size: 1.8rem;
+}
+/*.home-teaser a:hover,
+.home-teaser a:focus{
+  border:2px solid #357ebd;
+  border-radius: 5px;
+  background-color: #428bca;
+  color:#fff;
+  text-decoration: none;
+}*/
 /*home-media*/
 .home-media{
     padding:2rem 1rem;
@@ -796,7 +817,8 @@ body{
   /*padding:2rem;*/
   margin-top:3rem;
   /*border:2px solid;*/
-  font-size: 2.2rem;
+  font-size: 2.7rem;
+  color:#666;
   border-radius: 0.5rem;
   font-weight: normal;
   line-height: 4rem;
@@ -809,7 +831,7 @@ body{
   color:#ec4940;
 }
 .partner-advantages{
-  padding:10rem 0;
+  padding:0rem 0 10rem;
 }
 .partner-advantages .asset{
   display: inline-block;
@@ -1071,6 +1093,8 @@ body{
   max-width: 90%;
   background-color: #fff;
   box-shadow: 6px 8px 11px #aaa;
+  border-radius: 5px;
+  overflow:hidden;
 }
 /*.aubaineExtract:after{
   content:"";
