@@ -267,18 +267,21 @@ body{
 /*Map Marker*/
 .marker-map-eat{ 
   padding:0.5rem;
-  background-color: #DE2916;
+  background: rgba(0, 0, 0, 0) radial-gradient(circle at 10px 10px , #ec4940, #950e05) repeat scroll 0 0;
 }
 .marker-map-shop{ 
-  padding:0.7rem;
+  padding:0.8rem;
+  background: rgba(0, 0, 0, 0) radial-gradient(circle at 10px 10px , #40965b, #00450a) repeat scroll 0 0;
   background-color: #00561B;
 }
 .marker-map-wellness{ 
   padding:0.5rem;
+  background: rgba(0, 0, 0, 0) radial-gradient(circle at 10px 10px , #295c8f, #000134) repeat scroll 0 0;
   background-color: #003366;
 }
 .marker-map-event{ 
   padding:0.7rem;
+  background: rgba(0, 0, 0, 0) radial-gradient(circle at 10px 10px , #ffd720, #b77e01) repeat scroll 0 0;
   background-color: #f5bc05;
 }
 .leaflet-popup-content{
