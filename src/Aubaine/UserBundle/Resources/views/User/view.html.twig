@@ -25,18 +25,7 @@
   <p><img src="{{ asset('images/avatars/' ~ user.imageName) }}"> </p>
   <p>{{ user.username }} </p>
   <p>{{ user.password }} </p>
-  <p>{{ user.description }} </p>
   <p>Catégorie : {{ user.category }} </p>
-  <p>Adresse : {{ user.addressDisplayed }}, {{ user.zipcode }} {{ user.city }} ( {{ user.lati }}, {{ user.longi }} )</p>
-  <p>
-      Lundi : {{ user.hoursMonday }} <br>
-      Mardi : {{ user.hoursTuesday }} <br>
-      Mercredi : {{ user.hoursWednesday }} <br>
-      Jeudi : {{ user.hoursThursday }} <br>
-      Vendredi : {{ user.hoursFriday }} <br>
-      Samedi : {{ user.hoursSaturday }} <br>
-      Dimanche : {{ user.hoursSunday }} <br>
-  </p>
 
 
 {% endblock %}

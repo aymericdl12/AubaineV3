@@ -42,7 +42,7 @@ class User extends BaseUser
     protected $age;
 
     /**
-     * @MongoDB\Field(type="collection")
+     * @MongoDB\Field(type="string")
      */
     protected $category;
 
