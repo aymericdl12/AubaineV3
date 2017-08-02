@@ -80,7 +80,7 @@ class HomeController extends Controller
 	    $current_day_datetime = new \DateTime();
 	    $current_day_datetime->setTimestamp($current_day);
 
-		if($category!="all"){
+		if($category=="all"){
 		    $listAubaines = $dm->getRepository('AubainePlatformBundle:Aubaine')->getAubainesLive( $current_day_datetime, array('eat','shop','wellness','event'), $city )->toArray();
 		}
 		else{
