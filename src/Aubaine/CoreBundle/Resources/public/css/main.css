@@ -896,22 +896,25 @@ body{
     display:inline-block;
     margin:0.5rem 0;
     font-weight:bold;
-    color:#666;
+    color:#ec4940;
     font-size: 1.8rem;
 }
 
 /*login form*/
 .form-signin-wrapper {  
-  padding-top: 8rem;
-  padding-bottom: 8rem;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
   text-align: left;
 }
 .form-signin {
   max-width: 380px;
-  padding: 15px 35px 45px;
+  padding: 15px 30px;
   margin: 0 auto;
   background-color: #eee;
   border: 1px solid rgba(0,0,0,0.1);  
+}
+.form-signin-heading{
+  margin-bottom: 2rem;
 }
 .form-signin-heading .checkbox {
   margin-bottom: 30px;
@@ -923,7 +926,7 @@ body{
   padding: 10px;
 }
 .form-signin input[type="text"] {
-  margin-bottom: -1px;
+  margin: 2rem 0;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
@@ -935,6 +938,34 @@ body{
 }
 .form-signin-submit{
   margin:2rem 0;
+}
+
+/*subscription*/
+.body-subscription{
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+.body-subscription h2{
+  text-align: left;
+  margin-bottom: 2rem;
+}
+.body-subscription .message{
+  max-width: 380px;
+  margin:2rem auto;
+  padding: 15px 30px 45px;
+  background-color: #eee;
+  border: 1px solid rgba(0,0,0,0.1); 
+  font-size: 1.6rem;
+  line-height: 3rem;
+}
+.body-subscription .email,
+.body-subscription .phone{
+  font-weight: bold;
+  text-align: center;
+  color:#ec4940;
+}
+.body-subscription .email a{
+  color:#ec4940;
 }
 
 
@@ -1116,9 +1147,9 @@ body{
   color:#444;
 }
 .aubaineExtract .content {
-    font-size: 1.7rem;
+    font-size: 1.5rem;
     padding:1rem;
-    font-weight: bold;
+    font-weight: 500;
     position:relative;    
     color:#444;
     height:12rem;
@@ -1181,20 +1212,4 @@ body{
 }
 .adminAction a{
   margin:1rem;
-}
-
-.body-subscription h1{
-  text-align: center;
-}
-.body-subscription .email,
-.body-subscription .phone{
-  font-weight: bold;
-  margin:1rem 0;
-  display:inline-block;
-}
-.body-subscription .message{
-  max-width: 400px;
-  border:2px solid;
-  margin:2rem auto;
-  padding:2rem;
 }
