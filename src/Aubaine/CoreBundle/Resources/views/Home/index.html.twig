@@ -30,7 +30,7 @@
                 <a class="aubaineExtract" target="_blank" href="{{ path('aubaine_platform_public_view', {'id': aubaine.id}) }}">
                     <div class="image" style="background-image:url('{{ asset('images/place/' ~ aubaine.place.imageHeader) }}')"></div>
                     <div class="content  category-{{ aubaine.category }}">
-                        {{ aubaine.message |length > 120 ? aubaine.message |slice(0, 120) ~ '...' : aubaine.message   }}
+                        {{ aubaine.message |length > 130 ? aubaine.message |slice(0, 130) ~ '...' : aubaine.message   }}
                     </div>
                     <div class="place">
                         <img src="{{ asset('images/location.png') }} " alt="" class="location">
