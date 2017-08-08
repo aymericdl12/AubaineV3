@@ -125,15 +125,6 @@ class PlaceController extends Controller
     ->getManager()
     ->getRepository('AubaineUserBundle:User');
 
-    // $default_author = $repository->findOneBy(array('username' => 'Utilisateur par defaut'));
-
-    $place->setTitle("La Place Saint Pierre");
-    $place->setIntroduction("Eligendi doloremque cum libero voluptatem incidunt dicta aperiam odio quis nemo");
-    $place->setContent("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi doloremque cum libero voluptatem incidunt dicta aperiam odio quis nemo totam possimus ad magni voluptatum, perferendis minus veniam sed porro eaque.");
-    $place->setConclusion("Quis nemo totam possimus ad magni voluptatum, perferendis minus veniam sed porro eaque.");
-    $place->setInformation("Information, perferendis minus veniam sed porro eaque.");
-    // $aubaine->setAuthor($default_author);
-
     // On crée le FormBuilder grâce au service form factory
     $form = $this->createForm(PlaceType::class, $place);
 

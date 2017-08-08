@@ -1,0 +1,28 @@
+{% extends "AubaineUserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+    <h1>Bienvenue {{ user.username }} {{ user.lastname }} !</h1>
+    
+    <div>
+    	Vous êtes bien inscrits, pour obtenir votre carte Aubaine valable 1 an suivez une des démarque suivante 
+    </div>
+    <div class="message">
+    	<h2>Parainage</h2>
+    	Parainez 2 amis ! <br>
+    	Pour parainez une personne, demandez lui de renseignez votre email lors de son inscription
+    </div>
+    <div class="message">
+    	<h2>Ambassadeur</h2>
+    	Faites-nous connaitre auprès d'un commerçant ! 	<br>
+    	Demandez au commerce de vous citer dans sa prise de contact avec Aubaine
+    </div>
+    <div class="message">
+    	<h2>Payer 5euros</h2>
+    	<form action=""></form>
+    </div>
+
+
+
+{% endblock fos_user_content %}

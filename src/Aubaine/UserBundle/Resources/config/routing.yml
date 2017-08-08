@@ -53,6 +53,18 @@ aubaine_user_import:
     defaults:
         _controller: AubaineUserBundle:User:import
 
+aubaine_user_ajax_togglepreference:
+    path:     /ajax-togglepreference
+    defaults: { _controller: AubaineUserBundle:User:ajaxTogglePreference }
+
+aubaine_user_ajax_addpreference:
+    path:     /ajax-addpreference
+    defaults: { _controller: AubaineUserBundle:User:ajaxAddPreference }
+
+aubaine_user_ajax_removepreference:
+    path:     /ajax-removepreference
+    defaults: { _controller: AubaineUserBundle:User:ajaxRemovePreference }
+
 fos_user_change_avatar:
     path:      /changeavatar/
     defaults:

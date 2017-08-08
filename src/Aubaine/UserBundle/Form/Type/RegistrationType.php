@@ -13,12 +13,21 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 
 class RegistrationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('description')
+        $builder->remove('username')
+        ->add('username')
+        ->add('lastname')
+        ->add('sex', ChoiceType::class, array(
+            'choices' => array('Homme' => 1, 'Femme' => 2, 'je ne précise pas' => 3),
+        ))
+        ->add('birthdate', BirthdayType::class)
         ;
     }
 

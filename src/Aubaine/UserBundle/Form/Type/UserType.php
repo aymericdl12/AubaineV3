@@ -42,6 +42,7 @@ class UserType extends AbstractType
             )))
         ->add('password',     TextType::class)
         ->add('enabled',     CheckboxType::class)
+        ->add('professional',     CheckboxType::class)
         ->add('save',      SubmitType::class)
         ;
     }

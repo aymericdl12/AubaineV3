@@ -26,6 +26,11 @@ class Aubaine
     protected $placeId;
 
     /**
+     * @MongoDB\Field(type="boolean")
+     */
+    protected $exclusive=False;
+
+    /**
      * @MongoDB\Field(type="string")
      */
     protected $city;
@@ -156,6 +161,28 @@ class Aubaine
     public function getPlaceId()
     {
         return $this->placeId;
+    }
+
+    /**
+     * Set exclusive
+     *
+     * @param string $exclusive
+     * @return $this
+     */
+    public function setExclusive($exclusive)
+    {
+        $this->exclusive = $exclusive;
+        return $this;
+    }
+
+    /**
+     * Get exclusive
+     *
+     * @return string $exclusive
+     */
+    public function getExclusive()
+    {
+        return $this->exclusive;
     }
 
     /**

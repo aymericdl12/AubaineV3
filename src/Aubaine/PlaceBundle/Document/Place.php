@@ -19,6 +19,12 @@ class Place
     protected $id;
 
     /**
+     * @MongoDB\Field(type="int")
+     * nombre d'utilisateur qui ont cette place en preference
+     */
+    protected $score;
+
+    /**
      * @MongoDB\Field(type="string")
      */
     protected $category;
@@ -161,8 +167,9 @@ class Place
 
 
     public function __construct()
-	  {
-	  }
+    {
+        $this->score = 0;
+    }
 
     /**
      * Get id
@@ -213,6 +220,28 @@ class Place
     public function getThumbnail()
     {
         return $this->thumbnail;
+    }
+
+    /**
+     * Set score
+     *
+     * @param int $score
+     * @return $this
+     */
+    public function setScore($score)
+    {
+        $this->score = $score;
+        return $this;
+    }
+
+    /**
+     * Get score
+     *
+     * @return int $score
+     */
+    public function getScore()
+    {
+        return $this->score;
     }
 
     /**

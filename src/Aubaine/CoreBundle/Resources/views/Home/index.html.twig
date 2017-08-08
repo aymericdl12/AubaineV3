@@ -8,58 +8,57 @@
                 <img alt="Brand" src="{{ asset('images/logo-aubaine-new-large.png') }}" style="height:8rem;">
             </h1>
             <h2 style="color:#fff">
-                Les commerçants vous transmettent des messages.
+                Les commerçants vous transmettent des bons plans.
             </h2>
-            <form action="{{ path('aubaine_core_search') }}" class="form-inline home-search" method="post">
-                <select class="selectpicker  show-menu-arrow field" id="city" name="city">
-                    <option value="toulouse" selected>Toulouse</option>
-                </select>
-                <select class="selectpicker  show-menu-arrow field" id="category" name="category">
-                    <option value="all" selected>Toutes les catégories</option>
-                    <option value="eat" data-content="<img src='{{ asset('images/eat.png') }}' alt='' class='category category-eat' > Boire et Manger" > Boire et Manger</option>
-                    <option value="shop" data-content="<img src='{{ asset('images/shop.png') }}' alt='' class='category category-shop' > Boutiques" > Boutique</option>
-                    <option value="wellness" data-content="<img src='{{ asset('images/wellness.png') }}' alt='' class='category category-wellness' > Bien-être" > Bien-être</option>
-                    <option value="event" data-content="<img src='{{ asset('images/event.png') }}' alt='' class='category category-event' > Évènements" > Évènement</option>
-              </select>
-              <input type="submit" class="btn btn-primary field" value="rechercher">
+            <form action="{{ path('aubaine_core_search') }}" class="form-inline home-search form-search" method="post">
+                <h3>Selectionnez une ville et une catégorie pour découvrir les opportunités du moment</h3>
+                <div class="dropdown-el-wrapper">
+                    <span class="dropdown-el">
+                        <input type="radio" name="city" value="toulouse" checked="checked" id="toulouse"><label for="toulouse">Toulouse</label>
+                        <input type="radio" name="city" value="bordeaux" id="bordeaux" disabled><label for="bordeaux">Bordeaux (à venir)</label>
+                    </span>
+                </div><!-- 
+             --><div class="dropdown-el-wrapper">
+                    <span class="dropdown-el">
+                        <input type="radio" name="category" value="all" checked="checked" id="all"><label for="all">Toutes Catégories</label>
+                        <input type="radio" name="category" value="eat" id="eat"><label for="eat"><img src='{{ asset('images/eat.png') }}' alt='' class='category category-eat' > Boire et Manger</label>
+                        <input type="radio" name="category" value="shop" id="shop"><label for="shop"><img src='{{ asset('images/shop.png') }}' alt='' class='category category-shop' > Boutiques</label>
+                        <input type="radio" name="category" value="wellness" id="wellness"><label for="wellness"><img src='{{ asset('images/wellness.png') }}' alt='' class='category category-wellness' > Bien-être</label>
+                        <input type="radio" name="category" value="event" id="event"><label for="event"><img src='{{ asset('images/event.png') }}' alt='' class='category category-event' > Évènement</label>
+                    </span>
+                </div><!-- 
+             --><input type="submit" class="btn btn-primary field" value="Voir les bons plans">
             </form>
         </div>
         <div class="home-live">
-            <h2>Derniers messages publiés</h2>
-            {% for aubaine in listAubaines %}
-                <a class="aubaineExtract" target="_blank" href="{{ path('aubaine_platform_public_view', {'id': aubaine.id}) }}">
-                    <div class="image" style="background-image:url('{{ asset('images/place/' ~ aubaine.place.imageHeader) }}')"></div>
-                    <div class="content  category-{{ aubaine.category }}">
-                        {{ aubaine.message |length > 100 ? aubaine.message |slice(0, 100) ~ '...' : aubaine.message   }}
-                    </div>
-                    <div class="place">
-                        <img src="{{ asset('images/location.png') }} " alt="" class="location">
-                        {{ aubaine.place.title }}
-                    </div>
-                    <div class="date">
-                        <img src="{{ asset('images/calendar.png') }} " alt="" class="calendar">
-                        {% if  aubaine.type == 3 %}
-                        Le {{ aubaine.start | date("d") }} {{ aubaine.start | date("F") | trans }}
-                        {% elseif aubaine.type == 2 %}
-                            {% if aubaine.start | date("F") == aubaine.end | date("F") %}
-                                Du {{ aubaine.start | date("d") }} au {{ aubaine.end | date("d") }} {{ aubaine.end | date("F") | trans }}
-                            {% else %}
-                                Du {{ aubaine.start | date("d") }} {{ aubaine.start | date("F") | trans }} au {{ aubaine.end | date("d") }} {{ aubaine.end | date("F") | trans }}
-                            {% endif %}
-                        {% else %}
-                        Toute l'année
-                        {% endif %}
-                    </div>
-                    <img src="{{ asset('images/'~aubaine.category~'.png') }} " alt="" class="category category-{{ aubaine.category }}">
-                </a>
-            {% endfor %}
-        </div>
-        <div id="home-map">
-            <h2>Retrouvez tous les bons plans sur une carte</h2>
-            <a href="{{ path('aubaine_core_map') }}" class="btn btn-lg btn-primary">
-                <i class="glyphicon glyphicon-map"></i>
-                Voir la Carte
-            </a>
+            <h2>Derniers bons plans publiés</h2>
+                {% for aubaine in listAubaines %}
+                        <div id="deal-{{ aubaine.id }}" class="aubaineExtract">
+                            <div class="image" style="background-image:url('{{ asset('images/place/' ~ aubaine.place.imageHeader) }}')"></div>
+                            <div class="content  category-{{ aubaine.category }}">
+                                {{ aubaine.message }}
+                            </div>
+                            <div class="date">
+                                <img src="{{ asset('images/calendar.png') }} " alt="" class="calendar">
+                                {% if  aubaine.type == 3 %}
+                                Le {{ aubaine.start | date("d") }} {{ aubaine.start | date("F") | trans }}
+                                {% elseif aubaine.type == 2 %}
+                                    {% if aubaine.start | date("F") == aubaine.end | date("F") %}
+                                        Du {{ aubaine.start | date("d") }} au {{ aubaine.end | date("d") }} {{ aubaine.end | date("F") | trans }}
+                                    {% else %}
+                                        Du {{ aubaine.start | date("d") }} {{ aubaine.start | date("F") | trans }} au {{ aubaine.end | date("d") }} {{ aubaine.end | date("F") | trans }}
+                                    {% endif %}
+                                {% else %}
+                                Toute l'année
+                                {% endif %}
+                            </div>
+                            <a class="place" target="_blank" href="{{ path('aubaine_place_public_view', {'id': aubaine.place.id}) }}">
+                                <img src="{{ asset('images/location.png') }} " alt="" class="location">
+                                {{ aubaine.place.title }}
+                            </a>
+                            <img src="{{ asset('images/'~aubaine.category~'.png') }} " alt="" class="category category-{{ aubaine.category }}">
+                        </div>
+                {% endfor %}
         </div>
         <div class="home-concept">
             <div class="container">
@@ -70,7 +69,7 @@
                         <h3 class="keyword keyword-s">Nouveautés</h3>
                         <h3 class="keyword keyword-m">Fins de journée</h3>
                         <h3 class="keyword keyword-m">Destockages</h3>
-                        <h3 class="keyword keyword-xl">Bons plans</h3>
+                        <h3 class="keyword keyword-xl">Ventes privées</h3>
                         <h3 class="keyword keyword-s">Soirées</h3>
                         <h3 class="keyword keyword-xl">Inaugurations</h3>
                         <h3 class="keyword keyword-s">Fins de série</h3>
@@ -78,7 +77,7 @@
                         <h3 class="keyword keyword-l">Réductions étudiantes</h3>
                         <h3 class="keyword keyword-l">Nouveaux concepts</h3>
                         <h3 class="keyword keyword-m">Expériences</h3>
-                        <h3 class="keyword keyword-s">arrivages</h3>
+                        <h3 class="keyword keyword-s">Arrivages</h3>
                         <h3 class="keyword keyword-xl">Évènements</h3>     
                         <h3 class="keyword keyword-s">Nouveaux produits</h3>               
                         <h3 class="keyword keyword-l">Offres découvertes</h3> 
@@ -90,11 +89,27 @@
                         {% endimage %}
                         <h4>Chaque semaine, recevez les meilleures opportunités par mail.</h4>
                         <input class="emailInput form-control"placeholder="Votre email" class="form-control" maxlength="150" type="text"  name="email" required="required">
-                        <input class="btn btn-primary submit"  data-loading-text="Enregistrement..." type="submit" value="S'inscrire">
+                        <input class="btn btn-primary submit"  data-loading-text="Enregistrement..." type="submit" value="Envoyer">
                         <div class="emailInfos alert alert-success">Vous avez bien été enregistré !</div>
                     </form>
                 </div>      
             </div>        
+        </div>
+        <div class="home-membership">
+            <div class="container">
+                <h2>Comment bénéficier des bons plans ?</h2>
+                <div class="case">
+                    <h3>Visiteurs</h3>
+                    Vous pouvez bénéficier de tous les bons plans non exclusif. Rendez-vous directement sur place et profitez !
+                </div>
+                <div class="case">
+                    <h3>Membres <span class="label label-white">à venir</span></h3>
+                    Vous bénéficiez de bons plans exclusifs. Chaque semaine, de nouvelles offres spéciales vous sont proposées !
+                </div>
+                <div class="padding-top-20">
+                    <a href="{{ path('fos_user_registration_register') }}" class="btn btn-primary" target="_blank">Devenir membre</a>
+                </div>
+            </div>
         </div>
         <div class="home-partner">
             <div class="container">
@@ -184,22 +199,13 @@
             <div class="container">
                 <div class="row .padding-30">
                     <h2>
-                        Vous tenez un commerce ? Communiquez de manière...
+                        Vous tenez un commerce ?
                     </h2>
-                    <div class="asset">
-                        <h4>Simple</h4>
-                    </div>
-                    <div class="asset">
-                        <h4>Instantanée</h4>
-                    </div>
-                    <div class="asset">
-                        <h4>Pratique</h4>
-                    </div>
-                    <div class="asset">
-                        <h4>Gratuite</h4>
-                    </div>
+                    <h3>
+                        Faîtes-vous connaître gratuitement en proposant vos bons plans !
+                    </h3>
                     <div class="padding-top-30">
-                        <a href="{{ path('aubaine_core_partner') }}" class="btn btn-primary" target="_blank">Devenir Partenaire</a>
+                        <a href="{{ path('aubaine_core_partner') }}" class="btn btn-primary" target="_blank">En savoir plus</a>
                     </div>
                 </div>        
             </div>        

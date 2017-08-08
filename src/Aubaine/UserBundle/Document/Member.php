@@ -14,17 +14,12 @@ use Symfony\Component\HttpFoundation\File\File;
  * @MongoDB\Document
  * @Vich\Uploadable
  */
-class User extends BaseUser
+class Member extends BaseUser
 {
     /**
      * @MongoDB\Id(strategy="auto")
      */
     protected $id;
-
-    /**
-     * @MongoDB\Field(type="boolean")
-     */
-    protected $professional=False;
     
     /**
      * @MongoDB\Field(type="collection")
@@ -52,9 +47,10 @@ class User extends BaseUser
     protected $sex;
 
     /**
-     * @MongoDB\Field(type="string")
+     * @MongoDB\Field(type="collection")
      */
-    protected $category;
+    protected $categoriesPref;
+
     /**
      * 
      * @Vich\UploadableField(mapping="product_image", fileNameProperty="imageName")
@@ -71,27 +67,10 @@ class User extends BaseUser
      */
     protected $phone;
 
-    /**
-     * @MongoDB\Field(type="collection")
-     */
-    protected $preferences;
-
-    /**
-     * @MongoDB\Field(type="boolean")
-     */
-    protected $activated;
-
-    /**
-     * @MongoDB\Field(type="date")
-     */
-    protected $deadline;
-
 
     public function __construct()
     {
         parent::__construct();
-        $this->professional = False;
-        $this->activated = False;
     }
 
     /**
@@ -141,111 +120,6 @@ class User extends BaseUser
         }
 
         return $this;
-    }
-
-    /**
-     * Set preferences
-     *
-     * @param string $preferences
-     * @return $this
-     */
-    public function setPreferences($preferences)
-    {
-        $this->preferences = $preferences;
-        return $this;
-    }
-
-    /**
-     * Get preferences
-     *
-     * @return string $preferences
-     */
-    public function getPreferences()
-    {
-        return $this->preferences;
-    }
-
-    /**
-     * Add preferences
-     *
-     * @return string $preferences
-     */
-    public function addPreference($preference)
-    {
-        if(count($this->preferences)>0){
-            if (($key = array_search($preference, $this->preferences)) === false) {
-                array_push($this->preferences, $preference);
-            }            
-        }
-        else{
-            $this->preferences= [$preference];
-        }
-
-        return $this;
-    }
-
-    /**
-     * Add preferences
-     *
-     * @return string $preferences
-     */
-    public function removePreference($preference)
-    {
-
-        if(count($this->preferences)>0){
-            if (($key = array_search($preference, $this->preferences)) !== false) {
-                unset($this->preferences[$key]);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * Set activated
-     *
-     * @param string $activated
-     * @return $this
-     */
-    public function setActivated($activated)
-    {
-        $this->activated = $activated;
-        if($activated===True){
-            $this->deadline = new \Datetime("+ 1 year");
-        }
-        return $this;
-    }
-
-    /**
-     * Get activated
-     *
-     * @return string $activated
-     */
-    public function getActivated()
-    {
-        return $this->activated;
-    }
-
-    /**
-     * Set deadline
-     *
-     * @param string $deadline
-     * @return $this
-     */
-    public function setDeadline($deadline)
-    {
-        $this->deadline = $deadline;
-        return $this;
-    }
-
-    /**
-     * Get deadline
-     *
-     * @return string $deadline
-     */
-    public function getDeadline()
-    {
-        return $this->deadline;
     }
 
 
@@ -376,6 +250,28 @@ class User extends BaseUser
     public function getCity()
     {
         return $this->city;
+    }
+
+    /**
+     * Set categoriesPref
+     *
+     * @param string $categoriesPref
+     * @return $this
+     */
+    public function setCategoriesPref($categoriesPref)
+    {
+        $this->categoriesPref = $categoriesPref;
+        return $this;
+    }
+
+    /**
+     * Get categoriesPref
+     *
+     * @return string $categoriespref
+     */
+    public function getCategoriesPref()
+    {
+        return $this->categoriesPref;
     }
 
     /**

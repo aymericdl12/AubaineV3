@@ -25,6 +25,7 @@
         <tr>
           <th>Image principale</th>
           <th>Titre</th>
+          <th>Score</th>
           <th>Action</th>
         </tr>
     </thead>
@@ -38,6 +39,9 @@
                     <a href="{{ path('aubaine_place_view', {'id': place.id}) }}" >      
                         <h4 class="list-group-item-heading">{{ place.title }}</h4>
                     </a>
+                </td>
+                <td>
+                    {{ place.score }}
                 </td>
                 <td>
                     <a href="{{ path('aubaine_place_edit', {'id': place.id}) }}" class="btn btn-default">

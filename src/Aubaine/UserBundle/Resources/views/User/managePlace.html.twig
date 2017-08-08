@@ -1,0 +1,28 @@
+{# src/OC/PlatformBundle/Resources/views/Advert/edit.html.twig #}
+
+{% extends "AubaineUserBundle::layout.html.twig" %}
+
+{% block title %}
+	Ajouter un lieu - {{ parent() }}
+{% endblock %}
+
+{% block body_column_center %}
+
+	<a href="{{ path('aubaine_user_view', {'id': user.id}) }}" class="btn btn-default">
+	<i class="glyphicon glyphicon-chevron-left"></i>
+	Retour à l'utilisateur
+	</a>
+
+	<h2>Gestion des lieux pour {{user.username}}</h2>
+
+	<h3>Ajouter un lieu</h3>
+
+	<h3>Lieu associé à l'utilisateur</h3>
+	{% for each places as place %}
+		{{ place }}
+	{% endfor %}
+
+	<form action=""></form>
+
+
+{% endblock %}

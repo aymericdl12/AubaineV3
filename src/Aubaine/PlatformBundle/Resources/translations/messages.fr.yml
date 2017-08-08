@@ -41,7 +41,7 @@ category: catégorie
 Save: Enregistrer
 save: enregistrer
 
-Username: Nom d'utilisateur
+Username: Prénom
 Address displayed: Addresse
 Zipcode: Code postal
 City: ville
@@ -68,3 +68,15 @@ Phone: Téléphone
 phone: téléphone
 Address: Adresse
 address: adresse
+
+Sex: Genre
+sex: genre
+
+Firstname: Prénom
+firstname: prénom
+
+Lastname: Nom
+lastname: nom
+
+Birthdate: Date de naissance
+birthdate: date de naissance

@@ -1,32 +1,85 @@
 {# src/OC/PlatformBundle/Resources/view/Advert/view.html.twig #}
 
-{% extends "AubainePlaceBundle::layout.html.twig" %}
+{% extends "AubaineCoreBundle::layout.html.twig" %}
 
 
-{% block aubaineplace_body %}
-  <p>
-    <a href="{{ path('aubaine_place_public_list') }}" class="btn btn-primary">
-      <i class="glyphicon glyphicon-chevron-left"></i>
-    </a>
+{% block body_column_center %}
   
-  <div class="place">
-    <div class="header">
-      <h1>{{ place.title }}</h1>
-      <img src="{{ asset('images/place/' ~ place.imageHeader) }}" alt="" class="avatar">
+    <div class="placeView">
+      <div class="header">
+        <img src="{{ asset('images/place/' ~ place.imageHeader) }}" alt="" class="imageHeader">
+      </div>
+      <h1>
+        {{ place.title }}
+      </h1>
+      <div class="row">
+          <div class="col-md-6">
+            <div class="introduction">{{ place.introduction | raw }}</div>
+            <div class="content">{{ place.content | raw }}</div>
+            <div class="information">{{ place.information | raw }}</div>
+            <div class="address">
+               <b class="subtitle">Adresse</b>
+               <p>{{ place.address }}, {{ place.zipcode }} {{ place.city }}</p>
+            </div>
+            {% if place.phone %} 
+              <div class="phone">
+                 <b class="subtitle">Téléphone</b>
+                 <p>0{{ place.phone }} </p>
+              </div>
+            {% endif %}
+            <div class="hours">
+               <b class="subtitle">Horaires d'ouverture</b>
+              <table class="table">
+                  <tbody>
+                    <tr>
+                      <td>Lundi</td>
+                      <td>{{ place.hoursMonday | default('fermé') }}</td>
+                    </tr>
+                    <tr>
+                      <td>Mardi</td>
+                      <td>{{ place.hoursTuesday | default('fermé') }}</td>
+                    </tr>
+                    <tr>
+                      <td>Mercredi</td>
+                      <td>{{ place.hoursWednesday | default('fermé') }}</td>
+                    </tr>
+                    <tr>
+                      <td>Jeudi</td>
+                      <td>{{ place.hoursThursday | default('fermé') }}</td>
+                    </tr>
+                    <tr>
+                      <td>Vendredi</td>
+                      <td>{{ place.hoursFriday | default('fermé') }}</td>
+                    </tr>
+                    <tr>
+                      <td>Samedi</td>
+                      <td>{{ place.hoursSaturday | default('fermé') }}</td>
+                    </tr>
+                    <tr>
+                      <td>Dimanche</td>
+                      <td>{{ place.hoursSunday | default('fermé') }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+          </div>
+          <div class="col-md-6">
+            {% if place.image1 %}
+              <img class="image" src="{{ asset('images/place/' ~ place.image1) }}" alt="">
+            {% endif %}
+            {% if place.image2 %}
+              <img class="image" src="{{ asset('images/place/' ~ place.image2) }}" alt="">
+            {% endif %}
+          </div>      
+      </div>
     </div>
-    <div class="introduction">{{ place.introduction | raw }}</div>
-    <div class="row">
-        <div class="col-md-6">
-          <div class="content">{{ place.content | raw }}</div>
-          <div class="information">{{ place.information | raw }}</div>
-          <div class="information">{{ place.lati | raw }}</div>
-          <div class="information">{{ place.longi | raw }}</div>
-        </div>
-        <div class="col-md-6">
-          <img class="image" src="{{ asset('images/place/' ~ place.image1) }}" alt="">
-          <img class="image" src="{{ asset('images/place/' ~ place.image2) }}" alt="">
-        </div>      
-    </div>
-  </div>
 
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts filter='jsqueeze'
+        'bundles/aubaineplace/js/publicView.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 {% endblock %}

@@ -98,11 +98,11 @@ class UserController extends Controller
       $form->handleRequest($request);
 
       // On vérifie que les valeurs entrées sont correctes
-      // (Nous verrons la validation des objets en détail dans le prochain chapitre)
       if ($form->isValid()) {
 
         $password = $user->getPassword();
         $user->setPlainPassword($password);
+        $user->setProfessional(True);
 
         $em = $this->get('doctrine_mongodb')->getManager();
         $em->persist($user);
@@ -219,10 +219,10 @@ class UserController extends Controller
     $userManager = $this->get('fos_user.user_manager');
 
     $aubaines = $dm->getRepository('AubainePlatformBundle:Aubaine')->findAll();
-    foreach ($aubaines as $aubaine) {
-        $date = new \DateTime();
-        $date->setTimestamp(1500163200);
-        $aubaine->setDate($date);
+    // foreach ($aubaines as $aubaine) {
+        // $date = new \DateTime();
+        // $date->setTimestamp(1500163200);
+        // $aubaine->setDate($date);
       // $dm->remove($aubaine);
     //   $author = $userManager->findUserBy(array( 'id' => $aubaine->getIdAuthor() ));
     //   $placeId = $author->getPlacesId()[0];
@@ -230,70 +230,76 @@ class UserController extends Controller
     //   $aubaine->setPlace($place);
     //   $aubaine->setPlaceId($place->getId());
     //   $aubaine->setPermanent( True );
-    }
+    // }
 
 
     $places = $dm->getRepository('AubainePlaceBundle:Place')->findAll();
-    // foreach ($places as $place) {
-    //   $place->setInformation("");
-    //   $place->setImage1("");
-    //   $place->setImage2("");
+    foreach ($places as $place) {
+      // $place->setScore(0);
+      // $place->setImage1("");
+      // $place->setImage2("");
       // $aubaine = new Aubaine();
-    //   $aubaine->setPlace($place);
-    //   $aubaine->setPlaceId($place->getId());
-    //   $aubaine->setPermanent( True );
-    //   $aubaine->setDate( new \DateTime('-3 days') );
-    //   $aubaine->setStart( new \DateTime("now") );
-    //   $aubaine->setEnd( new \DateTime("+3 year") );
-    //   $aubaine->setCity( $place->getCity() );
-    //   $aubaine->setMessage( "Message" );
-    //   $aubaine->setType( 1 );
-    //   $aubaine->setCategory( $place->getCategory() );
-    //   $dm->persist($aubaine);
-    // }
+      // $aubaine->setPlace($place);
+      // $aubaine->setPlaceId($place->getId());
+      // $aubaine->setPermanent( True );
+      // $aubaine->setDate( new \DateTime('-3 days') );
+      // $aubaine->setStart( new \DateTime("now") );
+      // $aubaine->setEnd( new \DateTime("+3 year") );
+      // $aubaine->setCity( $place->getCity() );
+      // $aubaine->setMessage( "Message" );
+      // $aubaine->setType( 1 );
+      // $aubaine->setCategory( $place->getCategory() );
+      // $dm->persist($aubaine);
+    }
 
 
-    // $users=$userManager->findUsers();
-    // foreach ($users as $user) {
-    //     $place= new Place();
-    //     $dm = $this->get('doctrine_mongodb')->getManager();
-    //     $repository = $this->get('doctrine_mongodb')
-    //     ->getManager()
-    //     ->getRepository('AubainePlaceBundle:Place');
+    $users=$userManager->findUsers();
+    foreach ($users as $user) {
+        // $user->setProfessional(True); //set to professional
+
+        // $user->removePreference("5958fb9415605c2dbc006f2b");
+        // $user->addPreference("5958fb9415605c2dbc006f30");
+        // $user->addPreference("5958fb9415605c2dbc006f2b");
+
+        // $place= new Place();
+        // $dm = $this->get('doctrine_mongodb')->getManager();
+        // $repository = $this->get('doctrine_mongodb')
+        // ->getManager()
+        // ->getRepository('AubainePlaceBundle:Place');
 
         // $user->setPlacesId( array( $user->getPlaceId() ) );
-    //     $place->setIntroduction($user->getDescription());
-    //     $place->setAddress($user->getAddressDisplayed());
-    //     $place->setCity($user->getCity());
-    //     $place->setCategory($user->getCategory());
-    //     $place->setZipcode($user->getZipcode());
-    //     $place->setLati($user->getLati());
-    //     $place->setLongi($user->getLongi());
-    //     $place->setHoursMonday($user->getHoursMonday());
-    //     $place->setHoursTuesday($user->getHoursTuesday());
-    //     $place->setHoursWednesday($user->getHoursWednesday());
-    //     $place->setHoursThursday($user->getHoursThursday());
-    //     $place->setHoursFriday($user->getHoursFriday());
-    //     $place->setHoursSaturday($user->getHoursSaturday());
-    //     $place->setHoursSunday($user->getHoursSunday());
-    //     $place->setContent("");
-    //     $place->setConclusion("");
-    //     $place->setInformation("");
-    //     $place->setThumbnail($user->getImageName());
-    //     $place->setImageHeader("59578b2ad8147.png");
-    //     $place->setImage1("59578290c4b9e.png");
-    //     $place->setImage2("59578290c40fd.png");
-    //     $place->setPublished(False);
+        // $place->setIntroduction($user->getDescription());
+        // $place->setAddress($user->getAddressDisplayed());
+        // $place->setCity($user->getCity());
+        // $place->setCategory($user->getCategory());
+        // $place->setZipcode($user->getZipcode());
+        // $place->setLati($user->getLati());
+        // $place->setLongi($user->getLongi());
+        // $place->setHoursMonday($user->getHoursMonday());
+        // $place->setHoursTuesday($user->getHoursTuesday());
+        // $place->setHoursWednesday($user->getHoursWednesday());
+        // $place->setHoursThursday($user->getHoursThursday());
+        // $place->setHoursFriday($user->getHoursFriday());
+        // $place->setHoursSaturday($user->getHoursSaturday());
+        // $place->setHoursSunday($user->getHoursSunday());
+        // $place->setContent("");
+        // $place->setConclusion("");
+        // $place->setInformation("");
+        // $place->setThumbnail($user->getImageName());
+        // $place->setImageHeader("59578b2ad8147.png");
+        // $place->setImage1("59578290c4b9e.png");
+        // $place->setImage2("59578290c40fd.png");
+        // $place->setPublished(False);
 
-    //     $dm->persist($place);
+        // $dm->persist($place);
 
 
-    //     $user->setPlaceId($place->getId());
-    //     $userManager->updateUser($user,false);
-    // }
+        // $user->setPlaceId($place->getId());
+        // $userManager->updateUser($user,false);
+    }
     $dm->flush();
     $request->getSession()->getFlashBag()->add('info', "Modifications effectuées");
-    return $this->redirectToRoute('aubaine_platform_home');
+    return $this->redirectToRoute('aubaine_user_home');
 
   }
   
@@ -385,11 +391,13 @@ class UserController extends Controller
   {
         $dm = $this->get('doctrine_mongodb')->getManager();
         $user= $this->get('security.token_storage')->getToken()->getUser();
-
-        $placesId = $user->getPlacesId();
         $places=[];
-        foreach ($placesId as $placeId) {
-          $places[$placeId] = $dm->getRepository('AubainePlaceBundle:Place')->find($placeId);
+
+        if($user->getProfessional()){
+          $placesId = $user->getPlacesId();
+          foreach ($placesId as $placeId) {
+            $places[$placeId] = $dm->getRepository('AubainePlaceBundle:Place')->find($placeId);
+          }          
         }
     
 
@@ -398,6 +406,95 @@ class UserController extends Controller
           'places' => $places
         ));
 
-    } 
+    }
+  
+  
+  /**
+  * @Security("has_role('ROLE_USER')")
+  */
+  public function ajaxTogglePreferenceAction(Request $request)
+  {
+      $userManager = $this->get('fos_user.user_manager');
+      $action=$request->request->get('addorremove');
+      $preference=$request->request->get('preference');
+      $user = $this->get('security.token_storage')->getToken()->getUser();
+      
+      $dm = $this->get('doctrine_mongodb')->getManager();
+      $place = $dm->getRepository('AubainePlaceBundle:Place')->find($preference);
+
+      if($action=="add"){
+        $score= $place->getScore()+1;
+        $place->setScore($score);
+        $user->addPreference($preference);
+        $userManager->updateUser($user);
+      }
+      else{
+        $score= $place->getScore()-1;
+        if($score<0){
+          $score=0;
+        }
+        $place->setScore($score);
+        $user->removePreference($preference);
+        $userManager->updateUser($user);
+      }
+      $dm->flush();
+
+      $response = new Response();
+      $response->setContent(json_encode( array( 'response' => "preference: ".$preference." enregistrée", "score"=>$score ) ));
+      $response->headers->set('Content-Type', 'application/json');
+      return $response;
+
+  }
+  
+  /**
+  * @Security("has_role('ROLE_USER')")
+  */
+  public function ajaxAddPreferenceAction(Request $request)
+  {
+      $userManager = $this->get('fos_user.user_manager');
+      $preference=$request->request->get('preference');
+      $user = $this->get('security.token_storage')->getToken()->getUser();
+      $user->addPreference($preference);
+      $userManager->updateUser($user);
+
+      $dm = $this->get('doctrine_mongodb')->getManager();
+      $place = $dm->getRepository('AubainePlaceBundle:Place')->find($preference);
+      $score= $place->getScore()+1;
+      $place->setScore($score);
+      $dm->flush();
+
+      $response = new Response();
+      $response->setContent(json_encode( array( 'response' => "preference: ".$preference." ajoutée" ) ));
+      $response->headers->set('Content-Type', 'application/json');
+      return $response;
+
+  }   
+  
+  /**
+  * @Security("has_role('ROLE_USER')")
+  */
+  public function ajaxRemovePreferenceAction(Request $request)
+  {
+      $userManager = $this->get('fos_user.user_manager');
+      $preference=$request->request->get('preference');
+      $user = $this->get('security.token_storage')->getToken()->getUser();
+      $user->removePreference($preference);
+      $userManager->updateUser($user);
+
+      $dm = $this->get('doctrine_mongodb')->getManager();
+      $place = $dm->getRepository('AubainePlaceBundle:Place')->find($preference);
+      $score= $place->getScore()-1;
+      if($score<0){
+        $score=0;
+      }
+      $place->setScore($score);
+      $dm->flush();
+
+      $response = new Response();
+      $response->setContent(json_encode( array( 'response' => "preference: ".$preference." retirée" ) ));
+      $response->headers->set('Content-Type', 'application/json');
+      return $response;
+
+  } 
 
 } 

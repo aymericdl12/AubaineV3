@@ -1,6 +1,9 @@
 aubaine_core_homepage:
     path:     /
     defaults: { _controller: AubaineCoreBundle:Home:index }
+aubaine_core_activate:
+    path:     /activer-mon-compte
+    defaults: { _controller: AubaineCoreBundle:Home:activate }
 aubaine_core_map:
     path:     /carte/{city}
     defaults: { _controller: AubaineCoreBundle:Home:map, city: toulouse}
@@ -28,3 +31,6 @@ aubaine_core_subscription:
 aubaine_core_email:
     path:     /email
     defaults: { _controller: AubaineCoreBundle:Home:email }
+aubaine_core_places:
+    path:      /lieux/{city}/{category}/{search}
+    defaults: { _controller: AubaineCoreBundle:Home:places, city: toulouse , category: all , search: all }

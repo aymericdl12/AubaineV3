@@ -19,6 +19,17 @@ jq(document).ready( function() {
                 form.children(".emailInput").val('');
             }       
         });
-})
+    })
+
+    // search form
+    jq('.dropdown-el').click(function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        jq(this).toggleClass('expanded');
+        jq('#'+jq(e.target).attr('for')).prop('checked',true);
+    });
+    jq(document).click(function() {
+        jq('.dropdown-el').removeClass('expanded');
+    });
 
 }); //document ready

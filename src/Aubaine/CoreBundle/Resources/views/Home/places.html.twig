@@ -1,0 +1,48 @@
+{% extends "AubaineCoreBundle::layout.html.twig" %}
+{% block title %}
+  Préférences - {{ parent() }}
+{% endblock %}
+{% block body_column_center %}
+
+<div class="body-places">
+    <div class="places-header">
+        <h1>Partenaires</h1>
+        <p>Indiquez les commerces que vous préférez pour les voir en priorité dans la recherche</p>        
+        <p></p>        
+        <p>Nous encourageons les commerces les plus populaires à vous partager des bons plans</p>        
+    </div>
+    <ul class="places-list">
+        {% for place in listPlaces %}
+            <li class="placeExtract">
+                <a href="{{ path('aubaine_place_public_view', {'id': place.id}) }}" >   
+                    <div class="image" style="background-image:url('{{ asset('images/place/' ~ place.imageHeader) }}')"></div>
+                    <h4 class="title"><img src="{{ asset('images/'~place.category~'.png') }} " alt="" class="category category-{{ place.category }}">  {{ place.title }}</h4>
+                </a> 
+                {{ place.introduction }}
+                <div class="address">{{ place.address }}, {{ place.zipcode }} {{ place.city }}</div>
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                <form method="post" class="preference-form form" action ="{{ path('aubaine_user_ajax_togglepreference') }}">
+                    <input type="hidden"  name="preference" value="{{ place.id }}" required="required">
+                    {% if place.id in app.user.preferences %}
+                        <input type="hidden" class="addorremove" name="addorremove" value="remove" required="required">
+                        <input class="submit removePreference-button"  data-loading-text="Enregistrement..." type="submit" value="">
+                    {% else %}
+                        <input type="hidden" class="addorremove"  name="addorremove" value="add" required="required">
+                        <input class="submit addPreference-button"  data-loading-text="Enregistrement..." type="submit" value="">
+                    {% endif %}
+                    <div class="score">{{ place.score }}</div>
+                </form>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts filter='jsqueeze'
+        'bundles/aubainecore/js/places.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

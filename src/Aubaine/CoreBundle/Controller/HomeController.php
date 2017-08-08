@@ -23,7 +23,7 @@ class HomeController extends Controller
 	    $current_day_datetime = new \DateTime();
 	    $current_day_datetime->setTimestamp($current_day);
 
-	    $listAubaines = $dm->getRepository('AubainePlatformBundle:Aubaine')->getLastAubaines(array(1,2,3),3)->toArray();
+	    $listAubaines = $dm->getRepository('AubainePlatformBundle:Aubaine')->getLastAubaines(array(1,2,3),1)->toArray();
 	    $number_partner = $this->get('doctrine_mongodb')->getManager()->getRepository('AubaineUserBundle:User')->findAll();
 	    $emailInfos = "";
 
@@ -41,6 +41,31 @@ class HomeController extends Controller
 	    );
 
 		return $this->render('AubaineCoreBundle:Home:index.html.twig', $array_response);
+	    
+	}
+    // La page d'activation
+	public function activateAction(Request $request)
+	{
+
+		$dm = $this->get('doctrine_mongodb')->getManager();
+	    $user = $this->get('security.token_storage')->getToken()->getUser();
+		$userManager = $this->get('fos_user.user_manager');
+
+	    if ($request->isMethod('POST')) {
+	      if(!$user->getActivated()){
+		      $user->setActivated(True);
+		      // $userManager->updateUser($user);
+		      $request->getSession()->getFlashBag()->add('info', "Votre compte a bien été activé");
+	      }
+	      else{
+	          $request->getSession()->getFlashBag()->add('info', "Votre compte est déjà activé");
+	      }
+	    }
+
+	    $array_response=array(
+	    );
+
+		return $this->render('AubaineCoreBundle:Home:activate.html.twig', $array_response);
 	    
 	}
     // La page carte
@@ -143,6 +168,41 @@ class HomeController extends Controller
 	// La page de subscription
 	public function subscriptionAction()
 	{
+
+		if ($request->isMethod('POST')) {
+	      $aubaine= new Aubaine();
+	      $aubaine->setTitle($request->request->get('title'));
+	      $aubaine->setMessage($request->request->get('message'));
+	      $aubaine->setPlace( $places[ $request->request->get('place') ] );
+	      $aubaine->setPlaceId( $places[ $request->request->get('place') ]->getId() );
+	      $aubaine->setCity( $places[ $request->request->get('place') ]->getCity());
+	      $aubaine->setCategory( $request->request->get('category') );
+	      if($request->request->get('permanent')){
+	        $aubaine->setType( 1 );
+	        $start_datetime = new \DateTime();
+	        $start_datetime->setTimestamp(1499709965);
+
+	        $end_datetime = new \DateTime();
+	        $end_datetime->setTimestamp(1580601600);
+
+	        $aubaine->setStart($start_datetime);
+	        $aubaine->setEnd($end_datetime);
+	      }  
+	      else{
+	        if($request->request->get('start') == $request->request->get('end')){
+	          $aubaine->setType( 3 );
+	        }
+	        else{
+	          $aubaine->setType( 2 );
+	        }
+	        $aubaine->setStart($request->request->get('start'));
+	        $aubaine->setEnd($request->request->get('end'));
+	      }
+	      $dm->persist($aubaine);
+	      $dm->flush();
+	      $request->getSession()->getFlashBag()->add('info', "Le message a bien été publié.");
+	    }
+		
 		return $this->render('AubaineCoreBundle:Home:subscription.html.twig', array(
 
 	    ));
@@ -164,6 +224,19 @@ class HomeController extends Controller
 		$response->headers->set('Content-Type', 'application/json');
 		return $response;
 
+	}
+    // places
+	public function placesAction($city,$category,Request $request)
+	{
+		
+		$repository = $this->get('doctrine_mongodb')->getManager()->getRepository('AubainePlaceBundle:Place');
+	    $listPlaces = $repository->findBy(array('city' => $city ));
+
+		$array_response=array(
+	      'listPlaces' => $listPlaces
+	    );
+		return $this->render('AubaineCoreBundle:Home:places.html.twig', $array_response);
+	    
 	}
     // La page carte
 	public function emailAction(Request $request)

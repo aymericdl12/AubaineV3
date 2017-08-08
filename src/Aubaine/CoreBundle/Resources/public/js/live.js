@@ -11,6 +11,34 @@ jq(document).ready( function() {
 	  ];
 
 
+	// search form
+    jq('.dropdown-el').click(function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        jq(this).toggleClass('expanded');
+        jq('#'+jq(e.target).attr('for')).prop('checked',true);
+    });
+    jq(document).click(function() {
+        jq('.dropdown-el').removeClass('expanded');
+    });
+
+    // preference on place
+	jq(".preference-form").submit(function(event) {
+        event.preventDefault();
+        var form = jq(this);
+        jq.ajax({
+            beforeSend:  function() {
+                // form.children(".submit").button('loading');
+            },
+            url: jq(this).attr('action'), // le nom du fichier indiqué dans le formulaire
+            type: "POST", // la méthode indiquée dans le formulaire (get ou post)
+            cache: false,
+            data: form.serialize(),
+            success: function(data) {
+                alert(data.response);
+            }       
+        });
+    })
 
 	// Print the map
 	var map = L.map('map', {  minZoom: 13, maxZoom: 30 }).setView([43.6044292, 1.4438121000000592], 16);

@@ -1,0 +1,30 @@
+{% trans_default_domain 'FOSUserBundle' %}
+<div class="body-subscription">
+    <h1>Rejoignez le monde merveilleux d'Aubaine ou professionels et particuliers s'entendent si bien !</h1>
+    <div class="message">
+        <h2>Membre</h2>
+        <p>
+            Inscrivez-vous pour devenir membre et avoir accès à l'ensemble des bons plans<br>
+        </p>
+        {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+		    {{ form_widget(form) }}
+		    <div>
+		        <input type="submit" class="btn btn-primary" value="{{ 'registration.submit'|trans }}" />
+		    </div>
+		{{ form_end(form) }}            
+    </div>
+    <div class="message">
+        <h2>Partenaire</h2>
+        <p>
+            Vous êtes un professionnel et désirez faire connaître vos promotions, nouveautés, évènements et autres bons plans ? <br>
+            Contactez-nous pour devenir partenaire !<br>
+        </p>
+        <p class="email">
+            <a href="mailto:contact@aubaineapp.fr">contact@aubaineapp.fr</a>
+        </p>
+        <p class="phone">
+            <span>07 83 86 60 99</span>
+        </p>
+    </div>
+</div>
+

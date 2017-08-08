@@ -24,10 +24,11 @@
     <thead>
         <tr>
           <th></th>
+          <th>Professional</th>
           <th>Nom</th>
           <th>Email</th>
           <th>Categorie</th>
-          <th>id</th>
+          <th>Preferences</th>
           <th>Places</th>
           <th>Action</th>
         </tr>
@@ -41,6 +42,13 @@
                     </a>
                 </td>
                 <td>
+                  {% if user.professional %}
+                    profesionnal
+                  {% else %}
+                    utilisateur
+                  {% endif %}
+                </td>
+                <td>
                     <a href="{{ path('aubaine_user_view', {'id': user.id}) }}" >      
                         <h4 class="list-group-item-heading">{{ user.username }}</h4>
                     </a>
@@ -52,7 +60,9 @@
                     {{ user.category }}
                 </td>
                 <td>
-                    {{ user.id }}
+                    {% for preference in user.preferences %}
+                    {{ preference }} -
+                  {% endfor %}
                 </td>
                 <td>
                   {% for placeId in user.placesId %}

@@ -9,34 +9,37 @@
         <div class='map' id='map'></div>
     </div>
     <div class="list_wrapper">
-        <div class="today">{{ 'now' | date('l') | trans }} {{ 'now' | date('j') }} {{ 'now' | date('F') | trans }}</div>
-        <div class="city">Toulouse</div>
-        <h1>
-            En direct des commerçants
-        </h1>
-        <form action="{{ path('aubaine_core_search') }}" class="form-inline live-search" method="post">
-            <select class="selectpicker  show-menu-arrow field" id="city" name="city">
-                <option value="toulouse" selected>Toulouse</option>
-            </select>
-            <select class="selectpicker  show-menu-arrow field" id="category" name="category">
-                <option value="all" selected>Toutes les catégories</option>
-                <option value="eat" data-content="<img src='{{ asset('images/eat.png') }}' alt='' class='category category-eat' > Boire et Manger" > Boire et Manger</option>
-                    <option value="shop" data-content="<img src='{{ asset('images/shop.png') }}' alt='' class='category category-shop' > Boutiques" > Boutique</option>
-                    <option value="wellness" data-content="<img src='{{ asset('images/wellness.png') }}' alt='' class='category category-wellness' > Bien-être" > Bien-être</option>
-                    <option value="event" data-content="<img src='{{ asset('images/event.png') }}' alt='' class='category category-event' > Évènements" > Évènement</option>
-          </select>
-          <input type="submit" class="btn btn-primary field" value="rechercher">
-        </form>
+        <div class="list-header">
+            <div class="today">{{ 'now' | date('l') | trans }} {{ 'now' | date('j') }} {{ 'now' | date('F') | trans }}</div>
+            <div class="city">Toulouse</div>
+            <h1>
+                En direct des commerçants
+            </h1>
+            <form action="{{ path('aubaine_core_search') }}" class="form-inline live-search form-search" method="post">
+                <div class="dropdown-el-wrapper">
+                    <span class="dropdown-el">
+                        <input type="radio" name="city" value="toulouse" checked="checked" id="toulouse"><label for="toulouse">Toulouse</label>
+                        <input type="radio" name="city" value="bordeaux" id="bordeaux" disabled><label for="bordeaux">Bordeaux (à venir)</label>
+                    </span>
+                </div><!-- 
+             --><div class="dropdown-el-wrapper">
+                    <span class="dropdown-el">
+                        <input type="radio" name="category" value="all" checked="checked" id="all"><label for="all">Toutes Catégories</label>
+                        <input type="radio" name="category" value="eat" id="eat"><label for="eat"><img src='{{ asset('images/eat.png') }}' alt='' class='category category-eat' > Boire et Manger</label>
+                        <input type="radio" name="category" value="shop" id="shop"><label for="shop"><img src='{{ asset('images/shop.png') }}' alt='' class='category category-shop' > Boutiques</label>
+                        <input type="radio" name="category" value="wellness" id="wellness"><label for="wellness"><img src='{{ asset('images/wellness.png') }}' alt='' class='category category-wellness' > Bien-être</label>
+                        <input type="radio" name="category" value="event" id="event"><label for="event"><img src='{{ asset('images/event.png') }}' alt='' class='category category-event' > Évènement</label>
+                    </span>
+                </div><!-- 
+             --><input type="submit" class="btn btn-primary field" value="Voir les bons plans">
+            </form>
+        </div>
         <div class="list">
             {% for aubaine in listAubaines %}
-                <a id="deal-{{ aubaine.id }}" class="aubaineExtract" target="_blank" href="{{ path('aubaine_platform_public_view', {'id': aubaine.id}) }}">
+                <div id="deal-{{ aubaine.id }}" class="aubaineExtract">
                     <div class="image" style="background-image:url('{{ asset('images/place/' ~ aubaine.place.imageHeader) }}')"></div>
                     <div class="content  category-{{ aubaine.category }}">
-                        {{ aubaine.message |length > 100 ? aubaine.message |slice(0, 100) ~ '...' : aubaine.message   }}
-                    </div>
-                    <div class="place">
-                        <img src="{{ asset('images/location.png') }} " alt="" class="location">
-                        {{ aubaine.place.title }}
+                        {{ aubaine.message }}
                     </div>
                     <div class="date">
                         <img src="{{ asset('images/calendar.png') }} " alt="" class="calendar">
@@ -52,8 +55,12 @@
                         Toute l'année
                         {% endif %}
                     </div>
+                    <a class="place" target="_blank" href="{{ path('aubaine_place_public_view', {'id': aubaine.place.id}) }}">
+                        <img src="{{ asset('images/location.png') }} " alt="" class="location">
+                        {{ aubaine.place.title }}
+                    </a>
                     <img src="{{ asset('images/'~aubaine.category~'.png') }} " alt="" class="category category-{{ aubaine.category }}">
-                </a>
+                </div>
             {% endfor %}
         </div>
     </div>
