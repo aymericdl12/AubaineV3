@@ -11,7 +11,7 @@
                 Les commerçants vous transmettent des bons plans.
             </h2>
             <form action="{{ path('aubaine_core_search') }}" class="form-inline home-search form-search" method="post">
-                <h3>Faîtes une recherche pour découvrir les opportunités du moment</h3>
+                <h3>Découvrez les opportunités en cours et à venir</h3>
                 <div class="dropdown-el-wrapper">
                     <span class="dropdown-el">
                         <input type="radio" name="city" value="toulouse" checked="checked" id="toulouse"><label for="toulouse">Toulouse</label>
@@ -34,7 +34,7 @@
             <h2 class="computer">Derniers bons plans publiés</h2>
             <h2 class="mobile">Dernier bon plan publié</h2>
             {% for aubaine in listAubaines %}
-                    <a id="deal-{{ aubaine.id }}" class="aubaineExtract" target="_blank" href="{{ path('aubaine_platform_public_view', {'id': aubaine.id}) }}">
+                    <a id="deal-{{ aubaine.id }}" class="aubaineExtract aubaineExtract-{{loop.index}}" target="_blank" href="{{ path('aubaine_platform_public_view', {'id': aubaine.id}) }}">
                         <div class="image" style="background-image:url('{{ asset('images/place/' ~ aubaine.place.imageHeader) }}')"></div>
                         <div class="content  category-{{ aubaine.category }}">
                             {{ aubaine.message }}
@@ -101,14 +101,14 @@
                 <h2>Comment bénéficier des bons plans ?</h2>
                 <div class="case">
                     <h3>Visiteurs</h3>
-                    Vous pouvez bénéficier de tous les bons plans non exclusif. Rendez-vous directement sur place et profitez !
+                    Bénéficiez de tous les bons plans qui ne comportent pas l'étiquette "membre". Rendez-vous directement sur place et profitez !
                 </div>
                 <div class="case">
                     <h3>Membres <span class="label label-white">à venir</span></h3>
-                    Vous bénéficiez de bons plans exclusifs. Chaque semaine, de nouvelles offres spéciales vous sont proposées !
+                    Bénéficiez de bons plans réservés aux membres. Chaque semaine, de nouvelles offres sont publiées spécialement pour vous !
                 </div>
                 <div class="padding-top-20">
-                    <a href="{{ path('fos_user_registration_register') }}" class="btn btn-primary" target="_blank">Devenir membre</a>
+                    <a href="{{ path('fos_user_registration_register') }}" class="btn btn-primary">Devenir membre</a>
                 </div>
             </div>
         </div>
