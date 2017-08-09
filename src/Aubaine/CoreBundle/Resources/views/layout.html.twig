@@ -74,10 +74,8 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                    {% if app.user.professional %}
-                        <!-- MyAubaines -->
-                        <li class="{% if app.request.attributes.get('_route') == 'aubaine_platform_my_aubaines' %}active{% endif %}" ><a href="{{ path('aubaine_platform_my_aubaines') }}"><span class="glyphicon glyphicon-calendar"></span>  Agenda</a></li>
-                    {% endif %}
+                    <!-- MyAubaines -->
+                    <li class="{% if app.request.attributes.get('_route') == 'aubaine_platform_my_aubaines' %}active{% endif %}" ><a href="{{ path('aubaine_platform_my_aubaines') }}"><span class="glyphicon glyphicon-calendar"></span>  Agenda</a></li>
 
                     <!-- Admin if admin -->
                     {% if is_granted('ROLE_ADMIN') %}
