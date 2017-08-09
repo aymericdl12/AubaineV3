@@ -75,11 +75,3 @@
     </div>
 
 {% endblock %}
-
-{% block javascripts %}
-    {{ parent() }}
-    {% javascripts filter='jsqueeze'
-        'bundles/aubaineplace/js/publicView.js' %}
-        <script type="text/javascript" src="{{ asset_url }}"></script>
-    {% endjavascripts %}
-{% endblock %}
