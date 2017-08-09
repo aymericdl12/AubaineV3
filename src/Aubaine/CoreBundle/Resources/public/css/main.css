@@ -45,7 +45,7 @@ body{
 }
 .footer{
   width: 100%;
-  padding:6rem 2rem;
+  padding:6rem 2rem 2rem;
   margin:0;
   color: #fff;
   background: #222;
@@ -169,7 +169,7 @@ body{
   position:absolute;
   top:50px;
   right:0;
-  left:90rem;
+  left:80rem;
   bottom:0;
   z-index: 2;
 }
@@ -189,17 +189,16 @@ body{
   position: absolute;
   top:50px;
   left:0;
-  width:90rem;
+  width:80rem;
   bottom:0;
   background-color: #fff;
   color:#333;
   z-index:3;
 }
 .body-live .list-header{
-  background-color: #858585;
-  /*border-bottom: 2px solid #ddd;*/
-  /*padding: 2rem 0 1rem;*/
+  background-color: #333;
   position:relative;
+  padding:1rem 0 2rem;
 }
 @media screen and (max-width: 900px) {
   .body-live .list_wrapper{
@@ -535,12 +534,13 @@ body{
   z-index: 1;
 }
 .body-home h2{
-  font-size: 2.5rem;
-  margin: 0 1rem 6rem;
+  font-size: 3rem;
+  margin: 0 1rem 4rem;
   color:#666;
   position:relative;
   z-index: 1;
   line-height: 4rem;
+  font-weight: bold;
 }
 .body-home h3{
   font-size: 2.3rem;
@@ -559,6 +559,9 @@ body{
   padding:16rem 2rem 0rem;
   position:relative;
   z-index: 1;
+}
+#home-header h2{
+  font-size: 2.5rem;
 }
 #home-header h3{
   font-size: 1.5rem;
@@ -586,6 +589,12 @@ body{
   position:relative;
   z-index: 1;
 }
+.form-search.home-search{
+  font-size: 1.8rem;
+}
+.form-search.home-search input[type="submit"]{
+  font-size: 1.8rem;
+}
 /*home-live*/
 .home-live{
   text-align: center;
@@ -594,7 +603,24 @@ body{
   position:relative;
 }
 .home-live h2{
-  margin-bottom: 0;
+  margin-bottom:2rem;
+}
+.home-live h2.mobile{
+  display:none;
+}
+.home-live .aubaineExtract{
+  width: 450px;
+}
+@media (max-width:900px){
+  .home-live .aubaineExtract-2{
+    display:none;
+  }
+  .home-live h2.mobile{
+    display:block;
+  }
+  .home-live h2.computer{
+    display:none;
+  }
 }
 /*home-concept*/
 .home-concept{
@@ -607,14 +633,14 @@ body{
     background-color: #f6f6f6;
 }
 .home-concept h2{
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
 }
 .home-concept .keyword-list{
   line-height: 3rem;
 }
 .home-concept .keyword{
   display:inline-block;
-  margin:2rem;
+  margin:1rem;
   color:#ec4940;
 }
 .home-concept .keyword-s{
@@ -640,8 +666,8 @@ body{
   display:inline-block;
   border:2px solid;
   border-radius: 1rem;
-  padding:3rem;
-  margin-top:5rem;
+  padding:2rem;
+  margin-top:3rem;
 }
 .home-concept .emailInput{
   max-width:30rem;
@@ -664,14 +690,14 @@ body{
 .home-membership{
     display: inline-block;
     width: 100%;
-    padding:6rem 1rem;
+    padding:7rem 1rem;
     line-height: 2.5rem;
     color:#fff;
     background-color: #ec4940;  
 }
 .home-membership h2{
   color:#fff; 
-  margin-bottom: 0rem;
+  margin-bottom: 2rem;
 }
 .home-membership h3{
   margin-bottom: 1rem;
@@ -764,18 +790,18 @@ body{
 
 
 /*partner*/
-#body-partner{
+.body-partner{
   text-align: center;
 }
-#body-partner h2{
+.body-partner h2{
   margin-bottom: 2rem;
-  font-size: 2.5rem;
+  font-weight: bold;
   color:#666;
   margin-bottom: 2rem;
   font-size: 2.5rem;
 }
 .partner-header{
-  padding:6rem 1rem;
+  padding:4rem 1rem;
 }
 .partner-header .website{
   font-size: 1.8rem;
@@ -799,7 +825,7 @@ body{
   color:#ec4940;
 }
 .partner-advantages{
-  padding:0rem 0 10rem;
+  padding:0rem 0 8rem;
 }
 .partner-advantages .asset{
   display: inline-block;
@@ -809,12 +835,12 @@ body{
   line-height: 2.6rem;
 }
 .partner-functionment{
-  padding:10rem 1rem;
+  padding:8rem 1rem;
 }
 .partner-functionment h2{
 }
 .partner-howpublish{
-  padding:10rem 1rem;
+  padding:8rem 1rem;
   background-color: #fafafa;
   border-top:2px solid #eee;
   border-bottom:2px solid #eee;
@@ -831,29 +857,32 @@ body{
   line-height: 2.6rem;
 }
 .partner-figures{
-  padding:10rem 1rem;
-  background:#fafafa;
+  padding:4rem 1rem;
+  background:#ec4940;
+  color:#fff;
   border-top:2px solid #eee;
   border-bottom:2px solid #eee;
 }
 .partner-figures h2{
   margin-bottom: 2rem;
   font-size: 2.5rem;
+  /*display:none;*/
+  color:#fff;
 }
 .partner-figures .figure{
   width: 30rem;
   display:inline-block;
   padding:2rem;
-  margin:1rem auto;
+  margin:0 auto;
   vertical-align: top
 }
 .partner-figures .figure span{
   font-size: 4rem;
-  font-weight: bold;
+  /*font-weight: bold;*/
   display:block;
 }
 .partner-contact{
-  padding:10rem 1rem;
+  padding:8rem 1rem;
 }
 .partner-contact h2{
   margin-bottom: 2rem;
@@ -912,6 +941,7 @@ body{
 .body-subscription{
   padding-top: 5rem;
   padding-bottom: 5rem;
+  text-align: center;
 }
 .body-subscription h1{
   font-size: 1.8rem;
@@ -919,9 +949,11 @@ body{
 }
 .body-subscription h2{
   text-align: left;
+  font-size: 2.3rem;
   margin-bottom: 2rem;
 }
 .body-subscription .message{
+  text-align: left;
   max-width: 380px;
   margin:2rem;
   padding: 15px 30px 45px;
@@ -931,6 +963,9 @@ body{
   line-height: 3rem;
   display:inline-block;
   vertical-align: top;
+}
+.body-subscription .submit{
+  margin-top:2rem;
 }
 .body-subscription .email,
 .body-subscription .phone{
@@ -1104,6 +1139,16 @@ body{
   border-radius: 5px;
   overflow:hidden;
 }
+.aubaineExtract:hover{
+  text-decoration: none;
+  color:#444;
+  border: thin solid #aaa;
+  /*box-shadow: 2px 4px 8px #aaa;*/
+}
+.aubaineExtract:focus{
+  text-decoration: none;
+  color:#444;
+}
 .aubaineExtract .content {
   background: rgba(0, 0, 0, 0.09) none repeat scroll 0 0;
   color: #222;
@@ -1143,7 +1188,7 @@ body{
 }
 .aubaineExtract .image{
   width:100%;
-  height:20rem;
+  height:30rem;
   overflow:hidden;
   background-size: cover;
 }
@@ -1207,10 +1252,11 @@ body{
   margin-right: 0.5rem;
 }
 .form-search input[type="submit"]{
-  margin:2rem 1rem;
+  margin:2rem 1rem 0;
   height:3em;
   font-size: 1.6rem;
   border-radius: 0.5rem;
+  min-width: 12em;
 }
 .form-search .category-eat{
   background-color: #DE2916;
@@ -1235,7 +1281,7 @@ $timing:.3s;
   min-width: 12em;
   height:3em;
   display:inline-block;
-  margin:2rem 1rem;
+  margin:2rem 1rem 0;
   vertical-align: middle;
 }
 .dropdown-el {   
@@ -1268,7 +1314,7 @@ $timing:.3s;
     display:block;
     height: 3em;
     line-height: 3em;
-    padding-left: 1em;
+    padding-left: 1rem;
     padding-right: 3em;
     cursor: pointer;
     position: relative;

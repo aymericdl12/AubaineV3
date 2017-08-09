@@ -19,6 +19,9 @@ aubaine_core_partner:
 aubaine_core_cgu:
     path:     /cgu
     defaults: { _controller: AubaineCoreBundle:Home:cgu }
+aubaine_core_ajax_futuremember:
+    path:     /ajax-futuremember
+    defaults: { _controller: AubaineCoreBundle:Home:ajax_futuremember }
 aubaine_core_ajax_newsletter:
     path:     /ajax-newsletter
     defaults: { _controller: AubaineCoreBundle:Home:ajax_newsletter }

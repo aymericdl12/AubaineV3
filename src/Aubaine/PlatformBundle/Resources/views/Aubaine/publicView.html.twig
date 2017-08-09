@@ -47,17 +47,7 @@
     <div class="place">
       <h2>
         <img src="{{ asset('images/location.png') }} " alt="" class="location"> 
-        {{ aubaine.place.title }} 
-        <form method="post" class="preference-form form" action ="{{ path('aubaine_user_ajax_togglepreference') }}">
-            <input type="hidden"  name="preference" value="{{ aubaine.place.id }}" required="required">
-            {% if aubaine.place.id in app.user.preferences %}
-                <input type="hidden" class="addorremove"  name="addorremove" value="remove" required="required">
-                <input class="submit removePreference-button"  data-loading-text="Enregistrement..." type="submit" value="">
-            {% else %}
-                <input type="hidden" class="addorremove"  name="addorremove" value="add" required="required">
-                <input class="submit addPreference-button"  data-loading-text="Enregistrement..." type="submit" value="">
-            {% endif %}
-        </form>
+        {{ aubaine.place.title }}
       </h2>
       <div class="row">
           <div class="col-md-6">

@@ -23,7 +23,7 @@ class HomeController extends Controller
 	    $current_day_datetime = new \DateTime();
 	    $current_day_datetime->setTimestamp($current_day);
 
-	    $listAubaines = $dm->getRepository('AubainePlatformBundle:Aubaine')->getLastAubaines(array(1,2,3),1)->toArray();
+	    $listAubaines = $dm->getRepository('AubainePlatformBundle:Aubaine')->getLastAubaines(array(1,2,3),2)->toArray();
 	    $number_partner = $this->get('doctrine_mongodb')->getManager()->getRepository('AubaineUserBundle:User')->findAll();
 	    $emailInfos = "";
 
@@ -119,7 +119,9 @@ class HomeController extends Controller
 	      'current_day_datetime' => $current_day_datetime,
 	      'listAubainesJson' => $listAubainesJson,
 	      'listAubaines' => $listAubaines,
-	      'current_day' => $current_day
+	      'current_day' => $current_day,
+	      'city'=>$city,
+	      'category'=>$category
 	    );
 
 		return $this->render('AubaineCoreBundle:Home:live.html.twig', $array_response);
@@ -216,6 +218,23 @@ class HomeController extends Controller
 
 		$list_email_file = fopen("liste_email.txt", "a+");
 		$txt =$email.','.$city.','.$date."\n";
+		fwrite($list_email_file, $txt);
+		fclose($list_email_file);
+
+		$response = new Response();
+		$response->setContent(json_encode( array( 'response' => "Vous avez bien été enregistrée" ) ));
+		$response->headers->set('Content-Type', 'application/json');
+		return $response;
+
+	}
+	public function ajax_futurememberAction(Request $request)
+	{
+
+		$email=$request->request->get('email');
+		$date=date('d/m/y à h\h');
+
+		$list_email_file = fopen("liste_futuremember.txt", "a+");
+		$txt =$email.','.$date."\n";
 		fwrite($list_email_file, $txt);
 		fclose($list_email_file);
 

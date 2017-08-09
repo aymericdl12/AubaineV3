@@ -11,7 +11,7 @@
                 Les commerçants vous transmettent des bons plans.
             </h2>
             <form action="{{ path('aubaine_core_search') }}" class="form-inline home-search form-search" method="post">
-                <h3>Selectionnez une ville et une catégorie pour découvrir les opportunités du moment</h3>
+                <h3>Faîtes une recherche pour découvrir les opportunités du moment</h3>
                 <div class="dropdown-el-wrapper">
                     <span class="dropdown-el">
                         <input type="radio" name="city" value="toulouse" checked="checked" id="toulouse"><label for="toulouse">Toulouse</label>
@@ -21,7 +21,7 @@
              --><div class="dropdown-el-wrapper">
                     <span class="dropdown-el">
                         <input type="radio" name="category" value="all" checked="checked" id="all"><label for="all">Toutes Catégories</label>
-                        <input type="radio" name="category" value="eat" id="eat"><label for="eat"><img src='{{ asset('images/eat.png') }}' alt='' class='category category-eat' > Boire et Manger</label>
+                        <input type="radio" name="category" value="eat" id="eat"><label for="eat"><img src='{{ asset('images/eat.png') }}' alt='' class='category category-eat' > Boire & Manger</label>
                         <input type="radio" name="category" value="shop" id="shop"><label for="shop"><img src='{{ asset('images/shop.png') }}' alt='' class='category category-shop' > Boutiques</label>
                         <input type="radio" name="category" value="wellness" id="wellness"><label for="wellness"><img src='{{ asset('images/wellness.png') }}' alt='' class='category category-wellness' > Bien-être</label>
                         <input type="radio" name="category" value="event" id="event"><label for="event"><img src='{{ asset('images/event.png') }}' alt='' class='category category-event' > Évènement</label>
@@ -31,34 +31,35 @@
             </form>
         </div>
         <div class="home-live">
-            <h2>Derniers bons plans publiés</h2>
-                {% for aubaine in listAubaines %}
-                        <div id="deal-{{ aubaine.id }}" class="aubaineExtract">
-                            <div class="image" style="background-image:url('{{ asset('images/place/' ~ aubaine.place.imageHeader) }}')"></div>
-                            <div class="content  category-{{ aubaine.category }}">
-                                {{ aubaine.message }}
-                            </div>
-                            <div class="date">
-                                <img src="{{ asset('images/calendar.png') }} " alt="" class="calendar">
-                                {% if  aubaine.type == 3 %}
-                                Le {{ aubaine.start | date("d") }} {{ aubaine.start | date("F") | trans }}
-                                {% elseif aubaine.type == 2 %}
-                                    {% if aubaine.start | date("F") == aubaine.end | date("F") %}
-                                        Du {{ aubaine.start | date("d") }} au {{ aubaine.end | date("d") }} {{ aubaine.end | date("F") | trans }}
-                                    {% else %}
-                                        Du {{ aubaine.start | date("d") }} {{ aubaine.start | date("F") | trans }} au {{ aubaine.end | date("d") }} {{ aubaine.end | date("F") | trans }}
-                                    {% endif %}
-                                {% else %}
-                                Toute l'année
-                                {% endif %}
-                            </div>
-                            <a class="place" target="_blank" href="{{ path('aubaine_place_public_view', {'id': aubaine.place.id}) }}">
-                                <img src="{{ asset('images/location.png') }} " alt="" class="location">
-                                {{ aubaine.place.title }}
-                            </a>
-                            <img src="{{ asset('images/'~aubaine.category~'.png') }} " alt="" class="category category-{{ aubaine.category }}">
+            <h2 class="computer">Derniers bons plans publiés</h2>
+            <h2 class="mobile">Dernier bon plan publié</h2>
+            {% for aubaine in listAubaines %}
+                    <a id="deal-{{ aubaine.id }}" class="aubaineExtract" target="_blank" href="{{ path('aubaine_platform_public_view', {'id': aubaine.id}) }}">
+                        <div class="image" style="background-image:url('{{ asset('images/place/' ~ aubaine.place.imageHeader) }}')"></div>
+                        <div class="content  category-{{ aubaine.category }}">
+                            {{ aubaine.message }}
                         </div>
-                {% endfor %}
+                        <div class="date">
+                            <img src="{{ asset('images/calendar.png') }} " alt="" class="calendar">
+                            {% if  aubaine.type == 3 %}
+                            Le {{ aubaine.start | date("d") }} {{ aubaine.start | date("F") | trans }}
+                            {% elseif aubaine.type == 2 %}
+                                {% if aubaine.start | date("F") == aubaine.end | date("F") %}
+                                    Du {{ aubaine.start | date("d") }} au {{ aubaine.end | date("d") }} {{ aubaine.end | date("F") | trans }}
+                                {% else %}
+                                    Du {{ aubaine.start | date("d") }} {{ aubaine.start | date("F") | trans }} au {{ aubaine.end | date("d") }} {{ aubaine.end | date("F") | trans }}
+                                {% endif %}
+                            {% else %}
+                            Toute l'année
+                            {% endif %}
+                        </div>
+                        <div class="place">
+                            <img src="{{ asset('images/location.png') }} " alt="" class="location">
+                            {{ aubaine.place.title }}
+                        </div>
+                        <img src="{{ asset('images/'~aubaine.category~'.png') }} " alt="" class="category category-{{ aubaine.category }}">
+                    </a>
+            {% endfor %}
         </div>
         <div class="home-concept">
             <div class="container">
@@ -202,7 +203,7 @@
                         Vous tenez un commerce ?
                     </h2>
                     <h3>
-                        Faîtes-vous connaître gratuitement en proposant vos bons plans !
+                        Faîtes-vous connaître en proposant vos bons plans !
                     </h3>
                     <div class="padding-top-30">
                         <a href="{{ path('aubaine_core_partner') }}" class="btn btn-primary" target="_blank">En savoir plus</a>
