@@ -727,6 +727,7 @@ textarea {
 }
 .home-concept .emailInfos{
   display:none;
+  margin-top: 1rem;
 }
 /*home-membership*/
 .home-membership{
