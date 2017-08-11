@@ -1,0 +1,7 @@
+{% extends "AubaineCoreBundle::layout.html.twig" %}
+
+{% block page %}
+    <main class="page-login page-large">
+		{{ include('@FOSUser/Security/login_content.html.twig') }}
+	</main>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "AubaineCoreBundle::layout.html.twig" %}
+{% block title %}
+    Carte Aubaine - {{ parent() }}
+{% endblock %}
+{% block page %}
+    <main class="page-card page-large">
+        <div class="row content">
+            <div class="col-sm-6 card_wrapper">
+                <div class="card">
+                    <img src="{{ asset('images/logo-aubaine-new-large.png') }}" alt="" class="logo">
+                    <div class="name">{{ app.user.username }}</div>
+                    <img class="break" src="{{ asset('images/line-break.png') }}" alt="">
+                    <div class="code">#12090941</div>
+                    <img class="break" src="{{ asset('images/line-break.png') }}" alt="">
+                    <div class="deadline">Expire le 22 mars 2018</div>
+                </div>
+            </div>
+            <div class="col-sm-6 loadcard_wrapper">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="prize">
+                            <div class="prize-title">6 mois offert !</div>
+                            <div class="prize-condition">Parainez un ami et recevez tous les deux, 6 mois de validité !</div>
+                            <button class="btn btn-primary" data-toggle="collapse" data-target="#prize-detail-1">voir plus</button>
+                            <div class="prize-detail collapse" id="prize-detail-1">
+                                Pour parainer une personne, dîtes lui de renseigner votre adresse email lors de son inscription (dans le champs parainage). Vous pouvez cumuler jusqu'à 3 parainages.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="prize">
+                            <div class="prize-title">1 an offert !</div>
+                            <div class="prize-condition">Faîtes-nous connaitre auprès d'un commerce et recevez 1 an de validité !</div>
+                            <button class="btn btn-primary" data-toggle="collapse" data-target="#prize-detail-2">voir plus</button>
+                            <div class="prize-detail collapse" id="prize-detail-2">
+                                Faîtes mentionner votre adresse email ou votre nom par le commerce lors de la prise de contact
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="loadcard">
+                    <div class="loadcard-title">Acheter la carte pour 1 an</div>
+                    <form action="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore natus, ipsa, ipsam laboriosam harum facilis repudiandae nam suscipit unde saepe explicabo officia consequatur? Rem necessitatibus ea voluptates earum ad, veniam.</form>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
