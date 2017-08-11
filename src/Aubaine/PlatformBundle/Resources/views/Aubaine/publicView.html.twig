@@ -20,12 +20,7 @@
           </div>  
         {% endif %}
       {% endif %}
-      <div class="exclusive">
-        <div class="exclusive-title">Membre</div>
-        Cette offre est reservée aux membres, présentez votre carte Aubaine pour en bénéficier.<br>
-        <a href="{{ path('fos_user_security_login') }}" class="btn btn-primary exclusive-btn">Connectez-vous</a> ou <a href="{{ path('fos_user_registration_register') }}" class="btn btn-primary exclusive-btn">inscrivez-vous</a> pour afficher votre carte Aubaine
-      </div>
-
+     
   		<h1>  
         {{ aubaine.message | raw }}
       </h1>
