@@ -6,16 +6,17 @@
   Modifier un lieu - {{ parent() }}
 {% endblock %}
 
-{% block aubaineplace_body %}
+{% block page %}
+  <main class="page-place_edit page-large">
 
-  <a href="{{ path('aubaine_place_home') }}" class="btn btn-default">
-    <i class="glyphicon glyphicon-chevron-left"></i>
-    Retour à la liste
-  </a>
+    <a href="{{ path('aubaine_place_home') }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-chevron-left"></i>
+      Retour à la liste
+    </a>
 
-  <h2>Modifier l'article</h2>
+    <h2>Modifier l'article</h2>
 
-  {{ include("AubainePlaceBundle:Place:form.html.twig") }}
+    {{ include("AubainePlaceBundle:Place:form.html.twig") }}
 
-
+  </main>
 {% endblock %}

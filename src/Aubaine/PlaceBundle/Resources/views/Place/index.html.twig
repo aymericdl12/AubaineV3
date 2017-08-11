@@ -6,73 +6,73 @@
   Accueil - {{ parent() }}
 {% endblock %}
 
-{% block aubaineplace_body %}
+{% block page %}
+  <main class="page-place_index page-full">
+    <a href="{{ path('aubaine_place_add') }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-plus"></i>
+      Ajouter un lieu
+    </a>
 
-  <a href="{{ path('aubaine_place_add') }}" class="btn btn-default">
-    <i class="glyphicon glyphicon-plus"></i>
-    Ajouter un lieu
-  </a>
-
-  <h2>Liste des lieux</h2>
+    <h2>Liste des lieux</h2>
 
 
-  {% for message in app.session.flashbag.get('info') %}
-    <div class="alert alert-info">{{ message }}</div>
-  {% endfor %}
+    {% for message in app.session.flashbag.get('info') %}
+      <div class="alert alert-info">{{ message }}</div>
+    {% endfor %}
 
-  <table class="table table-hover">
-    <thead>
-        <tr>
-          <th>Image principale</th>
-          <th>Titre</th>
-          <th>Score</th>
-          <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for place in listPlaces %}
-            <tr>
-                <td>
-                    <img src="{{ asset('images/place/'~place.imageHeader) }} " alt="" class="" width="50" height="50">
-                </td>
-                <td>
-                    <a href="{{ path('aubaine_place_view', {'id': place.id}) }}" >      
-                        <h4 class="list-group-item-heading">{{ place.title }}</h4>
-                    </a>
-                </td>
-                <td>
-                    {{ place.score }}
-                </td>
-                <td>
-                    <a href="{{ path('aubaine_place_edit', {'id': place.id}) }}" class="btn btn-default">
-                      <i class="glyphicon glyphicon-edit"></i>
-                      Modifier le contenu
-                    </a>
-                    <a href="{{ path('aubaine_place_edit_main_picture', {'id': place.id}) }}" class="btn btn-default">
-                      <i class="glyphicon glyphicon-edit"></i>
-                      Changer la photo principale
-                    </a>
-                    <a href="{{ path('aubaine_place_edit_second_picture_1', {'id': place.id}) }}" class="btn btn-default">
-                      <i class="glyphicon glyphicon-edit"></i>
-                      Changer la photo secondaire 1
-                    </a>
-                    <a href="{{ path('aubaine_place_edit_second_picture_2', {'id': place.id}) }}" class="btn btn-default">
-                      <i class="glyphicon glyphicon-edit"></i>
-                      Changer la photo secondaire 2
-                    </a>
-                </td>
-            </tr>
+    <table class="table table-hover">
+      <thead>
+          <tr>
+            <th>Image principale</th>
+            <th>Titre</th>
+            <th>Score</th>
+            <th>Action</th>
+          </tr>
+      </thead>
+      <tbody>
+          {% for place in listPlaces %}
+              <tr>
+                  <td>
+                      <img src="{{ asset('images/place/'~place.imageHeader) }} " alt="" class="" width="50" height="50">
+                  </td>
+                  <td>
+                      <a href="{{ path('aubaine_place_view', {'id': place.id}) }}" >      
+                          <h4 class="list-group-item-heading">{{ place.title }}</h4>
+                      </a>
+                  </td>
+                  <td>
+                      {{ place.score }}
+                  </td>
+                  <td>
+                      <a href="{{ path('aubaine_place_edit', {'id': place.id}) }}" class="btn btn-default">
+                        <i class="glyphicon glyphicon-edit"></i>
+                        Modifier le contenu
+                      </a>
+                      <a href="{{ path('aubaine_place_edit_main_picture', {'id': place.id}) }}" class="btn btn-default">
+                        <i class="glyphicon glyphicon-edit"></i>
+                        Changer la photo principale
+                      </a>
+                      <a href="{{ path('aubaine_place_edit_second_picture_1', {'id': place.id}) }}" class="btn btn-default">
+                        <i class="glyphicon glyphicon-edit"></i>
+                        Changer la photo secondaire 1
+                      </a>
+                      <a href="{{ path('aubaine_place_edit_second_picture_2', {'id': place.id}) }}" class="btn btn-default">
+                        <i class="glyphicon glyphicon-edit"></i>
+                        Changer la photo secondaire 2
+                      </a>
+                  </td>
+              </tr>
+          {% endfor %}
+      </tbody>
+    </table>
+
+    <ul class="pagination">
+        {% for p in range(1, nbPages) %}
+          <li{% if p == page %} class="active"{% endif %}>
+            <a href="{{ path('aubaine_place_home', {'page': p}) }}">{{ p }}</a>
+          </li>
         {% endfor %}
-    </tbody>
-  </table>
+    </ul>
 
-  <ul class="pagination">
-      {% for p in range(1, nbPages) %}
-        <li{% if p == page %} class="active"{% endif %}>
-          <a href="{{ path('aubaine_place_home', {'page': p}) }}">{{ p }}</a>
-        </li>
-      {% endfor %}
-  </ul>
-
-
+  </main>
 {% endblock %}

@@ -255,7 +255,7 @@ class UserController extends Controller
 
     $users=$userManager->findUsers();
     foreach ($users as $user) {
-        // $user->setProfessional(True); //set to professional
+        $user->setProfessional(True); //set to professional
 
         // $user->removePreference("5958fb9415605c2dbc006f2b");
         // $user->addPreference("5958fb9415605c2dbc006f30");

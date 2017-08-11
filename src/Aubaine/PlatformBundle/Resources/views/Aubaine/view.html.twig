@@ -6,28 +6,29 @@
   Aperçu Aubaine - {{ parent() }}
 {% endblock %}
 
-{% block aubaineplatform_body %}
-  <p>
-    <a href="{{ path('aubaine_platform_home') }}" class="btn btn-default">
-      <i class="glyphicon glyphicon-chevron-left"></i>
-      Retour à la liste
-    </a>
-    <a href="{{ path('aubaine_platform_edit', {'id': aubaine.id}) }}" class="btn btn-default">
-      <i class="glyphicon glyphicon-edit"></i>
-      Modifier le message
-    </a>
-    <a href="{{ path('aubaine_platform_delete', {'id': aubaine.id}) }}" class="btn btn-danger">
-      <i class="glyphicon glyphicon-trash"></i>
-      Supprimer le message
-    </a>
-  </p>
+{% block page %}
+  <main class="page-aubaine_view page-large">
+    <p>
+      <a href="{{ path('aubaine_platform_home') }}" class="btn btn-default">
+        <i class="glyphicon glyphicon-chevron-left"></i>
+        Retour à la liste
+      </a>
+      <a href="{{ path('aubaine_platform_edit', {'id': aubaine.id}) }}" class="btn btn-default">
+        <i class="glyphicon glyphicon-edit"></i>
+        Modifier le message
+      </a>
+      <a href="{{ path('aubaine_platform_delete', {'id': aubaine.id}) }}" class="btn btn-danger">
+        <i class="glyphicon glyphicon-trash"></i>
+        Supprimer le message
+      </a>
+    </p>
 
     <div class="aubaine">
       <div class="header">
         <img src="{{ asset('images/place/' ~ aubaine.place.imageHeader) }}" alt="" class="avatar">
       </div>
       {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-        {% if aubaine.place.id == app.user.placeId %}
+        {% if aubaine.place.id == app.user.placesId %}
           <div class="edit">
             <a class="btn btn-danger" href="{{ path('aubaine_platform_delete_aubaine', {'id': aubaine.id}) }}">Supprimer</a>
           </div>  
@@ -41,17 +42,22 @@
           {{ aubaine.category | trans }}
         </h2>
       </div>
-      {% if  aubaine.type == 3 %}
-        Le {{ aubaine.start | date("d") }} {{ aubaine.start | date("F") | trans }}
-        {% elseif aubaine.type == 2 %}
-            {% if aubaine.start | date("F") == aubaine.end | date("F") %}
-                Du {{ aubaine.start | date("d") }} au {{ aubaine.end | date("d") }} {{ aubaine.end | date("F") | trans }}
-            {% else %}
-                Du {{ aubaine.start | date("d") }} {{ aubaine.start | date("F") | trans }} au {{ aubaine.end | date("d") }} {{ aubaine.end | date("F") | trans }}
-            {% endif %}
-        {% else %}
-        Toute l'année
-        {% endif %}
+      <div class="date">
+        <h2>
+          <img src="{{ asset('images/calendar.png') }} " alt="" class="calendar">
+          {% if  aubaine.type == 3 %}
+          Le {{ aubaine.start | date("d") }} {{ aubaine.start | date("F") | trans }}
+          {% elseif aubaine.type == 2 %}
+              {% if aubaine.start | date("F") == aubaine.end | date("F") %}
+                  Du {{ aubaine.start | date("d") }} au {{ aubaine.end | date("d") }} {{ aubaine.end | date("F") | trans }}
+              {% else %}
+                  Du {{ aubaine.start | date("d") }} {{ aubaine.start | date("F") | trans }} au {{ aubaine.end | date("d") }} {{ aubaine.end | date("F") | trans }}
+              {% endif %}
+          {% else %}
+          Toute l'année
+          {% endif %}
+        </h2>
+      </div>
       <div class="place">
         <h2>
           <img src="{{ asset('images/location.png') }} " alt="" class="location"> 
@@ -76,31 +82,31 @@
                     <tbody>
                       <tr>
                         <td>Lundi</td>
-                        <td>{{ aubaine.place.hoursMonday }}</td>
+                        <td>{{ aubaine.place.hoursMonday | default('fermé') }}</td>
                       </tr>
                       <tr>
                         <td>Mardi</td>
-                        <td>{{ aubaine.place.hoursTuesday }}</td>
+                        <td>{{ aubaine.place.hoursTuesday | default('fermé') }}</td>
                       </tr>
                       <tr>
                         <td>Mercredi</td>
-                        <td>{{ aubaine.place.hoursWednesday }}</td>
+                        <td>{{ aubaine.place.hoursWednesday | default('fermé') }}</td>
                       </tr>
                       <tr>
                         <td>Jeudi</td>
-                        <td>{{ aubaine.place.hoursThursday }}</td>
+                        <td>{{ aubaine.place.hoursThursday | default('fermé') }}</td>
                       </tr>
                       <tr>
                         <td>Vendredi</td>
-                        <td>{{ aubaine.place.hoursFriday }}</td>
+                        <td>{{ aubaine.place.hoursFriday | default('fermé') }}</td>
                       </tr>
                       <tr>
                         <td>Samedi</td>
-                        <td>{{ aubaine.place.hoursSaturday }}</td>
+                        <td>{{ aubaine.place.hoursSaturday | default('fermé') }}</td>
                       </tr>
                       <tr>
                         <td>Dimanche</td>
-                        <td>{{ aubaine.place.hoursSunday }}</td>
+                        <td>{{ aubaine.place.hoursSunday | default('fermé') }}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -117,6 +123,5 @@
         </div>
       </div>
     </div>
-
-
+  </main>
 {% endblock %}

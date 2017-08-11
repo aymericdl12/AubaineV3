@@ -6,112 +6,119 @@
   Aubaine - {{ parent() }}
 {% endblock %}
 
-{% block aubaineplatform_body %}
+{% block page %}
 
-
-  <div class="aubaine">
-    <div class="header">
-      <img src="{{ asset('images/place/' ~ aubaine.place.imageHeader) }}" alt="" class="avatar">
-    </div>
-    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-      {% if aubaine.place.id in app.user.placesId %}
-        <div class="edit">
-          <a class="btn btn-danger" href="{{ path('aubaine_platform_delete_aubaine', {'id': aubaine.id}) }}">Supprimer</a>
-        </div>  
-      {% endif %}
-    {% endif %}
-
-		<h1>  {{ aubaine.message | raw }}</h1>
-  	<div class="category">
-      <h2>
-        <img src="{{ asset('images/'~aubaine.category~'.png') }} " alt="" class="category-logo category-{{ aubaine.category }}">
-        {{ aubaine.category | trans }}
-      </h2>
-    </div>
-    <div class="date">
-      <h2>
-        <img src="{{ asset('images/calendar.png') }} " alt="" class="calendar">
-        {% if  aubaine.type == 3 %}
-        Le {{ aubaine.start | date("d") }} {{ aubaine.start | date("F") | trans }}
-        {% elseif aubaine.type == 2 %}
-            {% if aubaine.start | date("F") == aubaine.end | date("F") %}
-                Du {{ aubaine.start | date("d") }} au {{ aubaine.end | date("d") }} {{ aubaine.end | date("F") | trans }}
-            {% else %}
-                Du {{ aubaine.start | date("d") }} {{ aubaine.start | date("F") | trans }} au {{ aubaine.end | date("d") }} {{ aubaine.end | date("F") | trans }}
-            {% endif %}
-        {% else %}
-        Toute l'année
+  <main class="page-publicview page-small padding-20">
+    <div class="aubaine">
+      <div class="header">
+        <img src="{{ asset('images/place/' ~ aubaine.place.imageHeader) }}" alt="" class="avatar">
+      </div>
+      {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        {% if aubaine.place.id in app.user.placesId %}
+          <div class="edit">
+            <a class="btn btn-danger" href="{{ path('aubaine_platform_delete_aubaine', {'id': aubaine.id}) }}">Supprimer</a>
+          </div>  
         {% endif %}
-      </h2>
-    </div>
-    <div class="place">
-      <h2>
-        <img src="{{ asset('images/location.png') }} " alt="" class="location"> 
-        {{ aubaine.place.title }}
-      </h2>
-      <div class="row">
-          <div class="col-md-6">
-            <div class="introduction">{{ aubaine.place.introduction | raw }}</div>
-            <div class="content">{{ aubaine.place.content | raw }}</div>
-            <div class="information">{{ aubaine.place.information | raw }}</div>
-            <div class="address">
-               <b>Adresse</b>
-               <p>{{ aubaine.place.address }}, {{ aubaine.place.zipcode }} {{ aubaine.place.city }}</p>
-            </div>
-            {% if aubaine.place.phone %} 
-              <div class="phone">
-                 <b>Téléphone</b>
-                 <p>0{{ aubaine.place.phone }} </p>
+      {% endif %}
+      <div class="exclusive">
+        <div class="exclusive-title">Membre</div>
+        Cette offre est reservée aux membres, présentez votre carte Aubaine pour en bénéficier.<br>
+        <a href="{{ path('fos_user_security_login') }}" class="btn btn-primary exclusive-btn">Connectez-vous</a> ou <a href="{{ path('fos_user_registration_register') }}" class="btn btn-primary exclusive-btn">inscrivez-vous</a> pour afficher votre carte Aubaine
+      </div>
+
+  		<h1>  
+        {{ aubaine.message | raw }}
+      </h1>
+    	<div class="category">
+        <h2>
+          <img src="{{ asset('images/'~aubaine.category~'.png') }} " alt="" class="category-logo category-{{ aubaine.category }}">
+          {{ aubaine.category | trans | capitalize}}
+        </h2>
+      </div>
+      <div class="date">
+        <h2>
+          <img src="{{ asset('images/calendar.png') }} " alt="" class="calendar">
+          {% if  aubaine.type == 3 %}
+          Le {{ aubaine.start | date("d") }} {{ aubaine.start | date("F") | trans }}
+          {% elseif aubaine.type == 2 %}
+              {% if aubaine.start | date("F") == aubaine.end | date("F") %}
+                  Du {{ aubaine.start | date("d") }} au {{ aubaine.end | date("d") }} {{ aubaine.end | date("F") | trans }}
+              {% else %}
+                  Du {{ aubaine.start | date("d") }} {{ aubaine.start | date("F") | trans }} au {{ aubaine.end | date("d") }} {{ aubaine.end | date("F") | trans }}
+              {% endif %}
+          {% else %}
+          Toute l'année
+          {% endif %}
+        </h2>
+      </div>
+      <div class="place">
+        <h2>
+          <img src="{{ asset('images/location.png') }} " alt="" class="location"> 
+          {{ aubaine.place.title }}
+        </h2>
+        <div class="row">
+            <div class="col-md-6">
+              <div class="introduction">{{ aubaine.place.introduction | raw }}</div>
+              <div class="content">{{ aubaine.place.content | raw }}</div>
+              <div class="information">{{ aubaine.place.information | raw }}</div>
+              <div class="address">
+                 <b>Adresse</b>
+                 <p>{{ aubaine.place.address }}, {{ aubaine.place.zipcode }} {{ aubaine.place.city }}</p>
               </div>
-            {% endif %}
-            <div class="hours">
-               <b>Horaires d'ouverture</b>
-              <table class="table">
-                  <tbody>
-                    <tr>
-                      <td>Lundi</td>
-                      <td>{{ aubaine.place.hoursMonday | default('fermé') }}</td>
-                    </tr>
-                    <tr>
-                      <td>Mardi</td>
-                      <td>{{ aubaine.place.hoursTuesday | default('fermé') }}</td>
-                    </tr>
-                    <tr>
-                      <td>Mercredi</td>
-                      <td>{{ aubaine.place.hoursWednesday | default('fermé') }}</td>
-                    </tr>
-                    <tr>
-                      <td>Jeudi</td>
-                      <td>{{ aubaine.place.hoursThursday | default('fermé') }}</td>
-                    </tr>
-                    <tr>
-                      <td>Vendredi</td>
-                      <td>{{ aubaine.place.hoursFriday | default('fermé') }}</td>
-                    </tr>
-                    <tr>
-                      <td>Samedi</td>
-                      <td>{{ aubaine.place.hoursSaturday | default('fermé') }}</td>
-                    </tr>
-                    <tr>
-                      <td>Dimanche</td>
-                      <td>{{ aubaine.place.hoursSunday | default('fermé') }}</td>
-                    </tr>
-                  </tbody>
-                </table>
+              {% if aubaine.place.phone %} 
+                <div class="phone">
+                   <b>Téléphone</b>
+                   <p>0{{ aubaine.place.phone }} </p>
+                </div>
+              {% endif %}
+              <div class="hours">
+                 <b>Horaires d'ouverture</b>
+                <table class="table">
+                    <tbody>
+                      <tr>
+                        <td>Lundi</td>
+                        <td>{{ aubaine.place.hoursMonday | default('fermé') }}</td>
+                      </tr>
+                      <tr>
+                        <td>Mardi</td>
+                        <td>{{ aubaine.place.hoursTuesday | default('fermé') }}</td>
+                      </tr>
+                      <tr>
+                        <td>Mercredi</td>
+                        <td>{{ aubaine.place.hoursWednesday | default('fermé') }}</td>
+                      </tr>
+                      <tr>
+                        <td>Jeudi</td>
+                        <td>{{ aubaine.place.hoursThursday | default('fermé') }}</td>
+                      </tr>
+                      <tr>
+                        <td>Vendredi</td>
+                        <td>{{ aubaine.place.hoursFriday | default('fermé') }}</td>
+                      </tr>
+                      <tr>
+                        <td>Samedi</td>
+                        <td>{{ aubaine.place.hoursSaturday | default('fermé') }}</td>
+                      </tr>
+                      <tr>
+                        <td>Dimanche</td>
+                        <td>{{ aubaine.place.hoursSunday | default('fermé') }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+              </div>
             </div>
-          </div>
-          <div class="col-md-6">
-            {% if aubaine.place.image1 %}
-              <img class="image" src="{{ asset('images/place/' ~ aubaine.place.image1) }}" alt="">
-            {% endif %}
-            {% if aubaine.place.image2 %}
-              <img class="image" src="{{ asset('images/place/' ~ aubaine.place.image2) }}" alt="">
-            {% endif %}
-          </div>      
+            <div class="col-md-6">
+              {% if aubaine.place.image1 %}
+                <img class="image" src="{{ asset('images/place/' ~ aubaine.place.image1) }}" alt="">
+              {% endif %}
+              {% if aubaine.place.image2 %}
+                <img class="image" src="{{ asset('images/place/' ~ aubaine.place.image2) }}" alt="">
+              {% endif %}
+            </div>      
+        </div>
       </div>
     </div>
-  </div>
-
+  </main>
 
 {% endblock %}
 

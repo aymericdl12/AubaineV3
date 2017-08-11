@@ -2,109 +2,110 @@
 
 {% extends "AubainePlaceBundle::layout.html.twig" %}
 
-
-{% block aubaineplace_body %}
-  <div class="adminAction">
-    <a href="{{ path('aubaine_place_home') }}" class="btn btn-default">
-      <i class="glyphicon glyphicon-chevron-left"></i>
-      Retour à la liste
-    </a>
-    <a href="{{ path('aubaine_place_edit', {'id': place.id}) }}" class="btn btn-default">
-      <i class="glyphicon glyphicon-edit"></i>
-      Modifier le contenu
-    </a>
-    <a href="{{ path('aubaine_place_edit_main_picture', {'id': place.id}) }}" class="btn btn-default">
-      <i class="glyphicon glyphicon-edit"></i>
-      Changer la photo principale
-    </a>
-    <a href="{{ path('aubaine_place_edit_second_picture_1', {'id': place.id}) }}" class="btn btn-default">
-      <i class="glyphicon glyphicon-edit"></i>
-      Changer la photo secondaire 1
-    </a>
-    <a href="{{ path('aubaine_place_edit_second_picture_2', {'id': place.id}) }}" class="btn btn-default">
-      <i class="glyphicon glyphicon-edit"></i>
-      Changer la photo secondaire 2
-    </a>
-    <a href="{{ path('aubaine_place_delete', {'id': place.id}) }}" class="btn btn-danger">
-      <i class="glyphicon glyphicon-trash"></i>
-      Supprimer le lieu
-    </a>
-  </div>
-
-
-  {% for message in app.session.flashbag.get('info') %}
-    <div class="alert alert-info">{{ message }}</div>
-  {% endfor %}
-
-  
-    <div class="aubaine">
-    <div class="header">
-      <img src="{{ asset('images/place/' ~ place.imageHeader) }}" alt="" class="avatar">
+{% block page %}
+  <main class="page-place_view page-large">
+    <div class="adminAction">
+      <a href="{{ path('aubaine_place_home') }}" class="btn btn-default">
+        <i class="glyphicon glyphicon-chevron-left"></i>
+        Retour à la liste
+      </a>
+      <a href="{{ path('aubaine_place_edit', {'id': place.id}) }}" class="btn btn-default">
+        <i class="glyphicon glyphicon-edit"></i>
+        Modifier le contenu
+      </a>
+      <a href="{{ path('aubaine_place_edit_main_picture', {'id': place.id}) }}" class="btn btn-default">
+        <i class="glyphicon glyphicon-edit"></i>
+        Changer la photo principale
+      </a>
+      <a href="{{ path('aubaine_place_edit_second_picture_1', {'id': place.id}) }}" class="btn btn-default">
+        <i class="glyphicon glyphicon-edit"></i>
+        Changer la photo secondaire 1
+      </a>
+      <a href="{{ path('aubaine_place_edit_second_picture_2', {'id': place.id}) }}" class="btn btn-default">
+        <i class="glyphicon glyphicon-edit"></i>
+        Changer la photo secondaire 2
+      </a>
+      <a href="{{ path('aubaine_place_delete', {'id': place.id}) }}" class="btn btn-danger">
+        <i class="glyphicon glyphicon-trash"></i>
+        Supprimer le lieu
+      </a>
     </div>
-    <div class="place">
-      <h2>
-        <img src="{{ asset('images/location.png') }} " alt="" class="location"> 
-        {{ place.title }}
-      </h2>
-      <div class="row">
-          <div class="col-md-6">
-            <div class="introduction">{{ place.introduction | raw }}</div>
-            <div class="content">{{ place.content | raw }}</div>
-            <div class="information">{{ place.information | raw }}</div>
-            <div class="address">
-               <b>Adresse</b>
-               <p>{{ place.address }}, {{ place.zipcode }} {{ place.city }}</p>
+
+
+    {% for message in app.session.flashbag.get('info') %}
+      <div class="alert alert-info">{{ message }}</div>
+    {% endfor %}
+
+    
+      <div class="aubaine">
+      <div class="header">
+        <img src="{{ asset('images/place/' ~ place.imageHeader) }}" alt="" class="avatar">
+      </div>
+      <div class="place">
+        <h2>
+          <img src="{{ asset('images/location.png') }} " alt="" class="location"> 
+          {{ place.title }}
+        </h2>
+        <div class="row">
+            <div class="col-md-6">
+              <div class="introduction">{{ place.introduction | raw }}</div>
+              <div class="content">{{ place.content | raw }}</div>
+              <div class="information">{{ place.information | raw }}</div>
+              <div class="address">
+                 <b>Adresse</b>
+                 <p>{{ place.address }}, {{ place.zipcode }} {{ place.city }}</p>
+              </div>
+              <div class="phone">
+                 <b>Téléphone</b>
+                 <p>{% if place.phone %} {{ place.phone }} {% else %} ----- {% endif %}</p>
+              </div>
+              <div class="hours">
+                 <b>Horaires d'ouverture</b>
+                <table class="table">
+                    <tbody>
+                      <tr>
+                        <td>Lundi</td>
+                        <td>{{ place.hoursMonday }}</td>
+                      </tr>
+                      <tr>
+                        <td>Mardi</td>
+                        <td>{{ place.hoursTuesday }}</td>
+                      </tr>
+                      <tr>
+                        <td>Mercredi</td>
+                        <td>{{ place.hoursWednesday }}</td>
+                      </tr>
+                      <tr>
+                        <td>Jeudi</td>
+                        <td>{{ place.hoursThursday }}</td>
+                      </tr>
+                      <tr>
+                        <td>Vendredi</td>
+                        <td>{{ place.hoursFriday }}</td>
+                      </tr>
+                      <tr>
+                        <td>Samedi</td>
+                        <td>{{ place.hoursSaturday }}</td>
+                      </tr>
+                      <tr>
+                        <td>Dimanche</td>
+                        <td>{{ place.hoursSunday }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+              </div>
             </div>
-            <div class="phone">
-               <b>Téléphone</b>
-               <p>{% if place.phone %} {{ place.phone }} {% else %} ----- {% endif %}</p>
-            </div>
-            <div class="hours">
-               <b>Horaires d'ouverture</b>
-              <table class="table">
-                  <tbody>
-                    <tr>
-                      <td>Lundi</td>
-                      <td>{{ place.hoursMonday }}</td>
-                    </tr>
-                    <tr>
-                      <td>Mardi</td>
-                      <td>{{ place.hoursTuesday }}</td>
-                    </tr>
-                    <tr>
-                      <td>Mercredi</td>
-                      <td>{{ place.hoursWednesday }}</td>
-                    </tr>
-                    <tr>
-                      <td>Jeudi</td>
-                      <td>{{ place.hoursThursday }}</td>
-                    </tr>
-                    <tr>
-                      <td>Vendredi</td>
-                      <td>{{ place.hoursFriday }}</td>
-                    </tr>
-                    <tr>
-                      <td>Samedi</td>
-                      <td>{{ place.hoursSaturday }}</td>
-                    </tr>
-                    <tr>
-                      <td>Dimanche</td>
-                      <td>{{ place.hoursSunday }}</td>
-                    </tr>
-                  </tbody>
-                </table>
-            </div>
-          </div>
-          <div class="col-md-6">
-            {% if place.image1 %}
-              <img class="image" src="{{ asset('images/place/' ~ place.image1) }}" alt="">
-            {% endif %}
-            {% if place.image2 %}
-              <img class="image" src="{{ asset('images/place/' ~ place.image2) }}" alt="">
-            {% endif %}
-          </div>           
+            <div class="col-md-6">
+              {% if place.image1 %}
+                <img class="image" src="{{ asset('images/place/' ~ place.image1) }}" alt="">
+              {% endif %}
+              {% if place.image2 %}
+                <img class="image" src="{{ asset('images/place/' ~ place.image2) }}" alt="">
+              {% endif %}
+            </div>           
+        </div>
       </div>
     </div>
-  </div>
+  </main>
 
 {% endblock %}

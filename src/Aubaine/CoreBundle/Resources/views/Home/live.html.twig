@@ -2,9 +2,9 @@
 {% block title %}
   Recherche - {{ parent() }}
 {% endblock %}
-{% block body %}
 
-<div class="body-live">
+{% block page %}
+<main class="page-live page-full">
     <div class='map_wrapper'>
         <div class='map' id='map'></div>
     </div>
@@ -64,7 +64,7 @@
             {% endfor %}
         </div>
     </div>
-</div>
+</main>
 <script>
 
     var imageDir = "{{ asset('images/') }}";

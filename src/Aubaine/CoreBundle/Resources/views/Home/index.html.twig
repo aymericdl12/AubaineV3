@@ -1,9 +1,9 @@
 {% extends "AubaineCoreBundle::layout.html.twig" %}
 {% block metaDescription %}<meta name="description" content="Sur Aubaine, les commerçants vous transmettent des messages : promotions, nouveautés, évènements, bons plans, etc. Vous êtes informés en direct du meilleur de votre ville" />{% endblock %}
-{% block body %}
 
-<div class="body-home">
-        <div id='home-header'>
+{% block page %}
+    <main class="page-home page-full">
+        <div class='home-header'>
             <h1>
                 <img alt="Brand" src="{{ asset('images/logo-aubaine-new-large.png') }}" style="height:8rem;">
             </h1>
@@ -106,6 +106,7 @@
                 <div class="case">
                     <h3>Membres <span class="label label-white">à venir</span></h3>
                     Bénéficiez de bons plans réservés aux membres. Chaque semaine, de nouvelles offres sont publiées spécialement pour vous !
+                    <!-- Bénéficiez de bons plans réservés aux membres. Présentez votre carte Aubaine pour bénéficier des offres exclusives. -->
                 </div>
                 <div class="padding-top-20">
                     <a href="{{ path('fos_user_registration_register') }}" class="btn btn-primary">Devenir membre</a>
@@ -237,7 +238,7 @@
                 </a>
             </div>
         </div>        
-    </div>
+    </main>
 
 {% endblock %}
 

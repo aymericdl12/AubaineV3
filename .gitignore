@@ -16,6 +16,7 @@
 /vendor/
 /web/bundles/
 /web/liste_email.txt
+/web/liste_futuremember.txt
 /web/css/*
 !web/images
 /web/js/*

@@ -1,28 +1,28 @@
-{% extends "AubaineUserBundle::layout.html.twig" %}
+{% extends "AubaineCoreBundle::layout.html.twig" %}
 
-{% trans_default_domain 'FOSUserBundle' %}
-
-{% block fos_user_content %}
-    <h1>Bienvenue {{ user.username }} {{ user.lastname }} !</h1>
+{% block page %}
+    <main class="page-confirmed page-large">
+        <h1>Bienvenue {{ user.username }} {{ user.lastname }} !</h1>
     
     <div>
-    	Vous êtes bien inscrits, pour obtenir votre carte Aubaine valable 1 an suivez une des démarque suivante 
+        Vous êtes bien inscrits, votre carte Aubaine est valable pendant 1 mois. <br>
+        Vous pouvez prolonger sa validité gratuitement en parainant vos amis, profitez-en !
     </div>
     <div class="message">
-    	<h2>Parainage</h2>
-    	Parainez 2 amis ! <br>
-    	Pour parainez une personne, demandez lui de renseignez votre email lors de son inscription
+        <h2>Parainez un ami</h2>
+        <p>gagnez 6 mois de validité en parainnant un ami !</p>
+        Pour parainez une personne, demandez lui de renseignez votre email lors de son inscription, dans le champ parrain. Vous pouvez parainez jusqu'à 3 personnes !
+        et vos filleul gagnent aussi 6 mois de validité
     </div>
     <div class="message">
-    	<h2>Ambassadeur</h2>
-    	Faites-nous connaitre auprès d'un commerçant ! 	<br>
-    	Demandez au commerce de vous citer dans sa prise de contact avec Aubaine
+        <h2>Parrainez un commerce</h2>
+        Faites-nous connaitre auprès d'un commerçant. Demandez au commerce de vous citer dans sa prise de contact avec Aubaine
     </div>
     <div class="message">
-    	<h2>Payer 5euros</h2>
-    	<form action=""></form>
+        <h2>Faites-nous connaitre auprès d'un commerçant</h2>
+        Demandez au commerce de vous citer dans sa prise de contact avec Aubaine
     </div>
+    </main>
+{% endblock %}
 
-
-
-{% endblock fos_user_content %}
+{% trans_default_domain 'FOSUserBundle' %}

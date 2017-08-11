@@ -6,33 +6,34 @@
   Mon Profil - {{ parent() }}
 {% endblock %}
 
-{% block body_column_center %}
+{% block page %}
 
 
 {% if user.professional %}
-  <div class="body-myProfile">
-    <div class="myProfile myProfile-professional">
-      <h1>Mes informations</h1>
-      <div class="alert alert-info">
-        <p>Ces informations concernent votre compte, vous seul pouvez les voir.</p>
+  {% block page %}
+    <main class="page-myAubaines page-large">
+      <div class="myProfile myProfile-professional">
+        <h1>Mes informations</h1>
+        <div class="alert alert-info">
+          <p>Ces informations concernent votre compte, vous seul pouvez les voir.</p>
+        </div>
+        <table class="table">
+          <tbody>
+            <tr>
+              <td>Nom d'utilisateur</td>
+              <td>{{ user.username }}</td>
+            </tr>
+            <tr>
+              <td>Adresse email</td>
+              <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+              <td>Téléphone</td>
+              <td>{{ user.phone }}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      <table class="table">
-        <tbody>
-          <tr>
-            <td>Nom d'utilisateur</td>
-            <td>{{ user.username }}</td>
-          </tr>
-          <tr>
-            <td>Adresse email</td>
-            <td>{{ user.email }}</td>
-          </tr>
-          <tr>
-            <td>Téléphone</td>
-            <td>{{ user.phone }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
 
 
     <div class="myPlaces">
@@ -129,9 +130,9 @@
         {% endfor %}
       </div>
     </div>
-  </div>
+  </main>
 {% else %}
-  <div class="body-myProfile">
+  <main class="page-myProfile">
     <div class="myProfile my-profile-particular">
       <h1>Mes informations personelle</h1>
       <table class="table">
@@ -156,7 +157,7 @@
         </tbody>
       </table>
     </div>
-  </div>
+  </main>
 {% endif %}
 
 

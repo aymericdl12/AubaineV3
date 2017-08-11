@@ -1,32 +1,36 @@
 {% trans_default_domain 'FOSUserBundle' %}
-<div class="body-subscription">
-    <h1>Inscription</h1>
-    <p class="intro">Pour profiter de bons plans ou pour faire connaître les vôtres, vous êtes au bon endroit !</p>
-    <div class="message">
-        <h2>Membre (à venir)</h2>
-        <p>
-            <form method="post" class="futuremember-form form" action ="{{ path('aubaine_core_ajax_futuremember') }}">
-                <p>
-                    Devenir membre et profiter de bons plans uniques est bientôt possible ! Envoyez-nous votre adresse email et on vous préviens.
-                </p>
-                <input class="emailInput form-control"placeholder="Votre email" class="form-control" maxlength="150" type="text"  name="email" required="required">
-                <input class="btn btn-primary submit"  data-loading-text="Enregistrement..." type="submit" value="Envoyer">
-                <div class="emailInfos alert alert-success" style="display:none">Vous avez bien été enregistré !</div>
-            </form>
-        </p>            
+<h1>Inscription</h1>
+<p class="intro">Pour profiter de bons plans ou pour faire connaître les vôtres, vous êtes au bon endroit !</p>
+<div class="row content padding-top-20">
+    <div class="col-sm-6">
+        <div class="register-message">
+            <h2>Membre (à venir)</h2>
+            <p>
+                <form method="post" class="futuremember-form form" action ="{{ path('aubaine_core_ajax_futuremember') }}">
+                    <p>
+                        Devenir membre et profiter de bons plans uniques est bientôt possible ! Envoyez-nous votre adresse email et on vous préviens.
+                    </p>
+                    <input class="emailInput form-control"placeholder="Votre email" class="form-control" maxlength="150" type="text"  name="email" required="required">
+                    <input class="btn btn-primary submit"  data-loading-text="Enregistrement..." type="submit" value="Envoyer">
+                    <div class="emailInfos alert alert-success" style="display:none">Vous avez bien été enregistré !</div>
+                </form>
+            </p>            
+        </div>
     </div>
-    <div class="message">
-        <h2>Partenaire</h2>
-        <p>
-            Vous êtes un professionnel et désirez faire connaître vos promotions, nouveautés, évènements et autres bons plans ? <br>
-            Contactez-nous pour devenir partenaire !<br>
-        </p>
-        <p class="email">
-            <a href="mailto:contact@aubaineapp.fr">contact@aubaineapp.fr</a>
-        </p>
-        <p class="phone">
-            <span>07 83 86 60 99</span>
-        </p>
-    </div>
+    <div class="col-sm-6">
+        <div class="register-message register-message-partner">
+            <h2>Partenaire</h2>
+            <p>
+                Vous êtes un professionnel et désirez faire connaître vos promotions, nouveautés, évènements et autres bons plans ? <br>
+                Contactez-nous pour devenir partenaire !<br>
+            </p>
+            <p class="email">
+                <a href="mailto:contact@aubaineapp.fr">contact@aubaineapp.fr</a>
+            </p>
+            <p class="phone">
+                <span>07 83 86 60 99</span>
+            </p>
+        </div>
+    </div>    
 </div>
 

@@ -6,149 +6,149 @@
     Agenda - {{ parent() }}
 {% endblock %}
 
-{% block body_column_center %}
-<div class="body-myAubaines">
-    <div class="myAubaines-header">
-        <h1>Publier des messages</h1>
-         {% for message in app.session.flashbag.get('info') %}
-            <div class="alert alert-success">{{ message }}</div>
-          {% endfor %}
-    </div>
-    <div class="alert alert-info myAubaines-info" role="alert">
-        <p>Cher partenaire,</p>
-        <p>Rédiger un message devient encore plus simple !</p>
-        <p>Vos messages sont maintenant valables sur la durée que vous souhaitez. </p>
-        <p>Si votre message est valable tout au long de l'année, cochez la case "toute l'année" et ne renseignez pas de date</p>
-        <p>Si votre message concerne une période définie, saisie les dates de début et de fin.</p>
-    </div>
-    <div class="myAubaines-form">
-    </div>
-    <div class="myAubaines-currentAubaines">
-        <form method="post" class="form aubaineForm" action ="{{ path('aubaine_platform_my_aubaines') }}">
-            <h3>Publier un Message</h3>
-            <div  class="form-group message">
-                <label for="palce">Message:</label> 
-                <textarea class="form-control" rows="4"  maxlength="450" placeholder="maximum 450 caractères" type="text"  name="message" required="required"></textarea>
-            </div>
-            <div  class="form-group dates">
-                <label for="palce">Dates:</label>                  
-                <div class="input-daterange input-group" id="datepicker">
-                    <span class="input-group-addon">du</span>
-                    <input type="text" class="input-sm form-control" name="start" />
-                    <span class="input-group-addon">au</span>
-                    <input type="text" class="input-sm form-control" name="end" />
+{% block page %}
+    <main class="page-myAubaines page-large padding-20">
+        <div class="myAubaines-header">
+            <h1>Publier des messages</h1>
+             {% for message in app.session.flashbag.get('info') %}
+                <div class="alert alert-success">{{ message }}</div>
+              {% endfor %}
+        </div>
+        <div class="alert alert-info myAubaines-info" role="alert">
+            <p>Cher partenaire,</p>
+            <p>Rédiger un message devient encore plus simple !</p>
+            <p>Vos messages sont maintenant valables sur la durée que vous souhaitez. </p>
+            <p>Si votre message est valable tout au long de l'année, cochez la case "toute l'année" et ne renseignez pas de date</p>
+            <p>Si votre message concerne une période définie, saisie les dates de début et de fin.</p>
+        </div>
+        <div class="myAubaines-form">
+        </div>
+        <div class="myAubaines-currentAubaines">
+            <form method="post" class="form aubaineForm" action ="{{ path('aubaine_platform_my_aubaines') }}">
+                <h3>Publier un Message</h3>
+                <div  class="form-group message">
+                    <label for="palce">Message:</label> 
+                    <textarea class="form-control" rows="4"  maxlength="450" placeholder="maximum 450 caractères" type="text"  name="message" required="required"></textarea>
                 </div>
-            </div>
-            <div  class="form-group permanent">
-                <label  class="checkbox-inline"><input type="checkbox" value="permanent" name="permanent"> Toute l'année</label>
-            </div>
-            <div  class="form-group category">
-                <label for="palce">Catégorie:</label>
-                <select class="form-control" id="category" name="category" autocomplete="off">
-                    <option value="eat" {% if app.user.category == "eat" %} selected {% endif %}>Boire et Manger</option>
-                    <option value="wellness"  {% if app.user.category == "wellness" %} selected{% endif %}>Bien-être</option>
-                    <option value="event"  {% if app.user.category == "event" %} selected {% endif %}>Évènement</option>
-                    <option value="shop"  {% if app.user.category == "shop" %} selected {% endif %}>Boutique</option>
-                </select>
-            </div>
-            <div  class="form-group category">
-                <label for="palce">Lieu:</label>
-                <select class="form-control" id="place" name="place" autocomplete="off">
-                    {% for place in places %}
-                        <option value="{{place.id}}">{{place.title}}</option>
-                    {% endfor %}
-                  </select>
-            </div>
-            <div class="form-group action">
-                <button class="btn btn-primary submit"  data-loading-text="Enregistrement..." type="submit">Partager</button>
-            </div>
-        </form>
-        <!-- for each place, display the aubaines -->
-        {% for place in places %}
-            {% for aubaine in attribute(currentAubaines, place.id) %}
-                <a class="aubaineExtract" target="_blank" href="{{ path('aubaine_platform_public_view', {'id': aubaine.id}) }}">
-                    <div class="image" style="background-image:url('{{ asset('images/place/' ~ aubaine.place.imageHeader) }}')"></div>
-                    <div class="content  category-{{ aubaine.category }}">
-                        {{ aubaine.message |length > 100 ? aubaine.message |slice(0, 100) ~ '...' : aubaine.message   }}
+                <div  class="form-group dates">
+                    <label for="palce">Dates:</label>                  
+                    <div class="input-daterange input-group" id="datepicker">
+                        <span class="input-group-addon">du</span>
+                        <input type="text" class="input-sm form-control" name="start" />
+                        <span class="input-group-addon">au</span>
+                        <input type="text" class="input-sm form-control" name="end" />
                     </div>
-                    <div class="place">
-                        <img src="{{ asset('images/location.png') }} " alt="" class="location">
-                        {{ aubaine.place.title }}
-                    </div>
-                    <div class="date">
-                        <img src="{{ asset('images/calendar.png') }} " alt="" class="calendar">
-                        {% if  aubaine.type == 3 %}
-                        Le {{ aubaine.start | date("d") }} {{ aubaine.start | date("F") | trans }}
-                        {% elseif aubaine.type == 2 %}
-                            {% if aubaine.start | date("F") == aubaine.end | date("F") %}
-                                Du {{ aubaine.start | date("d") }} au {{ aubaine.end | date("d") }} {{ aubaine.end | date("F") | trans }}
+                </div>
+                <div  class="form-group permanent">
+                    <label  class="checkbox-inline"><input type="checkbox" value="permanent" name="permanent"> Toute l'année</label>
+                </div>
+                <div  class="form-group category">
+                    <label for="palce">Catégorie:</label>
+                    <select class="form-control" id="category" name="category" autocomplete="off">
+                        <option value="eat" {% if app.user.category == "eat" %} selected {% endif %}>Boire et Manger</option>
+                        <option value="wellness"  {% if app.user.category == "wellness" %} selected{% endif %}>Bien-être</option>
+                        <option value="event"  {% if app.user.category == "event" %} selected {% endif %}>Évènement</option>
+                        <option value="shop"  {% if app.user.category == "shop" %} selected {% endif %}>Boutique</option>
+                    </select>
+                </div>
+                <div  class="form-group category">
+                    <label for="palce">Lieu:</label>
+                    <select class="form-control" id="place" name="place" autocomplete="off">
+                        {% for place in places %}
+                            <option value="{{place.id}}">{{place.title}}</option>
+                        {% endfor %}
+                      </select>
+                </div>
+                <div class="form-group action">
+                    <button class="btn btn-primary submit"  data-loading-text="Enregistrement..." type="submit">Partager</button>
+                </div>
+            </form>
+            <!-- for each place, display the aubaines -->
+            {% for place in places %}
+                {% for aubaine in attribute(currentAubaines, place.id) %}
+                    <a class="aubaineExtract" target="_blank" href="{{ path('aubaine_platform_public_view', {'id': aubaine.id}) }}">
+                        <div class="image" style="background-image:url('{{ asset('images/place/' ~ aubaine.place.imageHeader) }}')"></div>
+                        <div class="content  category-{{ aubaine.category }}">
+                            {{ aubaine.message |length > 100 ? aubaine.message |slice(0, 100) ~ '...' : aubaine.message   }}
+                        </div>
+                        <div class="place">
+                            <img src="{{ asset('images/location.png') }} " alt="" class="location">
+                            {{ aubaine.place.title }}
+                        </div>
+                        <div class="date">
+                            <img src="{{ asset('images/calendar.png') }} " alt="" class="calendar">
+                            {% if  aubaine.type == 3 %}
+                            Le {{ aubaine.start | date("d") }} {{ aubaine.start | date("F") | trans }}
+                            {% elseif aubaine.type == 2 %}
+                                {% if aubaine.start | date("F") == aubaine.end | date("F") %}
+                                    Du {{ aubaine.start | date("d") }} au {{ aubaine.end | date("d") }} {{ aubaine.end | date("F") | trans }}
+                                {% else %}
+                                    Du {{ aubaine.start | date("d") }} {{ aubaine.start | date("F") | trans }} au {{ aubaine.end | date("d") }} {{ aubaine.end | date("F") | trans }}
+                                {% endif %}
                             {% else %}
-                                Du {{ aubaine.start | date("d") }} {{ aubaine.start | date("F") | trans }} au {{ aubaine.end | date("d") }} {{ aubaine.end | date("F") | trans }}
+                            Toute l'année
                             {% endif %}
-                        {% else %}
-                        Toute l'année
-                        {% endif %}
-                    </div>
-                    <img src="{{ asset('images/'~aubaine.category~'.png') }} " alt="" class="category category-{{ aubaine.category }}">
-                </a>
-            {% endfor %}
-            {% for aubaine in attribute(oldAubaines, place.id) %}
-                <a class="aubaineExtract" target="_blank" href="{{ path('aubaine_platform_public_view', {'id': aubaine.id}) }}">
-                    <div class="image" style="background-image:url('{{ asset('images/place/' ~ aubaine.place.imageHeader) }}')"></div>
-                    <div class="content  category-{{ aubaine.category }}">
-                        {{ aubaine.message |length > 100 ? aubaine.message |slice(0, 100) ~ '...' : aubaine.message   }}
-                    </div>
-                    <div class="place">
-                        <img src="{{ asset('images/location.png') }} " alt="" class="location">
-                        {{ aubaine.place.title }}
-                    </div>
-                    <div class="date">
-                        <img src="{{ asset('images/calendar.png') }} " alt="" class="calendar">
-                        {% if  aubaine.type == 3 %}
-                        Le {{ aubaine.start | date("d") }} {{ aubaine.start | date("F") | trans }}
-                        {% elseif aubaine.type == 2 %}
-                            {% if aubaine.start | date("F") == aubaine.end | date("F") %}
-                                Du {{ aubaine.start | date("d") }} au {{ aubaine.end | date("d") }} {{ aubaine.end | date("F") | trans }}
+                        </div>
+                        <img src="{{ asset('images/'~aubaine.category~'.png') }} " alt="" class="category category-{{ aubaine.category }}">
+                    </a>
+                {% endfor %}
+                {% for aubaine in attribute(oldAubaines, place.id) %}
+                    <a class="aubaineExtract" target="_blank" href="{{ path('aubaine_platform_public_view', {'id': aubaine.id}) }}">
+                        <div class="image" style="background-image:url('{{ asset('images/place/' ~ aubaine.place.imageHeader) }}')"></div>
+                        <div class="content  category-{{ aubaine.category }}">
+                            {{ aubaine.message |length > 100 ? aubaine.message |slice(0, 100) ~ '...' : aubaine.message   }}
+                        </div>
+                        <div class="place">
+                            <img src="{{ asset('images/location.png') }} " alt="" class="location">
+                            {{ aubaine.place.title }}
+                        </div>
+                        <div class="date">
+                            <img src="{{ asset('images/calendar.png') }} " alt="" class="calendar">
+                            {% if  aubaine.type == 3 %}
+                            Le {{ aubaine.start | date("d") }} {{ aubaine.start | date("F") | trans }}
+                            {% elseif aubaine.type == 2 %}
+                                {% if aubaine.start | date("F") == aubaine.end | date("F") %}
+                                    Du {{ aubaine.start | date("d") }} au {{ aubaine.end | date("d") }} {{ aubaine.end | date("F") | trans }}
+                                {% else %}
+                                    Du {{ aubaine.start | date("d") }} {{ aubaine.start | date("F") | trans }} au {{ aubaine.end | date("d") }} {{ aubaine.end | date("F") | trans }}
+                                {% endif %}
                             {% else %}
-                                Du {{ aubaine.start | date("d") }} {{ aubaine.start | date("F") | trans }} au {{ aubaine.end | date("d") }} {{ aubaine.end | date("F") | trans }}
+                            Toute l'année
                             {% endif %}
-                        {% else %}
-                        Toute l'année
-                        {% endif %}
-                    </div>
-                    <img src="{{ asset('images/'~aubaine.category~'.png') }} " alt="" class="category category-{{ aubaine.category }}">
-                </a>
-            {% endfor %}
-            {% for aubaine in attribute(permanentAubaines, place.id) %}
-                <a class="aubaineExtract" target="_blank" href="{{ path('aubaine_platform_public_view', {'id': aubaine.id}) }}">
-                    <div class="image" style="background-image:url('{{ asset('images/place/' ~ aubaine.place.imageHeader) }}')"></div>
-                    <div class="content  category-{{ aubaine.category }}">
-                        {{ aubaine.message |length > 100 ? aubaine.message |slice(0, 100) ~ '...' : aubaine.message   }}
-                    </div>
-                    <div class="place">
-                        <img src="{{ asset('images/location.png') }} " alt="" class="location">
-                        {{ aubaine.place.title }}
-                    </div>
-                    <div class="date">
-                        <img src="{{ asset('images/calendar.png') }} " alt="" class="calendar">
-                        {% if  aubaine.type == 3 %}
-                        Le {{ aubaine.start | date("d") }} {{ aubaine.start | date("F") | trans }}
-                        {% elseif aubaine.type == 2 %}
-                            {% if aubaine.start | date("F") == aubaine.end | date("F") %}
-                                Du {{ aubaine.start | date("d") }} au {{ aubaine.end | date("d") }} {{ aubaine.end | date("F") | trans }}
+                        </div>
+                        <img src="{{ asset('images/'~aubaine.category~'.png') }} " alt="" class="category category-{{ aubaine.category }}">
+                    </a>
+                {% endfor %}
+                {% for aubaine in attribute(permanentAubaines, place.id) %}
+                    <a class="aubaineExtract" target="_blank" href="{{ path('aubaine_platform_public_view', {'id': aubaine.id}) }}">
+                        <div class="image" style="background-image:url('{{ asset('images/place/' ~ aubaine.place.imageHeader) }}')"></div>
+                        <div class="content  category-{{ aubaine.category }}">
+                            {{ aubaine.message |length > 100 ? aubaine.message |slice(0, 100) ~ '...' : aubaine.message   }}
+                        </div>
+                        <div class="place">
+                            <img src="{{ asset('images/location.png') }} " alt="" class="location">
+                            {{ aubaine.place.title }}
+                        </div>
+                        <div class="date">
+                            <img src="{{ asset('images/calendar.png') }} " alt="" class="calendar">
+                            {% if  aubaine.type == 3 %}
+                            Le {{ aubaine.start | date("d") }} {{ aubaine.start | date("F") | trans }}
+                            {% elseif aubaine.type == 2 %}
+                                {% if aubaine.start | date("F") == aubaine.end | date("F") %}
+                                    Du {{ aubaine.start | date("d") }} au {{ aubaine.end | date("d") }} {{ aubaine.end | date("F") | trans }}
+                                {% else %}
+                                    Du {{ aubaine.start | date("d") }} {{ aubaine.start | date("F") | trans }} au {{ aubaine.end | date("d") }} {{ aubaine.end | date("F") | trans }}
+                                {% endif %}
                             {% else %}
-                                Du {{ aubaine.start | date("d") }} {{ aubaine.start | date("F") | trans }} au {{ aubaine.end | date("d") }} {{ aubaine.end | date("F") | trans }}
+                            Toute l'année
                             {% endif %}
-                        {% else %}
-                        Toute l'année
-                        {% endif %}
-                    </div>
-                    <img src="{{ asset('images/'~aubaine.category~'.png') }} " alt="" class="category category-{{ aubaine.category }}">
-                </a>
+                        </div>
+                        <img src="{{ asset('images/'~aubaine.category~'.png') }} " alt="" class="category category-{{ aubaine.category }}">
+                    </a>
+                {% endfor %}
             {% endfor %}
-        {% endfor %}
-    </div>
-</div>
+        </div>
+    </main>
 
 {% endblock %}
 

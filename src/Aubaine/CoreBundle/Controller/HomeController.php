@@ -43,29 +43,21 @@ class HomeController extends Controller
 		return $this->render('AubaineCoreBundle:Home:index.html.twig', $array_response);
 	    
 	}
-    // La page d'activation
-	public function activateAction(Request $request)
+    /**
+	* @Security("has_role('ROLE_USER')")
+	*/
+	public function cardAction(Request $request)
 	{
 
 		$dm = $this->get('doctrine_mongodb')->getManager();
-	    $user = $this->get('security.token_storage')->getToken()->getUser();
-		$userManager = $this->get('fos_user.user_manager');
+    	$user = $this->get('security.token_storage')->getToken()->getUser();
 
-	    if ($request->isMethod('POST')) {
-	      if(!$user->getActivated()){
-		      $user->setActivated(True);
-		      // $userManager->updateUser($user);
-		      $request->getSession()->getFlashBag()->add('info', "Votre compte a bien été activé");
-	      }
-	      else{
-	          $request->getSession()->getFlashBag()->add('info', "Votre compte est déjà activé");
-	      }
-	    }
 
 	    $array_response=array(
+	    
 	    );
 
-		return $this->render('AubaineCoreBundle:Home:activate.html.twig', $array_response);
+		return $this->render('AubaineCoreBundle:Home:card.html.twig', $array_response);
 	    
 	}
     // La page carte

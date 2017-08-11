@@ -6,83 +6,83 @@
   Accueil - {{ parent() }}
 {% endblock %}
 
-{% block aubaineplatform_body %}
+{% block page %}
+  <main class="page-aubaine_index page-full">
+    <a href="{{ path('aubaine_platform_add') }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-plus"></i>
+      Ajouter une Aubaine
+    </a>
 
-  <a href="{{ path('aubaine_platform_add') }}" class="btn btn-default">
-    <i class="glyphicon glyphicon-plus"></i>
-    Ajouter une Aubaine
-  </a>
-
-  <h2>Liste des aubaines</h2>
+    <h2>Liste des aubaines</h2>
 
 
-  {% for message in app.session.flashbag.get('info') %}
-    <div class="alert alert-info">{{ message }}</div>
-  {% endfor %}
+    {% for message in app.session.flashbag.get('info') %}
+      <div class="alert alert-info">{{ message }}</div>
+    {% endfor %}
 
-  <table class="table table-hover">
-    <thead>
-        <tr>
-          <th>Publié le</th>
-          <th>Ville</th>
-          <th>Type</th>
-          <th>Début</th>
-          <th>Fin</th>
-          <th>Message</th>
-          <th>Lieu</th>
-          <th>Catégorie</th>
-          <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for aubaine in listAubaines %}
-            <tr>
-                <td>
-                    {{ aubaine.date | date("d") }} {{ aubaine.date | date("F") | trans }}
-                </td>
-                <td>
-                    {{ aubaine.city }}
-                </td>
-                <td>
-                    {{ aubaine.type }}
-                </td>
-                <td>
-                    {{ aubaine.start | date("d/m/y") }}
-                </td>
-                <td>
-                    {{ aubaine.end | date("d/m/y") }} 
-                </td>
-                <td>
-                    <a href="{{ path('aubaine_platform_view', {'id': aubaine.id}) }}" >      
-                        <h4 class="list-group-item-heading">{{ aubaine.message }}</h4>
-                    </a>
-                </td>
-                <td>
-                  {% if aubaine.place %}
-                    {{ aubaine.place.title }} 
-                </td>
-                <td>
-                    {{ aubaine.category }} 
-                </td>
-                    {% endif %}
-                <td>
-                    <a href="{{ path('aubaine_platform_edit', {'id': aubaine.id}) }}" class="btn btn-default">
-                      <i class="glyphicon glyphicon-edit"></i>
-                      Modifier le message
-                    </a>
-                </td>
-            </tr>
+    <table class="table table-hover">
+      <thead>
+          <tr>
+            <th>Publié le</th>
+            <th>Ville</th>
+            <th>Type</th>
+            <th>Début</th>
+            <th>Fin</th>
+            <th>Message</th>
+            <th>Lieu</th>
+            <th>Catégorie</th>
+            <th>Action</th>
+          </tr>
+      </thead>
+      <tbody>
+          {% for aubaine in listAubaines %}
+              <tr>
+                  <td>
+                      {{ aubaine.date | date("d") }} {{ aubaine.date | date("F") | trans }}
+                  </td>
+                  <td>
+                      {{ aubaine.city }}
+                  </td>
+                  <td>
+                      {{ aubaine.type }}
+                  </td>
+                  <td>
+                      {{ aubaine.start | date("d/m/y") }}
+                  </td>
+                  <td>
+                      {{ aubaine.end | date("d/m/y") }} 
+                  </td>
+                  <td>
+                      <a href="{{ path('aubaine_platform_view', {'id': aubaine.id}) }}" >      
+                          <h4 class="list-group-item-heading">{{ aubaine.message }}</h4>
+                      </a>
+                  </td>
+                  <td>
+                    {% if aubaine.place %}
+                      {{ aubaine.place.title }} 
+                  </td>
+                  <td>
+                      {{ aubaine.category }} 
+                  </td>
+                      {% endif %}
+                  <td>
+                      <a href="{{ path('aubaine_platform_edit', {'id': aubaine.id}) }}" class="btn btn-default">
+                        <i class="glyphicon glyphicon-edit"></i>
+                        Modifier le message
+                      </a>
+                  </td>
+              </tr>
+          {% endfor %}
+      </tbody>
+    </table>
+
+    <ul class="pagination">
+        {% for p in range(1, nbPages) %}
+          <li{% if p == page %} class="active"{% endif %}>
+            <a href="{{ path('aubaine_platform_home', {'page': p}) }}">{{ p }}</a>
+          </li>
         {% endfor %}
-    </tbody>
-  </table>
+    </ul>
 
-  <ul class="pagination">
-      {% for p in range(1, nbPages) %}
-        <li{% if p == page %} class="active"{% endif %}>
-          <a href="{{ path('aubaine_platform_home', {'page': p}) }}">{{ p }}</a>
-        </li>
-      {% endfor %}
-  </ul>
-
-
+  </main>
 {% endblock %}

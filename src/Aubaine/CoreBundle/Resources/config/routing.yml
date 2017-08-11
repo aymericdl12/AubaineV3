@@ -10,6 +10,9 @@ aubaine_core_map:
 aubaine_core_live:
     path:     /recherche/{city}/{category}/{search}
     defaults: { _controller: AubaineCoreBundle:Home:live, city: toulouse , category: all , search: all }
+aubaine_core_card:
+    path:     /carte-aubaine
+    defaults: { _controller: AubaineCoreBundle:Home:card }
 aubaine_core_concept:
     path:     /concept
     defaults: { _controller: AubaineCoreBundle:Home:concept }
