@@ -6,15 +6,18 @@
   Accueil - {{ parent() }}
 {% endblock %}
 
-{% block aubaineplace_body %}
-  
-  <a href="{{ path('aubaine_place_home') }}" class="btn btn-default">
-    <i class="glyphicon glyphicon-chevron-left"></i>
-    Retour à la liste
-  </a>
+{% block page %}
+	<main class="page-place_add page-large">
 
-  <h2>Publier un lieu</h2>
+		<a href="{{ path('aubaine_place_home') }}" class="btn btn-default">
+		<i class="glyphicon glyphicon-chevron-left"></i>
+		Retour à la liste
+		</a>
 
-  {{ include("AubainePlaceBundle:Place:form.html.twig") }}
+		<h2>Publier un lieu</h2>
+
+		{{ include("AubainePlaceBundle:Place:form.html.twig") }}
+		
+	</main>
 
 {% endblock %}

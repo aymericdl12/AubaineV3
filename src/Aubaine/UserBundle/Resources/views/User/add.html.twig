@@ -6,19 +6,17 @@
   Accueil - {{ parent() }}
 {% endblock %}
 
-{% block body_column_center %}
+{% block page %}
+  <main class="page-user_add page-large">
   
-  <a href="{{ path('aubaine_user_home') }}" class="btn btn-default">
-    <i class="glyphicon glyphicon-chevron-left"></i>
-    Retour à la liste des utilisateurs
-  </a>
+    <a href="{{ path('aubaine_user_home') }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-chevron-left"></i>
+      Retour à la liste des utilisateurs
+    </a>
 
-  <h2>Ajouter un utilisateur</h2>
+    <h2>Ajouter un utilisateur</h2>
 
-  {{ include("AubaineUserBundle:User:form.html.twig") }}
+    {{ include("AubaineUserBundle:User:form.html.twig") }}
 
-  <p>
-    remplisssez ce formulaire pour ajouter un utilisateur.<br>
-  </p>
-
+  </main>
 {% endblock %}

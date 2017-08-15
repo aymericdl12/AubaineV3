@@ -19,16 +19,27 @@ security:
         security: false
       main:
         pattern:   ^/
-        anonymous: true
-        provider: main
         form_login:
-          # csrf_provider: security.csrf.token_manager
+          provider: main
           login_path: fos_user_security_login
           check_path: fos_user_security_check
+          # csrf_provider: security.csrf.token_manager
+          # login_path: fos_user_security_login
         logout:
           path:       fos_user_security_logout
           target:     aubaine_core_homepage
+        anonymous: true
+        oauth:
+          resource_owners:
+            facebook:           "/demo/secured/login-facebook"
+            gplus:             "/demo/secured/login-google"
+          login_path:        /demo/secured/login
+          use_forward:       false
+          failure_path:      /demo/secured/login
+          oauth_user_provider:
+            service: my.oauth_aware.user_provider.service
 
   access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/user, roles: ROLE_ADMIN }
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }

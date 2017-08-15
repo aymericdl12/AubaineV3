@@ -6,16 +6,18 @@
   Modifier son Avatar - {{ parent() }}
 {% endblock %}
 
-{% block body_column_center %}
+{% block page %}
+	<main class="page-user_editAvatar page-large">
 
-  <a href="{{ path('fos_user_profile_show') }}" class="btn btn-default">
-    <i class="glyphicon glyphicon-chevron-left"></i>
-    Annuler et retourner à la liste
-  </a>
+		<a href="{{ path('fos_user_profile_show') }}" class="btn btn-default">
+		<i class="glyphicon glyphicon-chevron-left"></i>
+		Annuler et retourner à la liste
+		</a>
 
-  <h2>Modifier son avatar</h2>
+		<h2>Modifier son avatar</h2>
 
-  {{ include("AubaineUserBundle:User:form.html.twig") }}
+		{{ include("AubaineUserBundle:User:form.html.twig") }}
 
+	</main>
 
 {% endblock %}

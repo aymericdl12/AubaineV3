@@ -1,6 +1,9 @@
 aubaine_core_homepage:
     path:     /
     defaults: { _controller: AubaineCoreBundle:Home:index }
+aubaine_core_preregister:
+    path:     /preregister
+    defaults: { _controller: AubaineCoreBundle:Home:preregister }
 aubaine_core_activate:
     path:     /activer-mon-compte
     defaults: { _controller: AubaineCoreBundle:Home:activate }

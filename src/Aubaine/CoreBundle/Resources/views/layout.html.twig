@@ -104,7 +104,7 @@
 
                 {% else %}
                     <li class="{% if app.request.attributes.get('_route') == 'fos_user_security_login' %}active{% endif %}"><a href="{{ path('fos_user_security_login') }}">connexion</a></li>
-                    <li class="{% if app.request.attributes.get('_route') == 'fos_user_registration_register' %}active{% endif %}"><a href="{{ path('fos_user_registration_register') }}">inscription</a></li>
+                    <li class="{% if app.request.attributes.get('_route') == 'aubaine_core_preregister' %}active{% endif %}"><a href="{{ path('aubaine_core_preregister') }}">inscription</a></li>
                 {% endif %}
           </ul>
         </div>

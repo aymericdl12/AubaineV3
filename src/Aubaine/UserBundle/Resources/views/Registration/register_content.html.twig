@@ -4,17 +4,29 @@
 <div class="row content padding-top-20">
     <div class="col-sm-6">
         <div class="register-message">
-            <h2>Membre (à venir)</h2>
+            <h2>Membre</h2>
             <p>
-                <form method="post" class="futuremember-form form" action ="{{ path('aubaine_core_ajax_futuremember') }}">
-                    <p>
-                        Devenir membre et profiter de bons plans uniques est bientôt possible ! Envoyez-nous votre adresse email et on vous prévient.
-                    </p>
-                    <input class="emailInput form-control"placeholder="Votre email" class="form-control" maxlength="150" type="text"  name="email" required="required">
-                    <input class="btn btn-primary submit"  data-loading-text="Enregistrement..." type="submit" value="Envoyer">
-                    <div class="emailInfos alert alert-success" style="display:none">Votre email bien été enregistrée !</div>
-                </form>
-            </p>            
+                {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+                    {{ form_widget(form) }}
+                    <div>
+                        <input type="submit" class="btn btn-primary submit-form" value="{{ 'registration.submit'|trans }}" />
+                    </div>
+                {{ form_end(form) }} 
+            </p>
+            <div class="text-strikethru">
+                <div class="line"></div>
+                <div class="text">ou</div>
+            </div>
+            <div>
+                <a class="btn btn-primary submit-form facebook" href="{{ hwi_oauth_login_url('facebook') }}"><i class="icon icon-facebook left"></i>Se connecter avec Facebook</a> 
+            </div>  
+            <div class="text-strikethru">
+                <div class="line"></div>
+                <div class="text">ou</div>
+            </div>
+            <div>
+                <a class="btn btn-primary submit-form gplus" href="{{ hwi_oauth_login_url('gplus') }}"><i class="icon icon-gplus left"></i>Se connecter avec Google</a>
+            </div>            
         </div>
     </div>
     <div class="col-sm-6">
@@ -33,4 +45,7 @@
         </div>
     </div>    
 </div>
+
+
+        <a class="oauth-btn waves-effect waves-light facebook" href="{{ hwi_oauth_login_url('facebook') }}"><i class="icon icon-facebook left"></i>Se connecter avec Facebook</a> 
 

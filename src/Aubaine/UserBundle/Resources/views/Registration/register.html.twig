@@ -1,17 +1,9 @@
 {% extends "AubaineCoreBundle::layout.html.twig" %}
-
+{% block title %}
+  Inscription - {{ parent() }}
+{% endblock %}
 {% block page %}
     <main class="page-register page-large">
 		{% include "@FOSUser/Registration/register_content.html.twig" %}
 	</main>
 {% endblock %}
-
-
-{% block javascripts %}
-    {{ parent() }}
-    {% javascripts filter='jsqueeze'
-        'bundles/aubainecore/js/register.js' %}
-        <script type="text/javascript" src="{{ asset_url }}"></script>
-    {% endjavascripts %}
-{% endblock %}
-

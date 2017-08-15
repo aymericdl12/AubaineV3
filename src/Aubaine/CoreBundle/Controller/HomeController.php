@@ -88,6 +88,18 @@ class HomeController extends Controller
 	    
 	}
     // La page carte
+	public function preregisterAction(Request $request)
+	{
+
+		$dm = $this->get('doctrine_mongodb')->getManager();
+
+	    $array_response=array(
+	    );
+
+		return $this->render('AubaineCoreBundle:Home:preregister.html.twig', $array_response);
+	    
+	}
+    // La page carte
 	public function liveAction($city,$category,$search, Request $request)
 	{
 

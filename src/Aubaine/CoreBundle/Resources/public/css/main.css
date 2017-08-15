@@ -968,6 +968,62 @@ textarea {
   margin:2rem 0;
 }
 
+/************************** PREREGISTER PAGE ***************************/
+.page-preregister{
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  text-align: center;
+}
+.page-preregister h1{
+  font-size: 3.2rem;
+  margin:0 2rem 2rem;
+  font-weight: bold;
+}
+.page-preregister .intro{
+  font-size: 1.8rem;
+}
+.page-preregister h2{
+  text-align: left;
+  font-size: 2.3rem;
+  margin-bottom: 2rem;
+}
+.page-preregister .preregister-message{
+  text-align: left;
+  width:100%;
+  max-width: 380px;
+  margin-bottom:2rem;
+  padding: 1.5rem 2rem;
+  background-color: #eee;
+  border: 2px solid #0f9f97; 
+  font-size: 1.6rem;
+  line-height: 3rem;
+  display:inline-block;
+  vertical-align: top;
+}
+.page-preregister .preregister-message.preregister-message-partner{
+  border-color: #ec4940;
+}
+.page-preregister .form-control{
+  height:42px;
+}
+.page-preregister .submit{
+  margin-top:2rem;
+  width:100%;
+}
+.page-preregister .submit-form{
+  width:100%;
+  font-size: 1.6rem;
+}
+.page-preregister .email,
+.page-preregister .phone{
+  font-weight: bold;
+  text-align: center;
+  color:#ec4940;
+}
+.page-preregister .email a{
+  color:#ec4940;
+}
+
 /************************** REGISTER PAGE ***************************/
 .page-register{
   padding-top: 5rem;
@@ -989,6 +1045,7 @@ textarea {
 }
 .page-register .register-message{
   text-align: left;
+  width:100%;
   max-width: 380px;
   margin-bottom:2rem;
   padding: 1.5rem 2rem;
@@ -1002,8 +1059,16 @@ textarea {
 .page-register .register-message.register-message-partner{
   border-color: #ec4940;
 }
+.page-register .form-control{
+  height:42px;
+}
 .page-register .submit{
   margin-top:2rem;
+  width:100%;
+}
+.page-register .submit-form{
+  width:100%;
+  font-size: 1.6rem;
 }
 .page-register .email,
 .page-register .phone{
@@ -1013,6 +1078,26 @@ textarea {
 }
 .page-register .email a{
   color:#ec4940;
+}
+.text-strikethru {
+    position: relative;
+    text-align: center;
+    margin-top:3rem;
+}
+.text-strikethru .text {
+    background-color: #eee;
+    color: #3d3d66;
+    display: inline-block;
+    font-size: 14px;
+    padding: 5px 10px;
+    position: relative;
+    top: -21px;
+}
+.text-strikethru .line {
+    background-color: #bbb;
+    height: 1px;
+    margin-left: 5%;
+    width: 90%;
 }
 
 
@@ -1194,7 +1279,7 @@ textarea {
   max-width: 90%;
   background-color: #f7f7f7;
   border: thin solid #cacaca;
-  border-radius: 5px;
+  /*border-radius: 5px;*/
   overflow:hidden;
 }
 .aubaineExtract:hover{
@@ -1210,7 +1295,8 @@ textarea {
   background: rgba(0, 0, 0, 0.09) none repeat scroll 0 0;
   color: #222;
   font-size: 1.5rem;
-  font-weight: 500;
+  font-weight: bold;
+  letter-spacing: 0.05rem;
   line-height: 2.5rem;
   margin-bottom: 2rem;
   overflow: hidden;

@@ -6,21 +6,18 @@
   Accueil - {{ parent() }}
 {% endblock %}
 
-{% block aubaineplatform_body %}
-  
-  <a href="{{ path('aubaine_platform_home') }}" class="btn btn-default">
-    <i class="glyphicon glyphicon-chevron-left"></i>
-    Retour à la liste
-  </a>
+{% block page %}
+  <main class="page-aubaine_add page-large">
 
-  <h2>Publier une Aubaine</h2>
+    <a href="{{ path('aubaine_platform_home') }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-chevron-left"></i>
+      Retour à la liste
+    </a>
 
-  {{ include("AubainePlatformBundle:Aubaine:form.html.twig") }}
+    <h2>Publier une Aubaine</h2>
 
-  <p>
-    remplisssez ce formulaire et votre aubaine apparaitra sur la carte.<br>
+    {{ include("AubainePlatformBundle:Aubaine:form.html.twig") }}
 
-	
-  </p>
+  </main>
 
 {% endblock %}

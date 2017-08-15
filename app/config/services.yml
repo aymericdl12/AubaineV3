@@ -12,3 +12,8 @@ services:
         class: Aubaine\UserBundle\Form\Type\ProfileType
         tags:
             - { name: form.type, alias: app_user_profile }
+    my.oauth_aware.user_provider.service:
+        class: HWI\Bundle\OAuthBundle\Security\Core\User\FOSUBUserProvider
+        arguments:
+            - '@fos_user.user_manager'
+            - [{facebook: facebookUid, gplus: gplusUid}]

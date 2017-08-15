@@ -6,7 +6,8 @@
   Modifier un utilisateur - {{ parent() }}
 {% endblock %}
 
-{% block body_column_center %}
+{% block page %}
+  <main class="page-user_edit page-large">
 
   <a href="{{ path('aubaine_user_view', {'id': user.id}) }}" class="btn btn-default">
     <i class="glyphicon glyphicon-chevron-left"></i>
@@ -17,5 +18,5 @@
 
   {{ include("AubaineUserBundle:User:form.html.twig") }}
 
-
+	</main>
 {% endblock %}
