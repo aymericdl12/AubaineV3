@@ -37,7 +37,7 @@ security:
           use_forward:       false
           failure_path:      /demo/secured/login
           oauth_user_provider:
-            service: my.oauth_aware.user_provider.service
+            service: my.custom.user_provider
 
   access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
