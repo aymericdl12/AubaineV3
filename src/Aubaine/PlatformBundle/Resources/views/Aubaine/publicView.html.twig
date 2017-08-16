@@ -10,10 +10,10 @@
   {% endif %}
 {% endblock %}
 {% block og_title %}
-  <meta property="og:title" content="{{ aubaine.place.title }} : {{ aubaine.message | raw }}" />
+  <meta property="og:title" content="{{ aubaine.message | raw }}" />
 {% endblock %}
 {% block og_description %}
-  <meta property="og:description" content='{% if  aubaine.type == 3 %}
+  <meta property="og:description" content='{{ aubaine.place.title }}, {% if  aubaine.type == 3 %}
           Le {{ aubaine.start | date("d") }} {{ aubaine.start | date("F") | trans }}
           {% elseif aubaine.type == 2 %}
               {% if aubaine.start | date("F") == aubaine.end | date("F") %}
