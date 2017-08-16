@@ -10,20 +10,20 @@
   {% endif %}
 {% endblock %}
 {% block og_title %}
-  <meta property="og:title" content='{{ aubaine.place.title }} : {{ aubaine.message | raw }}' />
+  <meta property="og:title" content='{{ aubaine.message | raw }}' />
 {% endblock %}
 {% block og_description %}
-  <meta property="og:description" content='{% if  aubaine.type == 3 %}
-          Le {{ aubaine.start | date("d") }} {{ aubaine.start | date("F") | trans }}
+  <meta property="og:description" content="{{ aubaine.place.title }}, {% if  aubaine.type == 3 %}
+          Le {{ aubaine.start | date('d') }} {{ aubaine.start | date('F') | trans }}
           {% elseif aubaine.type == 2 %}
-              {% if aubaine.start | date("F") == aubaine.end | date("F") %}
-                  Du {{ aubaine.start | date("d") }} au {{ aubaine.end | date("d") }} {{ aubaine.end | date("F") | trans }}
+              {% if aubaine.start | date('F') == aubaine.end | date('F') %}
+                  Du {{ aubaine.start | date('d') }} au {{ aubaine.end | date('d') }} {{ aubaine.end | date('F') | trans }}
               {% else %}
-                  Du {{ aubaine.start | date("d") }} {{ aubaine.start | date("F") | trans }} au {{ aubaine.end | date("d") }} {{ aubaine.end | date("F") | trans }}
+                  Du {{ aubaine.start | date('d') }} {{ aubaine.start | date('F') | trans }} au {{ aubaine.end | date('d') }} {{ aubaine.end | date('F') | trans }}
               {% endif %}
           {% else %}
-          Toute lannée
-          {% endif %}'>
+          Toute l'année
+          {% endif %}">
 {% endblock %}
 {% block og_url %}
   <meta property="og:url" content="{{ absolute_url( path(app.request.attributes.get('_route'),
