@@ -16,7 +16,7 @@ services:
         class: HWI\Bundle\OAuthBundle\Security\Core\User\FOSUBUserProvider
         arguments:
             - '@fos_user.user_manager'
-            - [{facebook: facebook_id, gplus: gplusUid}]
+            - [{facebook: facebookid, gplus: gplusUid}]
     my.custom.user_provider:
         class:        Aubaine\UserBundle\Document\MyFOSUBUserProvider
-        arguments: ['@fos_user.user_manager', { facebook: facebook_id }]
+        arguments: ['@fos_user.user_manager', { facebook: facebookid }]

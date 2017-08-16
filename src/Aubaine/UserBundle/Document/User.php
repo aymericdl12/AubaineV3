@@ -89,7 +89,7 @@ class User extends BaseUser
     /**
      * @MongoDB\Field(type="string")
      */
-    private $facebookId;
+    private $facebookid;
     
     /**
      * @MongoDB\Field(type="string")
@@ -454,12 +454,12 @@ class User extends BaseUser
         return $this->sex;
     }
     /**
-     * @param string $facebookId
+     * @param string $facebookid
      * @return User
      */
-    public function setFacebookId($facebookId)
+    public function setfacebookid($facebookid)
     {
-        $this->facebookId = $facebookId;
+        $this->facebookid = $facebookid;
 
         return $this;
     }
@@ -467,9 +467,9 @@ class User extends BaseUser
     /**
      * @return string
      */
-    public function getFacebookId()
+    public function getfacebookid()
     {
-        return $this->facebookId;
+        return $this->facebookid;
     }
 
     /**
