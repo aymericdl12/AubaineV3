@@ -14,13 +14,22 @@
     
     <!-- Meta tags -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta property='og:image' content="{{ asset('images/screenshot-map.png') }}"/>
-    <meta property="og:image:type" content="image/png">
-    <meta property="og:title" content="Aubaine" />
+
+    {% block og_image %}
+      <meta property='og:image' content="{{ asset('images/screenshot-map.png') }}"/>
+      <meta property="og:image:type" content="image/png">
+    {% endblock %}
+    {% block og_title %}
+      <meta property="og:title" content="Aubaine" />
+    {% endblock %}
+    {% block og_description %}
+      <meta property="og:description" content="les bons plans autour de vous aujourd'hui">
+    {% endblock %}
+    {% block og_url %}
+      <meta property="og:url" content="https://www.aubaineapp.fr"/>
+    {% endblock %}
     <meta property="fb:admins" content="" />
     <meta property="fb:app_id" content="639260759607903" />
-    <meta property="og:description" content="les bons plans autour de vous aujourd'hui">
-    <meta property="og:url" content="https://www.aubaineapp.fr"/>
     <meta name="apple-mobile-web-app-title" content="Aubaine">
     
     <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('images/apple-icon-57x57.png') }}">
