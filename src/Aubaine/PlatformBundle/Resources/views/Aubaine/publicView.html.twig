@@ -10,10 +10,10 @@
   {% endif %}
 {% endblock %}
 {% block og_title %}
-  <meta property="og:title" content="{{ aubaine.place.title }}" />
+  <meta property="og:title" content="Aubaine - {{ aubaine.place.title }}" />
 {% endblock %}
 {% block og_description %}
-  <meta property="og:description" content="{{ aubaine.message | raw }}">
+  <meta property="og:description" content=" Bon Plan : {{ aubaine.message | raw }}">
 {% endblock %}
 {% block og_url %}
   <meta property="og:url" content="{{ absolute_url( path(app.request.attributes.get('_route'),
