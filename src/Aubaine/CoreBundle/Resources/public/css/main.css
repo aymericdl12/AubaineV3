@@ -1171,8 +1171,8 @@ textarea {
   padding: 2.5rem;
   position: relative;
   text-align: center;
-  border: 5px solid #f33;
-  border-radius: 2px;
+  /*border: 5px solid #f33;*/
+  /*border-radius: 2px;*/
 }
 .aubaine h2{
   font-size: 2rem;
