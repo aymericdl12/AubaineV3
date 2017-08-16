@@ -11,6 +11,10 @@
 {% block og_description %}
   <meta property="og:description" content="{{ aubaine.message | raw }}">
 {% endblock %}
+{% block og_url %}
+  <meta property="og:url" content="{{ path(app.request.attributes.get('_route'),
+     app.request.attributes.get('_route_params')) }}"/>
+{% endblock %}
 {% block title %}
   {{ aubaine.message }} - {{ parent() }}
 {% endblock %}
