@@ -2,7 +2,7 @@
 
 {% extends "AubainePlatformBundle::layout.html.twig" %}
 {% block og_image %}
-  <meta property='og:image' content="{{ asset('images/place/' ~ aubaine.place.imageHeader) }}"/>
+  <meta property='og:image' content="{{ absolute_url( asset('images/place/' ~ aubaine.place.imageHeader) ) }}"/>
   <meta property="og:image:type" content="image/png">
 {% endblock %}
 {% block og_title %}
