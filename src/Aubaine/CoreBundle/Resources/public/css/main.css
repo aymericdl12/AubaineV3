@@ -338,8 +338,9 @@ textarea {
   text-decoration: none;
 }
 .dealMap .content {
-    background: rgba(0, 0, 0, 0.09) none repeat scroll 0 0;
-    color: #222;
+    background: #222;
+    color: #fff;
+    border-top:5px solid #ff3333;
     font-size: 1.5rem;
     font-weight: 500;
     line-height: 2.5rem;
@@ -1160,9 +1161,9 @@ textarea {
   padding-bottom: 2rem;
 }
 .aubaine h1{
-  background: #eee none repeat scroll 0 0;  
-  color: #323232;
-  font-size: 2.8rem;
+  background: #222 none repeat scroll 0 0;  
+  color: #fff;
+  font-size: 2.5rem;
   font-weight: bold;
   letter-spacing: 0.2rem;
   line-height: 4rem;
@@ -1170,7 +1171,8 @@ textarea {
   padding: 2.5rem;
   position: relative;
   text-align: center;
-  border: 2px solid #ccc;
+  border: 5px solid #f33;
+  border-radius: 2px;
 }
 .aubaine h2{
   font-size: 2rem;
@@ -1292,11 +1294,12 @@ textarea {
   color:#444;
 }
 .aubaineExtract .content {
-  background: rgba(0, 0, 0, 0.09) none repeat scroll 0 0;
-  color: #222;
-  font-size: 1.5rem;
+  background: #222 none repeat scroll 0 0;
+  border-top: 5px solid #ff3333;
+  color: white;
+  font-size: 1.6rem;
   font-weight: bold;
-  letter-spacing: 0.05rem;
+  letter-spacing: 0.07rem;
   line-height: 2.5rem;
   margin-bottom: 2rem;
   overflow: hidden;
@@ -1304,6 +1307,18 @@ textarea {
   position: relative;
   text-align: center;
 }
+/*.aubaineExtract .content.category-eat {
+  border-top: 5px solid #ff3333;
+}
+.aubaineExtract .content.category-shop {
+  border-top: 5px solid #00561b;
+}
+.aubaineExtract .content.category-event {
+  border-top: 5px solid #f5bc05;
+}
+.aubaineExtract .content.category-wellness {
+  border-top: 5px solid #036;
+}*/
 .aubaineExtract .category{
   position:absolute;
   bottom:1rem;
@@ -1312,6 +1327,7 @@ textarea {
   width:3rem;
   padding:0.5rem;
   border-radius: 50%;
+  /*display:none;*/
 }
 .aubaineExtract .category.category-eat{
   background-color: #DE2916;
@@ -1349,19 +1365,10 @@ textarea {
   transform: rotate(-32deg);
   width: 100%;
 }
-.aubaineExtract .date{
-  padding:0 1rem 1rem;
-}
-.aubaineExtract .place,
-.aubaineExtract .place:hover,
-.aubaineExtract .place:focus{
-  text-decoration: none;
-  color:#444;
-}
+.aubaineExtract .date,
 .aubaineExtract .place{
   padding:0 1rem 1rem;
-  display:block;
-  font-weight: 500;
+  color:#333;
 }
 .aubaineExtract .calendar{
   margin-right: 0.5rem;

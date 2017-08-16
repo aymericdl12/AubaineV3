@@ -86,6 +86,16 @@ class User extends BaseUser
      */
     protected $deadline;
 
+    /**
+     * @MongoDB\Field(type="string")
+     */
+    private $facebookId;
+    
+    /**
+     * @MongoDB\Field(type="string")
+     */
+    private $facebookAccessToken;
+
 
     public function __construct()
     {
@@ -443,5 +453,41 @@ class User extends BaseUser
     {
         return $this->sex;
     }
+    /**
+     * @param string $facebookId
+     * @return User
+     */
+    public function setFacebookId($facebookId)
+    {
+        $this->facebookId = $facebookId;
 
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFacebookId()
+    {
+        return $this->facebookId;
+    }
+
+    /**
+     * @param string $facebookAccessToken
+     * @return User
+     */
+    public function setFacebookAccessToken($facebookAccessToken)
+    {
+        $this->facebookAccessToken = $facebookAccessToken;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFacebookAccessToken()
+    {
+        return $this->facebookAccessToken;
+    }
 }
