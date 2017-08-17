@@ -47,7 +47,7 @@ class MyFOSUBUserProvider extends BaseFOSUBProvider
             $user = new User();
             $user->setUsername($firstname."nonono");
             $user->setLastname($lastname);
-            $user->setEmail($userEmail);
+            $user->setEmail($userEmail."isthemail");
             $user->setEnabled(true);
             $userManager->updateUser($user);
             return $user;
