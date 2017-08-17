@@ -177,4 +177,4 @@ hwi_oauth:
             client_secret:       6e1639828958455d8a6549ff4f275190
             options:
                 display: popup #dialog is optimized for popup window
-                auth_type: rerequest # Re-asking for Declined Permissions
+                # auth_type: rerequest # Re-asking for Declined Permissions

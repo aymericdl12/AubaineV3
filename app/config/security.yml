@@ -34,7 +34,7 @@ security:
             facebook:           "/demo/secured/login-facebook"
             gplus:             "/demo/secured/login-google"
           login_path:        /demo/secured/login
-          use_forward:       false
+          # use_forward:       false
           failure_path:      /demo/secured/login
           oauth_user_provider:
             service: my.custom.user_provider
