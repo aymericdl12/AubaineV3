@@ -37,17 +37,19 @@ class MyFOSUBUserProvider extends BaseFOSUBProvider
     public function loadUserByOAuthUserResponse(UserResponseInterface $response)
     {
         $userEmail = $response->getEmail();
-        $user = $this->userManager->findUserByEmail($userEmail);
+        $userManager = $this->get('fos_user.user_manager');
+        $user = $userManager->findUserByEmail($userEmail);
 
         // if null just create new user and set it properties
         if (null === $user) {
-            $username = $response->getRealName();
+            $firstname = $response->getFirstName();
+            $lastname = $response->getLastName();
             $user = new User();
-            $user->setUsername($username);
+            $user->setUsername($username."nonono");
+            $user->setLastname($lastname);
+            $user->setEmail($userEmail);
             $user->setEnabled(true);
-
-            // ... save user to database
-
+            $userManager->updateUser($user);
             return $user;
         }
         // else update access token of existing user
