@@ -175,6 +175,7 @@ hwi_oauth:
             type:                facebook
             client_id:           639260759607903
             client_secret:       6e1639828958455d8a6549ff4f275190
+            scope:         "email"
             options:
                 display: popup #dialog is optimized for popup window
                 # auth_type: rerequest # Re-asking for Declined Permissions
