@@ -17,6 +17,7 @@ use Aubaine\UserBundle\Form\Type\UserEditAvatarType;
 use Aubaine\UserBundle\Form\Type\UserEditPasswordType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
+
 class UserController extends Controller
 {
 
