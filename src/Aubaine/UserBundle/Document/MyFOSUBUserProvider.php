@@ -44,6 +44,7 @@ class MyFOSUBUserProvider extends BaseFOSUBProvider
             $username = $response->getRealName();
             $user = new User();
             $user->setUsername($username);
+            $user->setEnabled(true);
 
             // ... save user to database
 
