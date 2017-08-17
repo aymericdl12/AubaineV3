@@ -218,7 +218,7 @@ class UserController extends Controller
     $dm = $this->get('doctrine_mongodb')->getManager();
     $userManager = $this->get('fos_user.user_manager');
 
-    $aubaines = $dm->getRepository('AubainePlatformBundle:Aubaine')->findAll();
+    // $aubaines = $dm->getRepository('AubainePlatformBundle:Aubaine')->findAll();
     // foreach ($aubaines as $aubaine) {
         // $date = new \DateTime();
         // $date->setTimestamp(1500163200);
@@ -233,8 +233,8 @@ class UserController extends Controller
     // }
 
 
-    $places = $dm->getRepository('AubainePlaceBundle:Place')->findAll();
-    foreach ($places as $place) {
+    // $places = $dm->getRepository('AubainePlaceBundle:Place')->findAll();
+    // foreach ($places as $place) {
       // $place->setScore(0);
       // $place->setImage1("");
       // $place->setImage2("");
@@ -250,12 +250,14 @@ class UserController extends Controller
       // $aubaine->setType( 1 );
       // $aubaine->setCategory( $place->getCategory() );
       // $dm->persist($aubaine);
-    }
+    // }
 
 
-    $users=$userManager->findUsers();
-    foreach ($users as $user) {
-        $user->setProfessional(True); //set to professional
+    // $users=$userManager->findUsers();
+    $userEmail = "aymericdl@hotmail.fr";
+    $user = $userManager->findUserByEmail($userEmail);
+    // foreach ($users as $user) {
+        // $user->setProfessional(True); //set to professional
 
         // $user->removePreference("5958fb9415605c2dbc006f2b");
         // $user->addPreference("5958fb9415605c2dbc006f30");
@@ -296,9 +298,15 @@ class UserController extends Controller
 
         // $user->setPlaceId($place->getId());
         // $userManager->updateUser($user,false);
-    }
+    // }
+
     $dm->flush();
-    $request->getSession()->getFlashBag()->add('info', "Modifications effectuées");
+    if (null === $user) {
+      $request->getSession()->getFlashBag()->add('info', "Utilisateur non trouvé");
+    }
+    else{
+      $request->getSession()->getFlashBag()->add('info', "Utilisateur trouvé et détruit");
+    }
     return $this->redirectToRoute('aubaine_user_home');
 
   }

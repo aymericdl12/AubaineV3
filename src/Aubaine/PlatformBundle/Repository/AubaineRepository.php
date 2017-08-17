@@ -34,7 +34,8 @@ class AubaineRepository extends DocumentRepository
     public function getAubainesLive($current_day_datetime, $categories,$city)
 	{
 		return $this->createQueryBuilder()
-		  ->sort('end', 'ASC')
+		  ->sort('date', 'DESC')
+		  // ->sort('end', 'ASC')
 		  ->field('end')->gte($current_day_datetime)
 		  ->field('category')->in($categories)
 		  ->field('city')->equals($city)
