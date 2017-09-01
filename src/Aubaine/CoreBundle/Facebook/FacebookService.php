@@ -41,7 +41,7 @@ class FacebookService
 		try {
 		  // Get the \Facebook\GraphNodes\GraphUser object for the current user.
 		  // If you provided a 'default_access_token', the '{access-token}' is optional.
-		  $response = $this->connection->get('/me');
+		  $response = $this->connection->get('/Le-bco-1159788157453961');
 		} catch(\Facebook\Exceptions\FacebookResponseException $e) {
 		  // When Graph returns an error
 		  return 'Graph returned an error: ' . $e->getMessage();
@@ -52,8 +52,8 @@ class FacebookService
 		  exit;
 		}
 
-		$me = $response->getGraphUser();
-		return 'Logged in as ' . $me->getName();
+		$me = $response->getGraphObject();
+		return 'Informations: ' . $me->getProperty('offers_v3');
 
 	}
 
