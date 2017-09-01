@@ -25,7 +25,7 @@ class FacebookService
 		  'app_id' => $this->appId,
 		  'app_secret' => $this->appSecret,
 		  'default_graph_version' => 'v2.10',
-		  'default_access_token' => '{access-token}',
+		  'default_access_token' => $this->token,
 		]);
 
 	}
@@ -37,7 +37,7 @@ class FacebookService
 		try {
 		  // Get the \Facebook\GraphNodes\GraphUser object for the current user.
 		  // If you provided a 'default_access_token', the '{access-token}' is optional.
-		  $response = $this->connection->get('/me', '{access-token}');
+		  $response = $this->connection->get('/me');
 		} catch(\Facebook\Exceptions\FacebookResponseException $e) {
 		  // When Graph returns an error
 		  return 'Graph returned an error: ' . $e->getMessage();
