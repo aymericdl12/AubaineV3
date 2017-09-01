@@ -41,7 +41,7 @@ class FacebookService
 		try {
 		  // Get the \Facebook\GraphNodes\GraphUser object for the current user.
 		  // If you provided a 'default_access_token', the '{access-token}' is optional.
-		  $response = $this->connection->get('/me','{EAACEdEose0cBAPmz5TcZByX7KZAI8ZBlM1s2OZCZCtpdddrDRTAZAYlBQnPkxxk4gtOZAbTa5GHxxzIVLyveRQEA3OZBvcT8SCPOEif0ZBDLUw5kEvx0NkRZBvFQiPtpuKbXO4dDX7lePuPQJT5qOZCZC3J67fgN0FDYZBUTzhrk401sZCijMU3Gvm4lUCuuEbXTLVIwwZD}');
+		  $response = $this->connection->get('/me','EAACEdEose0cBAPmz5TcZByX7KZAI8ZBlM1s2OZCZCtpdddrDRTAZAYlBQnPkxxk4gtOZAbTa5GHxxzIVLyveRQEA3OZBvcT8SCPOEif0ZBDLUw5kEvx0NkRZBvFQiPtpuKbXO4dDX7lePuPQJT5qOZCZC3J67fgN0FDYZBUTzhrk401sZCijMU3Gvm4lUCuuEbXTLVIwwZD');
 		} catch(\Facebook\Exceptions\FacebookResponseException $e) {
 		  // When Graph returns an error
 		  return 'Graph returned an error: ' . $e->getMessage();
