@@ -24,7 +24,7 @@ class FacebookService
 		$this->appsecret_proof= hash_hmac('sha256', $token, $appSecret); 
 
         // Cette instruction nous permettra de nous connecter à l'API
-		$this->connection = new Facebook\Facebook([
+		$this->connection = new \Facebook\Facebook([
 		  'app_id' => 639260759607903,
 		  'app_secret' => '6e1639828958455d8a6549ff4f275190',
 		  // 'appsecret_proof' => $this->appsecret_proof,
