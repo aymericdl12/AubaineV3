@@ -20,3 +20,6 @@ services:
     my.custom.user_provider:
         class:        Aubaine\UserBundle\Document\MyFOSUBUserProvider
         arguments: ['@fos_user.user_manager', { facebook: facebookid }]
+    app_core.facebook:
+        class: Aubaine\CoreBundle\Facebook\FacebookService
+        arguments: ["%app_id%","%app_secret%","%page_id%","%token%"]

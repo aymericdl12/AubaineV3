@@ -30,6 +30,7 @@ security:
           target:     aubaine_core_homepage
         anonymous: true
         oauth:
+          default_target_path: /carte-aubaine
           resource_owners:
             facebook:           "/demo/secured/login-facebook"
             gplus:             "/demo/secured/login-google"

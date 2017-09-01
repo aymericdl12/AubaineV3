@@ -261,6 +261,13 @@ class HomeController extends Controller
 		return $this->render('AubaineCoreBundle:Home:places.html.twig', $array_response);
 	    
 	}
+	// facebook test
+	public function facebookAction()
+    {
+        $response = $this->get('app_core.facebook')->poster("Post for fag");
+
+        return new Response($response);
+    }
     // La page carte
 	public function emailAction(Request $request)
 	{

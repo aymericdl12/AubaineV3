@@ -43,3 +43,6 @@ aubaine_core_email:
 aubaine_core_places:
     path:      /lieux/{city}/{category}/{search}
     defaults: { _controller: AubaineCoreBundle:Home:places, city: toulouse , category: all , search: all }
+aubaine_core_facebook:
+    path:      /facebook
+    defaults: { _controller: AubaineCoreBundle:Home:facebook }
