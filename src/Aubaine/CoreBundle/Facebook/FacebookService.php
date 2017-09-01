@@ -25,10 +25,10 @@ class FacebookService
 
         // Cette instruction nous permettra de nous connecter à l'API
 		$this->connection = new \Facebook\Facebook([
-		  'app_id' => 639260759607903,
+		  'app_id' => '639260759607903',
 		  'app_secret' => '6e1639828958455d8a6549ff4f275190',
 		  // 'appsecret_proof' => $this->appsecret_proof,
-		  'default_graph_version' => 'v2.10'
+		  'default_graph_version' => 'v2.9'
 		  // 'default_access_token' => $this->token,
 		]);
 
