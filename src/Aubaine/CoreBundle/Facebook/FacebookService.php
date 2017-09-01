@@ -1,6 +1,7 @@
 <?php
 
 namespace Aubaine\CoreBundle\Facebook;
+use Facebook\Facebook;
 
 
 class FacebookService
