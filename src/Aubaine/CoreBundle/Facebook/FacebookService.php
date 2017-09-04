@@ -41,7 +41,7 @@ class FacebookService
 		try {
 		  // Get the \Facebook\GraphNodes\GraphUser object for the current user.
 		  // If you provided a 'default_access_token', the '{access-token}' is optional.
-		  $response = $this->connection->get('/Le-bco-1159788157453961');
+		  $response = $this->connection->get('/2164893347130838?fields=offers_v3');
 		} catch(\Facebook\Exceptions\FacebookResponseException $e) {
 		  // When Graph returns an error
 		  return 'Graph returned an error: ' . $e->getMessage();
@@ -52,9 +52,13 @@ class FacebookService
 		  exit;
 		}
 
-		$me = $response->getGraphObject();
-		return 'Informations: ' . $me->getProperty('offers_v3');
+		$graphEdge = $response->getGraphEdge();
+		$message="Infos: ";
+		foreach ($graphEdge as $graphNode) {
+		  $message=$message.' '.$graphNode->getProperty('title').'-';
+		}
 
+		return $message;
 	}
 
 }
